@@ -21,11 +21,11 @@ class App extends React.Component
   return (
     <Router basename={process.env.PUBLIC_URL}>
        <Switch>
-         <TableData />
+         {/* <TableData /> */}
          {/* <SignInForm/> */}
-      {/* <>
+      <>
       <Header type="rp"/>
-      {/* <Image type="logo" imageURL=
+       <Image type="logo" imageURL=
       "https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/8b9ff190-f490-4211-b2dd-61f476cfeabd.svg"/>
       <InputElement type="text"/> 
       <Button buttonText="Login" type="primary"/>
@@ -35,9 +35,10 @@ class App extends React.Component
        <DropDownList optionsList={["mobile","laptop"]}/>
        <RadioButton list={["male","female"]}/>
        <Button buttonText="Submit"/>
-       <InputElement type="date"/> */}
+       <InputElement type="date"/> 
+       </>
 
-         {/* <Profile /></> */}
+         {/* <Profile /></>
 
         {/* <Route exact path="/page-1">
           <Page1 />

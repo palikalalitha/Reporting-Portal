@@ -8,7 +8,7 @@ import {Image} from "../../../common/components/Image/"
 class SignInForm extends Component {
     render() {
         const {welcomeMessage,userName,password,noAccount}=i18n.signInPageStrings
-        console.log(welcomeMessage,userName,password)
+        
         return (
             <SignInContainer>
                 <Image type="logo" imageURL={imageURL}/>
