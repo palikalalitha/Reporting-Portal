@@ -1,0 +1,12 @@
+{
+    "userFormStrings":
+    {
+        "title":"Title of the observation",
+        "category":"Category",
+        "subCategory":"Sub Category",
+        "severity":"severity",
+        "description":"Description",
+        "attachments":"Attachments"
+
+    }
+}

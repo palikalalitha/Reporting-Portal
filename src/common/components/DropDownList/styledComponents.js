@@ -5,7 +5,8 @@ const Select=styled.select
 height: 40px;
 border-radius: 2px;
 border: solid 1px light-blue-grey;
-background-color:white;`
+background-color:white;
+box-shadow: 0 0 0 1px silver`
 const OptionContainer=styled.div `
 width: 181px;
   height: 184px;

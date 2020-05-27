@@ -7,7 +7,7 @@ class DropDownList extends Component {
             <Select>
                 <Option>All</Option>
                 {optionsList.map(eachOption=>
-                <Option>{eachOption}</Option>)}
+                <Option key={eachOption}>{eachOption}</Option>)}
             </Select>
                 );
     }

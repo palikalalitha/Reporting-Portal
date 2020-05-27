@@ -8,11 +8,11 @@ import {
     USERNAME_ERROR_MESSAGE,
     PASSWORD_ERROR_MESSAGE
 }
-from "../../constants/SignInPageConstants.js"
+from "../../constants/SigninPageConstants.js"
 
-import { SignInPage } from "../../components/SignInPage/index"
+import {SignInForm} from "../../components/SigninForm/"
 
-@inject("authStore")
+@inject("signInStore")
 @observer
 class SignInRoute extends React.Component {
     @observable username
@@ -34,16 +34,19 @@ class SignInRoute extends React.Component {
     }
     onChangeUsername = (event) => {
         this.username = event.target.value
-           }
+        this.errorMessage = ""
+        console.log(this.username)
+    }
     onChangePassword = (event) => {
          this.password = event.target.value
+         this.errorMessage = ""
     }
 
     onSuccess = () => {
-        this.props.history.push("/ecommerce-store/products/")
+        this.props.history.push("/reporting-portal/user-page")
     }
     onFailure = () => {
-        const { getUserSignInAPIError: apiError } = this.props.authStore
+        const { getUserSignInAPIError: apiError } = this.props.signInStore
         if (apiError !== undefined || apiError != null) {
              this.errorMessage = "Network Error"
             // this.siginPageRef.current.passwordRef.current.focus()
@@ -67,7 +70,7 @@ class SignInRoute extends React.Component {
         }
     }
     handleSignIn = async() => {
-        await this.props.authStore.userSignIn({
+        await this.props.signInStore.userSignIn({
             username: this.username,
             password: this.password
         }, this.onSuccess, this.onFailure)
@@ -75,9 +78,21 @@ class SignInRoute extends React.Component {
     }
     
     render() {
-        const { getUserSignInAPIStatus } = this.props.authStore
+        const { getUserSignInAPIStatus } = this.props.signInStore
+        const {username,password,handleSignIn,onClickSignIn,onFailure,onSuccess,
+            onChangeUsername,onChangePassword,errorMessage}=this
         return (
-           <div>hii</div>
+          <SignInForm 
+          errorMessage={errorMessage}
+          username={username}
+          userpassword={password}
+          handleSignIn={handleSignIn}
+          onClickSignIn={onClickSignIn}
+          onFailure={onFailure}
+          onSuccess={onSuccess}
+          onChangePassword={onChangePassword}
+          onChangeUsername={onChangeUsername}
+          apiStatus={getUserSignInAPIStatus}/>
            )
     }
 

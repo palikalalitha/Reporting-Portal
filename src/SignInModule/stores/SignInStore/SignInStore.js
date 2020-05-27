@@ -3,7 +3,7 @@ import { observable, action } from "mobx"
 import { bindPromiseWithOnSuccess } from "@ib/mobx-promise"
 import { API_INITIAL } from "@ib/api-constants"
 
-import { setAccessToken, clearUserSession } from "../../utils/StorageUtils.js"
+import { setAccessToken, clearUserSession } from "../../../common/utils/StorageUtils.js"
 class SignInStore {
     @observable getUserSignInAPIStatus
     @observable getUserSignInAPIError
