@@ -6,7 +6,7 @@ import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
 import "./App.css";
 import {store} from "./SignInModule/stores/"
-import {Home} from "./common/home"
+// import {Home} from "./common/home"
 import { InputElement } from "./common/components/InputElement";
 import {Button} from "./common/components/Button/"
 import { Profile } from "./common/components/Profile/Profile";
@@ -30,10 +30,9 @@ class App extends React.Component
     <Provider signInStore={signInStore} >
     <Router basename={process.env.PUBLIC_URL}>
        <Switch>
-        <UserPage/>
+      
         {signInRoutes} 
         {userRoutes}
-        {/* <Route exact path="/" component={Home}/> */}
       </Switch>
     </Router>
     </Provider>

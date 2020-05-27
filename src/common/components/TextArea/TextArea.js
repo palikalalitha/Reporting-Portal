@@ -4,7 +4,7 @@ class TextArea extends Component {
     render() {
         const {data}=this.props
         return (
-        <TextAreaElement>{data}</TextAreaElement>
+        <TextAreaElement defaultValue={data}></TextAreaElement>
         );
     }
 }

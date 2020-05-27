@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import tw from "tailwind.macro"
+
 const ButtonElement=styled.button ` 
 width: ${props=>props.type==="primary"?"320px":"85px"};
   height: 40px;

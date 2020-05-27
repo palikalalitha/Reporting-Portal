@@ -12,13 +12,10 @@ class Home extends React.Component {
             <div>
             <nav>
             <ul>
-                <li>
+                {/* <li>
                     <Link to="/reporting-portal/sign-in/">Reporting Portal</Link >
                 </li>
-                <li>
-                    <Link to="/reporting-portal/user-page/">Reporting Portal</Link >
-                </li>
-               
+                */}
               </ul>
         </nav>     
     </div>)

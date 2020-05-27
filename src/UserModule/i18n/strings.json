@@ -6,7 +6,8 @@
         "subCategory":"Sub Category",
         "severity":"severity",
         "description":"Description",
-        "attachments":"Attachments"
+        "attachments":"Attachments",
+        "observation":"Back To Observation"
 
     }
 }

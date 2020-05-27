@@ -35,7 +35,7 @@ class SignInRoute extends React.Component {
     onChangeUsername = (event) => {
         this.username = event.target.value
         this.errorMessage = ""
-        console.log(this.username)
+
     }
     onChangePassword = (event) => {
          this.password = event.target.value
@@ -43,7 +43,7 @@ class SignInRoute extends React.Component {
     }
 
     onSuccess = () => {
-        this.props.history.push("/reporting-portal/user-page")
+        this.props.history.push("/reporting-portal/user-page/")
     }
     onFailure = () => {
         const { getUserSignInAPIError: apiError } = this.props.signInStore

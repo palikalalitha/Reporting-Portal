@@ -23,7 +23,7 @@ class SignInForm extends Component {
                 <InputElement type="password" value={userpassword} onChangeHandler={onChangePassword}/>
                 </Wrapper>
                
-                <Button type="primary" handleSignIn={onClickSignIn} buttonText="Login"/>
+                <Button type="primary" onClickHandler={onClickSignIn} buttonText="Login"/>
                 <ErrorMessage status={errorMessage}>{errorMessage}</ErrorMessage>
                 
                 <NewAccount>
