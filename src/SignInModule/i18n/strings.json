@@ -1,0 +1,11 @@
+{
+    "signInPageStrings":
+    {
+        "welcomeMessage":"Sign up",
+        "userName":"USERNAME",
+        "password":"PASSWORD",
+        "noAccount":"Don’t have an account?",
+         "signUp":"Signup"
+
+    }
+}
