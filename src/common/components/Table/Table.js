@@ -2,26 +2,35 @@ import React, { Component } from 'react';
                
 import {TableContainer,TableHeadings,TableRow} from "./styledComponents"
 import { TableData } from "../TableData/TableData";
+import { observer } from "mobx-react";
+import {HEADING} from "../../../common/constants/reportingPortalconstants"
+
+import Navbar from "../../components/Navbar/Navbar";
+@observer
 class Table extends Component {
     render() {
-        const {tableData}=this.props
-        // const {tableHeadings}
+        const {headings,observationList,gotoUserForm}=this.props
         return (
+           <> 
+            <Navbar  heading={HEADING} gotoUserForm={gotoUserForm}/>
              <TableContainer>
+                 <thead>
                  <TableRow>
-                 <TableHeadings>Title</TableHeadings>
-                 <TableHeadings>ReportedOn</TableHeadings>
-                 <TableHeadings>AsssignedTo </TableHeadings>
-                 <TableHeadings>severty</TableHeadings>
-                 <TableHeadings>status</TableHeadings>
-                 <TableHeadings>DueDate</TableHeadings>
-                 <TableHeadings>Messages</TableHeadings>
+                     {headings.map(eachHeading=>
+                        <TableHeadings key={eachHeading}>{eachHeading}</TableHeadings>)}
                  </TableRow>
-                 
-                 <TableData title="Power" rpName="Lalitha" rpPhoneNumber="911103"/>
-            
-                
+                 </thead>
+                 <tbody>
+                 {observationList.map(eachObservation=>
+                        <TableRow  key={eachObservation}>
+                         <TableData  observation={eachObservation}/> 
+                    </TableRow>
+                    )}
+                  
+            </tbody>
+                    
              </TableContainer>
+             </>
         );
     }
 }

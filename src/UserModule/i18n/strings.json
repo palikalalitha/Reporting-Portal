@@ -1,13 +1,15 @@
 {
-    "userFormStrings":
-    {
-        "title":"Title of the observation",
-        "category":"Category",
-        "subCategory":"Sub Category",
-        "severity":"severity",
-        "description":"Description",
-        "attachments":"Attachments",
-        "observation":"Back To Observation"
+       
+        "userFormStrings":
+        {
+            "title":"Title of the observation",
+            "category":"Category",
+            "subCategory":"Sub Category",
+            "severity":"Severity",
+            "description":"Description",
+            "attachments":"Attachments",
+            "observation":"Back To Observation"
 
-    }
+        },
+         "noObservations":"Look like there is no Observations here"
 }

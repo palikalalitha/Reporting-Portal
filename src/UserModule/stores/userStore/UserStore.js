@@ -3,6 +3,7 @@ import { observable, action, computed } from "mobx"
 import { bindPromiseWithOnSuccess } from "@ib/mobx-promise"
 import { API_INITIAL } from "@ib/api-constants"
 import {UserModel} from "../models/UserModel"
+import observationList from "../../fixtures/getObservationList"
 class UserStore  {
     @observable observationList;
     @observable getObservationListAPIStatus;
@@ -10,11 +11,11 @@ class UserStore  {
     constructor() {
        
         this.init()
-            }
+    }
     init() {
         this.getObservationListAPIStatus = API_INITIAL
         this.getObservationListAPIError = null
-        this.observationList = []
+        this.observationList =observationList
     }
     @action.bound
     onAddObservationList(observationTitle,observationCategory)

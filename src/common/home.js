@@ -12,10 +12,6 @@ class Home extends React.Component {
             <div>
             <nav>
             <ul>
-                {/* <li>
-                    <Link to="/reporting-portal/sign-in/">Reporting Portal</Link >
-                </li>
-                */}
               </ul>
         </nav>     
     </div>)

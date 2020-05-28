@@ -13,7 +13,8 @@ width: 177px;
   color: dark-blue-grey;
 align-self:center;
 margin-left:15px;`
-const Container=styled.div `${tw`flex justify-between`}`
+const Container=styled.div `${tw`flex justify-between`}
+border: solid 1px #d7dfe9;`
 const HeaderLeftPart=styled.div `${tw`flex `}flex-grow:0.5`
 const HeaderRightPart=styled.div `${tw`flex pt-4`}`
 const ProfileName=styled.div `${tw`mt-0`}

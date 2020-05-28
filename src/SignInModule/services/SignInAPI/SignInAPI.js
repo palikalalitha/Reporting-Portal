@@ -8,7 +8,6 @@ import { URL } from "../../constants/SigninPageConstants.js"
 class SignInAPI {
     api
     constructor() {
-
         this.api = create({
             baseURL: URL
         });

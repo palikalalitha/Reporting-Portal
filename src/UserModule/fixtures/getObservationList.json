@@ -1,7 +1,28 @@
 [
  {
             "title":"water",
-        "category":"AssetManagement"
+            "category":"AssetManagement",
+            "severity":"HIGH",
+            "description":" It is the act of composing and sending electronic messages"
 
-    }
+    },
+    {
+        "title":"food",
+        "category":"food management",
+        "severity":"LOW",
+        "description":" It is the act of composing and sending electronic messages"
+        
+},
+{
+    "title":"power",
+    "category":"power management",
+    "severity":"MEDIUM",
+    "description":" power issue"
+},
+{
+    "title":"Learnning",
+    "category":"power management",
+    "severity":"WARNING",
+    "description":"power issue"
+}
 ]

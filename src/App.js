@@ -22,7 +22,8 @@ import { Table } from "./common/components/Table/Table";
 import  signInRoutes from "./SignInModule/routes"
 import userRoutes from "./UserModule/routes"
 import {signInStore} from "./SignInModule/stores/index"
-import { UserPage } from "./UserModule/components/UserPage/UserPage";
+import { UserForm } from "./UserModule/components/UserForm/UserForm";
+import { UserPage } from "./UserModule/components/userPage/UserPage";
 class App extends React.Component
 {
   render(){
@@ -30,9 +31,9 @@ class App extends React.Component
     <Provider signInStore={signInStore} >
     <Router basename={process.env.PUBLIC_URL}>
        <Switch>
-      
-        {signInRoutes} 
-        {userRoutes}
+         {/* <UserForm/> */}
+          {signInRoutes}
+          {userRoutes}
       </Switch>
     </Router>
     </Provider>
