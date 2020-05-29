@@ -21,7 +21,7 @@ class NoObservations extends Component {
             <NoObservationContainer>
             <NoObservationsText>{noObservations}
             </NoObservationsText>
-            <Button buttonText={ADD_NEW} gotUserForm={gotUserForm} onClickHandler={this.renderUserFormCreation}/>
+            <Button buttonText={ADD_NEW} onClickHandler={gotUserForm}/>
             </NoObservationContainer>
         );
     }

@@ -15,6 +15,10 @@ import {TEXT,SUBMIT} from "../../constants/userPageConstants"
 
 @Observer
 class UserForm extends Component {
+    onClick=()=>
+    {
+        alert(1)
+    }
     render() {
         const {title,category,subCategory,severity,description,attachments,observation}=i18n.userFormStrings
        const {observationTitle,gotoObservationPage,errorMessage,gotoObservationList,onChangeTitle,onChangeSelectValue,onClick,addObservation}=this.props
@@ -23,7 +27,8 @@ class UserForm extends Component {
                    <Wrapper onClick={gotoObservationList}>
                        <LeftSymbol><FaAngleLeft/>
                     </LeftSymbol>
-                   <BackToObservation>{observation}</BackToObservation></Wrapper>
+                   <BackToObservation>{observation}</BackToObservation>
+                   </Wrapper>
                    <Wrapper>
                    <Label>{title}<Mandatory>*</Mandatory></Label>
                    <InputElement type={TEXT} value={observationTitle} onChangeHandler={onChangeTitle}/>

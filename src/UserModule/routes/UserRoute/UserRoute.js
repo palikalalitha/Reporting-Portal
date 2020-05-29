@@ -12,55 +12,14 @@ import { UserPage } from "../../components/userPage/UserPage"
 @inject("signInStore")
 @observer
 class UserRoute extends React.Component {
-    @observable title
-    @observable category
-    @observable errorMessage
-    constructor()
-    {
-        super()
-        this.init()
-    }
-    init=()=>
-    {
-        this.title=""
-        this.category=""
-        this.errorMessage=""
-
-    }
+   
     onClick=()=>
     {
         this.props.signInStore.userSignOut()
         this.props.history.replace("/reporting-portal/sign-in+++")    
     }
-    onChangeTitle=(event)=>
-    {
-        this.title=event.target.value
-        this.errorMessage=""
-    }
-    onChangeSelectValue=(event)=>
-    {
-        this.category=event.target.value
-        this.errorMessage=""
-        
-    }
-    addObservation=()=>
-    {
-        this.handleSubmit()
-  }
-    handleSubmit=()=>
-    {
-    if(this.title===""||this.title===undefined)
-    {
-        this.errorMessage="enter the observation title"
-    }
-    else if(this.category==="")
-    {
-        this.errorMessage="select category"
-    }
-    else{
-        userStore.onAddObservationList(this.title,this.category)
-    }
-    }
+   
+   
     renderSuccessUI = observer(() => {
        return (<ObservationList observationList={userStore.observationList}/>)
                    

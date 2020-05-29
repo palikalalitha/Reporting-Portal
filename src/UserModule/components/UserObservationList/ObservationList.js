@@ -10,8 +10,8 @@ class ObservationList extends Component {
         return (
             <ObservationContainer>
             {observationList.length>1?
-            <Table  gotoUserForm={gotoUserForm} gotoObservationList={gotoObservationList} headings={['TITLE',"REPORTED ON","ASSIGNED TO","SEVERITY","STATUS","DUE DATE","MESSAGES"]} 
-            observationList={observationList}/>:<NoObservations gotoObservationList={gotoObservationList} gotoUserForm={gotoUserForm} />}
+            <Table  {...this.props} headings={['TITLE',"REPORTED ON","ASSIGNED TO","SEVERITY","STATUS","DUE DATE","MESSAGES"]} 
+            observationList={observationList}/>:<NoObservations {...this.props}/>}
             </ObservationContainer>
         );
     }

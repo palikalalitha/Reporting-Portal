@@ -10,12 +10,11 @@ from "../constants/RouteConstants"
 import { ProtectedRoute } from "../../common/routes/ProtectedRoute/ProtectedRoute"
 import { UserRoute } from "./UserRoute"
 import UserFormRoute from "./UserFormRoute/UserFormRoute"
-import {DesktopLayout} from "../../common/components/DesktopLayout/DesktopLayout"
+
 const routes = [
-    <>
-    <ProtectedRoute  path={USER_PATH} component = {UserRoute}/>
+
+    <ProtectedRoute  path={USER_PATH} component = {UserRoute}/>,
     <Route path={USER_CREATION_FORM} component={UserFormRoute} />
-    </>
 ];
 
 export default routes

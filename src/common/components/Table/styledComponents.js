@@ -18,14 +18,6 @@ const TableHeadings=styled.th `${tw` `}
 ;
 const TableRow=styled.tr `${tw`flex justify-between`}
 border: solid 1px #d7dfe9;
-nth-of-type(odd){
-  background-color: green;
-}
-nth-of-type(even){
-  background-color: white;
-}`;
+background-color:${props=>props.bgColorStatus==true?"rgba(215, 223, 233, 0.24)":"#ffffff"}`;
 
 export {TableContainer,TableHeadings,TableRow}
-// flex justify-between
-
-//tabletorow 39px 

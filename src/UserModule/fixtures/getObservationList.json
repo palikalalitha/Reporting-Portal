@@ -16,7 +16,7 @@
 {
     "title":"power",
     "category":"power management",
-    "severity":"MEDIUM",
+    "severity":"HIGH",
     "description":" power issue"
 },
 {

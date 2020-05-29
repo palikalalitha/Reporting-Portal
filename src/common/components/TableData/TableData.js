@@ -10,6 +10,7 @@ import { InputElement } from "../InputElement";
 class TableData extends Component {
     render() {
        const {title,severity}=this.props.observation
+       const {bgColorStatus}=this.props
 
         return (
             <>
@@ -27,7 +28,7 @@ class TableData extends Component {
                     </RPDetails>
                     </AssignedContainer>
                 <TData><Severty status={severity}><Mode>{severity}</Mode></Severty></TData>
-                <TData><StatusWrapper><Status>CLosed</Status></StatusWrapper> </TData>
+                <TData><StatusWrapper bgColorStatus={bgColorStatus}><Status>CLosed</Status></StatusWrapper> </TData>
                 <TData>
                 11/5/2020 at 12:15 PM
                 </TData>

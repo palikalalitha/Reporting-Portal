@@ -10,21 +10,26 @@ import Navbar from "../../components/Navbar/Navbar";
 class Table extends Component {
     render() {
         const {headings,observationList,gotoUserForm}=this.props
+      
         return (
            <> 
-            <Navbar  heading={HEADING} gotoUserForm={gotoUserForm}/>
+            <Navbar  heading={HEADING} {...this.props} gotoUserForm={gotoUserForm}/>
              <TableContainer>
                  <thead>
-                 <TableRow>
+                 <TableRow bgColorStatus={false}>
                      {headings.map(eachHeading=>
                         <TableHeadings key={eachHeading}>{eachHeading}</TableHeadings>)}
                  </TableRow>
                  </thead>
                  <tbody>
-                 {observationList.map(eachObservation=>
-                        <TableRow  key={eachObservation}>
-                         <TableData  observation={eachObservation}/> 
+                 {observationList.map((eachObservation,index)=>
+                
+                     
+                        <TableRow  key={eachObservation} className="bgColor" bgColorStatus={(index+1)%2!==0?true:false}>
+    
+                         <TableData  observation={eachObservation} bgColorStatus={(index+1)%2!==0?true:false}/> 
                     </TableRow>
+    
                     )}
                   
             </tbody>

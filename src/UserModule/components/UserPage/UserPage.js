@@ -16,7 +16,9 @@ class UserPage extends Component {
         return (
             <ReportedPortalContainer>
                   <Header/>
-                    <DesktopLayout children={Component} gotoObservationList={gotoObservationList} gotoUserForm={gotoUserForm} observationList={observationList}/>
+                    <DesktopLayout children={Component}
+                     {...this.props}
+                     observationList={observationList}/>
                 {/* <ObservationList observationList={observationList}/> */}
                 {/* <LoadingWrapperWithFailure apiStatus={apiStatus}
                             apiError={apiError} onRetryClick={doNetworkCalls}

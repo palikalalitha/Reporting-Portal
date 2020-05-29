@@ -1,14 +1,7 @@
 
 import styled from "@emotion/styled";
 import tw from "tailwind.macro"
-const UserFormContainer=styled.div `${tw`flex justify-between`}
-nth-of-type(odd){
-  background-color: green;
-}
-nth-of-type(even){
-  background-color: white;
-}`;
-
+const UserFormContainer=styled.div `${tw`flex justify-between`}`
 const Container=styled.div `${tw`flex justify-around`}
   background-color: #fbfbfb  ;`
 const TData=styled.td `${tw`self-center`}
@@ -107,7 +100,8 @@ const StatusWrapper=styled.div `
   width: 103px;
   height: 16px;
   border-radius: 100px;
-  border: solid 1px  #171f46;
+  border:${props=>props.bgColorStatus===true?"1px solid #171f46":"1px solid #d7dfe9"};
+   solid 1px  #171f46;
   background-color: white;`
 
   const Message=styled.h1 `

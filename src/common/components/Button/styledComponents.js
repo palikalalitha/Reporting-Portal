@@ -6,7 +6,8 @@ width: ${props=>props.type==="primary"?"320px":"85px"};
   height: 40px;
   border-radius: 4px;
   background-color:#0b69ff;
-  margin:10px`
+  margin:10px;
+  padding:4px;`
 
 
 const Label=styled.label`
