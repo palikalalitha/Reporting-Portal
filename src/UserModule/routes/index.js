@@ -12,7 +12,6 @@ import { UserRoute } from "./UserRoute"
 import UserFormRoute from "./UserFormRoute/UserFormRoute"
 
 const routes = [
-
     <ProtectedRoute  path={USER_PATH} component = {UserRoute}/>,
     <Route path={USER_CREATION_FORM} component={UserFormRoute} />
 ];

@@ -3,7 +3,6 @@ import { networkCallWithApisauce } from "../../../utils/APIUtils"
 import { apiMethods } from "../../../constants/APIConstants"
 
 import { URL } from "../../constants/SigninPageConstants.js"
-//import endPoints from "../endPoints.js"
 
 class SignInAPI {
     api

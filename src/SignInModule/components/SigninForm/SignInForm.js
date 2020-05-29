@@ -1,31 +1,51 @@
 import React, { Component } from 'react';
- import { SignInContainer,WelcomMessage,Label,SignUPLink,NewAccount,ErrorMessage,Wrapper,Container} from "./styledComponents";
-import { imageURL } from "../../constants/SigninPageConstants";
+import { observer } from "mobx-react";
+
 import { InputElement } from "../../../common/components/InputElement";
 import { Button } from "../../../common/components/Button";
-import i18n from "../../i18n/strings.json"
 import {Image} from "../../../common/components/Image/"
-import { observer } from "mobx-react";
+
+import { imageURL ,USERNAME,PASSWORD,TYPE_PASSWORD,TYPE_TEXT,LOGO,PRIMARY,LOGIN} from "../../constants/SigninPageConstants";
+import i18n from "../../i18n/strings.json"
+
+import { SignInContainer,WelcomMessage,Label,SignUPLink,NewAccount,ErrorMessage,Wrapper,Container} from "./styledComponents";
+
 @observer
 class SignInForm extends Component {
     render() {
         const {welcomeMessage,userName,password,noAccount,signUp}=i18n.signInPageStrings
-        const {username,userpassword,errorMessage,onClickSignIn,onFailure,onSuccess,
-            onChangeUsername,onChangePassword,status}=this.props
+        const {username,userpassword,errorMessage,onClickSignIn,
+            onChangeUsername,onChangePassword,status,apiStatus}=this.props
         return (
             <Container>
                 <SignInContainer>
-                    <Image type="logo" imageURL={imageURL}/>
-                    <WelcomMessage>{welcomeMessage}</WelcomMessage>
+                    <Image type={LOGO} imageURL={imageURL}/>
+                    <WelcomMessage>
+                        {welcomeMessage}
+                    </WelcomMessage>
                     <Wrapper>
-                    <Label>{userName}</Label>
-                    <InputElement type="text" value={username} onChangeHandler={onChangeUsername} />
+                        <Label>{userName}</Label>
+                        <InputElement 
+                                type={TYPE_TEXT} 
+                                testid={USERNAME}
+                                value={username} 
+                                onChangeHandler={onChangeUsername} />
                     </Wrapper>
-                    <Wrapper><Label>{password}</Label>
-                    <InputElement type="password" value={userpassword} onChangeHandler={onChangePassword}/>
+                    <Wrapper>
+                        <Label>{password}</Label>
+                        <InputElement 
+                                type={TYPE_PASSWORD}
+                                 testid={PASSWORD} 
+                                 value={userpassword} 
+                                 onChangeHandler={onChangePassword}/>
                     </Wrapper>
-                
-                    <Button type="primary" onClickHandler={onClickSignIn} buttonText="Login"/>
+
+                    <Button 
+                            buttonType={PRIMARY} 
+                            buttonStatus={apiStatus===100?true:false}
+                            onClickHandler={onClickSignIn}
+                            buttonText={LOGIN}/>
+
                     <ErrorMessage status={errorMessage}>{errorMessage}</ErrorMessage>
                     
                     <NewAccount>

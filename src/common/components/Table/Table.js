@@ -6,6 +6,7 @@ import { observer } from "mobx-react";
 import {HEADING} from "../../../common/constants/reportingPortalconstants"
 
 import Navbar from "../../components/Navbar/Navbar";
+import Pagination from "../Pagination/Pagination";
 @observer
 class Table extends Component {
     render() {
@@ -23,18 +24,14 @@ class Table extends Component {
                  </thead>
                  <tbody>
                  {observationList.map((eachObservation,index)=>
-                
-                     
-                        <TableRow  key={eachObservation} className="bgColor" bgColorStatus={(index+1)%2!==0?true:false}>
-    
+                        <TableRow  key={eachObservation.id} bgColorStatus={(index+1)%2!==0?true:false}>
                          <TableData  observation={eachObservation} bgColorStatus={(index+1)%2!==0?true:false}/> 
                     </TableRow>
     
-                    )}
-                  
+                    )}    
             </tbody>
-                    
              </TableContainer>
+             <Pagination list={observationList}/>
              </>
         );
     }

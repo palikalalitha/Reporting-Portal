@@ -1,16 +1,19 @@
 import React from "react"
-import { observable,autorun } from "mobx"
+import { observable } from "mobx"
 import { observer, inject } from "mobx-react"
 import { withRouter } from "react-router-dom"
 
+import {USER_PATH} from "../../../UserModule/constants/RouteConstants"
+
+import {SignInForm} from "../../components/SigninForm/"
 import {
-    USERNAME_REGEX,
     USERNAME_ERROR_MESSAGE,
-    PASSWORD_ERROR_MESSAGE
+    PASSWORD_ERROR_MESSAGE,
+    NETWORK_ERROR,
+    LOADING
 }
 from "../../constants/SigninPageConstants.js"
 
-import {SignInForm} from "../../components/SigninForm/"
 
 @inject("signInStore")
 @observer
@@ -18,55 +21,50 @@ class SignInRoute extends React.Component {
     @observable username
     @observable password
     @observable errorMessage
-    siginPageRef=React.createRef();
-   constructor() {
+    constructor() {
         super()
         this.init()    
     }
-    componentDidMount()
-    {
-        //this.siginPageRef.current.userNameRef.current.focus()     
-    }
+
     init() {
         this.username = "";
         this.password = "";
         this.errorMessage = ""
     }
+
     onChangeUsername = (event) => {
         this.username = event.target.value
         this.errorMessage = ""
 
     }
+
     onChangePassword = (event) => {
          this.password = event.target.value
          this.errorMessage = ""
     }
 
     onSuccess = () => {
-        this.props.history.push("/reporting-portal/user-page/")
+        this.props.history.push(USER_PATH)
     }
+
     onFailure = () => {
         const { getUserSignInAPIError: apiError } = this.props.signInStore
         if (apiError !== undefined || apiError != null) {
-             this.errorMessage = "Network Error"
-            // this.siginPageRef.current.passwordRef.current.focus()
+             this.errorMessage = NETWORK_ERROR
+           
         }
     }
     onClickSignIn = () => {
         if (this.username === "" || this.username === undefined) {
             this.errorMessage = USERNAME_ERROR_MESSAGE
-           // this.siginPageRef.current.userNameRef.current.focus()
-       
         }
         else if (this.password === "" || this.password === undefined) {
             this.errorMessage = PASSWORD_ERROR_MESSAGE
-            //this.siginPageRef.current.passwordRef.current.focus()
-       
+         
         }
         else {
-            this.errorMessage = "Loading"
+            this.errorMessage = LOADING
             this.handleSignIn()
-
         }
     }
     handleSignIn = async() => {
@@ -79,17 +77,14 @@ class SignInRoute extends React.Component {
     
     render() {
         const { getUserSignInAPIStatus } = this.props.signInStore
-        const {username,password,handleSignIn,onClickSignIn,onFailure,onSuccess,
+        const {username,password,onClickSignIn,
             onChangeUsername,onChangePassword,errorMessage}=this
         return (
           <SignInForm 
           errorMessage={errorMessage}
           username={username}
           userpassword={password}
-          handleSignIn={handleSignIn}
           onClickSignIn={onClickSignIn}
-          onFailure={onFailure}
-          onSuccess={onSuccess}
           onChangePassword={onChangePassword}
           onChangeUsername={onChangeUsername}
           apiStatus={getUserSignInAPIStatus}/>

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {Select,Option,OptionContainer} from "./styledComponents"
 class DropDownList extends Component {
     render() {
-        const {optionsList,onChangeHandler}=this.props
+        const {optionsList,onChangeHandler,value,status}=this.props
+      
         return (
-            <Select onChange={onChangeHandler}>
+            <Select status={status} onChange={onChangeHandler} value={value}>
                 <Option>All</Option>
                 {optionsList.map(eachOption=>
                 <Option key={eachOption} value={eachOption}>{eachOption}</Option>)}

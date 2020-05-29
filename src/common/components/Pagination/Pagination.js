@@ -10,7 +10,7 @@ class Pagination extends Component {
             <PaginationContainer>
                 <ArrowSymbol><FaAngleLeft/></ArrowSymbol>
                 {list.map((item,index)=>
-                        <PageNumbers>{index+1}</PageNumbers>)}
+                        <PageNumbers key={item.id}>{index+1}</PageNumbers>)}
                                        {/* <Separator>/</Separator> */}
                     <ArrowSymbol><FaAngleRight/></ArrowSymbol>
             </PaginationContainer>

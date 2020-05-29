@@ -3,7 +3,8 @@ import { observer } from "mobx-react";
 import { Table } from "../../../common/components/Table/Table";
 import NoObservations from "../NoObservations/NoObservations"
 import {ObservationContainer} from "../../styleGuide/typos"
-observer
+
+@observer
 class ObservationList extends Component {
     render() {
         const {observationList,gotoUserForm,gotoObservationList}=this.props
@@ -11,7 +12,8 @@ class ObservationList extends Component {
             <ObservationContainer>
             {observationList.length>1?
             <Table  {...this.props} headings={['TITLE',"REPORTED ON","ASSIGNED TO","SEVERITY","STATUS","DUE DATE","MESSAGES"]} 
-            observationList={observationList}/>:<NoObservations {...this.props}/>}
+            observationList={observationList}/>:
+            <NoObservations gotoUserForm={gotoUserForm} gotoObservationList={gotoObservationList} />}
             </ObservationContainer>
         );
     }

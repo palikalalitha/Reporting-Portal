@@ -2,6 +2,7 @@ import styled from "@emotion/styled"
 import tw from "tailwind.macro"
 const Heading=styled.h1 `
 width: 177px;
+outline:none;
   height: 25px;
   font-family: HKGrotesk;
   font-size: 20px;

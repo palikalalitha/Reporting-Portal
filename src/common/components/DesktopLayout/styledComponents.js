@@ -5,5 +5,6 @@ const DesktopLayoutContainer=styled.div `${tw``}
 border-radius: 7px;
 background-color: #ffffff;
 margin-left:100px;
-margin-right:100px`;
+margin-right:100px;
+outline:none;`
 export {DesktopLayoutContainer}

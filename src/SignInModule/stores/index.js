@@ -7,6 +7,5 @@ const signInStore = new SignInStore(signInService)
 
 export
 {
-    signInService
-    ,signInStore
+    signInService,signInStore
 }

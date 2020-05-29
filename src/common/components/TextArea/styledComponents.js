@@ -6,9 +6,10 @@ const TextAreaElement=styled.textarea `
 width: 646px;
 height: 200px;
 border-radius: 2px;
-border: solid 1px light-blue-grey;
+outline:none;
 background-color:white;
 box-shadow: 0 0 0 1px silver;
+border:1px solid light-blue-grey;
 font-family: HKGrotesk;
 font-size: 16px;
 font-weight: normal;
@@ -20,3 +21,5 @@ color: dark-blue-grey;`;
 
 export {TextAreaElement}
 
+
+// border: ${props=>props.status===""||status===undefined?"1px solid light-blue-grey":"1px solid red"};

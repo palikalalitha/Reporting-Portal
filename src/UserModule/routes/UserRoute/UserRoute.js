@@ -1,60 +1,44 @@
 import React from "react"
 import { withRouter } from "react-router-dom"
-import { observer, inject } from "mobx-react"
-import { observable } from "mobx"
+import { observer } from "mobx-react"
 
-import { UserForm } from "../../components/UserForm/UserForm"
-
-import {userStore} from "../../stores/userStore/UserStore"
+import {userStore} from "../../stores/index"
 import {ObservationList} from "../../components/UserObservationList/ObservationList"
 import { UserPage } from "../../components/userPage/UserPage"
+import {USER_CREATION_FORM,USER_PATH} from "../../constants/RouteConstants"
 
-@inject("signInStore")
 @observer
 class UserRoute extends React.Component {
-   
-    onClick=()=>
+    componentDidMount()
     {
-        this.props.signInStore.userSignOut()
-        this.props.history.replace("/reporting-portal/sign-in+++")    
+        this.getObservationList()
     }
-   
-   
-    renderSuccessUI = observer(() => {
-       return (<ObservationList observationList={userStore.observationList}/>)
-                   
-
-    })
+    getObservationList=()=>
+    {
+     userStore.getObservationList();
+    }
     naviagteToUserForm=()=>
     {
-       
-        this.props.history.replace("/reporting-protal/user-form-creation/")
+        this.props.history.push(USER_CREATION_FORM)   
     }
-  
     gotoObservationList=()=>
     {
-        alert("In route")
-        this.props.history.replace("/reporting-protal/user-page/")
+        this.props.history.goBack(USER_PATH)
     }
-
-
+   
     render() {
-        const {title,errorMessage,onChangeTitle,
-            onChangeSelectValue,onClick,addObservation,naviagteToUserForm,gotoObservationList}=this
+        const {onChangeSelectValue,addObservation,naviagteToUserForm,gotoObservationList}=this
       
-        const { getObservationListAPIStatus,getObservationListAPIError} = userStore
+        const { getObservationListAPIStatus,getObservationListAPIError,observationList} = userStore
         
         return(
             <UserPage
             gotoObservationList={gotoObservationList}
-            observationTitle={title}
-            errorMessage={errorMessage}
-            onChangeTitle={onChangeTitle}
-            component={ObservationList}
+             component={ObservationList}
             gotoUserForm={naviagteToUserForm}
             onChangeSelectValue={onChangeSelectValue}
             addObservation={addObservation}
-             observationList={userStore.observationList}
+            observationList={observationList}
             apiStatus={getObservationListAPIStatus}
             apiError={getObservationListAPIError}
             renderSuccessUI={this.renderSuccessUI}/>)

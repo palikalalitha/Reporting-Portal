@@ -1,75 +1,67 @@
-import React, { Component } from 'react';
+
 import { observable, action, computed } from "mobx"
 import { bindPromiseWithOnSuccess } from "@ib/mobx-promise"
 import { API_INITIAL } from "@ib/api-constants"
 import {UserModel} from "../models/UserModel"
 import observationList from "../../fixtures/getObservationList"
+
 class UserStore  {
     @observable observationList;
     @observable getObservationListAPIStatus;
     @observable getObservationListAPIError;
-    constructor() {
-       
+    userService
+    constructor(userServiceResponse) {
+        this.userService=userServiceResponse
         this.init()
     }
     init() {
         this.getObservationListAPIStatus = API_INITIAL
         this.getObservationListAPIError = null
-        this.observationList =observationList
+        this.observationList =[]
     }
     @action.bound
-    onAddObservationList(observationTitle,observationCategory)
+    onAddObservationList(observationTitle,observationSeverity,observationDesc)
     {
         let observationObj=
         {
             title:observationTitle,
-            category:observationCategory
+            priority:observationSeverity,
+            description:observationDesc
+
         }
         const observationModel=new UserModel(observationObj)
-       
         this.observationList.push(observationModel)
-        console.log(this.observationList)
     }
     @action.bound
-    gotoObservationPage()
-    {
-        alert(1)
+    getObservationList() {
+        console.log(this.userService)
+        const userPromise = this.userService.getUsersResponse()
+        return bindPromiseWithOnSuccess(userPromise)
+            .to(this.setGetObservationListAPIStatus, this.setObservationListResponse)
+            .catch(this.setGetObservationListAPIError) 
     }
 
+    @action.bound
+    setObservationListResponse(response) {       
+        this.observationList = response.map(eachObservation => { 
+            return new UserModel(eachObservation) }) 
+        }
+    @action.bound
+    setGetObservationListAPIError(error) {
+        this.getObservationListAPIError = error
+    }
 
-
-
-
-
-
-
-
-    // @action.bound
-    // getObservationList() {
-    //      const userResponse=""
-    //     //const userResponse = this.productsAPIService.getProductsAPI(this.pageLimit,this.offset)
-    //     return bindPromiseWithOnSuccess(userResponse)
-    //         .to(this.setGetObservationListAPIStatus, this.setObservationListResponse)
-    //         .catch(this.setGetObservationListAPIError)
-    // }
-
-    // @action.bound
-    // setObservationListResponse(response) {
-       
-    //     this.ObservationList = response.observations.map(eachObservation => { 
-    //         return new Observation(eachProduct) })
-           
-           
-    // }
-    // @action.bound
-    // setGetObservationListAPIError(error) {
-    //     this.getObservationListAPIError = error
-    // }
-
-    // @action.bound
-    // setGetObservationListAPIStatus(status) {
-    //     this.getObservationListAPIStatus = status
-    // }
+    @action.bound
+    setGetObservationListAPIStatus(status) {
+        this.getObservationListAPIStatus = status
+    }
+    @computed
+    get userObservationList() {
+        return this.observationList
+    }
+    @computed get totalObservations()
+    {
+        return this.observationList.length
+    }
 }
-const userStore=new UserStore()
-export { userStore};
+export { UserStore};

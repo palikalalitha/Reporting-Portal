@@ -8,71 +8,101 @@ import { TextArea } from "../../../common/components/TextArea/TextArea";
 import {Button} from "../../../common/components/Button/index"
 import {signInStore} from  "../../../SignInModule/stores/"
 
-import {Container,Label,Wrapper,BackToObservation,ErrorMessage,SubmitButtonWrapper,
+import {UserFormContainer,Label,Wrapper,BackToObservation,ErrorMessage,SubmitButtonWrapper,
     WrapperMultipleElements,SubCategoryWrapper,Mandatory,LeftSymbol} from "../../styleGuide/typos"
 import i18n from "../../i18n/strings.json"
-import {TEXT,SUBMIT} from "../../constants/userPageConstants"
+import {TEXT,SUBMIT,STATUS,CATEGORY_LIST,SUB_CATEGORY_LIST,SEVERITY,TYPE_FILE} from "../../constants/userPageConstants"
 
 @Observer
 class UserForm extends Component {
-    onClick=()=>
-    {
-        alert(1)
-    }
     render() {
         const {title,category,subCategory,severity,description,attachments,observation}=i18n.userFormStrings
-       const {observationTitle,gotoObservationPage,errorMessage,gotoObservationList,onChangeTitle,onChangeSelectValue,onClick,addObservation}=this.props
+        const {
+                observationTitle,
+                observationDescription,
+                observationSeverity,
+                errorMessageForTitle,
+                errorMessageForSeverity,
+                errorMessageForDescription,
+                gotoObservationPage,
+                gotoObservationList,
+                onChangeTitle,
+                onChangeSelectValue,
+                onChangeDescription,
+                addObservation
+            }=this.props
         return (
-            <Container>
+            <UserFormContainer>
                    <Wrapper onClick={gotoObservationList}>
-                       <LeftSymbol><FaAngleLeft/>
-                    </LeftSymbol>
-                   <BackToObservation>{observation}</BackToObservation>
+                        <LeftSymbol>
+                           <FaAngleLeft/>
+                        </LeftSymbol>
+                        <BackToObservation>
+                            {observation}
+                        </BackToObservation>
                    </Wrapper>
                    <Wrapper>
-                   <Label>{title}<Mandatory>*</Mandatory></Label>
-                   <InputElement type={TEXT} value={observationTitle} onChangeHandler={onChangeTitle}/>
-                  
+                        <Label>{title}<Mandatory>*</Mandatory></Label>
+                        <div>
+                        <InputElement  status={errorMessageForTitle}
+                                type={TEXT}
+                                value={observationTitle} 
+                                onChangeHandler={onChangeTitle}
+                        />
+                        <ErrorMessage>{errorMessageForTitle}</ErrorMessage>
+                        </div>
                    </Wrapper>
                    <WrapperMultipleElements>
+                        <Wrapper>
+                            <Label>{category}</Label>
+                            <DropDownList   status={STATUS}
+                                    onChangeHandler={onChangeSelectValue}
+                                    optionsList={CATEGORY_LIST}/>
+                        </Wrapper>
+                        <SubCategoryWrapper>
+                            <Label>{subCategory}</Label>
+                            <DropDownList status={STATUS}
+                                     onChangeHandler={onChangeSelectValue} 
+                                     optionsList={SUB_CATEGORY_LIST}/>
+                        </SubCategoryWrapper>
+                    </WrapperMultipleElements>
                     <Wrapper>
-                        <Label>{category}</Label>
-                        <DropDownList  onChangeHandler={onChangeSelectValue} optionsList={["food","sleep"]}/>
+                        
+                            <Label>{severity}<Mandatory>*</Mandatory> </Label>
+                            <div>
+                            <DropDownList    
+                            status={errorMessageForSeverity}
+                            value={observationSeverity}
+                                        onChangeHandler={onChangeSelectValue}
+                                        optionsList={SEVERITY}/>
+                            <ErrorMessage>{errorMessageForSeverity}</ErrorMessage>
+                            </div>
                     </Wrapper>
-                    <SubCategoryWrapper>
-                        <Label>{subCategory}</Label>
-                        <DropDownList onChangeHandler={onChangeSelectValue} optionsList={["pizza","shopping"]}/>
-                    </SubCategoryWrapper>
-                  </WrapperMultipleElements>
-                  <Wrapper>
-                    <Label>{severity}<Mandatory>*</Mandatory> </Label>
-                    <DropDownList optionsList={["food","sleep"]}/>
+                 
+                    <Wrapper>   
+                           <Label>{description}<Mandatory>*</Mandatory></Label>
+                           <div>
+                       
+                            <TextArea   status={errorMessageForDescription} data={observationDescription} onChangeHandler={onChangeDescription}/>
+                            <ErrorMessage>{errorMessageForDescription}</ErrorMessage>
+                            </div>  
                     </Wrapper>
-
-                  <Wrapper>
-                  <Label>{description}<Mandatory>*</Mandatory></Label>
-                 <TextArea data="water issue"/>
-                  </Wrapper>
-
-                  <Wrapper>
-                  <Label>{attachments}</Label>
-                  <div id="drop-area">
-                    <form class="my-form">
-                        <p>Select files to Upload</p><input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)"/>
-                        <label class="button" for="fileElem">Select some files</label>
-                    </form>
-                    </div>
+                    <Wrapper>
+                            <Label>{attachments}</Label>
+                            <div id="drop-area">
+                            <form class="my-form">
+                            <p>Select files to Upload</p><input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)"/>
+                            <label class="button" for="fileElem">Select some files</label>
+                            </form>
+                        </div>
                     </Wrapper>
-    
-                  
-                  <ErrorMessage>{errorMessage}</ErrorMessage>
-                  <SubmitButtonWrapper>
-                  <Button buttonText={SUBMIT} onClickHandler={addObservation}/>
-                  </SubmitButtonWrapper>
-                </Container>
-        );
-
+                    <SubmitButtonWrapper>
+                            <Button buttonText={SUBMIT} onClickHandler={addObservation}/>
+                    </SubmitButtonWrapper>  
+              
+            </UserFormContainer>);
     }
+    
 }
 
 export { UserForm};

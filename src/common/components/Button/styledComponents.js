@@ -2,12 +2,13 @@ import styled from "@emotion/styled"
 import tw from "tailwind.macro"
 
 const ButtonElement=styled.button ` 
-width: ${props=>props.type==="primary"?"320px":"85px"};
+width: ${props=>props.buttonType==="primary"?"320px":"85px"};
   height: 40px;
   border-radius: 4px;
   background-color:#0b69ff;
   margin:10px;
-  padding:4px;`
+  padding:4px;
+  outline:none;`
 
 
 const Label=styled.label`
@@ -21,7 +22,7 @@ font-style: normal;
 line-height: 1.71;
 letter-spacing: normal;
 color: #ffffff;
-`
+outline:none;`
 
 
 

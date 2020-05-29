@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { observable } from "mobx"
 import { withRouter } from "react-router-dom"
+import { observer } from "mobx-react";
 
 import { UserForm } from "../../components/UserForm/UserForm";
 import { UserPage } from "../../components/userPage/UserPage";
-import { observer } from "mobx-react";
+
+import {ERROR_MESSAGE} from "../../constants/userPageConstants"
+import {USER_CREATION_FORM} from "../../constants/RouteConstants"
+import {userStore} from "../../stores/index"
 
 @observer
 class UserFormRoute extends Component {
     @observable title
-    @observable category
-    @observable errorMessage
+    @observable severity
+    @observable description
+    @observable errorMessageForSeverity
+    @observable errorMessageForTitle
+    @observable errorMessageForDescription
     constructor()
     {
         super()
@@ -19,48 +26,95 @@ class UserFormRoute extends Component {
     init=()=>
     {
         this.title=""
-        this.category=""
-        this.errorMessage=""
-
+        this.severity=""
+        this.description=""
+        this.errorMessageForSeverity=""
+        this.errorMessageForTitle=""
+        this.errorMessageForDescription=""
     }
+
     onChangeTitle=(event)=>
     {
-        this.title=event.target.value
-        this.errorMessage=""
+        this.title=event.target.value 
+        this.errorMessageForTitle=""
     }
+    
+    onChangeDescription=(event)=>
+    {
+        this.description=event.target.value
+        this.errorMessageForDescription=""
+    }
+
     onChangeSelectValue=(event)=>
     {
-        this.category=event.target.value
-        this.errorMessage=""
+        console.log(this.severity)
+        this.severity=event.target.value
+        this.errorMessageForSeverity=""
         
     }
     addObservation=()=>
     {
         this.handleSubmit()
-  }
+    }
+    handleSubmit=()=>
+    {
+       if(this.title==="")
+       {
+        this.errorMessageForTitle=ERROR_MESSAGE
+       }
+       else if(this.severity==="")
+       { this.errorMessageForSeverity=ERROR_MESSAGE
+
+       }
+       else if(this.description==="")
+       {
+        this.errorMessageForDescription=ERROR_MESSAGE
+       }
+       else if(this.title===""&&this.description===""&&this.severity==="")
+        {
+            this.errorMessageForTitle=ERROR_MESSAGE
+        }
+        else if(this.severity===""&&this.description==="")
+        {
+            this.errorMessageForSeverity=ERROR_MESSAGE
+        }
+        else if(this.description==="")
+        {
+            this.errorMessageForDescription=ERROR_MESSAGE
+        }
+        else
+        {
+            alert("submitted successfully")
+            userStore.onAddObservationList(this.title,this.severity,this.description)
+            
+        }
+    }
 
     naviagteToUserForm=()=>
-    {
-       
-        this.props.history.replace("/reporting-protal/user-form-creation/")
+    {       
+        this.props.history.push(USER_CREATION_FORM)
     }
-  
     gotoObservationList=()=>
     {
-        alert("In route")
-        this.props.history.replace("/reporting-portal/user-page/ ")
+        this.props.history.goBack()
     }
     render() {
-        const {title,errorMessage,onChangeTitle,
-            onChangeSelectValue,onClick,addObservation,naviagteToUserForm,gotoObservationList}=this
+        const {title,severity,description,errorMessage,onChangeTitle,onChangeDescription,
+            errorMessageForSeverity,errorMessageForTitle,errorMessageForDescription,
+            onChangeSelectValue,addObservation,naviagteToUserForm,gotoObservationList}=this
       
         return (
            <UserPage
            gotoObservationList={gotoObservationList}
-           observationTitle={title}
-           errorMessage={errorMessage}
-           onChangeTitle={onChangeTitle}
            gotoUserForm={naviagteToUserForm}
+           observationTitle={title}
+           observationDescription={description}
+           observationSeverity={severity}
+           errorMessageForSeverity={errorMessageForSeverity}
+           errorMessageForDescription={errorMessageForDescription}
+           errorMessageForTitle={errorMessageForTitle}
+           onChangeTitle={onChangeTitle}
+           onChangeDescription={onChangeDescription}
            onChangeSelectValue={onChangeSelectValue}
            addObservation={addObservation}
            component={UserForm}

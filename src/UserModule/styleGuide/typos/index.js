@@ -11,11 +11,12 @@ const ReportedPortalContainer=styled.div
 `width: 1440px;
 height: 1024px;
 background-color: whiteTwo;
+focus-outline:none
 }`;
 
-const Container=styled.div `${tw``}
+const UserFormContainer=styled.div `${tw``}
 width: 1131px;
-height: 872px;
+height: 900px;
 border-radius: 7px;border: solid 1px #d7dfe9;
 background-color: #ffffff;
 margin:32px 100px 32px 100px`
@@ -31,7 +32,8 @@ line-height: 1.33;
 letter-spacing: normal;
 color: black;
 `
-const NoObservationContainer=styled.div `${tw`flex flex-col justify-center items-center h-screen`}`;
+const NoObservationContainer=styled.div `${tw`flex flex-col justify-center items-center h-screen`}
+focus-outline:none`;
 
 const Typo12DarkBlueGreyRubikMedium=styled.label `
 width: 165px;
@@ -65,12 +67,14 @@ margin-left:120px;
 margin-top:55px`
 const WrapperMultipleElements=styled.div `${tw`flex`}
 `
-const ErrorMessage=styled.span `${tw`text-red-700 mb-6`}`
-const SubmitButtonWrapper=styled.div `${tw ``}
+const ErrorMessage=styled.div `${tw` mt-4 mb-1`}
+color:#ff0b37`
+const SubmitButtonWrapper=styled.div `${tw `mb-2`}
 margin-left:500px;
-margin-top:42px`
+margin-top:30px;
+outline:none;`
 const Mandatory=styled.span `${tw`text-red-500 mt-4`}`
 const LeftSymbol=styled.span `${tw `mt-1`}`
-export {Container,Typo12DarkBlueGreyRubikMedium as Label,Wrapper,
+export {UserFormContainer,Typo12DarkBlueGreyRubikMedium as Label,Wrapper,
     Typo14SteelHKGroteskRegular as BackToObservation,ErrorMessage,ReportedPortalContainer,NoObservationsText,WrapperMultipleElements,
     NoObservationContainer,SubCategoryWrapper,SubmitButtonWrapper,Mandatory,LeftSymbol,ObservationContainer};

@@ -31,10 +31,9 @@ class App extends React.Component
     <Provider signInStore={signInStore} >
     <Router basename={process.env.PUBLIC_URL}>
        <Switch>
-         {/* <UserForm/> */}
+         {/* {/* <UserForm/> */}
           {signInRoutes}
           {userRoutes}
-          
       </Switch>
     </Router>
     </Provider>

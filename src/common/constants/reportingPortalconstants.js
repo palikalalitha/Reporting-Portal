@@ -7,3 +7,4 @@ export const RADIO="radio";
 export const GENDER="gender";
 export const PROFILE_URL="https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/4f00d506-2d1f-4bba-9084-f0666b4e3f2b@3x.png"
 export const RP_PROFILE_URL="https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/867a98d4-d61b-45cf-89cc-0a50a9dddb38@3x.png" 
+export const MESSAGE_ICON_URL="https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/81f50438-e95f-4d76-a707-60a4c72d6940.svg"

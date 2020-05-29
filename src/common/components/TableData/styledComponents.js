@@ -69,9 +69,10 @@ const Severty=styled.td `${tw``}
 width: 72px;
 height: 21px;
 border-radius: 100px;
+margin-top:20px;
 background-color:${props=>props.status=="HIGH"?"#ff0b37":props.status=="LOW"?"#2dca73":"#ffb800"};`
 
-  const Mode=styled.span `${tw``}
+  const Mode=styled.label `${tw``}
   width: 64px;
   height: 16px;
   font-family: HKGrotesk;
@@ -81,7 +82,9 @@ background-color:${props=>props.status=="HIGH"?"#ff0b37":props.status=="LOW"?"#2
   font-style: normal;
   line-height: 1.33;
   letter-spacing: 0.12px;
-  color: #ffffff; `
+  color: #ffffff;
+  margin-left:20px;
+  `
 
   const Status=styled.span `
   height: 16px;
@@ -104,8 +107,9 @@ const StatusWrapper=styled.div `
    solid 1px  #171f46;
   background-color: white;`
 
-  const Message=styled.h1 `
-  margin-left:45px`
+  const Message=styled.h1 `${tw``}
+font-size:20px;
+margin-left:35px`
   
 export {ReportedDate,data,AssignedContainer,TData,Severty,DueDate,Container,
   RPDetails,Name,PhoneNumber,Status,Message,Mode,StatusWrapper,UserFormContainer}
