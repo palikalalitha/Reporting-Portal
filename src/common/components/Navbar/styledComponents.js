@@ -12,7 +12,7 @@ width: 288px;
   line-height: 1.25;
   letter-spacing: normal;
   color: #0b69ff;`
-  const NavabarContainer=styled.div `${tw`flex justify-between items-center`}
+  const NavabarContainer=styled.div `${tw`flex justify-between items-center focus:outline-none`}
   width:1240px;
   margin-left:100px;
 margin-right:100px;

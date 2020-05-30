@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-
+import Loader from "react-loader" 
 import { InputElement } from "../../../common/components/InputElement";
 import { Button } from "../../../common/components/Button";
 import {Image} from "../../../common/components/Image/"
@@ -9,7 +9,6 @@ import { imageURL ,USERNAME,PASSWORD,TYPE_PASSWORD,TYPE_TEXT,LOGO,PRIMARY,LOGIN}
 import i18n from "../../i18n/strings.json"
 
 import { SignInContainer,WelcomMessage,Label,SignUPLink,NewAccount,ErrorMessage,Wrapper,Container} from "./styledComponents";
-import Loader from "../../../common/components/Icons/Loader/index"
 
 class SignInForm extends Component {
     render() {
@@ -29,8 +28,9 @@ class SignInForm extends Component {
                                 type={TYPE_TEXT} 
                                 testid={USERNAME}
                                 value={username} 
+                                status={errorMessageForUsername}
                                 onChangeHandler={onChangeUsername} />
-                                    <ErrorMessage status={errorMessageForUsername}>{errorMessageForUsername}</ErrorMessage>
+                        <ErrorMessage status={errorMessageForUsername}>{errorMessageForUsername}</ErrorMessage>
 
                     </Wrapper>
                     <Wrapper>
@@ -39,8 +39,9 @@ class SignInForm extends Component {
                                 type={TYPE_PASSWORD}
                                  testid={PASSWORD} 
                                  value={userpassword} 
+                                 status={errorMessageForPassword}
                                  onChangeHandler={onChangePassword}/>
-                                   <ErrorMessage status={errorMessageForPassword}>{errorMessageForPassword}</ErrorMessage>
+                        <ErrorMessage status={errorMessageForPassword}>{errorMessageForPassword}</ErrorMessage>
                   
                     </Wrapper>
 
@@ -50,7 +51,6 @@ class SignInForm extends Component {
                             onClickHandler={onClickSignIn}
                             buttonText={LOGIN}/>
                      <ErrorMessage status={errorMessage}>{errorMessage}</ErrorMessage>
-
                     <NewAccount>
                         {noAccount}
                         <SignUPLink>{signUp}</SignUPLink>

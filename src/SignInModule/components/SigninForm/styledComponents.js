@@ -2,15 +2,12 @@ import styled from "@emotion/styled"
 import tw from "tailwind.macro"
 const SignInContainer=styled.div `${tw`flex flex-col items-center `}
 width: 536px;
-height: 687px;
 border-radius: 8px;
 background-color: white;
 box-shadow: 0 0 0 1px white;
 padding-top:48px`
 
-const Container=styled.div `${tw`flex justify-center items-center ` }
-width: 1440px;
-height: 1024px;
+const Container=styled.div `${tw`flex justify-center items-center pt-20`}
 background-color:#f1f7ff;
 }`;
 

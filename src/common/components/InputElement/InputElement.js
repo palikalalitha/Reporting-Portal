@@ -5,11 +5,13 @@ import { observer } from "mobx-react";
 @observer
 class InputElement extends Component {
     static defaultProps = {
-            status:true ,
+            status:false ,
             testid:""
     }
     render() {
         const {type,borderStyles,value,onChangeHandler,status,testid}=this.props
+        console.log(status)
+      
         return (
               <InPutTextBox type={type} data-testid={testid} status={status} defaultValue={value}
                onChange={onChangeHandler} borderStyles={borderStyles}/>
