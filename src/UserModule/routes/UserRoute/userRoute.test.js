@@ -17,8 +17,8 @@ describe("UserRoute Tests", () => {
     let userService
     let userStore
     beforeEach(() => {
-        let userService=new UserServiceAPI()
-        let userStore=new UserStore(userService)
+         userService=new UserServiceAPI()
+         userStore=new UserStore(userService)
     });
     it("should render the user from ", async() => {
         const history = createMemoryHistory();
@@ -40,6 +40,7 @@ describe("UserRoute Tests", () => {
                 </Router>
             </Provider>
         );
+        await userStore.getObservationList()
         const addNewButton=getByRole("button", { name: "+ Add New" })
          fireEvent.click(addNewButton);
         

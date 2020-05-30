@@ -11,5 +11,6 @@
             "observation":"Back To Observation"
 
         },
-         "noObservations":"Look like there is no Observations here"
+         "noObservations":"Look like there is no Observations here",
+         "back":"back"
 }

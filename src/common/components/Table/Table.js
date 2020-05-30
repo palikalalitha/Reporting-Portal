@@ -5,10 +5,6 @@ import Pagination from "../Pagination/Pagination";
 import { TableData } from "../TableData/TableData";
 import {TableContainer,TableHeadings,TableRow} from "./styledComponents"
 
-
-
-
-@observer
 class Table extends Component {
     render() {
         const {headings,observationList,navigateToObservationScreen}=this.props

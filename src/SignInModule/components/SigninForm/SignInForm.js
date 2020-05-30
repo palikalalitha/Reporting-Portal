@@ -9,8 +9,8 @@ import { imageURL ,USERNAME,PASSWORD,TYPE_PASSWORD,TYPE_TEXT,LOGO,PRIMARY,LOGIN}
 import i18n from "../../i18n/strings.json"
 
 import { SignInContainer,WelcomMessage,Label,SignUPLink,NewAccount,ErrorMessage,Wrapper,Container} from "./styledComponents";
+import Loader from "../../../common/components/Icons/Loader/index"
 
-@observer
 class SignInForm extends Component {
     render() {
         const {welcomeMessage,userName,password,noAccount,signUp}=i18n.signInPageStrings

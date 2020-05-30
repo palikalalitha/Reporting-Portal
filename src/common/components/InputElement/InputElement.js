@@ -7,7 +7,6 @@ class InputElement extends Component {
     static defaultProps = {
             status:true ,
             testid:""
-           
     }
     render() {
         const {type,borderStyles,value,onChangeHandler,status,testid}=this.props

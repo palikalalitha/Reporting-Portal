@@ -21,6 +21,7 @@ class UserRoute extends React.Component {
     }
     naviagteToUserForm=()=>
     {
+        
         this.props.history.push(USER_CREATION_FORM)   
     }
     gotoObservationList=()=>
@@ -29,7 +30,7 @@ class UserRoute extends React.Component {
     }
     navigateToObservationScreen=()=>
     {
-        alert("navigate to observation scree")
+        
     }
     renderSuccessUI=observer(() => {
         const {gotoObservationList,naviagteToUserForm,navigateToObservationScreen}=this
@@ -37,8 +38,7 @@ class UserRoute extends React.Component {
         return (
         <DesktopLayout 
             children={ObservationList}
-            gotoObservationList={gotoObservationList}
-            gotoUserForm={naviagteToUserForm}
+            gotoObservationList={gotoObservationList}     
             navigatePrevPage={navigatePrevPage}
             navigateToObservationScreen={navigateToObservationScreen}
             navigateNextPage={navigateNextPage}
@@ -51,11 +51,11 @@ class UserRoute extends React.Component {
         })
    
     render() {
-        const { getObservationListAPIStatus,getObservationListAPIError} = userStore
-       
+        const { getObservationListAPIStatus,getObservationListAPIError,userObservationList} = userStore
         return(
             <UserPage
             gotoUserForm={this.naviagteToUserForm}
+            observationList={userObservationList}
             gotoObservationList={this.gotoObservationList}
             apiStatus={getObservationListAPIStatus}
             apiError={getObservationListAPIError}

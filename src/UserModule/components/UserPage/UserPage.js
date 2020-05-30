@@ -11,16 +11,18 @@ import Navbar from "../../../common/components/Navbar/Navbar"
 @observer
 class UserPage extends Component {
     render() {
-            const {doNetworkCalls,apiStatus,apiError,renderSuccessUI}=this.props
-        return (
+            const {doNetworkCalls,apiStatus,apiError,renderSuccessUI,observationList}=this.props
+            return (
             <ReportedPortalContainer>
                 <Header/> 
-                <Navbar heading={HEADING} {...this.props} />
-                <LoadingWrapperWithFailure        
-                    apiStatus={apiStatus}
-                    apiError={apiError}
-                    renderSuccessUI={renderSuccessUI}
-                    onRetryClick={doNetworkCalls}/>
+                {observationList.length>0 &&
+                    <Navbar heading={HEADING} {...this.props} />}
+                    <LoadingWrapperWithFailure        
+                        apiStatus={apiStatus}
+                        apiError={apiError}
+                        renderSuccessUI={renderSuccessUI}
+                        onRetryClick={doNetworkCalls}
+                        />
             </ReportedPortalContainer>
         );
     }

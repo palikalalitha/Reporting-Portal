@@ -58,7 +58,7 @@ const SignUPLink=styled.a `margin-left:5px;color:#0b69ff`;
 const Wrapper=styled.div `${tw`flex flex-col mb-6 `}`;
 
 const ErrorMessage = styled.span `${tw` mt-2 w-48 text-sm`}
-background-color:#ff0b37;
+color:#ff0b37;
 color:${props=>props.status==="Loading"?"green":""}
 ;`
 export 

@@ -25,7 +25,8 @@ font-stretch: normal;
 font-style: normal;
 line-height: 1.71;
 letter-spacing: normal;
-color: steel;`
+color: steel;
+text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);`
 export {Select,OptionContainer,Option}
 
 {/*// border: ${props=>props.status===""?"1px solid #ff0b37":"1px solid steel"};*/}

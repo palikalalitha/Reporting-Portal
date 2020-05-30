@@ -7,17 +7,17 @@ import { DropDownList } from "../../../common/components/DropDownList/DropDownLi
 import { TextArea } from "../../../common/components/TextArea/TextArea";
 import {Button} from "../../../common/components/Button/index"
 import {Header} from "../../../common/components/Header/Header"
-import {signInStore} from  "../../../SignInModule/stores/"
 
 import {UserFormContainer,Label,Wrapper,BackToObservation,ErrorMessage,SubmitButtonWrapper,
     WrapperMultipleElements,SubCategoryWrapper,Mandatory,LeftSymbol,ReportedPortalContainer} from "../../styleGuide/typos"
-import i18n from "../../i18n/strings.json"
-import {TEXT,SUBMIT,STATUS,CATEGORY_LIST,SUB_CATEGORY_LIST,SEVERITY,TYPE_FILE} from "../../constants/userPageConstants"
+
+    import i18n from "../../i18n/strings.json"
+import {TEXT,SUBMIT,STATUS,CATEGORY_LIST,SUB_CATEGORY_LIST,SEVERITY,TYPE_FILE,TITLE_TEST_ID,DESC_TEST_ID,SEVERITY_TEST_ID} from "../../constants/userPageConstants"
 
 @Observer
 class UserForm extends Component {
     render() {
-        const {title,category,subCategory,severity,description,attachments,observation}=i18n.userFormStrings
+        const {title,category,subCategory,severity,description,back,attachments,observation}=i18n.userFormStrings
         const {
                 observationTitle,
                 observationDescription,
@@ -25,7 +25,6 @@ class UserForm extends Component {
                 errorMessageForTitle,
                 errorMessageForSeverity,
                 errorMessageForDescription,
-                gotoObservationPage,
                 gotoObservationList,
                 onChangeTitle,
                 onChangeSelectValue,
@@ -36,7 +35,7 @@ class UserForm extends Component {
             <ReportedPortalContainer>
             <Header/>
             <UserFormContainer>
-                   <Wrapper onClick={gotoObservationList}>
+                   <Wrapper data-testid={back} onClick={gotoObservationList}>
                         <LeftSymbol>
                            <FaAngleLeft/>
                         </LeftSymbol>
@@ -49,6 +48,7 @@ class UserForm extends Component {
                         <div>
                         <InputElement  status={errorMessageForTitle}
                                 type={TEXT}
+                                testid={TITLE_TEST_ID}
                                 value={observationTitle} 
                                 onChangeHandler={onChangeTitle}
                         />
@@ -58,7 +58,8 @@ class UserForm extends Component {
                    <WrapperMultipleElements>
                         <Wrapper>
                             <Label>{category}</Label>
-                            <DropDownList   status={STATUS}
+                            <DropDownList   
+                                    status={STATUS}
                                     onChangeHandler={onChangeSelectValue}
                                     optionsList={CATEGORY_LIST}/>
                         </Wrapper>
@@ -73,7 +74,7 @@ class UserForm extends Component {
                         
                             <Label>{severity}<Mandatory>*</Mandatory> </Label>
                             <div>
-                            <DropDownList    
+                            <DropDownList    testid={SEVERITY_TEST_ID}
                             status={errorMessageForSeverity}
                             value={observationSeverity}
                                         onChangeHandler={onChangeSelectValue}
@@ -86,7 +87,7 @@ class UserForm extends Component {
                            <Label>{description}<Mandatory>*</Mandatory></Label>
                            <div>
                        
-                            <TextArea   status={errorMessageForDescription} data={observationDescription} onChangeHandler={onChangeDescription}/>
+                            <TextArea   testid={DESC_TEST_ID} status={errorMessageForDescription} data={observationDescription} onChangeHandler={onChangeDescription}/>
                             <ErrorMessage>{errorMessageForDescription}</ErrorMessage>
                             </div>  
                     </Wrapper>

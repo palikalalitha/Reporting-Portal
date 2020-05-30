@@ -2,9 +2,9 @@ import { observable, action, computed } from "mobx"
 import { bindPromiseWithOnSuccess } from "@ib/mobx-promise"
 import { API_INITIAL } from "@ib/api-constants"
 
-import observationList from "../../fixtures/getObservationList"
-import {UserModel} from "../models/UserModel"
+import { CURRENT_PAGE,PAGE_LIMIT ,OFFSET} from "../../constants/userStoreConstants"
 
+import {UserModel} from "../models/UserModel"
 
 class UserStore  {
 
@@ -14,7 +14,7 @@ class UserStore  {
     @observable currentPage
     @observable totlaPages
     userService
-    pageLimit=PAGE_LIMIT
+    pageLimit
     offset
 
     constructor(userServiceResponse) {
@@ -28,6 +28,7 @@ class UserStore  {
         this.currentPage=CURRENT_PAGE
         this.totlaPages=""
         this.offset=OFFSET
+        this.pageLimit=PAGE_LIMIT
 
     }
     @action.bound
@@ -85,7 +86,6 @@ class UserStore  {
     {
         if(this.currentPage>1)
         {
-
         this.currentPage--;
         this.offset-=this.pageLimit
         this.getObservationList();

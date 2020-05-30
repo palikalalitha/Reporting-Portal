@@ -7,7 +7,6 @@ import getUserSignInResponse from "../../fixtures/getUserSignInResponse.json";
 
 import {SignInStore} from ".";
 
-/* Mocking js-cookie library */
 
 let mockSetCookie = jest.fn();
 let mockRemoveCookie = jest.fn();

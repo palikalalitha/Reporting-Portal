@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import {ButtonElement,Label} from "./styledComponents"
+import { observer } from "mobx-react";
 
 class Button extends Component{
     static defaultProps={

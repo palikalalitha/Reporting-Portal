@@ -13,9 +13,11 @@ class NoObservations extends Component {
         const {gotUserForm}=this.props
       return(
             <NoObservationContainer>
-            <NoObservationsText>{noObservations}
-            </NoObservationsText>
-            <Button buttonText={ADD_NEW} onClickHandler={gotUserForm}/>
+                <NoObservationsText>{noObservations}
+                </NoObservationsText>
+            <Button
+              buttonText={ADD_NEW} 
+              onClickHandler={gotUserForm}/>
             </NoObservationContainer>
         );
     }

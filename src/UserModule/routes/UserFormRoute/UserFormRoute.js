@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom"
 import { observer } from "mobx-react";
 
 import { UserForm } from "../../components/UserForm/UserForm";
-import { UserPage } from "../../components/userPage/UserPage";
 
 import {ERROR_MESSAGE} from "../../constants/userPageConstants"
 import {USER_CREATION_FORM} from "../../constants/RouteConstants"

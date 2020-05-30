@@ -1,6 +1,6 @@
 
 import React from "react"
-import { render, fireEvent, screen } from "@testing-library/react"
+import { render} from "@testing-library/react"
 import { SignInForm } from "./index"
 
 describe("SignInForm test", () => {

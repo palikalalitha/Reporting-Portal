@@ -6,7 +6,6 @@ import { RiMessage2Line } from "react-icons/ri";
 import {RP_PROFILE_URL,MESSAGE_ICON_URL} from "../../constants/reportingPortalconstants"
 import { observer } from "mobx-react";
 
-@observer
 class TableData extends Component {
     render() {
        const {title,priority,due_date}=this.props.observation
@@ -22,14 +21,14 @@ class TableData extends Component {
                    <AssignedContainer>
                     <Image imageURL={RP_PROFILE_URL}/>
                     <RPDetails>
-                        <Name>LaLitha</Name>
-                        <PhoneNumber>Ph:917708378</PhoneNumber>
+                        <Name>Lalitha</Name>
+                        <PhoneNumber>Ph:91770837897</PhoneNumber>
                     </RPDetails>
                     </AssignedContainer>
                <Severty status={priority}><Mode>{priority}</Mode></Severty>
                 <TData><StatusWrapper bgColorStatus={bgColorStatus}><Status>CLosed</Status></StatusWrapper> </TData>
                 <TData>
-                11/5/2020 at 12:15 PM
+                    {due_date}
                 </TData>
                 <TData><Message><RiMessage2Line/></Message></TData>             
                

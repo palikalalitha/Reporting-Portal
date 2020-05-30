@@ -41,8 +41,6 @@ export const ProtectedRoute = (props) => {
 
 
 
-
-
 // class ProtectedRoute extends React.Component {
 //     render() {
 //         const { component: Component, path } = this.props;
