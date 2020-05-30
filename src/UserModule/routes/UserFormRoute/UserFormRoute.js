@@ -99,12 +99,12 @@ class UserFormRoute extends Component {
         this.props.history.goBack()
     }
     render() {
-        const {title,severity,description,errorMessage,onChangeTitle,onChangeDescription,
+        const {title,severity,description,onChangeTitle,onChangeDescription,
             errorMessageForSeverity,errorMessageForTitle,errorMessageForDescription,
             onChangeSelectValue,addObservation,naviagteToUserForm,gotoObservationList}=this
       
         return (
-           <UserPage
+           <UserForm
            gotoObservationList={gotoObservationList}
            gotoUserForm={naviagteToUserForm}
            observationTitle={title}
@@ -117,7 +117,6 @@ class UserFormRoute extends Component {
            onChangeDescription={onChangeDescription}
            onChangeSelectValue={onChangeSelectValue}
            addObservation={addObservation}
-           component={UserForm}
            />
         );
     }

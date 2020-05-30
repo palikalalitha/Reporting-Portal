@@ -1,6 +1,7 @@
 export const USERNAME_REGEX = /^[a-zA-z]*$/;
-export const USERNAME_ERROR_MESSAGE="Please enter username"
-export const PASSWORD_ERROR_MESSAGE="Please enter password"
+export const USERNAME_ERROR_MESSAGE="Incorrect Username"
+export const PASSWORD_ERROR_MESSAGE="Incorrect Password"
+export const EMPTY_STRING=""
 export const NETWORK_ERROR="Network Error"
 export const LOADING="Loading"
 export const USERNAME="username"

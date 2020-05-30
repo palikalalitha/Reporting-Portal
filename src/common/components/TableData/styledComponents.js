@@ -65,38 +65,37 @@ line-height: 1.33;
 letter-spacing: normal;
 color: #7e858e`;
 
-const Severty=styled.td `${tw``}
+const Severty=styled.td `${tw`ml-2`}
 width: 72px;
-height: 21px;
+height: 25px;
 border-radius: 100px;
 margin-top:20px;
+text-align:center;
 background-color:${props=>props.status=="HIGH"?"#ff0b37":props.status=="LOW"?"#2dca73":"#ffb800"};`
 
-  const Mode=styled.label `${tw``}
-  width: 64px;
-  height: 16px;
-  font-family: HKGrotesk;
-  font-size: 12px;
-  font-weight: 400;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.33;
-  letter-spacing: 0.12px;
-  color: #ffffff;
-  margin-left:20px;
-  `
+const Mode=styled.label `${tw`pt-1`}
+width: 64px;
+height: 14px;
+font-family: HKGrotesk;
+font-size: 12px;
+font-weight: 400;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.33;
+letter-spacing: 0.12px;
+color: #ffffff; `
 
-  const Status=styled.span `
-  height: 16px;
-  font-family: HKGrotesk;
-  font-size: 8px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2;
-  letter-spacing: 0.32px;
-  color:dark-blue-grey;
-  border-radius: 50px;-
+const Status=styled.span `
+height: 16px;
+font-family: HKGrotesk;
+font-size: 8px;
+font-weight: 600;
+font-stretch: normal;
+font-style: normal;
+line-height: 2;
+letter-spacing: 0.32px;
+color:dark-blue-grey;
+border-radius: 50px;-
   `;
 
 const StatusWrapper=styled.div `

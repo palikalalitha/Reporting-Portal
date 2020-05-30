@@ -7,12 +7,11 @@ background-color: #ffffff;
 margin-left:100px;
 margin-right:100px`;
 
-const ReportedPortalContainer=styled.div 
-`width: 1440px;
+const ReportedPortalContainer=styled.div `${tw``}
+width: 1440px;
 height: 1024px;
-background-color: whiteTwo;
-focus-outline:none
-}`;
+background-color: #fbfbfb;
+outline:none`;
 
 const UserFormContainer=styled.div `${tw``}
 width: 1131px;
@@ -20,6 +19,7 @@ height: 900px;
 border-radius: 7px;border: solid 1px #d7dfe9;
 background-color: #ffffff;
 margin:32px 100px 32px 100px`
+
 const NoObservationsText=styled.h1 `
 width: 315px;
 height: 24px;
@@ -33,7 +33,7 @@ letter-spacing: normal;
 color: black;
 `
 const NoObservationContainer=styled.div `${tw`flex flex-col justify-center items-center h-screen`}
-focus-outline:none`;
+outline:none`;
 
 const Typo12DarkBlueGreyRubikMedium=styled.label `
 width: 165px;

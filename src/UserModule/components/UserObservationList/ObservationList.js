@@ -11,9 +11,12 @@ class ObservationList extends Component {
         return (
             <ObservationContainer>
             {observationList.length>1?
-            <Table  {...this.props} headings={['TITLE',"REPORTED ON","ASSIGNED TO","SEVERITY","STATUS","DUE DATE","MESSAGES"]} 
-            observationList={observationList}/>:
-            <NoObservations gotoUserForm={gotoUserForm} gotoObservationList={gotoObservationList} />}
+                <Table  {...this.props} 
+                   headings={['TITLE',"REPORTED ON","ASSIGNED TO","SEVERITY","STATUS","DUE DATE","MESSAGES"]} 
+                    observationList={observationList}/>:
+                <NoObservations 
+                    gotoUserForm={gotoUserForm} 
+                    gotoObservationList={gotoObservationList} />}
             </ObservationContainer>
         );
     }

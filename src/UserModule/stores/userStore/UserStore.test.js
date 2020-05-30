@@ -33,7 +33,7 @@ describe("user store test", () => {
         expect(userStore.getObservationListAPIStatus).toBe(API_FETCHING)
     })
 
-    it("should test product store success state", async() => {
+    it("should test user store success state", async() => {
         const mockSuccessPromise = new Promise(function(resolve, reject) {
             resolve(observationList);
         });
@@ -46,7 +46,7 @@ describe("user store test", () => {
         expect(userStore.getObservationListAPIStatus).toBe(API_SUCCESS)
     });
 
-    it("should test product store failure state", async() => {
+    it("should test user store failure state", async() => {
         const mockFailurePromise = new Promise(function(resolve, reject) {
             reject(new Error("error"));
         });

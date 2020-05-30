@@ -3,12 +3,14 @@ import { Header } from "../Header/Header";
 import { DesktopLayoutContainer } from "./styledComponents"  
 import Navbar from "../Navbar/Navbar";
 import {HEADING} from "../../constants/reportingPortalconstants"
+import { ReportedPortalContainer } from "../../../UserModule/styleGuide/typos";
+
 class DesktopLayout extends Component {
     render() {
-        const {type,children:Children,gotoUserForm,observationList}=this.props
+        const {children:Children,observationList}=this.props
         return (
-                    <Children {...this.props} observationList={observationList}/>
-        );
+            <Children {...this.props} observationList={observationList}/>
+              );
     }
 }
 

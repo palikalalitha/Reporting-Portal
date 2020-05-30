@@ -6,24 +6,11 @@ import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
 import "./App.css";
 import {store} from "./SignInModule/stores/"
-// import {Home} from "./common/home"
-import { InputElement } from "./common/components/InputElement";
-import {Button} from "./common/components/Button/"
-import { Profile } from "./common/components/Profile/Profile";
-import { DropDownList } from "./common/components/DropDownList/DropDownList";
-import { TextArea } from "./common/components/TextArea/TextArea";
-import { RadioButton } from "./common/components/RadioButton";
-import Pagination from "./common/components/Pagination/Pagination"
-import {Image} from "./common/components/Image"
-import { Header } from "./common/components/Header/Header";
-import { SignInForm } from "./SignInModule/components/SigninForm/SignInForm";
-import {TableData} from "./common/components/TableData/TableData"
-import { Table } from "./common/components/Table/Table";
+
 import  signInRoutes from "./SignInModule/routes"
 import userRoutes from "./UserModule/routes"
 import {signInStore} from "./SignInModule/stores/index"
-import { UserForm } from "./UserModule/components/UserForm/UserForm";
-import { UserPage } from "./UserModule/components/userPage/UserPage";
+
 class App extends React.Component
 {
   render(){
@@ -31,7 +18,6 @@ class App extends React.Component
     <Provider signInStore={signInStore} >
     <Router basename={process.env.PUBLIC_URL}>
        <Switch>
-         {/* {/* <UserForm/> */}
           {signInRoutes}
           {userRoutes}
       </Switch>

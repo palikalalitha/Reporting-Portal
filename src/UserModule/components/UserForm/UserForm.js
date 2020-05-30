@@ -6,10 +6,11 @@ import { InputElement } from "../../../common/components/InputElement";
 import { DropDownList } from "../../../common/components/DropDownList/DropDownList";
 import { TextArea } from "../../../common/components/TextArea/TextArea";
 import {Button} from "../../../common/components/Button/index"
+import {Header} from "../../../common/components/Header/Header"
 import {signInStore} from  "../../../SignInModule/stores/"
 
 import {UserFormContainer,Label,Wrapper,BackToObservation,ErrorMessage,SubmitButtonWrapper,
-    WrapperMultipleElements,SubCategoryWrapper,Mandatory,LeftSymbol} from "../../styleGuide/typos"
+    WrapperMultipleElements,SubCategoryWrapper,Mandatory,LeftSymbol,ReportedPortalContainer} from "../../styleGuide/typos"
 import i18n from "../../i18n/strings.json"
 import {TEXT,SUBMIT,STATUS,CATEGORY_LIST,SUB_CATEGORY_LIST,SEVERITY,TYPE_FILE} from "../../constants/userPageConstants"
 
@@ -32,6 +33,8 @@ class UserForm extends Component {
                 addObservation
             }=this.props
         return (
+            <ReportedPortalContainer>
+            <Header/>
             <UserFormContainer>
                    <Wrapper onClick={gotoObservationList}>
                         <LeftSymbol>
@@ -89,10 +92,11 @@ class UserForm extends Component {
                     </Wrapper>
                     <Wrapper>
                             <Label>{attachments}</Label>
-                            <div id="drop-area">
-                            <form class="my-form">
-                            <p>Select files to Upload</p><input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)"/>
-                            <label class="button" for="fileElem">Select some files</label>
+                            <div>
+                            <form>
+                            <p>Select files to Upload</p>
+                            <input type={TYPE_FILE} multiple accept="image/*" />
+                            <label >Select some files</label>
                             </form>
                         </div>
                     </Wrapper>
@@ -100,7 +104,9 @@ class UserForm extends Component {
                             <Button buttonText={SUBMIT} onClickHandler={addObservation}/>
                     </SubmitButtonWrapper>  
               
-            </UserFormContainer>);
+            </UserFormContainer>
+            </ReportedPortalContainer>
+);
     }
     
 }

@@ -14,6 +14,8 @@ width: 288px;
   color: #0b69ff;`
   const NavabarContainer=styled.div `${tw`flex justify-between items-center`}
   width:1240px;
+  margin-left:100px;
+margin-right:100px;
   margin-top:48px;
   margin-bottom:48px;`
 export {NavabarHeading,NavabarContainer}

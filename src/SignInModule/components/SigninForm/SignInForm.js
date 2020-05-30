@@ -14,8 +14,8 @@ import { SignInContainer,WelcomMessage,Label,SignUPLink,NewAccount,ErrorMessage,
 class SignInForm extends Component {
     render() {
         const {welcomeMessage,userName,password,noAccount,signUp}=i18n.signInPageStrings
-        const {username,userpassword,errorMessage,onClickSignIn,
-            onChangeUsername,onChangePassword,status,apiStatus}=this.props
+
+        const {username,userpassword,errorMessage,onClickSignIn,errorMessageForPassword,errorMessageForUsername,onChangeUsername,onChangePassword,status,apiStatus}=this.props
         return (
             <Container>
                 <SignInContainer>
@@ -30,6 +30,8 @@ class SignInForm extends Component {
                                 testid={USERNAME}
                                 value={username} 
                                 onChangeHandler={onChangeUsername} />
+                                    <ErrorMessage status={errorMessageForUsername}>{errorMessageForUsername}</ErrorMessage>
+
                     </Wrapper>
                     <Wrapper>
                         <Label>{password}</Label>
@@ -38,6 +40,8 @@ class SignInForm extends Component {
                                  testid={PASSWORD} 
                                  value={userpassword} 
                                  onChangeHandler={onChangePassword}/>
+                                   <ErrorMessage status={errorMessageForPassword}>{errorMessageForPassword}</ErrorMessage>
+                  
                     </Wrapper>
 
                     <Button 
@@ -45,9 +49,8 @@ class SignInForm extends Component {
                             buttonStatus={apiStatus===100?true:false}
                             onClickHandler={onClickSignIn}
                             buttonText={LOGIN}/>
+                     <ErrorMessage status={errorMessage}>{errorMessage}</ErrorMessage>
 
-                    <ErrorMessage status={errorMessage}>{errorMessage}</ErrorMessage>
-                    
                     <NewAccount>
                         {noAccount}
                         <SignUPLink>{signUp}</SignUPLink>

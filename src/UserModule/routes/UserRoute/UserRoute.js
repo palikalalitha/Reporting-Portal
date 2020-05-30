@@ -2,6 +2,8 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import { observer } from "mobx-react"
 
+import { DesktopLayout } from "../../../common/components/DesktopLayout/DesktopLayout"
+
 import {userStore} from "../../stores/index"
 import {ObservationList} from "../../components/UserObservationList/ObservationList"
 import { UserPage } from "../../components/userPage/UserPage"
@@ -25,22 +27,39 @@ class UserRoute extends React.Component {
     {
         this.props.history.goBack(USER_PATH)
     }
+    navigateToObservationScreen=()=>
+    {
+        alert("navigate to observation scree")
+    }
+    renderSuccessUI=observer(() => {
+        const {gotoObservationList,naviagteToUserForm,navigateToObservationScreen}=this
+        const {navigatePrevPage,navigateNextPage,currentPage,totlaPages,userObservationList,offset}=userStore
+        return (
+        <DesktopLayout 
+            children={ObservationList}
+            gotoObservationList={gotoObservationList}
+            gotoUserForm={naviagteToUserForm}
+            navigatePrevPage={navigatePrevPage}
+            navigateToObservationScreen={navigateToObservationScreen}
+            navigateNextPage={navigateNextPage}
+            gotoUserForm={naviagteToUserForm} 
+            observationList={userObservationList}
+            currentPage={currentPage}
+            totlaPages={totlaPages}
+            offset={offset}/>)
+                   
+        })
    
     render() {
-        const {onChangeSelectValue,addObservation,naviagteToUserForm,gotoObservationList}=this
-      
-        const { getObservationListAPIStatus,getObservationListAPIError,observationList} = userStore
-        
+        const { getObservationListAPIStatus,getObservationListAPIError} = userStore
+       
         return(
             <UserPage
-            gotoObservationList={gotoObservationList}
-             component={ObservationList}
-            gotoUserForm={naviagteToUserForm}
-            onChangeSelectValue={onChangeSelectValue}
-            addObservation={addObservation}
-            observationList={observationList}
+            gotoUserForm={this.naviagteToUserForm}
+            gotoObservationList={this.gotoObservationList}
             apiStatus={getObservationListAPIStatus}
             apiError={getObservationListAPIError}
+            doNetworkCalls={this.getObservationList}
             renderSuccessUI={this.renderSuccessUI}/>)
     }
 }

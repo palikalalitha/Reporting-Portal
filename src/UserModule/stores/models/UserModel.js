@@ -10,7 +10,7 @@ class UserModel extends Component {
     @observable due_Date
      @observable status
      @observable assigned_to
-    constructor(observation) {
+    constructor(observation){
         super(observation)
         this.id = Math.random()
         this.title = observation.title
@@ -18,7 +18,7 @@ class UserModel extends Component {
             this.description=observation.description,
             this.category="Asset Mangement",
             this.sub_category="food",
-            this.due_Date=Date.now();
+            this.due_date=Date.now();
             this.status="Action in progress",
             this.assigned_to=
             {

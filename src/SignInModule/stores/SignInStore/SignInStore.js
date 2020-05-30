@@ -49,7 +49,6 @@ class SignInStore {
 
     @action.bound
     userSignOut() {
-       
         clearUserSession()
         this.init();
     }

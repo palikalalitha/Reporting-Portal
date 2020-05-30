@@ -10,7 +10,7 @@ import {
     USERNAME_ERROR_MESSAGE,
     PASSWORD_ERROR_MESSAGE,
     NETWORK_ERROR,
-    LOADING
+    LOADING,EMPTY_STRING
 }
 from "../../constants/SigninPageConstants.js"
 
@@ -20,6 +20,8 @@ from "../../constants/SigninPageConstants.js"
 class SignInRoute extends React.Component {
     @observable username
     @observable password
+    @observable errorMessageForUsername
+    @observable errorMessageForPassword
     @observable errorMessage
     constructor() {
         super()
@@ -27,20 +29,22 @@ class SignInRoute extends React.Component {
     }
 
     init() {
-        this.username = "";
-        this.password = "";
-        this.errorMessage = ""
+        this.username = EMPTY_STRING;
+        this.password = EMPTY_STRING;
+        this.errorMessageForUsername =EMPTY_STRING
+        this.errorMessageForPassword=EMPTY_STRING
+        this.errorMessage=EMPTY_STRING;
     }
 
     onChangeUsername = (event) => {
         this.username = event.target.value
-        this.errorMessage = ""
+        this.errorMessageForUsername = EMPTY_STRING
 
     }
 
     onChangePassword = (event) => {
          this.password = event.target.value
-         this.errorMessage = ""
+         this.errorMessageForPassword = EMPTY_STRING
     }
 
     onSuccess = () => {
@@ -55,11 +59,11 @@ class SignInRoute extends React.Component {
         }
     }
     onClickSignIn = () => {
-        if (this.username === "" || this.username === undefined) {
-            this.errorMessage = USERNAME_ERROR_MESSAGE
+        if (this.username === EMPTY_STRING || this.username === undefined) {
+            this.errorMessageForUsername = USERNAME_ERROR_MESSAGE
         }
-        else if (this.password === "" || this.password === undefined) {
-            this.errorMessage = PASSWORD_ERROR_MESSAGE
+        else if (this.password === EMPTY_STRING || this.password === undefined) {
+            this.errorMessageForPassword = PASSWORD_ERROR_MESSAGE
          
         }
         else {
@@ -78,9 +82,11 @@ class SignInRoute extends React.Component {
     render() {
         const { getUserSignInAPIStatus } = this.props.signInStore
         const {username,password,onClickSignIn,
-            onChangeUsername,onChangePassword,errorMessage}=this
+            onChangeUsername,onChangePassword,errorMessage,errorMessageForUsername,errorMessageForPassword}=this
         return (
           <SignInForm 
+           errorMessageForUsername={errorMessageForUsername}
+          errorMessageForPassword={errorMessageForPassword}
           errorMessage={errorMessage}
           username={username}
           userpassword={password}

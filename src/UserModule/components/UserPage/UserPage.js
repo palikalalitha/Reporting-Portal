@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
 
-import { DesktopLayout } from "../../../common/components/DesktopLayout/DesktopLayout"
 import { Header } from "../../../common/components/Header/Header";
 import {ReportedPortalContainer} from "../../styleGuide/typos"
+import LoadingWrapperWithFailure from "../../../common/components/LoadingWrapperWithFailure";
+import { HEADING } from "../../../common/constants/reportingPortalconstants";
+import Navbar from "../../../common/components/Navbar/Navbar"
+
 
 @observer
 class UserPage extends Component {
     render() {
-            const {observationList,component:Component}=this.props
+            const {doNetworkCalls,apiStatus,apiError,renderSuccessUI}=this.props
         return (
             <ReportedPortalContainer>
-                  <Header/>
-                    <DesktopLayout children={Component}
-                                {...this.props} observationList={observationList}/> 
+                <Header/> 
+                <Navbar heading={HEADING} {...this.props} />
+                <LoadingWrapperWithFailure        
+                    apiStatus={apiStatus}
+                    apiError={apiError}
+                    renderSuccessUI={renderSuccessUI}
+                    onRetryClick={doNetworkCalls}/>
             </ReportedPortalContainer>
-
         );
     }
 } 

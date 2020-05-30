@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import {ReportedDate,AssignedContainer,UserFormContainer,Container,RPDetails,StatusWrapper,Name,Mode,PhoneNumber,Severty,Status,DueDate,Message,TData} from "./styledComponents"
 import {Image} from "../Image/"
-import {AiFillMessage} from "react-icons/ai";
+
 import { RiMessage2Line } from "react-icons/ri";
 import {RP_PROFILE_URL,MESSAGE_ICON_URL} from "../../constants/reportingPortalconstants"
 import { observer } from "mobx-react";
+
 @observer
 class TableData extends Component {
     render() {
-       const {title,priority,}=this.props.observation
+       const {title,priority,due_date}=this.props.observation
        const {bgColorStatus}=this.props
-
         return (
             <>
                 <TData>
                     {title}
                 </TData>
                 <TData>
-                11/5/2020 at 12:15 PM
+                {due_date}
                 </TData>
                    <AssignedContainer>
                     <Image imageURL={RP_PROFILE_URL}/>
