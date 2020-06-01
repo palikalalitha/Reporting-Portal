@@ -59,13 +59,13 @@ class UserForm extends Component {
                         <Wrapper>
                             <Label>{category}</Label>
                             <DropDownList   
-                                    status={STATUS}
+                                   
                                     onChangeHandler={onChangeSelectValue}
                                     optionsList={CATEGORY_LIST}/>
                         </Wrapper>
                         <SubCategoryWrapper>
                             <Label>{subCategory}</Label>
-                            <DropDownList status={STATUS}
+                            <DropDownList 
                                      onChangeHandler={onChangeSelectValue} 
                                      optionsList={SUB_CATEGORY_LIST}/>
                         </SubCategoryWrapper>
@@ -74,7 +74,8 @@ class UserForm extends Component {
                         
                             <Label>{severity}<Mandatory>*</Mandatory> </Label>
                             <div>
-                            <DropDownList    testid={SEVERITY_TEST_ID}
+                            <DropDownList  
+                              testid={SEVERITY_TEST_ID}
                             status={errorMessageForSeverity}
                             value={observationSeverity}
                                         onChangeHandler={onChangeSelectValue}

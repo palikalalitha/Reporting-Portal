@@ -10,8 +10,6 @@ class InputElement extends Component {
     }
     render() {
         const {type,borderStyles,value,onChangeHandler,status,testid}=this.props
-        console.log(status)
-      
         return (
               <InPutTextBox type={type} data-testid={testid} status={status} defaultValue={value}
                onChange={onChangeHandler} borderStyles={borderStyles}/>

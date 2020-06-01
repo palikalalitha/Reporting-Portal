@@ -20,4 +20,7 @@ const TableRow=styled.tr `${tw`flex justify-between`}
 border: solid 1px #d7dfe9;
 background-color:${props=>props.bgColorStatus==true?"rgba(215, 223, 233, 0.24)":"#ffffff"}`;
 
-export {TableContainer,TableHeadings,TableRow}
+const PaginationContainer=styled.div `${tw`
+flex justify-center items-center mt-10`}`
+
+export {TableContainer,PaginationContainer,TableHeadings,TableRow}

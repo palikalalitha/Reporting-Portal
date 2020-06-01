@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { observer } from "mobx-react";
 
 import Pagination from "../Pagination/Pagination";
+import ReactPaginate from 'react-paginate';
 import { TableData } from "../TableData/TableData";
-import {TableContainer,TableHeadings,TableRow} from "./styledComponents"
+import paginationcss from "./Table.css"
+import {TableContainer,TableHeadings,TableRow,PaginationContainer} from "./styledComponents"
+
+
 
 class Table extends Component {
+    handlePage=()=>
+    {
+        this.currentPage=event
+    }
     render() {
         const {headings,observationList,navigateToObservationScreen}=this.props
         return (
@@ -26,6 +34,23 @@ class Table extends Component {
                     )}    
             </tbody>
              </TableContainer>
+             {/* <PaginationContainer>
+             <ReactPaginate
+              previousLabel={'<'}
+              nextLabel={'>'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={this.props.totlaPages}
+              marginPagesDisplayed={10}
+              pageRangeDisplayed={5}
+              onPageChange={this.props.navigateNextPage}
+              containerClassName={'pagination-container'}
+              subContainerClassName={'pagination'}
+              activeClassName={'active'}
+
+             />
+
+             </PaginationContainer> */}
              <Pagination  {...this.props} />
              </>
         );

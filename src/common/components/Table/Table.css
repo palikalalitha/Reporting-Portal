@@ -1,0 +1,13 @@
+.pagination-container
+{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-items: center;
+    background-color: red;
+}
+.page-numbers
+{
+    margin:20px;
+    border:1px solid blue;
+}

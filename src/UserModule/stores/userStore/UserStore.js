@@ -71,9 +71,14 @@ class UserStore  {
     }
 
     @action.bound
-    navigateNextPage()
+    navigateNextPage(data)
     {
-       
+        // let selected = data.selected;
+        // this.offset = Math.ceil(selected * this.currentPage);
+
+        // this.getObservationList();
+        // console.log(this.observationList)
+        
         if(this.currentPage<this.totlaPages)
         {
             this.currentPage++;

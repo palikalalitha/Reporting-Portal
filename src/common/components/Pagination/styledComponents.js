@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import tw from "tailwind.macro"
-const PaginationContainer=styled.div `${tw`
-flex justify-center items-center mt-10`}`
-
+const PaginationContainer=styled.div `${tw`flex justify-center items-center mt-10`}`
 const PaginationArrows=styled.img `${tw``}
 filter: invert(75%);`
 

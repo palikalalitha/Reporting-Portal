@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {TextAreaElement} from "./styledComponents"
 class TextArea extends Component {
+    static defaultProps = {
+        status:false,
+        testid:""
+}
     render() {
         const {data,onChangeHandler,status,testid}=this.props
         return (

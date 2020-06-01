@@ -3,7 +3,7 @@ import {Select,Option,OptionContainer} from "./styledComponents"
 
 class DropDownList extends Component {
     static defaultProps = {
-        status:true ,
+        status:false ,
         testid:"",
         value:"",
         optionsList:["food","Water"]
@@ -12,7 +12,7 @@ class DropDownList extends Component {
         const {optionsList,onChangeHandler,value,status,testid}=this.props
         return (
             <Select status={status} data-testid={testid} onChange={onChangeHandler} value={value}>
-                <Option>All</Option>
+                <Option>Select</Option>
                 {optionsList.map(eachOption=>
                 <Option key={eachOption} value={eachOption}>{eachOption}</Option>)}
             </Select>

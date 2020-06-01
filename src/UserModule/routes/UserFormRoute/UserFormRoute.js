@@ -36,6 +36,9 @@ class UserFormRoute extends Component {
     {
         this.title=event.target.value 
         this.errorMessageForTitle=""
+        this.errorMessageForDescription=""
+        this.errorMessageForSeverity=""
+     
     }
     
     onChangeDescription=(event)=>
@@ -46,7 +49,6 @@ class UserFormRoute extends Component {
 
     onChangeSelectValue=(event)=>
     {
-        console.log(this.severity)
         this.severity=event.target.value
         this.errorMessageForSeverity=""
         
@@ -61,11 +63,11 @@ class UserFormRoute extends Component {
        {
         this.errorMessageForTitle=ERROR_MESSAGE
        }
-       else if(this.severity==="")
+        if(this.severity==="")
        { this.errorMessageForSeverity=ERROR_MESSAGE
 
        }
-       else if(this.description==="")
+       if(this.description==="")
        {
         this.errorMessageForDescription=ERROR_MESSAGE
        }
@@ -84,6 +86,7 @@ class UserFormRoute extends Component {
         else
         {
             alert("submitted successfully")
+            this.gotoObservationList()
             userStore.onAddObservationList(this.title,this.severity,this.description)
             
         }

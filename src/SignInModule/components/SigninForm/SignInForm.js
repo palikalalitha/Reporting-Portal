@@ -50,8 +50,7 @@ class SignInForm extends Component {
                             buttonStatus={apiStatus===100?true:false}
                             onClickHandler={onClickSignIn}
                             buttonText={LOGIN}/>
-                     <ErrorMessage status={errorMessage}>{errorMessage}</ErrorMessage>
-                    <NewAccount>
+                      <NewAccount>
                         {noAccount}
                         <SignUPLink>{signUp}</SignUPLink>
                     </NewAccount>

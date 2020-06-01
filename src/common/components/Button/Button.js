@@ -17,11 +17,11 @@ class Button extends Component{
         return (    
         <ButtonElement  onClick={onClickHandler} buttonType={buttonType}>
             <Label>
-            <Loader
-         type="Rings"
-         color="#00BFFF"
-         height={100}
-         width={100}/>{buttonText}</Label>
+        {buttonStatus?<Loader
+         type="Oval"
+         color="White"
+         height={20}
+         width={20}/>:buttonText}</Label> 
         </ButtonElement>                      
         );
     }

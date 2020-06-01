@@ -8,7 +8,10 @@ import { observer } from "mobx-react";
 
 class TableData extends Component {
     render() {
-       const {title,priority,due_date}=this.props.observation
+      
+       const {title,priority,due_date,assigned_to,status,due_date_privacy,message_count}=this.props.observation
+       const {name,phno}=assigned_to
+      
        const {bgColorStatus}=this.props
         return (
             <>
@@ -21,14 +24,14 @@ class TableData extends Component {
                    <AssignedContainer>
                     <Image imageURL={RP_PROFILE_URL}/>
                     <RPDetails>
-                        <Name>Lalitha</Name>
-                        <PhoneNumber>Ph:91770837897</PhoneNumber>
+        <Name>{name}</Name>
+        <PhoneNumber>{phno}</PhoneNumber>
                     </RPDetails>
                     </AssignedContainer>
                <Severty status={priority}><Mode>{priority}</Mode></Severty>
-                <TData><StatusWrapper bgColorStatus={bgColorStatus}><Status>CLosed</Status></StatusWrapper> </TData>
+        <TData><StatusWrapper bgColorStatus={bgColorStatus}><Status>{status}</Status></StatusWrapper> </TData>
                 <TData>
-                    {due_date}
+        {due_date_privacy==="public"?due_date:"Private"}
                 </TData>
                 <TData><Message><RiMessage2Line/></Message></TData>             
                

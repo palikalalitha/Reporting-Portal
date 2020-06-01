@@ -6,7 +6,6 @@ const Container=styled.div `${tw`flex justify-around`}
   background-color: #fbfbfb  ;`
 const TData=styled.td `${tw`self-center`}
 width: 104px;
-height: 16px;
 font-family: HKGrotesk;
 font-size: 11px;
 font-weight: 400;
@@ -66,7 +65,7 @@ letter-spacing: normal;
 color: #7e858e`;
 
 const Severty=styled.td `${tw`ml-2`}
-width: 72px;
+  width: 72px;
 height: 25px;
 border-radius: 100px;
 margin-top:20px;
@@ -84,6 +83,7 @@ font-style: normal;
 line-height: 1.33;
 letter-spacing: 0.12px;
 color: #ffffff; `
+
 
 const Status=styled.span `
 height: 16px;
@@ -112,3 +112,5 @@ margin-left:35px`
   
 export {ReportedDate,data,AssignedContainer,TData,Severty,DueDate,Container,
   RPDetails,Name,PhoneNumber,Status,Message,Mode,StatusWrapper,UserFormContainer}
+
+

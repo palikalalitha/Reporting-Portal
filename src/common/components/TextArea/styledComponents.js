@@ -2,6 +2,7 @@
 
 import styled from "@emotion/styled"
 import tw from "tailwind.macro"
+
 const TextAreaElement=styled.textarea `
 width: 646px;
 height: 200px;
@@ -9,7 +10,7 @@ border-radius: 2px;
 outline:none;
 background-color:white;
 box-shadow: 0 0 0 1px silver;
-border:1px solid light-blue-grey;
+border: ${props=>props.status===""||status===undefined?"1px solid light-blue-grey":"1px solid red"};
 font-family: HKGrotesk;
 font-size: 16px;
 font-weight: normal;

@@ -4,9 +4,9 @@ const Select=styled.select `${tw`focus:outline-none`}
 width: 249px;
 height: 40px;
 border-radius: 2px;
-border:1px solid steel;
+border:${props=>props.status?"1px solid red":"1px solid steel"};
 background-color:white;
-box-shadow: 0 0 0 1px silver`
+box-shadow: 0 0 0 1px silver`         
 
 const OptionContainer=styled.div `
 width: 181px;
