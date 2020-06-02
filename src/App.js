@@ -1,37 +1,36 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {Provider} from "mobx-react";
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Provider } from 'mobx-react'
 
-import HomePage from "./components/HomePage";
-import Page1 from "./components/Page1";
-import "./App.css";
-import {store} from "./SignInModule/stores/"
-import {ObservationScreen} from "./UserModule/components/ObservationScreen/"
-import  signInRoutes from "./SignInModule/routes"
-import userRoutes from "./UserModule/routes"
-import {signInStore} from "./SignInModule/stores/index"
+import HomePage from './components/HomePage'
+import Page1 from './components/Page1'
+import './App.css'
+import { store } from './SignInModule/stores/'
+import { ObservationScreen } from './UserModule/components/ObservationScreen/'
+import signInRoutes from './SignInModule/routes'
+import userRoutes from './UserModule/routes'
+import { signInStore } from './SignInModule/stores/index'
 
-class App extends React.Component
+class App extends React.Component {
+   render() {
+      return (
+         <Provider signInStore={signInStore}>
+            <Router basename={process.env.PUBLIC_URL}>
+               <Switch>
+                  {/* <ObservationScreen/> */}
+                  {signInRoutes}
+                  {userRoutes}
+               </Switch>
+            </Router>
+         </Provider>
+      )
+   }
+}
+
+export default App
+
 {
-  render(){
-  return (
-    <Provider signInStore={signInStore} >
-    <Router basename={process.env.PUBLIC_URL}>
-       <Switch>
-         {/* <ObservationScreen/> */}
-          {signInRoutes}
-          {userRoutes}
-      </Switch>
-    </Router>
-    </Provider>
-  )
- } ;
-};
-
-export default App;
-
-
-  {/* <>
+   /* <>
      
       <Table/>
       <Header />
@@ -46,4 +45,5 @@ export default App;
        <RadioButton list={["male","female"]}/>
        <Button buttonText="Submit"/>
        <InputElement type="date"/> 
-       </> */}
+       </> */
+}
