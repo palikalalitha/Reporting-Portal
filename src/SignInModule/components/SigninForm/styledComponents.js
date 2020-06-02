@@ -1,15 +1,16 @@
 import styled from "@emotion/styled"
 import tw from "tailwind.macro"
+
+
+const Container=styled.div `${tw`flex justify-center items-center h-screen pt-20`}
+background-color:#f1f7ff;
+}`;
 const SignInContainer=styled.div `${tw`flex flex-col items-center `}
-width: 536px;
+width: 500px;
 border-radius: 8px;
 background-color: white;
 box-shadow: 0 0 0 1px white;
 padding-top:48px`
-
-const Container=styled.div `${tw`flex justify-center items-center pt-20`}
-background-color:#f1f7ff;
-}`;
 
 const WelcomMessage=styled.p `
 width: 214px;
@@ -37,7 +38,7 @@ width: 214px;
   letter-spacing: 0.12px;
   color: #7e858e;`;
 
-const NewAccount=styled.div `${tw` `}
+const NewAccount=styled.div `${tw`mb-10`}
 width: 200px;
 height: 24px;
 font-family: HKGrotesk;
@@ -55,9 +56,7 @@ const SignUPLink=styled.a `margin-left:5px;color:#0b69ff`;
 const Wrapper=styled.div `${tw`flex flex-col mb-6 `}`;
 
 const ErrorMessage = styled.span `${tw` mt-2 w-48 text-sm`}
-color:#ff0b37;
-color:${props=>props.status==="Loading"?"green":""}
-;`
+color:#ff0b37;`
 export 
 {
     SignInContainer,

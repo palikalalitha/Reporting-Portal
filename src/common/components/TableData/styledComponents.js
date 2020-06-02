@@ -102,15 +102,21 @@ const StatusWrapper=styled.div `
   width: 103px;
   height: 16px;
   border-radius: 100px;
-  border:${props=>props.bgColorStatus===true?"1px solid #171f46":"1px solid #d7dfe9"};
-   solid 1px  #171f46;
+  border:"1px solid #171f46";
   background-color: white;`
 
   const Message=styled.h1 `${tw``}
 font-size:20px;
+width: 22px;
+height: 22px;
+object-fit: contain;
 margin-left:35px`
+
+const MessageCount=styled.span `${tw` bg-red-200`}
+margin-top:100px;
+margin-left:30px`;
   
 export {ReportedDate,data,AssignedContainer,TData,Severty,DueDate,Container,
-  RPDetails,Name,PhoneNumber,Status,Message,Mode,StatusWrapper,UserFormContainer}
+  RPDetails,Name,PhoneNumber,Status,Message,Mode,StatusWrapper,UserFormContainer,MessageCount}
 
 

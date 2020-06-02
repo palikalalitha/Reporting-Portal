@@ -1,9 +1,26 @@
 
 import styled from "@emotion/styled";
 import tw from "tailwind.macro"
+import {Image} from "../../components/Image/index"
+
+
+const TableRow=styled.tr `${tw`flex justify-between hover:bg-red-200`}
+border:  1px solid #d7dfe9;
+background-color:"#ffffff";
+&:hover{
+  background-color:rgba(215, 223, 233, 0.24)
+};`
+
 const TableContainer=styled.table `${tw``}
 width:1240px;
-background-color: #ffffff;`
+background-color: #ffffff;
+`
+
+const DropDownImage=styled(Image) `${tw`ml-2`}
+width: 10px;
+height: 10px;
+object-fit: contain;`
+
 const TableHeadings=styled.th `${tw` `}
   font-family: HKGrotesk;
   font-size: 12px;
@@ -14,13 +31,11 @@ const TableHeadings=styled.th `${tw` `}
   letter-spacing: 0.12px;
   color:dark-blue-grey;
   padding:25px;
-  margin-left:39px`
-;
-const TableRow=styled.tr `${tw`flex justify-between`}
-border: solid 1px #d7dfe9;
-background-color:${props=>props.bgColorStatus==true?"rgba(215, 223, 233, 0.24)":"#ffffff"}`;
+  margin-left:39px;
+ `
 
 const PaginationContainer=styled.div `${tw`
 flex justify-center items-center mt-10`}`
+const HeadingContainer=styled.div `${tw`flex`}`
 
-export {TableContainer,PaginationContainer,TableHeadings,TableRow}
+export {TableContainer,PaginationContainer,HeadingContainer,TableHeadings,TableRow,DropDownImage}

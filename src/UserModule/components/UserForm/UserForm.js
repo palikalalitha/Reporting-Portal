@@ -11,7 +11,8 @@ import {Header} from "../../../common/components/Header/Header"
 import {UserFormContainer,Label,Wrapper,BackToObservation,ErrorMessage,SubmitButtonWrapper,
     WrapperMultipleElements,SubCategoryWrapper,Mandatory,LeftSymbol,ReportedPortalContainer} from "../../styleGuide/typos"
 
-    import i18n from "../../i18n/strings.json"
+import i18n from "../../i18n/strings.json"
+
 import {TEXT,SUBMIT,STATUS,CATEGORY_LIST,SUB_CATEGORY_LIST,SEVERITY,TYPE_FILE,TITLE_TEST_ID,DESC_TEST_ID,SEVERITY_TEST_ID} from "../../constants/userPageConstants"
 
 @Observer
@@ -31,7 +32,7 @@ class UserForm extends Component {
                 onChangeDescription,
                 addObservation
             }=this.props
-        return (
+         return (
             <ReportedPortalContainer>
             <Header/>
             <UserFormContainer>
@@ -59,7 +60,6 @@ class UserForm extends Component {
                         <Wrapper>
                             <Label>{category}</Label>
                             <DropDownList   
-                                   
                                     onChangeHandler={onChangeSelectValue}
                                     optionsList={CATEGORY_LIST}/>
                         </Wrapper>

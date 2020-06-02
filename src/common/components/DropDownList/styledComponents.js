@@ -1,12 +1,17 @@
 import styled from "@emotion/styled"
 import tw from "tailwind.macro"
+
 const Select=styled.select `${tw`focus:outline-none`}
 width: 249px;
 height: 40px;
 border-radius: 2px;
 border:${props=>props.status?"1px solid red":"1px solid steel"};
-background-color:white;
-box-shadow: 0 0 0 1px silver`         
+background-color:${props=>props.roleType==="user"?"rgba(215, 223, 233, 0.5);":"white"};
+cursor:${props=>props.roleType?"none":"pointer"}
+box-shadow: 0 0 0 1px silver;
+&:disabled{
+  opacity: 0.6;
+}`         
 
 const OptionContainer=styled.div `
 width: 181px;

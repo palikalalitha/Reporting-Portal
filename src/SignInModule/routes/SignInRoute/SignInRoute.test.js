@@ -14,7 +14,7 @@ import {
 from "../../constants/RouteConstants"
 
 import {USER_PATH} from "../../../UserModule/constants/RouteConstants"
-import {SignInAPI} from "../../services/SignInAPI/SignInAPI"
+import {SignInAPI} from "../../services/SignInAPI/SignIn.api"
 import  {SignInStore} from "../../stores/SignInStore/"
 
 const LocationDisplay = withRouter(({ location }) => (

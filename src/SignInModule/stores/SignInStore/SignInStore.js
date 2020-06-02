@@ -7,6 +7,8 @@ import { setAccessToken, clearUserSession } from "../../../common/utils/StorageU
 class SignInStore {
     @observable getUserSignInAPIStatus
     @observable getUserSignInAPIError
+    @observable access_token
+    @observable role
     authAPIService
     constructor(authService) {
         this.authAPIService = authService
@@ -34,6 +36,9 @@ class SignInStore {
     @action.bound
     setUserSignInAPIResponse(response) {
         let token = response.map(eachItem => eachItem.access_token);
+        let role=response[0].role
+        this.role=role
+        this.access_token=token
         setAccessToken(token)
     }
 

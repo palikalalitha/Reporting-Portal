@@ -10,18 +10,20 @@ class Button extends Component{
         buttonText:"",
         buttonStatus:false,
         buttonType:"",
+        onClickHandler:()=>{}
         
     }
     render() {
-        const {buttonText,buttonType,onClickHandler,buttonStatus}=this.props
+        const {buttonText,buttonType,onClickHandler,buttonStatus,roleType,className}=this.props
         return (    
-        <ButtonElement  onClick={onClickHandler} buttonType={buttonType}>
-            <Label>
+        <ButtonElement  onClick={onClickHandler} roleType={roleType} className={className} buttonType={buttonType}>
+            {/* <Label className={className}> */}
         {buttonStatus?<Loader
          type="Oval"
          color="White"
-         height={20}
-         width={20}/>:buttonText}</Label> 
+         height={25}
+         width={20}/>:buttonText}
+         {/* </Label>  */}
         </ButtonElement>                      
         );
     }

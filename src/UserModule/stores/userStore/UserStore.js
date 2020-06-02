@@ -5,14 +5,16 @@ import { API_INITIAL } from "@ib/api-constants"
 import { CURRENT_PAGE,PAGE_LIMIT ,OFFSET} from "../../constants/userStoreConstants"
 
 import {UserModel} from "../models/UserModel"
+import { inject } from "mobx-react"
+
 
 class UserStore  {
-
     @observable observationList;
     @observable getObservationListAPIStatus;
     @observable getObservationListAPIError;   
     @observable currentPage
     @observable totlaPages
+    @observable selectedPage
     userService
     pageLimit
     offset
@@ -40,8 +42,8 @@ class UserStore  {
             priority:observationSeverity,
             description:observationDesc
         }
-        const observationModel=new UserModel(observationObj)
-        this.observationList.push(observationModel)
+            const observationModel=new UserModel(observationObj)
+       // this.observationList.push(observationModel)
         }
     @action.bound
     getObservationList() {
@@ -56,7 +58,7 @@ class UserStore  {
     setObservationListResponse(response) {
         const {offset,pageLimit}=this
         let list=response
-        let updatedList=list.slice(offset,offset+pageLimit)
+        let updatedList=list.slice(offset,pageLimit+offset)
         this.observationList = updatedList.map(eachObservation => {return new UserModel(eachObservation) }) 
         this.totlaPages=Math.ceil(response.length/pageLimit)
         }
@@ -71,21 +73,26 @@ class UserStore  {
     }
 
     @action.bound
-    navigateNextPage(data)
+    navigateNextPage()
     {
-        // let selected = data.selected;
-        // this.offset = Math.ceil(selected * this.currentPage);
-
-        // this.getObservationList();
-        // console.log(this.observationList)
-        
-        if(this.currentPage<this.totlaPages)
+      
+       if(this.currentPage<this.totlaPages)
         {
             this.currentPage++;
             this.offset+=this.pageLimit
             this.getObservationList();
         }
     }
+    @action.bound
+    handlePage(page)
+    {
+        let selected = page.selected;
+        this.offset = Math.ceil(selected * this.currentPage);
+        this.selectedPage=page.selected
+       //this.offset+=this.pageLimit
+        this.getObservationList();
+    }
+    
     @action.bound
     navigatePrevPage()
     {

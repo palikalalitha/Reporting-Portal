@@ -9,9 +9,9 @@ class InputElement extends Component {
             testid:""
     }
     render() {
-        const {type,borderStyles,value,onChangeHandler,status,testid}=this.props
+        const {type,borderStyles,value,onChangeHandler,roleType,status,testid}=this.props
         return (
-              <InPutTextBox type={type} data-testid={testid} status={status} defaultValue={value}
+              <InPutTextBox type={type} roleType={roleType} data-testid={testid} status={status} defaultValue={value}
                onChange={onChangeHandler} borderStyles={borderStyles}/>
             
         );

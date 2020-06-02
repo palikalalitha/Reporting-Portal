@@ -1,0 +1,17 @@
+.date-container
+{
+    width: 320px;
+    height: 40px;
+    outline:none;
+    border-radius: 2px;
+    border: solid 1px #d7dfe9;
+    background-color: rgba(215, 223, 233, 0.5);
+    font-family: HKGrotesk;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    color:#7e858e;
+}

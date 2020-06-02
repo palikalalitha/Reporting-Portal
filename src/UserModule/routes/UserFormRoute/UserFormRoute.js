@@ -47,9 +47,9 @@ class UserFormRoute extends Component {
         this.errorMessageForDescription=""
     }
 
-    onChangeSelectValue=(event)=>
+    onChangeSelectValue=(option)=>
     {
-        this.severity=event.target.value
+        this.severity=option
         this.errorMessageForSeverity=""
         
     }
@@ -104,8 +104,10 @@ class UserFormRoute extends Component {
         const {title,severity,description,onChangeTitle,onChangeDescription,
             errorMessageForSeverity,errorMessageForTitle,errorMessageForDescription,
             onChangeSelectValue,addObservation,naviagteToUserForm,gotoObservationList}=this
+      console.log("userForm Roue")
       
         return (
+
            <UserForm
            gotoObservationList={gotoObservationList}
            gotoUserForm={naviagteToUserForm}

@@ -1,9 +1,10 @@
 
 import {SignInStore} from "./SignInStore/SignInStore"
-import { SignInAPI } from "../services/SignInAPI/SignInAPI"
-
+import { SignInAPI } from "../services/SignInAPI/SignIn.api"
+import {SignInFixture} from "../services/SignInFixture/SignIn.fixture"
 const signInService = new SignInAPI()
-const signInStore = new SignInStore(signInService)
+const signInFixture=new SignInFixture()
+const signInStore = new SignInStore(signInFixture)
 
 export
 {

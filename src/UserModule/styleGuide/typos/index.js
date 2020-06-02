@@ -1,5 +1,53 @@
 import styled from "@emotion/styled"
 import tw from "tailwind.macro"
+import {colors} from "../../Themes/Colors"
+
+const Typo24DarkBlueGreyHKGroteskMedium=styled.div 
+`width: 208px;
+height: 32px;
+font-family: HKGrotesk;
+font-size: 24px;
+font-weight: 500;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.33;
+letter-spacing: normal;
+color:${colors.darkBlueGrey};`
+
+const Typo14DarkBlueGreyHKGroteskRegular=styled.span `
+    font-family: HKGrotesk;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    color:${colors.darkBlueGrey};`
+
+const Typo12DarkBlueGreyRubikMedium=styled.label `
+width: 165px;
+height: 24px;
+font-family: Rubik;
+font-size: 16px;
+font-weight: 500;
+font-stretch: normal;
+font-style: normal;
+line-height: 2;
+letter-spacing: 0.12px;
+color:${colors.darkBlueGrey};
+margin-right:30px`
+
+const Typo14SteelHKGroteskRegular=styled.div `${tw`ml-2`}
+width: 133px;
+height: 24px;
+font-family: HKGrotesk;
+font-size: 14px;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.71;
+letter-spacing: normal;
+color:${colors.steel};`;
 
 const ObservationContainer=styled.div `${tw``}
 border-radius: 7px;
@@ -10,7 +58,7 @@ margin-right:100px`;
 const ReportedPortalContainer=styled.div `${tw``}
 width: 1440px;
 height: 1024px;
-background-color: #fbfbfb;
+background-color:#fbfbfb;
 outline:none`;
 
 const UserFormContainer=styled.div `${tw``}
@@ -35,30 +83,7 @@ color: black;
 const NoObservationContainer=styled.div `${tw`flex flex-col justify-center items-center h-screen`}
 outline:none`;
 
-const Typo12DarkBlueGreyRubikMedium=styled.label `
-width: 165px;
-height: 24px;
-font-family: Rubik;
-font-size: 16px;
-font-weight: 500;
-font-stretch: normal;
-font-style: normal;
-line-height: 2;
-letter-spacing: 0.12px;
-color: #171f46;
-margin-right:30px`
-const Typo14SteelHKGroteskRegular=styled.div `${tw`ml-2`}
-width: 133px;
-height: 24px;
-font-family: HKGrotesk;
-font-size: 14px;
-font-weight: normal;
-font-stretch: normal;
-font-style: normal;
-line-height: 1.71;
-letter-spacing: normal;
-color: #7e858e;`;
-
+ 
 const Wrapper=styled.div `${tw`flex  `}
 margin-left:80px;
 margin-top:55px`;
@@ -75,6 +100,14 @@ margin-top:30px;
 outline:none;`
 const Mandatory=styled.span `${tw`text-red-500 mt-4`}`
 const LeftSymbol=styled.span `${tw `mt-1`}`
-export {UserFormContainer,Typo12DarkBlueGreyRubikMedium as Label,Wrapper,
-    Typo14SteelHKGroteskRegular as BackToObservation,ErrorMessage,ReportedPortalContainer,NoObservationsText,WrapperMultipleElements,
-    NoObservationContainer,SubCategoryWrapper,SubmitButtonWrapper,Mandatory,LeftSymbol,ObservationContainer};
+export {UserFormContainer,
+    Typo12DarkBlueGreyRubikMedium as Label,Wrapper,
+    Typo14SteelHKGroteskRegular as BackToObservation,
+    ErrorMessage,ReportedPortalContainer,
+    NoObservationsText,WrapperMultipleElements,
+    NoObservationContainer,SubCategoryWrapper,
+    Typo24DarkBlueGreyHKGroteskMedium,
+    SubmitButtonWrapper,Mandatory,
+    LeftSymbol,ObservationContainer,
+    Typo14DarkBlueGreyHKGroteskRegular,
+    Typo12DarkBlueGreyRubikMedium};

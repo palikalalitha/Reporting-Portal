@@ -13,7 +13,7 @@ class UserModel extends Component {
     constructor(observation){
         super(observation)
        
-        this.id = Math.random()
+        this.id = observation.id
         this.title = observation.title
             this.priority = observation.priority,
             this.description=observation.description,

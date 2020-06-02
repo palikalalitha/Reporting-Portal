@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import {ReportedDate,AssignedContainer,UserFormContainer,Container,RPDetails,StatusWrapper,Name,Mode,PhoneNumber,Severty,Status,DueDate,Message,TData} from "./styledComponents"
+import {ReportedDate,AssignedContainer,MessageCount,RPDetails,StatusWrapper,Name,Mode,PhoneNumber,Severty,Status,DueDate,Message,TData} from "./styledComponents"
 import {Image} from "../Image/"
 
 import { RiMessage2Line } from "react-icons/ri";
-import {RP_PROFILE_URL,MESSAGE_ICON_URL} from "../../constants/reportingPortalconstants"
-import { observer } from "mobx-react";
+import {RP_PROFILE_URL,MESSAGE_ICON_URL} from "../../constants/ReportingPortalconstants"
+
 
 class TableData extends Component {
     render() {
-      
        const {title,priority,due_date,assigned_to,status,due_date_privacy,message_count}=this.props.observation
        const {name,phno}=assigned_to
-      
        const {bgColorStatus}=this.props
         return (
             <>
@@ -33,8 +31,9 @@ class TableData extends Component {
                 <TData>
         {due_date_privacy==="public"?due_date:"Private"}
                 </TData>
-                <TData><Message><RiMessage2Line/></Message></TData>             
+        <TData><Message><RiMessage2Line/></Message></TData>             
                
+       
             </>
         );
     }

@@ -1,60 +1,63 @@
 import React, { Component } from 'react';
-import { observer } from "mobx-react";
+import {withRouter} from "react-router-dom"
 
-import Pagination from "../Pagination/Pagination";
-import ReactPaginate from 'react-paginate';
 import { TableData } from "../TableData/TableData";
-import paginationcss from "./Table.css"
-import {TableContainer,TableHeadings,TableRow,PaginationContainer} from "./styledComponents"
 
-
-
+import {TableContainer,TableHeadings,TableRow,DropDownImage,HeadingContainer} from "./styledComponents"
+import {DROP_DOWN_URL} from "../../constants/ReportingPortalconstants"
+import { observer } from "mobx-react";
+import { observable } from "mobx";
+@observer
 class Table extends Component {
-    handlePage=()=>
+    @observable showAndHideSortButton=true
+    onClick=(observationId)=>
     {
-        this.currentPage=event
+        this.props.navigateToObservationScreen(observationId)
+    }
+    onClickToSort=()=>
+    {
+        this.showAndHideSortButton=true
+    }
+    renderRows=()=>
+    {
+        const {headings}=this.props
+        return headings.map(eachHeading=>{
+            if(eachHeading==="REPORTED ON"||eachHeading==="DUE DATE")
+        return  <TableHeadings>
+                    <HeadingContainer>
+                        {eachHeading}
+                    <DropDownImage showAndHideSortButton={eachHeading} imageURL={DROP_DOWN_URL}/>
+                    </HeadingContainer>
+                </TableHeadings>
+        else
+            return <TableHeadings key={eachHeading}>{eachHeading}</TableHeadings>})
+
     }
     render() {
-        const {headings,observationList,navigateToObservationScreen}=this.props
+        const {observationList}=this.props
         return (
             <>
              <TableContainer>
                  <thead>
-                 <TableRow bgColorStatus={false}>
-                     {headings.map(eachHeading=>
-                        <TableHeadings key={eachHeading}>{eachHeading}</TableHeadings>)}
+                 <TableRow>
+                     {this.renderRows()}
                  </TableRow>
                  </thead>
                  <tbody>
-                 {observationList.map((eachObservation,index)=>
-                        <TableRow  onClick={navigateToObservationScreen} key={eachObservation.id} bgColorStatus={(index+1)%2!==0?true:false}>
-                         <TableData  observation={eachObservation} bgColorStatus={(index+1)%2!==0?true:false}/> 
-                    </TableRow>
-    
-                    )}    
-            </tbody>
+                    {observationList.map((eachObservation)=>
+                            <TableRow 
+                                    onClick={this.onClick.bind(this,eachObservation.id)} 
+                                    value={eachObservation.id}
+                                    key={eachObservation.id}> 
+                                    <TableData  observation={eachObservation} /> 
+                            </TableRow>
+                        )}    
+                </tbody>
              </TableContainer>
-             {/* <PaginationContainer>
-             <ReactPaginate
-              previousLabel={'<'}
-              nextLabel={'>'}
-              breakLabel={'...'}
-              breakClassName={'break-me'}
-              pageCount={this.props.totlaPages}
-              marginPagesDisplayed={10}
-              pageRangeDisplayed={5}
-              onPageChange={this.props.navigateNextPage}
-              containerClassName={'pagination-container'}
-              subContainerClassName={'pagination'}
-              activeClassName={'active'}
-
-             />
-
-             </PaginationContainer> */}
-             <Pagination  {...this.props} />
+           
              </>
         );
     }
 }
 
-export { Table};
+export default withRouter(Table)

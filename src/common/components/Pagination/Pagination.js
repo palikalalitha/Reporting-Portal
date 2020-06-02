@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from "mobx-react";
 import { FaAngleLeft,FaAngleRight } from "react-icons/fa";
 
-import {ONE} from "../../constants/reportingPortalconstants"
+import {ONE} from "../../constants/ReportingPortalconstants"
 import { PaginationContainer,PageNumbers,ArrowSymbol} from "./styledComponents";
 
 class Pagination extends Component {

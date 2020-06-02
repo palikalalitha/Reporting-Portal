@@ -6,7 +6,7 @@ import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
 import "./App.css";
 import {store} from "./SignInModule/stores/"
-
+import {ObservationScreen} from "./UserModule/components/ObservationScreen/"
 import  signInRoutes from "./SignInModule/routes"
 import userRoutes from "./UserModule/routes"
 import {signInStore} from "./SignInModule/stores/index"
@@ -18,6 +18,7 @@ class App extends React.Component
     <Provider signInStore={signInStore} >
     <Router basename={process.env.PUBLIC_URL}>
        <Switch>
+         {/* <ObservationScreen/> */}
           {signInRoutes}
           {userRoutes}
       </Switch>

@@ -1,16 +1,18 @@
 import React from "react"
 import { withRouter } from "react-router-dom"
-import { observer } from "mobx-react"
+import { observer, inject } from "mobx-react"
 
 import { DesktopLayout } from "../../../common/components/DesktopLayout/DesktopLayout"
 
 import {userStore} from "../../stores/index"
 import {ObservationList} from "../../components/UserObservationList/ObservationList"
-import { UserPage } from "../../components/userPage/UserPage"
-import {USER_CREATION_FORM,USER_PATH} from "../../constants/RouteConstants"
+import { UserPage } from "../../components/UserPage/UserPage"
+import {USER_CREATION_FORM,USER_PATH,OBSERVATION_SCREEN} from "../../constants/RouteConstants"
 
+@inject('signInStore')
 @observer
 class UserRoute extends React.Component {
+    
     componentDidMount()
     {
         this.getObservationList()
@@ -21,23 +23,26 @@ class UserRoute extends React.Component {
     }
     naviagteToUserForm=()=>
     {
-        
         this.props.history.push(USER_CREATION_FORM)   
     }
     gotoObservationList=()=>
     {
-        this.props.history.goBack(USER_PATH)
+        this.props.history.goBack()
     }
-    navigateToObservationScreen=()=>
-    {
-        
+    navigateToObservationScreen=(id)=>
+    {  
+        let {history} =this.props
+        history.push(`${OBSERVATION_SCREEN}/${id}`)
     }
     renderSuccessUI=observer(() => {
+        const {role}=this.props.signInStore
         const {gotoObservationList,naviagteToUserForm,navigateToObservationScreen}=this
-        const {navigatePrevPage,navigateNextPage,currentPage,totlaPages,userObservationList,offset}=userStore
-        return (
+        const {navigatePrevPage,handlePage,selectedPage,navigateNextPage,currentPage,totlaPages,userObservationList,offset}=userStore
+         return (
         <DesktopLayout 
             children={ObservationList}
+            handlePage={handlePage}
+            selectedPage={selectedPage}
             gotoObservationList={gotoObservationList}     
             navigatePrevPage={navigatePrevPage}
             navigateToObservationScreen={navigateToObservationScreen}
@@ -46,6 +51,7 @@ class UserRoute extends React.Component {
             observationList={userObservationList}
             currentPage={currentPage}
             totlaPages={totlaPages}
+            role={role}
             offset={offset}/>)
                    
         })

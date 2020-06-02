@@ -2,7 +2,7 @@ import Cookie from "js-cookie";
 
 import { API_SUCCESS, API_INITIAL, API_FAILED, API_FETCHING } from "@ib/api-constants";
 
-import {SignInAPI} from "../../services/SignInAPI/SignInAPI"
+import {SignInAPI} from "../../services/SignInAPI/SignIn.api"
 import getUserSignInResponse from "../../fixtures/getUserSignInResponse.json";
 
 import {SignInStore} from ".";

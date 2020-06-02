@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Image} from "../Image/"
-import {LOGO,RP,LOGO_IMAGEURL,PROFILE_URL} from "../../constants/reportingPortalconstants"
+import {LOGO,RP,LOGO_IMAGEURL,PROFILE_URL} from "../../constants/ReportingPortalconstants"
 import {Heading,Container,HeaderLeftPart,HeaderRightPart,ProfileName,HeaderMiddlePart,ObservationsTab,AssignedTab} from "./styledComponents.js"
 class Header extends Component {
     render() {

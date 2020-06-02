@@ -6,7 +6,7 @@ import { createMemoryHistory } from "history";
 
 import { USER_CREATION_FORM, USER_PATH } from "../../constants/RouteConstants";
 import { UserServiceAPI } from "../../services/UserService/UserService.api";
-import {UserStore} from "../../stores/userStore/"
+import {UserStore} from "../../stores/UserStore"
 
 import { UserRoute } from ".";
 

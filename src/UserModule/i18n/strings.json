@@ -12,5 +12,7 @@
 
         },
          "noObservations":"Look like there is no Observations here",
-         "back":"back"
+         "back":"back",
+         "headings":"['TITLE','REPORTED ON','ASSIGNED TO','SEVERITY','STATUS','DUE DATE','MESSAGES']"
+                         
 }

@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 
 import {InputTypeRadioButton,Label} from "./styledComponents"
-import {RADIO,GENDER} from "../../constants/reportingPortalconstants"
+import {RADIO,PRIVACY} from "../../constants/ReportingPortalconstants"
+
 class RadioButton extends Component {
+    static defaultProps = {
+        status:false ,
+        testid:"",
+        list:["public","private"],
+}
     render() {
-        const {list}=this.props
+        const {list,handleOptionChange}=this.props
         return (
             <>
             {list.map(eachItem=>          
-           <><InputTypeRadioButton type={RADIO} name={GENDER}
-            checked value={eachItem}/><Label>{eachItem}</Label></>)}
+           <>
+           <InputTypeRadioButton key={eachItem} 
+           type={RADIO} name={PRIVACY} onChange={handleOptionChange}
+            defaultChecked deafultValue={eachItem}/>
+            <Label>{eachItem.toUpperCase()}</Label>
+            </>)}
            </>
 
         );

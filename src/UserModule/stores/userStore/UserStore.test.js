@@ -4,7 +4,7 @@ import {
     API_FETCHING,
     API_INITIAL
 }
-from "@ib/api-constants";
+from "./node_modules/@ib/api-constants";
 
 import observationList from "../../fixtures/getObservationList"
 import UserService from "../../services/UserService/UserService.fixture";

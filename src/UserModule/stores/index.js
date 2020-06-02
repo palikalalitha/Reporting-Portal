@@ -1,5 +1,5 @@
 
-import {UserStore} from "./userStore/"
+import {UserStore} from "./UserStore"
 import UserService from "../services/UserService/UserService.fixture"
 import {UserServiceAPI} from "../services/UserService/UserService.api"
 

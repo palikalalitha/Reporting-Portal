@@ -6,7 +6,7 @@
     "description": "It is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection",
     "category": "category 1",
     "sub_category": "sub_category 1",
-    "due_date": "11/5/2020 AT 12:15 PM",
+    "due_date": "11/5/2020",
     "status": "Action in progress",
     "assigned_to": {
       "name": "lalitha",
@@ -25,7 +25,7 @@
     "due_date": "11/5/2020 AT 12:15 PM",
     "status": "Action in progress",
     "assigned_to": {
-      "name": "shobitha",
+      "name": "sri",
       "phno": 9374673484
     },
     "due_date_privacy": "public",
