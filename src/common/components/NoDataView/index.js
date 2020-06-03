@@ -1,2 +1,2 @@
-import {NoDataView} from "./NoDataView";
-export { NoDataView};
+import { NoDataView } from './NoDataView'
+export { NoDataView }

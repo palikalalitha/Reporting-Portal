@@ -6,17 +6,20 @@ import HomePage from './components/HomePage'
 import Page1 from './components/Page1'
 import './App.css'
 import { store } from './SignInModule/stores/'
-import { ObservationScreen } from './UserModule/components/ObservationScreen/'
+import { ObservationScreen } from './UserModule/components/ObservationScreen'
 import signInRoutes from './SignInModule/routes'
+import rpRoutes from './RPModule/routes/index'
 import userRoutes from './UserModule/routes'
 import { signInStore } from './SignInModule/stores/index'
+import { rpStore } from './RPModule/stores'
 
 class App extends React.Component {
    render() {
       return (
-         <Provider signInStore={signInStore}>
+         <Provider signInStore={signInStore} rpStore={rpStore}>
             <Router basename={process.env.PUBLIC_URL}>
                <Switch>
+                  {rpRoutes}
                   {/* <ObservationScreen/> */}
                   {signInRoutes}
                   {userRoutes}
@@ -28,22 +31,3 @@ class App extends React.Component {
 }
 
 export default App
-
-{
-   /* <>
-     
-      <Table/>
-      <Header />
-       <Image type="logo" imageURL=
-      "https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/8b9ff190-f490-4211-b2dd-61f476cfeabd.svg"/>
-      <InputElement type="text"/> 
-      <Button buttonText="Login" type="primary"/>
-     
-       <Pagination currentPage="1" list={["power","water","health",]}totalPages="5"/>
-       <TextArea data="Reporting portal project"/>
-       <DropDownList optionsList={["mobile","laptop"]}/>
-       <RadioButton list={["male","female"]}/>
-       <Button buttonText="Submit"/>
-       <InputElement type="date"/> 
-       </> */
-}

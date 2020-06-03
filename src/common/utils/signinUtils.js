@@ -1,5 +1,5 @@
-import { getAccessToken } from "./StorageUtils.js"
+import { getAccessToken } from './StorageUtils.js'
 export const isLoggedIn = () => {
-    const token = getAccessToken()
-    return token
+   const token = getAccessToken()
+   return token
 }

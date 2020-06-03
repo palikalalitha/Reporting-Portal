@@ -1,2 +1,2 @@
-import NoObservations from "./NoObservations"
-export {NoObservations}
+import NoObservations from './NoObservations'
+export { NoObservations }

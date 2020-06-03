@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import {ImageElement} from "./styledComponents"
+import React, { Component } from 'react'
+import { ImageElement } from './styledComponents'
 class Image extends Component {
-    render() {
-        const {imageURL,type,className}=this.props
-        return (
-            <ImageElement className={className} type={type} src={imageURL}/>
-        );
-    }
+   render() {
+      const { imageURL, type, value,className ,onClick} = this.props
+      return <ImageElement value={value} onClick={onClick} className={className} type={type} src={imageURL} />
+   }
 }
 
-export { Image};
+export { Image }

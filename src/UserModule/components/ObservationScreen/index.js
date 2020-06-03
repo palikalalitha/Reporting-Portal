@@ -1,2 +1,2 @@
-import ObservationScreen from "./ObservationScreen"
+import ObservationScreen from './ObservationScreen'
 export default ObservationScreen
