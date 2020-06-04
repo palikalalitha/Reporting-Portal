@@ -8,29 +8,14 @@ import strings from '../../i18n/strings.json'
 import NoObservations from '../NoObservations/NoObservations'
 import { ObservationContainer } from '../../styleGuide/typos'
 import paginationCss from './pagination.css'
-import Navbar from "../../../common/components/Navbar/Navbar"
-import { HEADINGS } from "../../constants/userPageConstants"
+import Navbar from '../../../common/components/Navbar/Navbar'
+import { USER_HEADINGS ,observationList} from '../../constants/userPageConstants'
 
 class ObservationList extends Component {
-   static defaultProps={
-      observationList:[{
-         "id": "1",
-         "title": "Learning deviations",
-         "priority": "HIGH",
-         "description": "It is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection",
-         "category": "category 1",
-         "sub_category": "sub_category 1",
-         "due_date": "11/5/2020",
-         "status": "Action in progress",
-         "assigned_to": {
-           "name": "lalitha",
-           "phno": 913456788
-         }
-      }]
-   }
+   static defaultProps = {
+      observationList:observationList
+}
    render() {
-   
-      const { headings } = strings
       const {
          observationList,
          gotoUserForm,
@@ -38,16 +23,17 @@ class ObservationList extends Component {
          handlePage,
          gotoObservationList,
          selectedPage,
-        
+         roleType
       } = this.props
-
+   
       return (
+   
          <ObservationContainer>
             {observationList.length > 0 ? (
                <>
                   <Table
                      {...this.props}
-                     headings={HEADINGS}
+
                      observationList={observationList}
                   />
                   <ReactPaginate

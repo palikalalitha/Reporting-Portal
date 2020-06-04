@@ -6,7 +6,7 @@ import { InputElement } from '../../../common/components/InputElement'
 import { DropDownList } from '../../../common/components/DropDownList/DropDownList'
 import { TextArea } from '../../../common/components/TextArea/TextArea'
 import { Button } from '../../../common/components/Button/index'
-import  Header from '../../../common/components/Header/Header'
+import Header from '../../../common/components/Header/Header'
 
 import {
    UserFormContainer,

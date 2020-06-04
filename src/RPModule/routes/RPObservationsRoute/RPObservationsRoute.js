@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import RPObservations from "../../components/RPObservations/RPObservations"
+import React, { Component } from 'react'
+import RPObservations from '../../components/RPObservations/RPObservations'
 
 class RPObservationsRoute extends Component {
-    render() {
-        return (
-            <RPObservations/>
-        );
-    }
+   render() {
+      return <RPObservations />
+   }
 }
 
-export default RPObservationsRoute;
+export default RPObservationsRoute

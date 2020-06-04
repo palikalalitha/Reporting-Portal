@@ -19,5 +19,6 @@ class SignInAPI {
          apiMethods.get
       )
    }
+   
 }
 export { SignInAPI }

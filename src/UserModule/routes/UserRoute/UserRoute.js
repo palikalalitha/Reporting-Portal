@@ -13,7 +13,10 @@ import {
 @inject('signInStore')
 @observer
 class UserRoute extends React.Component {
+   roleType=this.props.history.location.state
+
    componentDidMount() {
+    
       this.getObservationList()
    }
    getObservationList = () => {
@@ -27,18 +30,15 @@ class UserRoute extends React.Component {
    }
    navigateToObservationScreen = id => {
       let { history } = this.props
-      history.push(`${OBSERVATION_SCREEN}/${id}`)
+      history.push(`${OBSERVATION_SCREEN}/${id}`,this.roleType)
    }
-   isRoleType = () => {
-      this.roleType = 'user'
-      return this.roleType === 'user' ? "user" : "rp"
-   }
+  
+
    renderSuccessUI = observer(() => {
-      const { role } = this.props.signInStore
       const {
          gotoObservationList,
          naviagteToUserForm,
-         navigateToObservationScreen
+         navigateToObservationScreen,
       } = this
       const {
          navigatePrevPage,
@@ -50,13 +50,16 @@ class UserRoute extends React.Component {
          userObservationList,
          offset,
          date_type,
-         sort_type
+         sort_type,
+         sortBytDate
       } = userStore
-      return (
-         <ObservationList roleType={this.isRoleType()}
-         handlePage={handlePage}
-         date_type={date_type}
-         sort_type={sort_type}
+           return (
+         <ObservationList
+         sortBytDate={sortBytDate}
+            roleType={this.roleType}
+            handlePage={handlePage}
+            date_type={date_type}
+            sort_type={sort_type}
             selectedPage={selectedPage}
             gotoObservationList={gotoObservationList}
             navigatePrevPage={navigatePrevPage}
@@ -66,23 +69,8 @@ class UserRoute extends React.Component {
             observationList={userObservationList}
             currentPage={currentPage}
             totlaPages={totlaPages}
-           
-            offset={offset}/>
-         // <DesktopLayout
-         //    children={ObservationList}
-         //    handlePage={handlePage}
-         //    selectedPage={selectedPage}
-         //    gotoObservationList={gotoObservationList}
-         //    navigatePrevPage={navigatePrevPage}
-         //    navigateToObservationScreen={navigateToObservationScreen}
-         //    navigateNextPage={navigateNextPage}
-         //    gotoUserForm={naviagteToUserForm}
-         //    observationList={userObservationList}
-         //    currentPage={currentPage}
-         //    totlaPages={totlaPages}
-         //    role={role}
-         //    offset={offset}
-         // />
+            offset={offset}
+         />
       )
    })
 
@@ -94,8 +82,8 @@ class UserRoute extends React.Component {
       } = userStore
       return (
          <UserPage
-         roleType={this.isRoleType()}
-         gotoUserForm={this.gotoUserForm}
+            roleType={this.roleType}
+            gotoUserForm={this.gotoUserForm}
             gotoUserForm={this.naviagteToUserForm}
             observationList={userObservationList}
             gotoObservationList={this.gotoObservationList}

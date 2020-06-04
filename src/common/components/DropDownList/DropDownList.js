@@ -5,8 +5,7 @@ import styles from './SelectBox.css'
 class DropDownList extends Component {
    static defaultProps = {
       status: false,
-      testid: '',
-      value: 'Select',
+      testid: 'select',
       onChangeHandler: () => {},
       optionsList: [
          { value: 'food', label: 'Food' },
@@ -23,16 +22,15 @@ class DropDownList extends Component {
          testid,
          className
       } = this.props
-      console.log(roleType)
       return (
          <Select
             data-testid={testid}
             className={status ? 'border-container' : 'select-container'}
-            defaultValue={value}
+            defaultInputValue={value}
             classNamePrefix={'option'}
             onChange={onChangeHandler}
             options={optionsList}
-            isDisabled={roleType}
+            isDisabled={roleType==="user"?true:false}
             isSearchable={true}
          />
       )
@@ -40,10 +38,3 @@ class DropDownList extends Component {
 }
 
 export { DropDownList }
-
-// <Select status={status} roleType={roleType} data-testid={testid} className={className}
-//  onChange={onChangeHandler} value={value}>
-//     <Option>Select</Option>
-//     {optionsList.map(eachOption=>
-//     <Option key={eachOption} value={eachOption}>{eachOption}</Option>)}
-// </Select>

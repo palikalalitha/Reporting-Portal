@@ -1,5 +1,25 @@
 export const USER_HEADING = 'LIST OF OBSERVATIONS'
-export const RP_HEADING="Observations Assigned to Me"
+
+export const USER_HEADINGS = [
+   'title',
+   'reported on',
+   'assigned to',
+   'severity',
+   'status',
+   'due date',
+   'messages'
+]
+export const RP_HEADINGS = [
+   'title',
+   'reported on',
+   'reported by ',
+   'severity',
+   'status',
+   'due date',
+   'messages'
+]
+
+export const RP_HEADING = 'Observations Assigned to Me'
 export const LOGO = 'logo'
 export const RP = 'rp'
 export const LOGO_IMAGEURL =

@@ -6,8 +6,9 @@ width: 249px;
 height: 40px;
 border-radius: 2px;
 border:${props => (props.status ? '1px solid red' : '1px solid steel')};
-background-color:${props=>props.roleType === 'user' ? 'rgba(215, 223, 233, 0.5);' : 'white'};
-cursor:${props => (props.roleType === 'user'? 'none' : 'pointer')}
+background-color:${props =>
+   props.roleType === 'user' ? 'rgba(215, 223, 233, 0.5);' : 'white'};
+cursor:${props => (props.roleType === 'user' ? 'none' : 'pointer')}
 box-shadow: 0 0 0 1px silver;
 &:disabled{
   opacity: 0.6;

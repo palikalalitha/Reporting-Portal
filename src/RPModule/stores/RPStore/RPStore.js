@@ -1,35 +1,39 @@
-import React from "react"
+import React, { Component } from 'react'
 import { observable, action, computed } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { API_INITIAL } from '@ib/api-constants'
-import { UserStore } from "../../../UserModule/stores/UserStore/"
-import {UserModel} from "../../../UserModule/stores/models/UserModel"
+import { UserStore } from '../../../UserModule/stores/UserStore/'
+import { UserModel } from '../../../UserModule/stores/models/UserModel'
 
-class RPStore extends UserStore{
+class RPStore extends UserStore {
    @observable updateRpObservationList
    @observable getUpdatebservationListAPIStatus
    @observable getUpdateObservationListAPIError
-
 
    @observable assignedObservationList
    @observable getAssignedObservationListAPIStatus
    @observable getAssignedObservationListAPIError
 
+   @observable status
+   @observable due_date
+   @observable due_date_privacy
 
    constructor(rpServiceResponse,userServiceResponse) {
       super(userServiceResponse)
-      
       this.rpService = rpServiceResponse
       this.init()
    }
    init() {
       this.getAssignedObservationListAPIStatus = API_INITIAL
       this.getAssignedObservationListAPIError = null
-   
-      this.getUpdatebservationListAPIStatus=API_INITIAL
-      this.getUpdateObservationListAPIError=null
-      this.assignedObservationList=[]
-      this.updateRpObservationList=[]
+
+      this.getUpdatebservationListAPIStatus = API_INITIAL
+      this.getUpdateObservationListAPIError = null
+      this.assignedObservationList = []
+      this.updateRpObservationList = []
+      this.date=""
+      this.due_date=""
+      this.due_date_privacy=""
    }
    @action.bound
    updatedObservationList() {
@@ -57,10 +61,13 @@ class RPStore extends UserStore{
    setGetUpdateObservationListAPIStatus(status) {
       this.getUpdatebservationListAPIStatus = status
    }
-
-
-
-
+   @action.bound
+   clearUpdateValues=()=>
+   {
+      this.date=""
+      this.due_date=""
+      this.due_date_privacy=""
+   }
 
    @action.bound
    getAssignedObservationList() {
@@ -88,6 +95,5 @@ class RPStore extends UserStore{
    setGetAssignedObservationListAPIStatus(status) {
       this.getAssignedObservationListAPIStatus = status
    }
-
 }
 export { RPStore }

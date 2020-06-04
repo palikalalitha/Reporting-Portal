@@ -12,14 +12,13 @@ class UserModel extends Component {
    @observable assigned_to
    constructor(observation) {
       super(observation)
-
       this.id = observation.id
-      this.title = observation.title
-      ;(this.priority = observation.priority),
-         (this.description = observation.description),
-         (this.category = 'Asset Mangement'),
-         (this.sub_category = 'food'),
-         (this.due_date = observation.due_date)
+      this.title = observation.title;
+      this.priority = observation.priority,
+      this.description = observation.description,
+      this.category = 'Asset Mangement',
+      this.sub_category= 'food',
+      this.due_date = observation.due_date
       this.due_date_privacy = observation.due_date_privacy
       this.status = observation.status
       this.assigned_to = {

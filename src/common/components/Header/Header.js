@@ -16,15 +16,17 @@ import {
    ObservationsTab,
    AssignedTab
 } from './styledComponents.js'
-import { Assigned_OBSERVATIONS_PATH, OBSERVATION_SCREEN ,OBSERVATION_LIST} from "../../../RPModule/constants/RPRouteConstants/RPRouteConstants"
-import { withRouter } from "react-router-dom"
+import {
+   Assigned_OBSERVATIONS_PATH,
+   OBSERVATION_SCREEN,
+   OBSERVATION_LIST
+} from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
+import { withRouter } from 'react-router-dom'
 class Header extends Component {
-   renderAssignedObservations=()=>
-   {
+   renderAssignedObservations = () => {
       this.props.history.push(Assigned_OBSERVATIONS_PATH)
    }
-   renderObservations=()=>
-   {
+   renderObservations = () => {
       this.props.history.push(OBSERVATION_LIST)
    }
    render() {
@@ -35,12 +37,16 @@ class Header extends Component {
                <Image type={LOGO} imageURL={LOGO_IMAGEURL} />
                <Heading>Reporting Portal</Heading>
             </HeaderLeftPart>
-            {roleType===RP && 
+            {roleType === RP && (
                <HeaderMiddlePart>
-                  <AssignedTab onClick={this.renderAssignedObservations}>Assigned to me</AssignedTab>
-                  <ObservationsTab  onClick={this.renderObservations}>My Observations</ObservationsTab>
+                  <AssignedTab onClick={this.renderAssignedObservations}>
+                     Assigned to me
+                  </AssignedTab>
+                  <ObservationsTab onClick={this.renderObservations}>
+                     My Observations
+                  </ObservationsTab>
                </HeaderMiddlePart>
-            }
+            )}
             <HeaderRightPart>
                <ProfileName>Lalitha</ProfileName>
                <Image imageURL={PROFILE_URL} />

@@ -1,11 +1,12 @@
-import styled from "@emotion/styled"
-import tw from "tailwind.macro"
+import styled from '@emotion/styled'
+import tw from 'tailwind.macro'
 
-const RpContainer=styled.div `${tw`focus:outline-none`}
-margin:50px;`
+const RpContainer = styled.div`
+   ${tw`focus:outline-none`}
+   margin:50px;
+`
 
-
-const NavabarHeading = styled.h1 `
+const NavabarHeading = styled.h1`
    ${tw``}
    font-family: HKGrotesk;
    font-size: 18px;
@@ -16,4 +17,4 @@ const NavabarHeading = styled.h1 `
    letter-spacing: normal;
    color: #0b69ff;
 `
-export {RpContainer,NavabarHeading}
+export { RpContainer, NavabarHeading }

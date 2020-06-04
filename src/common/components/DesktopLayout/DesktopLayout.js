@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import  Header  from '../Header/Header'
+import Header from '../Header/Header'
 import { DesktopLayoutContainer } from './styledComponents'
 import Navbar from '../Navbar/Navbar'
 import { HEADING } from '../../constants/ReportingPortalconstants'
@@ -8,12 +8,13 @@ import { ReportedPortalContainer } from '../../../UserModule/styleGuide/typos'
 class DesktopLayout extends Component {
    render() {
       const { children } = this.props
-      return(
-      <ReportedPortalContainer>
-      <Header {...this.props}/>
-      {children}
-      {/* <Children {...this.props} observationList={observationList} /> */}
-      </ReportedPortalContainer>)
+      return (
+         <ReportedPortalContainer>
+            <Header {...this.props} />
+            {children}
+            {/* <Children {...this.props} observationList={observationList} /> */}
+         </ReportedPortalContainer>
+      )
    }
 }
 

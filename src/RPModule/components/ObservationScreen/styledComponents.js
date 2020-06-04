@@ -4,12 +4,13 @@ import tw from 'tailwind.macro'
 import { DropDownList } from '../../../common/components/DropDownList/DropDownList'
 import { Button } from '../../../common/components/Button'
 
-import { colors } from '../../Themes/Colors'
+import { colors } from "../../../UserModule/Themes/Colors"
+ 'Themes/Colors'
 import {
    Typo24DarkBlueGreyHKGroteskMedium,
    Typo12DarkBlueGreyRubikMedium,
    Typo14DarkBlueGreyHKGroteskRegular
-} from '../../styleGuide/typos/index'
+} from '../../../UserModule/styleGuide/typos/index'
 
 const ObservationScreenConatiner = styled.div`
    ${tw`flex flex-col p-10`}
@@ -31,7 +32,7 @@ const ObservationTitle = styled(Typo24DarkBlueGreyHKGroteskMedium)`
 const Description = styled.p`
    ${tw`ml-4`}
    overflow:auto;
-   cursor: ${props => (props.roleType === 'user' ? 'none' : 'pointer')};
+   cursor: ${props =>props.roleType==='user' ? 'none' : 'pointer'};
 `
 
 const Category = styled.div`
@@ -70,7 +71,7 @@ border:  1px solid #d7dfe9;
 background-color: white;
 color:#171f46;
 padding:4px;
-pointerEvents: :${props => (props.roleType === 'user' ? 'not-allowed' : 'auto')}
+pointer-events:${props =>props.roleType === 'user' ? 'not-allowed' : 'auto'}
 
 }`
 const ArrorSymbol = styled.div`

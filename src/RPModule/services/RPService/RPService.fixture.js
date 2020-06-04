@@ -6,11 +6,9 @@ import { create } from 'apisauce'
 import observationList from '../../../UserModule/fixtures/userData.json'
 class RPServiceFixture {
    getRPObservations() {
-      console.log(observationList)
       return new Promise((resolve, reject) => {
-         resolve(observationList)
+        setTimeout(()=> resolve(observationList),4000)
       })
    }
 }
 export default RPServiceFixture
-

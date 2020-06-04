@@ -10,22 +10,22 @@ class RadioButton extends Component {
       list: ['public', 'private']
    }
    render() {
-      const { list, handleOptionChange } = this.props
+      const { list, handleOptionChange,roleType } = this.props
       return (
          <>
-            {list.map(eachItem => (
-               <>
-                  <InputTypeRadioButton
-                     key={eachItem}
+            {list.map(eachItem =>
+              <React.Fragment key={Math.random()}>  
+              <InputTypeRadioButton
+                     key={Math.random()}
                      type={RADIO}
                      name={PRIVACY}
                      onChange={handleOptionChange}
                      defaultChecked
+                     disabled={roleType==="user"?true:false}
                      deafultValue={eachItem}
                   />
-                  <Label>{eachItem.toUpperCase()}</Label>
-               </>
-            ))}
+                  <Label>{eachItem.toUpperCase()}</Label></React.Fragment >
+                  )}
          </>
       )
    }

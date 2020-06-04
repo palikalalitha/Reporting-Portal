@@ -7,7 +7,7 @@ import LoadingWrapperWithFailure from '../../../common/components/LoadingWrapper
 import { HEADING } from '../../../common/constants/ReportingPortalconstants'
 import Navbar from '../../../common/components/Navbar/Navbar'
 import { ObservationContainer } from '../../styleGuide/typos'
-import { DesktopLayout } from "../../../common/components/DesktopLayout/DesktopLayout"
+import { DesktopLayout } from '../../../common/components/DesktopLayout/DesktopLayout'
 
 @observer
 class UserPage extends React.Component {
@@ -20,11 +20,10 @@ class UserPage extends React.Component {
          renderSuccessUI,
          observationList,
          roleType
-
       } = this.props
       return (
          <DesktopLayout>
-            <Navbar {...this.props}/>
+            <Navbar {...this.props} />
             <LoadingWrapperWithFailure
                apiStatus={apiStatus}
                apiError={apiError}

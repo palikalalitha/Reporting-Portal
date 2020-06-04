@@ -3,7 +3,7 @@ import tw from 'tailwind.macro'
 
 const ButtonElement = styled.button`${tw`flex justify-center focus:outline-none`} 
 width: ${props => (props.buttonType === 'primary' ? '320px' : '85px')};
-pointerEvents: :${props => (props.roleType ? 'none' : 'auto')}
+pointer-events:${props => (props.roleType==="user" ? 'none' : 'auto')}
 height: 40px;
 background-color:#0b69ff;
 margin:10px;

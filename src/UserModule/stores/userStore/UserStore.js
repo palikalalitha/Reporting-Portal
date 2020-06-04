@@ -1,5 +1,4 @@
-
-import React from "react"
+import React from 'react'
 import { observable, action, computed } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { API_INITIAL } from '@ib/api-constants'
@@ -11,7 +10,6 @@ import {
 } from '../../constants/userStoreConstants'
 
 import { UserModel } from '../models/UserModel'
-
 
 class UserStore {
    @observable observationList
@@ -38,8 +36,8 @@ class UserStore {
       this.totlaPages = ''
       this.offset = OFFSET
       this.pageLimit = PAGE_LIMIT
-      this.date_type="reported on"
-      this.sort_type="ASC"
+      this.date_type = 'reported on'
+      this.sort_type = 'ASC'
    }
    @action.bound
    onAddObservationList(
@@ -50,13 +48,18 @@ class UserStore {
       let observationObj = {
          title: observationTitle,
          priority: observationSeverity,
-         description: observationDesc
+         description: observationDesc,
+         assigned_to: {
+             name: "Sri",
+             phno:9183387445
+            }
       }
       const observationModel = new UserModel(observationObj)
       // this.observationList.push(observationModel)
    }
    @action.bound
    getObservationList() {
+      
       const userPromise = this.userService.getUsersResponse()
       return bindPromiseWithOnSuccess(userPromise)
          .to(
@@ -68,12 +71,15 @@ class UserStore {
 
    @action.bound
    setObservationListResponse(response) {
+      console.log("called",response)
+      console.log(this.offset,this.pageLimit)
       const { offset, pageLimit } = this
       let list = response
       let updatedList = list.slice(offset, pageLimit + offset)
       this.observationList = updatedList.map(eachObservation => {
          return new UserModel(eachObservation)
       })
+      console.log(this.observationList)
       this.totlaPages = Math.ceil(response.length / pageLimit)
    }
    @action.bound
@@ -112,9 +118,11 @@ class UserStore {
       }
    }
    @action.bound
-   filterBytDate()
+   sortBytDate(type) 
    {
-      
+      this.date_type=type;
+      console.log(this.date_type)
+
    }
    @computed
    get userObservationList() {

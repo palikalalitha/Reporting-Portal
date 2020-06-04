@@ -100,7 +100,6 @@ class UserFormRoute extends Component {
          naviagteToUserForm,
          gotoObservationList
       } = this
-      
 
       return (
          <UserForm

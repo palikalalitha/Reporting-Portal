@@ -1,12 +1,14 @@
 import React from 'react'
-import ObservationScreen from '../../components/ObservationScreen'
+import {withRouter} from "react-router-dom"
+
+import ObservationScreen from '../../components/ObservationScreen/ObservationScreen'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
-import observationFixture from '../../fixtures/userData.json'
+import observationFixture from '../../../UserModule/fixtures/userData.json'
 
 @observer
 class ObservationScreenRoute extends React.Component {
-   @observable date
+   
    @observable roleType
    @observable startDate
    @observable value
@@ -15,11 +17,6 @@ class ObservationScreenRoute extends React.Component {
       this.categoryValue = ''
       this.startDate = new Date()
    }
-   isRoleType = () => {
-      this.roleType = 'user'
-      return this.roleType === 'user' ? true : false
-   }
-
    handleChange = date => {
       this.startDate = date
    }
@@ -49,7 +46,7 @@ class ObservationScreenRoute extends React.Component {
             due_date={due_date}
             status={status}
             due_date_privacy={due_date_privacy}
-            isRoleType={this.isRoleType()}
+   
             onChangeSelectValue={this.onChangeSelectValue}
             handleChange={this.handleChange}
             startDate={this.startDate}
@@ -58,4 +55,4 @@ class ObservationScreenRoute extends React.Component {
       )
    }
 }
-export { ObservationScreenRoute }
+export default withRouter(ObservationScreenRoute)

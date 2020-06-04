@@ -40,7 +40,7 @@ class SignInStore {
    setUserSignInAPIResponse(response) {
       let token = response.map(eachItem => eachItem.access_token)
       this.access_token = token
-      this.role=response[0].role
+      this.role = response[1].role
       setAccessToken(token)
    }
 

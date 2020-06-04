@@ -22,7 +22,7 @@
     "description": " It is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection",
     "category": "category 2",
     "sub_category": "sub_category 2",
-    "due_date": "11/5/2020 AT 12:15 PM",
+    "due_date": "12/3/2020 AT 12:15 PM",
     "status": "Action in progress",
     "assigned_to": {
       "name": "sri",
@@ -70,7 +70,7 @@
     "description": " It is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection.5",
     "category": "category 5",
     "sub_category": "sub_category 5",
-    "due_date": "11/5/2020 AT 12:15 PM",
+    "due_date": "2/6/2020 AT 12:15 PM",
     "status": "Action in progress",
     "assigned_to": {
       "name": "sri",
@@ -86,7 +86,7 @@
     "description": " It is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection.6",
     "category": "category 6",
     "sub_category": "sub_category 6",
-    "due_date": "11/5/2020 AT 12:15 PM",
+    "due_date": "3/6/2020 AT 12:15 PM",
     "status": "Action in progress",
     "assigned_to": {
       "name": "lalitha",
@@ -97,7 +97,7 @@
   },
   {
     "id": "7",
-    "title": "Accomadation deviations7",
+    "title": "Accomadation deviations",
     "priority": "HIGH",
     "description": " It is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection.7",
     "category": "category 7",
@@ -119,7 +119,7 @@
     "category": "category 8",
     "sub_category": "sub_category 8",
     "due_date": "11/5/2020 AT 12:15 PM",
-    "status": "Action in progress",
+    "status": "Action in progress", 
     "assigned_to": {
       "name": "lalitha",
       "phno": 913456788

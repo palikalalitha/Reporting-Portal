@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import { ButtonElement, Label } from './styledComponents'
-
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import Loader from 'react-loader-spinner'
 
@@ -10,7 +9,7 @@ class Button extends Component {
       buttonText: '',
       buttonStatus: false,
       buttonType: '',
-      roleType:false,
+      roleType: false,
       onClickHandler: () => {}
    }
    render() {
@@ -27,16 +26,10 @@ class Button extends Component {
             onClick={onClickHandler}
             roleType={roleType}
             className={className}
-            buttonType={buttonType}
-         >
-            {buttonText}
-            {/* <Label className={className}> */}
-            {/* {buttonStatus ? (
-               <Loader type='Oval' color='White' height={25} width={20}  />
-            ) : (
-               buttonText
-            )} */}
-            {/* </Label>  */}
+            buttonType={buttonType}>
+           
+            {buttonStatus ? (
+               <Loader type='Oval' color='White' height={25} width={20}/>):buttonText}
          </ButtonElement>
       )
    }
