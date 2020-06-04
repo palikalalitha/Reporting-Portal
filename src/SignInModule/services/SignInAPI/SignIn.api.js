@@ -14,11 +14,11 @@ class SignInAPI {
    signInAPI(request) {
       return networkCallWithApisauce(
          this.api,
-         'v1/signin/',
+         `/login/to/portal/v1`,
+         //'/sign_in/v1/',
          request,
-         apiMethods.get
+         apiMethods.post
       )
    }
-   
 }
 export { SignInAPI }

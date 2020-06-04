@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Redirect,withRouter,Route } from 'react-router-dom'
+import { Redirect, withRouter, Route } from 'react-router-dom'
 
 import { isLoggedIn } from '../../utils/signinUtils'
 import { SIGN_IN_PATH } from '../../../SignInModule/constants/RouteConstants'
@@ -15,13 +15,13 @@ import { SIGN_IN_PATH } from '../../../SignInModule/constants/RouteConstants'
 // }
 
 class ProtectedRoute extends React.Component {
-    render() {
-       const role=this.props.history.location.state
-        const { component: Component, path } = this.props;
-        if (isLoggedIn()) {
-                return <Route exact path={path} component={Component}/>
-     }
-        return <Redirect to={SIGN_IN_PATH}/>
-    }
+   render() {
+      const role = this.props.history.location.state
+      const { component: Component, path } = this.props
+      if (isLoggedIn()) {
+         return <Route exact path={path} component={Component} />
+      }
+      return <Redirect to={SIGN_IN_PATH} />
+   }
 }
 export default withRouter(ProtectedRoute)

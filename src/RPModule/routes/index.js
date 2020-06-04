@@ -17,7 +17,8 @@ const routes = [
    <Route path={RP_PATH} component={RPAssignedObservationsRoute} />,
    <Route
       path={Assigned_OBSERVATIONS_PATH}
-      component={RPAssignedObservationsRoute}/>,
+      component={RPAssignedObservationsRoute}
+   />,
    <Route path={OBSERVATION_LIST} component={RPObservationsRoute} />,
    <Route path={RP_CREATION_FORM} component={UserFormRoute} />,
    <Route path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />

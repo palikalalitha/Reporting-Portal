@@ -9,7 +9,7 @@ class Date extends React.Component {
             // showTimeSelect
             dateFormat='dd/MM/yyyy h:mm aa'
             selected={startDate}
-            disabled={roleType==="user"?true:false}
+            disabled={roleType === 'user' ? true : false}
             onChange={handleChange}
             className={'date-container'}
          />

@@ -7,6 +7,7 @@ import {
    setAccessToken,
    clearUserSession
 } from '../../../common/utils/StorageUtils.js'
+
 class SignInStore {
    @observable getUserSignInAPIStatus
    @observable getUserSignInAPIError
@@ -20,6 +21,8 @@ class SignInStore {
    init() {
       this.getUserSignInAPIStatus = API_INITIAL
       this.getUserSignInAPIError = null
+      this.access_token=""
+      this.role=""
    }
 
    @action.bound
@@ -38,9 +41,10 @@ class SignInStore {
 
    @action.bound
    setUserSignInAPIResponse(response) {
-      let token = response.map(eachItem => eachItem.access_token)
+      console.log(response)
+      let token = response.access_token
       this.access_token = token
-      this.role = response[1].role
+      this.role = response.role.toLowerCase()
       setAccessToken(token)
    }
 

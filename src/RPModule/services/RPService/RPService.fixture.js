@@ -7,7 +7,7 @@ import observationList from '../../../UserModule/fixtures/userData.json'
 class RPServiceFixture {
    getRPObservations() {
       return new Promise((resolve, reject) => {
-        setTimeout(()=> resolve(observationList),4000)
+         setTimeout(() => resolve(observationList), 2000)
       })
    }
 }

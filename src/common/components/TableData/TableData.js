@@ -30,10 +30,11 @@ class TableData extends Component {
          due_date,
          assigned_to,
          status,
-         due_date_privacy,
+         reported_on,
+         is_due_date_private,
          message_count
       } = this.props.observation
-      const { name, phno } = assigned_to
+      const { name, contact_number,role } = assigned_to
       const { bgColorStatus } = this.props
       return (
          <>
@@ -43,7 +44,7 @@ class TableData extends Component {
                <Image imageURL={RP_PROFILE_URL} />
                <RPDetails>
                   <Name>{name}</Name>
-                  <PhoneNumber>{phno}</PhoneNumber>
+                  <PhoneNumber>{contact_number}</PhoneNumber>
                </RPDetails>
             </AssignedContainer>
             <Severty status={priority}>
@@ -52,10 +53,10 @@ class TableData extends Component {
             <TData>
                <StatusWrapper bgColorStatus={bgColorStatus}>
                   <Status>{status}</Status>
-               </StatusWrapper>{' '}
+               </StatusWrapper>
             </TData>
             <TData>
-               {due_date_privacy === 'public' ? due_date : 'Private'}
+               {is_due_date_private === 'public' ? due_date : 'Private'}
             </TData>
             <TData>
                <Message>

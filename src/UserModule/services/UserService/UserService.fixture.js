@@ -10,5 +10,11 @@ class UserService {
          resolve(observationList)
       })
    }
+   createObservations(request)
+   {
+      return new Promise((resolve, reject) => {
+         resolve("observation-id:0")
+      })
+   }
 }
 export default UserService

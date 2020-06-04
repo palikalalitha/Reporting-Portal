@@ -4,8 +4,8 @@ import tw from 'tailwind.macro'
 import { DropDownList } from '../../../common/components/DropDownList/DropDownList'
 import { Button } from '../../../common/components/Button'
 
-import { colors } from "../../../UserModule/Themes/Colors"
- 'Themes/Colors'
+import { colors } from '../../../UserModule/Themes/Colors'
+;('Themes/Colors')
 import {
    Typo24DarkBlueGreyHKGroteskMedium,
    Typo12DarkBlueGreyRubikMedium,
@@ -32,7 +32,7 @@ const ObservationTitle = styled(Typo24DarkBlueGreyHKGroteskMedium)`
 const Description = styled.p`
    ${tw`ml-4`}
    overflow:auto;
-   cursor: ${props =>props.roleType==='user' ? 'none' : 'pointer'};
+   cursor: ${props => (props.roleType === 'user'&&"rp" ? 'none' : 'pointer')};
 `
 
 const Category = styled.div`
@@ -63,6 +63,8 @@ const RadioButtonWrapper = styled.div`
    ${tw`flex justify-start`}
    margin-left:180px
 `
+
+
 const ResetButton = styled(Button)`
 width: 75px;
 height: 40px;
@@ -71,8 +73,6 @@ border:  1px solid #d7dfe9;
 background-color: white;
 color:#171f46;
 padding:4px;
-pointer-events:${props =>props.roleType === 'user' ? 'not-allowed' : 'auto'}
-
 }`
 const ArrorSymbol = styled.div`
    ${tw`mt-2`}

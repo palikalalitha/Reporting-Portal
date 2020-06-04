@@ -18,7 +18,7 @@ class RPStore extends UserStore {
    @observable due_date
    @observable due_date_privacy
 
-   constructor(rpServiceResponse,userServiceResponse) {
+   constructor(rpServiceResponse, userServiceResponse) {
       super(userServiceResponse)
       this.rpService = rpServiceResponse
       this.init()
@@ -31,9 +31,9 @@ class RPStore extends UserStore {
       this.getUpdateObservationListAPIError = null
       this.assignedObservationList = []
       this.updateRpObservationList = []
-      this.date=""
-      this.due_date=""
-      this.due_date_privacy=""
+      this.date = ''
+      this.due_date = ''
+      this.due_date_privacy = ''
    }
    @action.bound
    updatedObservationList() {
@@ -62,11 +62,10 @@ class RPStore extends UserStore {
       this.getUpdatebservationListAPIStatus = status
    }
    @action.bound
-   clearUpdateValues=()=>
-   {
-      this.date=""
-      this.due_date=""
-      this.due_date_privacy=""
+   clearUpdateValues = () => {
+      this.date = ''
+      this.due_date = ''
+      this.due_date_privacy = ''
    }
 
    @action.bound
@@ -82,6 +81,10 @@ class RPStore extends UserStore {
 
    @action.bound
    setAssignedObservationListResponse(response) {
+      const { offset, pageLimit } = this
+      let list = response
+      let updatedList = list.slice(offset, pageLimit + offset)
+      console.log(offset,pageLimit)
       this.assignedObservationList = response.map(eachObservation => {
          return new UserModel(eachObservation)
       })

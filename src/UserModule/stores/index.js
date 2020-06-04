@@ -5,6 +5,7 @@ import { UserServiceAPI } from '../services/UserService/UserService.api'
 const userServiceFixture = new UserService()
 
 const userServiceAPI = new UserServiceAPI()
-const userStore = new UserStore(userServiceFixture)
+
+const userStore = new UserStore(userServiceAPI)
 
 export { userStore, userServiceFixture, userServiceAPI }

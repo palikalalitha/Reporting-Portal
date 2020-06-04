@@ -6,6 +6,7 @@ import {
    LOGO_IMAGEURL,
    PROFILE_URL
 } from '../../constants/ReportingPortalconstants'
+
 import {
    Heading,
    Container,
@@ -16,6 +17,7 @@ import {
    ObservationsTab,
    AssignedTab
 } from './styledComponents.js'
+
 import {
    Assigned_OBSERVATIONS_PATH,
    OBSERVATION_SCREEN,
@@ -27,7 +29,8 @@ class Header extends Component {
       this.props.history.push(Assigned_OBSERVATIONS_PATH)
    }
    renderObservations = () => {
-      this.props.history.push(OBSERVATION_LIST)
+      console.log(this.props.roleType)
+      this.props.history.push(OBSERVATION_LIST,"rp")
    }
    render() {
       const { roleType } = this.props

@@ -1,5 +1,5 @@
 import React from 'react'
-import {withRouter} from "react-router-dom"
+import { withRouter } from 'react-router-dom'
 
 import ObservationScreen from '../../components/ObservationScreen/ObservationScreen'
 import { observer } from 'mobx-react'
@@ -8,14 +8,11 @@ import observationFixture from '../../../UserModule/fixtures/userData.json'
 
 @observer
 class ObservationScreenRoute extends React.Component {
-   
    @observable roleType
    @observable startDate
-   @observable value
    constructor() {
       super()
-      this.categoryValue = ''
-      this.startDate = new Date()
+      this.startDate=Date.now()
    }
    handleChange = date => {
       this.startDate = date
@@ -26,6 +23,7 @@ class ObservationScreenRoute extends React.Component {
    render() {
       const {
          title,
+         startDate,
          description,
          priority,
          due_date,
@@ -37,19 +35,15 @@ class ObservationScreenRoute extends React.Component {
 
       return (
          <ObservationScreen
-            value={this.value}
-            category={category}
-            sub_category={sub_category}
+         startDate={startDate}
             title={title}
             description={description}
             priority={priority}
             due_date={due_date}
             status={status}
             due_date_privacy={due_date_privacy}
-   
             onChangeSelectValue={this.onChangeSelectValue}
             handleChange={this.handleChange}
-            startDate={this.startDate}
             {...this.props}
          />
       )

@@ -16,13 +16,10 @@ class UserPage extends React.Component {
          doNetworkCalls,
          apiStatus,
          apiError,
-         gotoUserForm,
-         renderSuccessUI,
-         observationList,
-         roleType
+         renderSuccessUI
       } = this.props
       return (
-         <DesktopLayout>
+         <DesktopLayout {...this.props}>
             <Navbar {...this.props} />
             <LoadingWrapperWithFailure
                apiStatus={apiStatus}
@@ -32,19 +29,6 @@ class UserPage extends React.Component {
             />
          </DesktopLayout>
 
-         // <ReportedPortalContainer>
-         //    <Header />
-         //    {observationList.length > 0 && (
-         //       <Navbar heading={HEADING} {...this.props} />
-         //    )}
-
-         //    <LoadingWrapperWithFailure
-         //       apiStatus={apiStatus}
-         //       apiError={apiError}
-         //       renderSuccessUI={renderSuccessUI}
-         //       onRetryClick={doNetworkCalls}
-         //    />
-         // </ReportedPortalContainer>
       )
    }
 }

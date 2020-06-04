@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 
 import { UserForm } from '../../components/UserForm/UserForm'
 
-import { ERROR_MESSAGE } from '../../constants/userPageConstants'
+import { ERROR_MESSAGE ,DEFAULT_VALUE} from '../../constants/userPageConstants'
 import { USER_CREATION_FORM } from '../../constants/RouteConstants'
 import { userStore } from '../../stores/index'
 
@@ -14,6 +14,9 @@ class UserFormRoute extends Component {
    @observable title
    @observable severity
    @observable description
+   @observable category
+   @observable sub_category
+
    @observable errorMessageForSeverity
    @observable errorMessageForTitle
    @observable errorMessageForDescription
@@ -25,6 +28,9 @@ class UserFormRoute extends Component {
       this.title = ''
       this.severity = ''
       this.description = ''
+      this.category=DEFAULT_VALUE
+      this.sub_category=DEFAULT_VALUE
+
       this.errorMessageForSeverity = ''
       this.errorMessageForTitle = ''
       this.errorMessageForDescription = ''
@@ -37,14 +43,24 @@ class UserFormRoute extends Component {
       this.errorMessageForSeverity = ''
    }
 
+
+
    onChangeDescription = event => {
       this.description = event.target.value
       this.errorMessageForDescription = ''
    }
 
-   onChangeSelectValue = option => {
+   onChangeToSelectSeverity = option => {
       this.severity = option
       this.errorMessageForSeverity = ''
+   }
+   onChangeToSelectCategory = option => {
+      this.category = option
+     
+   }
+   onChangeToSelectSubCategory=option=>
+   {
+      this.sub_category=option
    }
    addObservation = () => {
       this.handleSubmit()
@@ -68,14 +84,17 @@ class UserFormRoute extends Component {
          this.errorMessageForSeverity = ERROR_MESSAGE
       } else if (this.description === '') {
          this.errorMessageForDescription = ERROR_MESSAGE
-      } else {
+      } else if(this.severity!==""&&this.description!==""&&this.title!=="") {
          alert('submitted successfully')
-         this.gotoObservationList()
+        
          userStore.onAddObservationList(
             this.title,
-            this.severity,
-            this.description
+            this.severity.value,
+            this.description,
+            this.category.value,
+            this.sub_category.value
          )
+         this.gotoObservationList()
       }
    }
 
@@ -95,8 +114,10 @@ class UserFormRoute extends Component {
          errorMessageForSeverity,
          errorMessageForTitle,
          errorMessageForDescription,
-         onChangeSelectValue,
+         onChangeToSelectSubCategory,
+         onChangeToSelectCategory,
          addObservation,
+         onChangeToSelectSeverity,
          naviagteToUserForm,
          gotoObservationList
       } = this
@@ -112,8 +133,10 @@ class UserFormRoute extends Component {
             errorMessageForDescription={errorMessageForDescription}
             errorMessageForTitle={errorMessageForTitle}
             onChangeTitle={onChangeTitle}
+            onChangeToSelectCategory={onChangeToSelectCategory}
+            onChangeToSelectSubCategory={onChangeToSelectSubCategory}
             onChangeDescription={onChangeDescription}
-            onChangeSelectValue={onChangeSelectValue}
+            onChangeSelectValue={onChangeToSelectSeverity}
             addObservation={addObservation}
          />
       )

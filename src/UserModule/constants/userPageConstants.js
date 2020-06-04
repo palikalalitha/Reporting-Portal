@@ -12,10 +12,13 @@ export const SUB_CATEGORY_LIST = [
    { value: 'water', label: 'Water' },
    { value: 'Milk', label: 'Milk' }
 ]
+export const DEFAULT_VALUE=[{value:null}]
 export const SEVERITY = [
-   { value: 'high', label: 'HIGH' },
-   { value: 'low', label: 'LOW' },
-   { value: 'Medium', label: 'MEDIUM' }
+   { value: 'HIGH', label: 'HIGH' },
+   { value: 'LOW', label: 'LOW' },
+   { value: 'MEDIUM', label: 'MEDIUM' },
+   { value: 'WARNING', label: 'WARNING' }
+  
 ]
 export const USER_HEADINGS = [
    'title',
@@ -36,7 +39,7 @@ export const RP_HEADINGS = [
    'messages'
 ]
 
-export const observationList= [
+export const observationList = [
    {
       id: '1',
       title: 'Learning deviations',

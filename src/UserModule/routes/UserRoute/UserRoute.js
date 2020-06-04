@@ -1,6 +1,8 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
+import { observable } from "mobx"
+
 import { userStore } from '../../stores/index'
 import { ObservationList } from '../../components/ObservationList/ObservationList'
 import { UserPage } from '../../components/UserPage/UserPage'
@@ -13,10 +15,13 @@ import {
 @inject('signInStore')
 @observer
 class UserRoute extends React.Component {
-   roleType=this.props.history.location.state
-
+   @observable roleType
+   constructor(props)
+   {
+      super(props)
+      this.roleType = this.props.history.location.state
+   }
    componentDidMount() {
-    
       this.getObservationList()
    }
    getObservationList = () => {
@@ -30,15 +35,15 @@ class UserRoute extends React.Component {
    }
    navigateToObservationScreen = id => {
       let { history } = this.props
-      history.push(`${OBSERVATION_SCREEN}/${id}`,this.roleType)
+      userStore.getObservationDetailsById(id)
+      history.push(`${OBSERVATION_SCREEN}/${id}`, this.roleType)
    }
-  
 
    renderSuccessUI = observer(() => {
       const {
          gotoObservationList,
          naviagteToUserForm,
-         navigateToObservationScreen,
+         navigateToObservationScreen
       } = this
       const {
          navigatePrevPage,
@@ -51,11 +56,18 @@ class UserRoute extends React.Component {
          offset,
          date_type,
          sort_type,
-         sortBytDate
+         sortBytDate,
+         getObservationDetailsById,
+         getObservationDetailsAPIStatus,
+         getObservationDetailsAPIError
       } = userStore
-           return (
+      return (
          <ObservationList
-         sortBytDate={sortBytDate}
+            detailsAPIStatus={getObservationDetailsAPIStatus}
+            deatilsAPIError={getObservationDetailsAPIError}
+         
+            getObservationDetailsById={getObservationDetailsById}
+            sortBytDate={sortBytDate}
             roleType={this.roleType}
             handlePage={handlePage}
             date_type={date_type}
@@ -78,9 +90,13 @@ class UserRoute extends React.Component {
       const {
          getObservationListAPIStatus,
          getObservationListAPIError,
-         userObservationList
+         userObservationList,
+          getObservationDetailsAPIStatus,
+          getObservationDetailsAPIError,
+      
       } = userStore
-      return (
+      console.log(getObservationListAPIError,getObservationListAPIStatus)
+    return (
          <UserPage
             roleType={this.roleType}
             gotoUserForm={this.gotoUserForm}
@@ -89,6 +105,8 @@ class UserRoute extends React.Component {
             gotoObservationList={this.gotoObservationList}
             apiStatus={getObservationListAPIStatus}
             apiError={getObservationListAPIError}
+            detailsAPIStatus={getObservationDetailsAPIStatus}
+            deatilsAPIError={getObservationDetailsAPIError}
             doNetworkCalls={this.getObservationList}
             renderSuccessUI={this.renderSuccessUI}
          />

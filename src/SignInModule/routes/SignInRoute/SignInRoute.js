@@ -13,7 +13,8 @@ import {
    LOADING,
    EMPTY_STRING
 } from '../../constants/SigninPageConstants.js'
-import { RP_PATH } from "../../../RPModule/constants/RPRouteConstants/RPRouteConstants"
+
+import { RP_PATH } from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
 
 @inject('signInStore')
 @observer
@@ -49,11 +50,12 @@ class SignInRoute extends React.Component {
    }
 
    onSuccess = () => {
-      const {role}=this.props.signInStore
-      if(role==="user")
-      this.props.history.push(USER_PATH,role)
-      else
-      this.props.history.push(RP_PATH,role)
+      const { role } = this.props.signInStore
+      alert(role)
+      if (role === 'user') 
+      this.props.history.push(USER_PATH, role)
+      else 
+      this.props.history.push(RP_PATH, role)
    }
 
    onFailure = () => {
@@ -68,10 +70,8 @@ class SignInRoute extends React.Component {
       }
       if (this.password === EMPTY_STRING || this.password === undefined) {
          this.errorMessageForPassword = PASSWORD_ERROR_MESSAGE
-      } else if (
-         this.username !== EMPTY_STRING &&
-         this.password !== EMPTY_STRING
-      ) {
+      } else if (this.username !== EMPTY_STRING &&this.password !== EMPTY_STRING)
+      {
          this.errorMessage = LOADING
          this.handleSignIn()
       }
@@ -79,7 +79,7 @@ class SignInRoute extends React.Component {
    handleSignIn = async () => {
       await this.props.signInStore.userSignIn(
          {
-            username: this.username,
+            user_name: this.username,
             password: this.password
          },
          this.onSuccess,

@@ -6,7 +6,11 @@ import { observable } from 'mobx'
 
 import { TableData } from '../TableData/TableData'
 
-import { DROP_DOWN_URL, USER_HEADINGS,RP_HEADINGS } from '../../constants/ReportingPortalconstants'
+import {
+   DROP_DOWN_URL,
+   USER_HEADINGS,
+   RP_HEADINGS
+} from '../../constants/ReportingPortalconstants'
 
 import {
    TableContainer,
@@ -19,6 +23,7 @@ import {
 
 @observer
 class Table extends Component {
+   @observable sort_type="ASC"
    static defaultProps = {
       observationList: [
          {
@@ -41,12 +46,22 @@ class Table extends Component {
    onClick = (observationId) => {
       this.props.navigateToObservationScreen(observationId)
    }
-   onClickToSort = type => {
-      this.props.sortBytDate(type)
+   onClickToSort = (type) => {
       
+      if(this.sort_type==="ASC")
+    {
+       this.sort_type="DESC"
+         this.props.sortBytDate(type,this.sort_type)
+   }
+      else
+      {
+         this.sort_type="ASC"
+      this.props.sortBytDate(type,this.sort_type,this.sort_type)
+      }
    }
    renderRows = () => {
-     let  headings=this.props.roleType==="user"?USER_HEADINGS:RP_HEADINGS
+      let headings =
+         this.props.roleType === 'user' ? USER_HEADINGS : RP_HEADINGS
 
       return headings.map(eachHeading => {
          if (eachHeading === 'reported on' || eachHeading === 'due date')
@@ -54,13 +69,13 @@ class Table extends Component {
                <TableHeadings key={eachHeading}>
                   <HeadingContainer>
                      {eachHeading.toUpperCase()}
-                        <DropDownImage
-                           value={eachHeading}
-                           buttonStatus={this.hideSortButton}
-                           onClick={this.onClickToSort.bind(this, eachHeading)}
-                           imageURL={DROP_DOWN_URL}
-                        />
-                     
+                     <DropDownImage
+                        value={eachHeading}
+                        buttonStatus={this.hideSortButton}
+                        onClick={this.onClickToSort.bind(this,eachHeading)}
+                        imageURL={DROP_DOWN_URL}
+                     />
+
                      {/* <SortButton value={eachHeading} onClick={this.onClickToSort}>
                        </SortButton> */}
                   </HeadingContainer>
@@ -69,7 +84,6 @@ class Table extends Component {
          else
             return (
                <TableHeadings key={eachHeading}>
-
                   {eachHeading.toUpperCase()}
                </TableHeadings>
             )
@@ -86,7 +100,7 @@ class Table extends Component {
                <tbody>
                   {observationList.map(eachObservation => (
                      <TableRow
-                        onClick={this.onClick.bind(this,eachObservation.id)}
+                        onClick={this.onClick.bind(this, eachObservation.id)}
                         value={eachObservation.id}
                         key={eachObservation.id}
                      >

@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import {
    USER_PATH,
    USER_CREATION_FORM,
-   OBSERVATION_SCREEN
+   OBSERVATION_SCREEN,
+   OBSERVATION_LIST
 } from '../constants/RouteConstants'
 
-import  ProtectedRoute from '../../common/routes/ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from '../../common/routes/ProtectedRoute/ProtectedRoute'
 import { UserRoute } from './UserRoute'
 import UserFormRoute from './UserFormRoute/UserFormRoute'
 import ObservationScreenRoute from '../../RPModule/routes/ObservationScreenRoute/ObservationScreenRoute'
@@ -16,7 +17,7 @@ import ObservationScreenRoute from '../../RPModule/routes/ObservationScreenRoute
 const routes = [
    <ProtectedRoute path={USER_PATH} component={UserRoute} />,
    <Route path={USER_CREATION_FORM} component={UserFormRoute} />,
-   <Route path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
+      <Route path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
 ]
 
 export default routes

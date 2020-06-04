@@ -90,7 +90,7 @@ class SignInForm extends Component {
                   onClickHandler={onClickSignIn}
                   buttonText={LOGIN}
                />
-               <ErrorMessage>{apiError}</ErrorMessage>
+               {/* <ErrorMessage>{apiError}</ErrorMessage> */}
                <NewAccount>
                   {noAccount}
                   <SignUPLink>{signUp}</SignUPLink>

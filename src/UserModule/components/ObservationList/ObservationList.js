@@ -9,12 +9,16 @@ import NoObservations from '../NoObservations/NoObservations'
 import { ObservationContainer } from '../../styleGuide/typos'
 import paginationCss from './pagination.css'
 import Navbar from '../../../common/components/Navbar/Navbar'
-import { USER_HEADINGS ,observationList} from '../../constants/userPageConstants'
+import {
+   USER_HEADINGS,
+   observationList
+} from '../../constants/userPageConstants'
 
+@observer
 class ObservationList extends Component {
    static defaultProps = {
-      observationList:observationList
-}
+      observationList: observationList
+   }
    render() {
       const {
          observationList,
@@ -25,17 +29,11 @@ class ObservationList extends Component {
          selectedPage,
          roleType
       } = this.props
-   
       return (
-   
          <ObservationContainer>
             {observationList.length > 0 ? (
                <>
-                  <Table
-                     {...this.props}
-
-                     observationList={observationList}
-                  />
+                  <Table {...this.props} observationList={observationList} />
                   <ReactPaginate
                      previousLabel={'<'}
                      nextLabel={'>'}
