@@ -14,8 +14,8 @@ import {
    EMPTY_STRING
 } from '../../constants/SigninPageConstants.js'
 
-import { SIGN_IN_PATH } from "../../constants/RouteConstants"
-import { getUserDisplayableErrorMessage } from "../../../utils/APIUtils"
+import { SIGN_IN_PATH } from '../../constants/RouteConstants'
+import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 
 @inject('signInStore')
 @observer
@@ -42,7 +42,7 @@ class SignInRoute extends React.Component {
    onChangeUsername = event => {
       this.username = event.target.value
       this.errorMessageForUsername = EMPTY_STRING
-      this.errorMessage=EMPTY_STRING
+      this.errorMessage = EMPTY_STRING
       this.errorMessageForPassword = EMPTY_STRING
    }
 
@@ -50,16 +50,14 @@ class SignInRoute extends React.Component {
       this.password = event.target.value
       this.errorMessageForPassword = EMPTY_STRING
       this.errorMessageForUsername = EMPTY_STRING
-      this.errorMessage=EMPTY_STRING
+      this.errorMessage = EMPTY_STRING
    }
 
    onSuccess = () => {
       const { role } = this.props.signInStore
       alert(role)
-      if (role === 'user') 
-      this.props.history.push(USER_PATH, role)
-      else if(role==="rp")
-      this.props.history.push(RP_PATH, role)
+      if (role === 'user') this.props.history.push(USER_PATH, role)
+      else if (role === 'rp') this.props.history.push(RP_PATH, role)
    }
 
    onFailure = () => {
@@ -74,13 +72,15 @@ class SignInRoute extends React.Component {
       }
       if (this.password === EMPTY_STRING || this.password === undefined) {
          this.errorMessageForPassword = REQUIRED_FIELD
-      } else if (this.username !== EMPTY_STRING &&this.password !== EMPTY_STRING)
-      {
+      } else if (
+         this.username !== EMPTY_STRING &&
+         this.password !== EMPTY_STRING
+      ) {
          this.handleSignIn()
       }
    }
    handleSignIn = async () => {
-      const {userSignIn}=this.props.signInStore
+      const { userSignIn } = this.props.signInStore
       await userSignIn(
          {
             user_name: this.username,
@@ -94,7 +94,8 @@ class SignInRoute extends React.Component {
    render() {
       const {
          getUserSignInAPIStatus,
-         getUserSignInAPIError} = this.props.signInStore
+         getUserSignInAPIError
+      } = this.props.signInStore
       const {
          username,
          password,
@@ -105,7 +106,7 @@ class SignInRoute extends React.Component {
          errorMessageForUsername,
          errorMessageForPassword
       } = this
-      console.log(getUserSignInAPIError,getUserSignInAPIStatus)
+      console.log(getUserSignInAPIError, getUserSignInAPIStatus)
       return (
          <SignInForm
             errorMessageForUsername={errorMessageForUsername}

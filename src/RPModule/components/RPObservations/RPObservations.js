@@ -11,7 +11,7 @@ import {
 } from '../../constants/RPRouteConstants/RPRouteConstants'
 
 class RPObservations extends Component {
-   role=this.props.history.location.state
+   role = this.props.history.location.state
    gotoUserForm = () => {
       this.props.history.push(RP_CREATION_FORM)
    }
@@ -41,7 +41,6 @@ class RPObservations extends Component {
    }
 
    render() {
-      
       return (
          <DesktopLayout roleType={this.role}>
             <Navbar

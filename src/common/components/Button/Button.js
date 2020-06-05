@@ -9,7 +9,7 @@ class Button extends Component {
       buttonText: '',
       buttonStatus: false,
       buttonType: '',
-      roleType: "",
+      roleType: '',
       onClickHandler: () => {}
    }
    render() {
@@ -23,7 +23,7 @@ class Button extends Component {
       } = this.props
       return (
          <ButtonElement
-         disabled={roleType==="user"?true:false}
+            disabled={roleType === 'user' ? true : false}
             onClick={onClickHandler}
             roleType={roleType}
             className={className}

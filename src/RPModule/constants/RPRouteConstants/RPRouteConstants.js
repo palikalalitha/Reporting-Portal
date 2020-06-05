@@ -7,4 +7,4 @@ export const OBSERVATION_SCREEN = '/reporting-protal/observation-details/:id'
 // export const URL =
 //    'https://5ecf59d316017c00165e29bc.mockapi.io/get/user/observations'
 
-export const URL ="https://c6ee9705046e.ngrok.io/api/reporting_portal"
+export const URL = 'https://c6ee9705046e.ngrok.io/api/reporting_portal'

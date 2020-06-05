@@ -23,7 +23,9 @@ const Wrapper = styled.div`
    ${tw`flex`}
    margin:20px 20px;
 `
-const Tab=styled.div `${tw`ml-4`}`
+const Tab = styled.div`
+   ${tw`ml-4`}
+`
 const ObservationTitle = styled(Typo24DarkBlueGreyHKGroteskMedium)`
    ${tw`ml-2`}
 `
@@ -31,7 +33,7 @@ const ObservationTitle = styled(Typo24DarkBlueGreyHKGroteskMedium)`
 const Description = styled.p`
    ${tw`ml-4`}
    overflow:auto;
-   cursor: ${props => (props.roleType === 'user'&&"rp" ? 'none' : 'pointer')};
+   cursor: ${props => (props.roleType === 'user' && 'rp' ? 'none' : 'pointer')};
 `
 
 const Category = styled.div`
@@ -63,7 +65,6 @@ const RadioButtonWrapper = styled.div`
    margin-left:180px
 `
 
-
 const ResetButton = styled(Button)`
 width: 75px;
 height: 40px;
@@ -79,8 +80,9 @@ const ArrorSymbol = styled.div`
 const ButtonWrapper = styled.div`
    ${tw`flex justify-center mt-2`}
 `
-const ObservationNavbar=styled.div `${tw`flex `}
-margin: 10px 60px;
+const ObservationNavbar = styled.div`
+   ${tw`flex `}
+   margin: 10px 60px;
 `
 export {
    ObservationScreenConatiner,

@@ -38,18 +38,20 @@ const ReportedDate = styled.td`
 `
 
 const data = styled.div``
-const NotAssignedText=styled.div `${tw`flex items-center justify-center mr-10`}
-margin-left:40px;
-margin-top: 8px;
-margin-bottom: 8px;
-font-family: HKGrotesk;
-font-size: 14px;
-font-weight: normal;
-font-stretch: normal;
-font-style: normal;
-line-height: 1.71;
-letter-spacing: normal;
-color: #7e858e;`
+const NotAssignedText = styled.div`
+   ${tw`flex items-center justify-center mr-10`}
+   margin-left:40px;
+   margin-top: 8px;
+   margin-bottom: 8px;
+   font-family: HKGrotesk;
+   font-size: 14px;
+   font-weight: normal;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: 1.71;
+   letter-spacing: normal;
+   color: #7e858e;
+`
 const AssignedContainer = styled.td`
    ${tw`flex  items-center`}
    margin-left:35px;
@@ -64,7 +66,7 @@ const RPDetails = styled.div`
 `
 const Name = styled.p`
    ${tw`ml-2`}
- 
+
    font-family: HKGrotesk;
    font-size: 14px;
    font-weight: normal;
@@ -91,8 +93,8 @@ const Severty = styled.td`
    width: 72px;
    height: 25px;
    border-radius: 100px;
-   align-self:center;
-   text-align:center;
+   align-self: center;
+   text-align: center;
    background-color: ${props =>
       props.status == 'HIGH'
          ? '#ff0b37'

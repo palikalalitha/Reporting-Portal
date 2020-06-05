@@ -28,7 +28,6 @@ class UserPage extends React.Component {
                onRetryClick={doNetworkCalls}
             />
          </DesktopLayout>
-
       )
    }
 }

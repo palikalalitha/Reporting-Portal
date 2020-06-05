@@ -18,13 +18,12 @@ export const RP_HEADINGS = [
    'due date',
    'messages'
 ]
-export const STATUSLIST=
-[
+export const STATUSLIST = [
    { value: 'CLOSED', label: 'Closed' },
    { value: 'RESOLVED', label: 'Resolved' },
    { value: 'ACTION IN PROGRESS', label: 'Action in Progress' },
-   {value:'ACKNOWLEDGED BY RP',label:'Acknowledged by RP'},
-   {value:'REPORTED',label:'Reported'}
+   { value: 'ACKNOWLEDGED BY RP', label: 'Acknowledged by RP' },
+   { value: 'REPORTED', label: 'Reported' }
 ]
 
 export const RP_HEADING = 'Observations Assigned to Me'
@@ -44,4 +43,4 @@ export const MESSAGE_ICON_URL =
 export const ONE = 1
 export const DROP_DOWN_URL =
    'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/86f756df-e3a3-4c9a-a226-60cee23f22d2.svg'
-export const URL="https://128cdba73bf6.ngrok.io/api/reporting_portal"
+export const URL = 'https://128cdba73bf6.ngrok.io/api/reporting_portal'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { observable, action, computed ,toJS} from 'mobx'
+import { observable, action, computed, toJS } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { API_INITIAL } from '@ib/api-constants'
 
@@ -44,39 +44,43 @@ class UserStore {
       this.getObservationListAPIError = null
 
       this.getObservationDetailsAPIError = null
-      this.getObservationDetailsAPIStatus=API_INITIAL
+      this.getObservationDetailsAPIStatus = API_INITIAL
 
-     this.getCategoriesAPIStatus=API_INITIAL
-     this.getCategoriesAPIError=null
+      this.getCategoriesAPIStatus = API_INITIAL
+      this.getCategoriesAPIError = null
 
-      this.createObservationsAPIStatus=API_INITIAL
-      this.createObservationsAPIError=null
+      this.createObservationsAPIStatus = API_INITIAL
+      this.createObservationsAPIError = null
 
       this.observationList = []
-      this.singleObservationDetails=[]
+      this.singleObservationDetails = []
       this.currentPage = CURRENT_PAGE
       this.totlaPages
       this.offset = OFFSET
       this.pageLimit = 10
       this.date_type = 'reported_on'
       this.sort_type = 'ASC'
-      this.selectedPage=0
+      this.selectedPage = 0
    }
    @action.bound
-   setDate_typeAndSortType(date_type,sort_type)
-   {
-      this.date_Type=date_type;
-      this.sort_type=sort_type;
+   setDate_typeAndSortType(date_type, sort_type) {
+      this.date_Type = date_type
+      this.sort_type = sort_type
       this.getObservationList()
    }
-  
+
    @action.bound
    getObservationList() {
-     let requestObject= {
-         "date_type": this.date_type,
-         "sort_by": this.sort_type,
-         "filter_by": []} 
-      const userPromise = this.userService.getUsersResponse(this.offset,this.pageLimit,requestObject)
+      let requestObject = {
+         date_type: this.date_type,
+         sort_by: this.sort_type,
+         filter_by: []
+      }
+      const userPromise = this.userService.getUsersResponse(
+         this.offset,
+         this.pageLimit,
+         requestObject
+      )
       return bindPromiseWithOnSuccess(userPromise)
          .to(
             this.setGetObservationListAPIStatus,
@@ -86,12 +90,12 @@ class UserStore {
    }
    @action.bound
    setObservationListResponse(response) {
-     this.observationList =response.map(eachObservation => {
-       return new UserModel(eachObservation)
+      this.observationList = response.map(eachObservation => {
+         return new UserModel(eachObservation)
       })
-      console.log("observations",this.observationList)
-      this.totlaPages = Math.ceil(response.length /this.pageLimit)
-      console.log("totla",this.totlaPages)
+      console.log('observations', this.observationList)
+      this.totlaPages = Math.ceil(response.length / this.pageLimit)
+      console.log('totla', this.totlaPages)
    }
    @action.bound
    setGetObservationListAPIError(error) {
@@ -103,7 +107,6 @@ class UserStore {
       this.getObservationListAPIStatus = status
    }
 
-  
    @action.bound
    handlePage(page) {
       console.log(page)
@@ -114,72 +117,73 @@ class UserStore {
    }
 
    @action.bound
-   getObservationDetailsById(id)
-   {
-
+   getObservationDetailsById(id) {
       const userPromise = this.userService.getObservationDeatilsById(id)
       return bindPromiseWithOnSuccess(userPromise)
-      .to(
-         this.setGetObservationDetailsAPIStatus,
-         this.setObservationDeatilsResponse
-      )
-      .catch(this.setGetObservationDetailsAPIError)
-
+         .to(
+            this.setGetObservationDetailsAPIStatus,
+            this.setObservationDeatilsResponse
+         )
+         .catch(this.setGetObservationDetailsAPIError)
    }
 
    @action.bound
-   setGetObservationDetailsAPIStatus(status)
-   {
-      this.getObservationDetailsAPIStatus=status
+   setGetObservationDetailsAPIStatus(status) {
+      this.getObservationDetailsAPIStatus = status
    }
 
    @action.bound
    setObservationDeatilsResponse(response) {
-      this.singleObservationDetails={
-         title:response.title,
-         description:response.description,
-         priority:response.priority,
-         status:response.status,
-         reported_on:response.reported_on,
-         category_id:response.category,
-         sub_category_id:response.sub_category,
-         due_date:response.due_date,
-         due_date_privacy:response.is_due_date_private,
-         assigned_to:response.assigned_to
+      this.singleObservationDetails = {
+         title: response.title,
+         description: response.description,
+         priority: response.priority,
+         status: response.status,
+         reported_on: response.reported_on,
+         category_id: response.category,
+         sub_category_id: response.sub_category,
+         due_date: response.due_date,
+         due_date_privacy: response.is_due_date_private,
+         assigned_to: response.assigned_to
       }
    }
    @computed
-   get getSingleObservationDetails()
-   {
+   get getSingleObservationDetails() {
       return this.singleObservationDetails
    }
    @action.bound
    setGetObservationDetailsAPIError(error) {
       this.getObservationDetailsAPIError = error
-   } 
+   }
    @action.bound
-   onAddObservationList(observationTitle,observationSeverity,observationDesc,category,SubCategory) {
+   onAddObservationList(
+      observationTitle,
+      observationSeverity,
+      observationDesc,
+      category,
+      SubCategory
+   ) {
       let observationObj = {
          title: observationTitle,
          priority: observationSeverity,
          description: observationDesc,
-         category_id:category,
-         sub_category_id:SubCategory,
-         attachments:[]
+         category_id: category,
+         sub_category_id: SubCategory,
+         attachments: []
       }
-        const userPromise = this.userService.createObservations(observationObj)
-        return bindPromiseWithOnSuccess(userPromise)
-           .to(
-              this.setGetCreateObservationsAPIStatus,
-              this.setCreateObservationsResponse
-           )
-           .catch(this.setGetCreateObservationsAPIError)
+      const userPromise = this.userService.createObservations(observationObj)
+      return bindPromiseWithOnSuccess(userPromise)
+         .to(
+            this.setGetCreateObservationsAPIStatus,
+            this.setCreateObservationsResponse
+         )
+         .catch(this.setGetCreateObservationsAPIError)
    }
- 
+
    @action.bound
    setCreateObservationsResponse(response) {
       this.getObservationList()
-    //  console.log(response)
+      //  console.log(response)
    }
    @action.bound
    setGetCreateObservationsAPIError(error) {
@@ -188,27 +192,20 @@ class UserStore {
 
    @action.bound
    setGetCreateObservationsAPIStatus(status) {
-      this.createObservationsAPIStatus= status
+      this.createObservationsAPIStatus = status
    }
    @action.bound
-   onClickTogetCategories()
-   {
+   onClickTogetCategories() {
       const userPromise = this.userService.getCategories()
-        return bindPromiseWithOnSuccess(userPromise)
-           .to(
-              this.setGetCategoriesAPIStatus,
-              this.setCategoriesResponse
-           )
-           .catch(this.setGetCategoriesAPIError)
-  
+      return bindPromiseWithOnSuccess(userPromise)
+         .to(this.setGetCategoriesAPIStatus, this.setCategoriesResponse)
+         .catch(this.setGetCategoriesAPIError)
    }
-   setGetCategoriesAPIStatus(status)
-   {
-      this.getCategoriesAPIStatus=status
+   setGetCategoriesAPIStatus(status) {
+      this.getCategoriesAPIStatus = status
    }
-   setGetCategoriesAPIError(error)
-   {
-      this.getCategoriesAPIError=error
+   setGetCategoriesAPIError(error) {
+      this.getCategoriesAPIError = error
    }
    @computed
    get userObservationList() {

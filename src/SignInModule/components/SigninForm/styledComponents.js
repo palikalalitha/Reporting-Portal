@@ -13,8 +13,9 @@ const SignInContainer = styled.div`
    padding-top: 48px;
 `
 
-const WelcomMessage = styled.p `${tw`mt-4 mb-4`} 
- 
+const WelcomMessage = styled.p`
+   ${tw`mt-4 mb-4`}
+
    font-family: Rubik;
    font-size: 32px;
    font-weight: normal;
@@ -25,7 +26,7 @@ const WelcomMessage = styled.p `${tw`mt-4 mb-4`}
    color: #171f46;
 `
 
-const Label = styled.label `
+const Label = styled.label`
    ${tw`m-2`}
    font-family: HKGrotesk;
    font-size: 12px;

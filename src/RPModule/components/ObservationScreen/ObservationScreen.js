@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import {
    ObservationScreenConatiner,
-Wrapper,
+   Wrapper,
    ObservationTitle,
    ArrorSymbol,
    ResetButton,
@@ -37,13 +37,12 @@ class ObservationScreen extends Component {
       this.props.history.goBack()
    }
    onClickToreset = () => {
-      console.log(this.props.history.location.state      )
-      alert("reset")
-     // this.clearUpdateValues()
+      console.log(this.props.history.location.state)
+      alert('reset')
+      // this.clearUpdateValues()
    }
-   onClickToUpdate=()=>
-   {
-      alert("update")
+   onClickToUpdate = () => {
+      alert('update')
    }
    render() {
       const {
@@ -63,11 +62,13 @@ class ObservationScreen extends Component {
          isRoleType
       } = this.props
       const role = this.props.history.location.state
-      console.log(due_date_privacy,due_date)
+      console.log(due_date_privacy, due_date)
       return (
          <>
-         <ObservationNavbar><Tab>OBSERVATION</Tab></ObservationNavbar>
-   
+            <ObservationNavbar>
+               <Tab>OBSERVATION</Tab>
+            </ObservationNavbar>
+
             <ObservationScreenConatiner>
                <Wrapper data-testid={'fg'}>
                   <ArrorSymbol onClick={this.goBack}>
@@ -80,21 +81,25 @@ class ObservationScreen extends Component {
                   <Category>
                      <Label>Category</Label>
                      <Select
-                           data-testid={"category"}
-                           className={'select-container'}
-                           defaultInputValue={category}
-                           classNamePrefix={'option'}
-                           isDisabled={role === 'user'||role==="rp" ? true : false}
+                        data-testid={'category'}
+                        className={'select-container'}
+                        defaultInputValue={category}
+                        classNamePrefix={'option'}
+                        isDisabled={
+                           role === 'user' || role === 'rp' ? true : false
+                        }
                      />
                   </Category>
                   <SubCategory>
                      <Label>sub Category</Label>
                      <Select
-                           data-testid={"sub"}
-                           className={'select-container'}
-                           defaultInputValue={sub_category}
-                           classNamePrefix={'option'}
-                           isDisabled={role === 'user'||role==="rp" ? true : false}
+                        data-testid={'sub'}
+                        className={'select-container'}
+                        defaultInputValue={sub_category}
+                        classNamePrefix={'option'}
+                        isDisabled={
+                           role === 'user' || role === 'rp' ? true : false
+                        }
                      />
                   </SubCategory>
                </Wrapper>
@@ -109,17 +114,22 @@ class ObservationScreen extends Component {
                <Wrapper>
                   <Label>Severity</Label>
                   <Select
-                           data-testid={"sub"}
-                           className={'select-container'}
-                           defaultInputValue={priority}
-                           optionList={ [
-                              { value: 'Action in progress', label: 'Action in Progress' },
-                              { value: 'Resolved', label: 'Resolved' },
-                              {value:"Closed",label:"Closed"}
-                           ]}
-                           classNamePrefix={'option'}
-                           isDisabled={role === 'user'||role==="rp" ? true : false}
-                     />
+                     data-testid={'sub'}
+                     className={'select-container'}
+                     defaultInputValue={priority}
+                     optionList={[
+                        {
+                           value: 'Action in progress',
+                           label: 'Action in Progress'
+                        },
+                        { value: 'Resolved', label: 'Resolved' },
+                        { value: 'Closed', label: 'Closed' }
+                     ]}
+                     classNamePrefix={'option'}
+                     isDisabled={
+                        role === 'user' || role === 'rp' ? true : false
+                     }
+                  />
                </Wrapper>
                <Wrapper>
                   <Label>Attachements</Label>
@@ -136,7 +146,7 @@ class ObservationScreen extends Component {
                <Wrapper>
                   <Label>Reported on</Label>
                   <Date
-                  text={reported_on}
+                     text={reported_on}
                      roleType={role}
                      handleChange={handleChange}
                   />
@@ -144,25 +154,31 @@ class ObservationScreen extends Component {
                <Wrapper>
                   <Label>Due date</Label>
                   <Date
-                      text={due_date_privacy?"No Due Date set":due_date}
+                     text={due_date_privacy ? 'No Due Date set' : due_date}
                      roleType={role}
                      handleChange={handleChange}
                   />
                </Wrapper>
                <RadioButtonWrapper>
-                  <RadioButton roleType={role} value={due_date_privacy?"private":"public"}/>
+                  <RadioButton
+                     roleType={role}
+                     value={due_date_privacy ? 'private' : 'public'}
+                  />
                </RadioButtonWrapper>
                <ButtonWrapper>
-                 
                   <ResetButton
-                   roleType={role}  
-                   onClickHandler={this.onClickToreset} 
-                    buttonText='Reset' />
-                  <Button onClickHandler={this.onClickToUpdate} roleType={role} buttonText='Update' />
+                     roleType={role}
+                     onClickHandler={this.onClickToreset}
+                     buttonText='Reset'
+                  />
+                  <Button
+                     onClickHandler={this.onClickToUpdate}
+                     roleType={role}
+                     buttonText='Update'
+                  />
                </ButtonWrapper>
             </ObservationScreenConatiner>
-            </>
-       
+         </>
       )
    }
 }

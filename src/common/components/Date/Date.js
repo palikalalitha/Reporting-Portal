@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker'
 import styled from './Date.css'
 class Date extends React.Component {
    render() {
-      const { roleType, startDate, handleChange ,text} = this.props
+      const { roleType, startDate, handleChange, text } = this.props
       console.log(startDate)
       return (
          <DatePicker

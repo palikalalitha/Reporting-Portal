@@ -3,7 +3,7 @@ import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../../constants/APIConstants'
 
 // import { URL } from '../../constants/SigninPageConstants.js'
-import {URL} from "../../../common/constants/ReportingPortalconstants"
+import { URL } from '../../../common/constants/ReportingPortalconstants'
 class SignInAPI {
    api
    constructor() {

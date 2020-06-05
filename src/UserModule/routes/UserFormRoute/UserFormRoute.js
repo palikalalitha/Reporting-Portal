@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 
 import { UserForm } from '../../components/UserForm/UserForm'
 
-import { ERROR_MESSAGE ,DEFAULT_VALUE} from '../../constants/userPageConstants'
+import { ERROR_MESSAGE, DEFAULT_VALUE } from '../../constants/userPageConstants'
 import { USER_CREATION_FORM } from '../../constants/RouteConstants'
 import { userStore } from '../../stores/index'
 
@@ -28,8 +28,8 @@ class UserFormRoute extends Component {
       this.title = ''
       this.severity = ''
       this.description = ''
-      this.category_id=DEFAULT_VALUE
-      this.sub_category_id=DEFAULT_VALUE
+      this.category_id = DEFAULT_VALUE
+      this.sub_category_id = DEFAULT_VALUE
 
       this.errorMessageForSeverity = ''
       this.errorMessageForTitle = ''
@@ -43,8 +43,6 @@ class UserFormRoute extends Component {
       this.errorMessageForSeverity = ''
    }
 
-
-
    onChangeDescription = event => {
       this.description = event.target.value
       this.errorMessageForDescription = ''
@@ -56,11 +54,9 @@ class UserFormRoute extends Component {
    }
    onChangeToSelectCategory = option => {
       this.category_id = option
-     
    }
-   onChangeToSelectSubCategory=option=>
-   {
-      this.sub_category_id=option
+   onChangeToSelectSubCategory = option => {
+      this.sub_category_id = option
    }
    addObservation = () => {
       this.handleSubmit()
@@ -84,9 +80,13 @@ class UserFormRoute extends Component {
          this.errorMessageForSeverity = ERROR_MESSAGE
       } else if (this.description === '') {
          this.errorMessageForDescription = ERROR_MESSAGE
-      } else if(this.severity!==""&&this.description!==""&&this.title!=="") {
+      } else if (
+         this.severity !== '' &&
+         this.description !== '' &&
+         this.title !== ''
+      ) {
          alert('submitted successfully')
-        
+
          userStore.onAddObservationList(
             this.title,
             this.severity.value,
@@ -118,12 +118,14 @@ class UserFormRoute extends Component {
          onChangeToSelectCategory,
          addObservation,
          onChangeToSelectSeverity,
-         naviagteToUserForm,  
+         naviagteToUserForm,
          gotoObservationList
       } = this
-      const {createObservationsAPIStatus,createObservationsAPIError}=userStore
-      console.log(createObservationsAPIError,createObservationsAPIStatus)
-    
+      const {
+         createObservationsAPIStatus,
+         createObservationsAPIError
+      } = userStore
+      console.log(createObservationsAPIError, createObservationsAPIStatus)
 
       return (
          <UserForm

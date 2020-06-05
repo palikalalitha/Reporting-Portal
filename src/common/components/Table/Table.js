@@ -24,10 +24,10 @@ import {
 @observer
 class Table extends Component {
    @observable sort_type
-   onClick = (observationId) => {
+   onClick = observationId => {
       this.props.navigateToObservationScreen(observationId)
    }
-   onClickToSort = (type) => {
+   onClickToSort = type => {
       this.props.observationsSort(type)
    }
    renderRows = () => {
@@ -43,7 +43,7 @@ class Table extends Component {
                      <DropDownImage
                         value={eachHeading}
                         buttonStatus={this.hideSortButton}
-                        onClick={this.onClickToSort.bind(this,eachHeading)}
+                        onClick={this.onClickToSort.bind(this, eachHeading)}
                         imageURL={DROP_DOWN_URL}
                      />
 
@@ -70,7 +70,6 @@ class Table extends Component {
                </thead>
                <tbody>
                   {observationList.map(eachObservation => (
-      
                      <TableRow
                         onClick={this.onClick.bind(this, eachObservation.id)}
                         key={eachObservation.id}

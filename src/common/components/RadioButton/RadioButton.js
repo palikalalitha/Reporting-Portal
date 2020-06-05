@@ -10,7 +10,7 @@ class RadioButton extends Component {
       list: ['public', 'private']
    }
    render() {
-      const { list, handleOptionChange, roleType,value } = this.props
+      const { list, handleOptionChange, roleType, value } = this.props
       return (
          <>
             {list.map(eachItem => (
@@ -21,7 +21,7 @@ class RadioButton extends Component {
                      name={PRIVACY}
                      onChange={handleOptionChange}
                      defaultChecked={value}
-                    disabled={roleType === 'user' ? true : false}
+                     disabled={roleType === 'user' ? true : false}
                      deafultValue={eachItem}
                   />
                   <Label>{eachItem.toUpperCase()}</Label>

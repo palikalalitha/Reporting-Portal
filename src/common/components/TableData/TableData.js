@@ -33,21 +33,24 @@ class TableData extends Component {
          reported_on,
          message_count,
          assigned_to
-      } = this.props.observation 
-      const { name, contact_number,role } =  assigned_to
+      } = this.props.observation
+      const { name, contact_number, role } = assigned_to
       const { bgColorStatus } = this.props
       return (
          <>
             <TData>{title}</TData>
             <TData>{reported_on}</TData>
-            {assigned_to==="not assigned"? <NotAssignedText>Not assigned</NotAssignedText>:
-            <AssignedContainer>
-            <Image imageURL={RP_PROFILE_URL} />
-               <RPDetails>
-                  <Name>{name}</Name>
-                  <PhoneNumber>{contact_number}</PhoneNumber>
-               </RPDetails>
-            </AssignedContainer>}
+            {assigned_to === 'not assigned' ? (
+               <NotAssignedText>Not assigned</NotAssignedText>
+            ) : (
+               <AssignedContainer>
+                  <Image imageURL={RP_PROFILE_URL} />
+                  <RPDetails>
+                     <Name>{name}</Name>
+                     <PhoneNumber>{contact_number}</PhoneNumber>
+                  </RPDetails>
+               </AssignedContainer>
+            )}
             <Severty status={priority}>
                <Mode>{priority}</Mode>
             </Severty>
@@ -56,9 +59,7 @@ class TableData extends Component {
                   <Status>{status}</Status>
                </StatusWrapper>
             </TData>
-            <TData>
-               {due_date==="null"? "Private" :due_date}
-            </TData>
+            <TData>{due_date === 'null' ? 'Private' : due_date}</TData>
             <TData>
                <Message>
                   <RiMessage2Line />

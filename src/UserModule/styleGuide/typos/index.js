@@ -54,7 +54,6 @@ const Typo14SteelHKGroteskRegular = styled.div`
 
 const ObservationContainer = styled.div`
    ${tw`focus:outline-none flex flex-col justify-center m-10`}
-  
 `
 //    ${tw``}
 //    border-radius: 7px;

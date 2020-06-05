@@ -11,8 +11,7 @@ import paginationCss from './pagination.css'
 import Navbar from '../../../common/components/Navbar/Navbar'
 import {
    USER_HEADINGS,
-   OBSERVATIONLIST,
- 
+   OBSERVATIONLIST
 } from '../../constants/userPageConstants'
 
 @observer
@@ -32,7 +31,6 @@ class ObservationList extends Component {
          <ObservationContainer>
             {observationList.length > 0 ? (
                <>
-
                   <Table {...this.props} observationList={observationList} />
                   <ReactPaginate
                      previousLabel={'<'}

@@ -8,7 +8,7 @@ import { DropDownList } from '../../../common/components/DropDownList/DropDownLi
 import { TextArea } from '../../../common/components/TextArea/TextArea'
 import { Button } from '../../../common/components/Button/index'
 import Header from '../../../common/components/Header/Header'
-import "./SelectBox.css"
+import './SelectBox.css'
 import {
    UserFormContainer,
    Label,
@@ -96,23 +96,26 @@ class UserForm extends Component {
                   <Wrapper>
                      <Label>{category}</Label>
                      <Select
-                        data-testid={"select"}
-                        className={status ? 'border-container' : 'select-container'}
-
+                        data-testid={'select'}
+                        className={
+                           status ? 'border-container' : 'select-container'
+                        }
                         classNamePrefix={'option'}
                         onChange={onChangeToSelectCategory}
                         options={CATEGORY_LIST}
-                      />
+                     />
                   </Wrapper>
                   <SubCategoryWrapper>
                      <Label>{subCategory}</Label>
                      <Select
-                        data-testid={"select"}
-                        className={status ? 'border-container' : 'select-container'}
+                        data-testid={'select'}
+                        className={
+                           status ? 'border-container' : 'select-container'
+                        }
                         classNamePrefix={'option'}
                         onChange={onChangeToSelectSubCategory}
                         options={SUB_CATEGORY_LIST}
-                      />
+                     />
                   </SubCategoryWrapper>
                </WrapperMultipleElements>
                <Wrapper>
@@ -121,13 +124,17 @@ class UserForm extends Component {
                      <Mandatory>*</Mandatory>
                   </Label>
                   <div>
-                  <Select
-                        data-testid={"select"}
-                        className={errorMessageForSeverity ? 'border-container' : 'select-container'}
+                     <Select
+                        data-testid={'select'}
+                        className={
+                           errorMessageForSeverity
+                              ? 'border-container'
+                              : 'select-container'
+                        }
                         classNamePrefix={'option'}
                         onChange={onChangeSelectValue}
                         options={SEVERITY}
-                      />
+                     />
                      <ErrorMessage>{errorMessageForSeverity}</ErrorMessage>
                   </div>
                </Wrapper>

@@ -17,7 +17,7 @@ import ObservationScreenRoute from '../../RPModule/routes/ObservationScreenRoute
 const routes = [
    <ProtectedRoute path={USER_PATH} component={UserRoute} />,
    <Route path={USER_CREATION_FORM} component={UserFormRoute} />,
-      <Route path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
+   <Route path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
 ]
 
 export default routes

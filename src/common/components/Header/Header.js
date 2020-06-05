@@ -24,18 +24,17 @@ import {
    OBSERVATION_LIST
 } from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
 import { withRouter } from 'react-router-dom'
-import { Button } from "../Button"
+import { Button } from '../Button'
 class Header extends Component {
-   role=this.props.roleType
+   role = this.props.roleType
    renderAssignedObservations = () => {
-      this.props.history.push(Assigned_OBSERVATIONS_PATH,this.role)
+      this.props.history.push(Assigned_OBSERVATIONS_PATH, this.role)
    }
-   onClick=()=>
-   {
-      alert("signout")
+   onClick = () => {
+      alert('signout')
    }
    renderObservations = () => {
-      this.props.history.push(OBSERVATION_LIST,"user")
+      this.props.history.push(OBSERVATION_LIST, 'user')
    }
    render() {
       const { roleType } = this.props

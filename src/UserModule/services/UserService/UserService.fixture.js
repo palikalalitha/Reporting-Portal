@@ -10,10 +10,9 @@ class UserService {
          resolve(observationList)
       })
    }
-   createObservations(request)
-   {
+   createObservations(request) {
       return new Promise((resolve, reject) => {
-         resolve("observation-id:0")
+         resolve('observation-id:0')
       })
    }
 }

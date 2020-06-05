@@ -37,10 +37,10 @@ class RPStore extends UserStore {
       this.getUpdateObservationListAPIError = null
       this.assignedObservationList = []
       this.updateRpObservationList = []
-      this.rpPageLimit=4
-      this.rpCurrentPage=1
-      this.offset=0
-      this.totalPages=0
+      this.rpPageLimit = 4
+      this.rpCurrentPage = 1
+      this.offset = 0
+      this.totalPages = 0
       this.selectedPage
       this.date = ''
       this.due_date = ''
@@ -81,10 +81,11 @@ class RPStore extends UserStore {
 
    @action.bound
    getAssignedObservationList() {
-      let requestObject= {
-         "date_type": this.date_type,
-         "sort_by": this.sort_type,
-         "filter_by": []} 
+      let requestObject = {
+         date_type: this.date_type,
+         sort_by: this.sort_type,
+         filter_by: []
+      }
       const userPromise = this.rpService.getRPObservations()
       return bindPromiseWithOnSuccess(userPromise)
          .to(
