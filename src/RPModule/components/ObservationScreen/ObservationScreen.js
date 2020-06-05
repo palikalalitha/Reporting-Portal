@@ -15,10 +15,12 @@ Wrapper,
    ResetButton,
    ButtonWrapper,
    RadioButtonWrapper,
+   ObservationNavbar,
    Dropdown,
    Description,
    Label,
    Category,
+   Tab,
    SubCategory
 } from './styledComponents'
 import { FaAngleLeft } from 'react-icons/fa'
@@ -36,7 +38,7 @@ class ObservationScreen extends Component {
    }
    onClickToreset = () => {
       console.log(this.props.history.location.state      )
-      alert("reset",this.props.history.location.state)
+      alert("reset")
      // this.clearUpdateValues()
    }
    onClickToUpdate=()=>
@@ -54,16 +56,18 @@ class ObservationScreen extends Component {
          status,
          due_date_privacy,
          observation,
-         startDate,
+         reported_on,
          handleChange,
          onChangeSelectValue,
          value,
          isRoleType
       } = this.props
-
       const role = this.props.history.location.state
+      console.log(due_date_privacy,due_date)
       return (
-         <DesktopLayout roleType={role}>
+         <>
+         <ObservationNavbar><Tab>OBSERVATION</Tab></ObservationNavbar>
+   
             <ObservationScreenConatiner>
                <Wrapper data-testid={'fg'}>
                   <ArrorSymbol onClick={this.goBack}>
@@ -132,21 +136,21 @@ class ObservationScreen extends Component {
                <Wrapper>
                   <Label>Reported on</Label>
                   <Date
+                  text={reported_on}
                      roleType={role}
-                     startDate={startDate}
                      handleChange={handleChange}
                   />
                </Wrapper>
                <Wrapper>
                   <Label>Due date</Label>
                   <Date
+                      text={due_date_privacy?"No Due Date set":due_date}
                      roleType={role}
-                     startDate={startDate}
                      handleChange={handleChange}
                   />
                </Wrapper>
                <RadioButtonWrapper>
-                  <RadioButton roleType={role} />
+                  <RadioButton roleType={role} value={due_date_privacy?"private":"public"}/>
                </RadioButtonWrapper>
                <ButtonWrapper>
                  
@@ -157,7 +161,8 @@ class ObservationScreen extends Component {
                   <Button onClickHandler={this.onClickToUpdate} roleType={role} buttonText='Update' />
                </ButtonWrapper>
             </ObservationScreenConatiner>
-         </DesktopLayout>
+            </>
+       
       )
    }
 }

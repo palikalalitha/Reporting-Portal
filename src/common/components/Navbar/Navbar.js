@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
-import { NavabarHeading, NavabarContainer } from './styledComponents'
+import { NavabarHeading, NavabarContainer ,Wrapper} from './styledComponents'
 import { Button } from '../Button/'
+import Select from "react-select"
 import {
    ADD_NEW,
    USER_HEADING,
-   RP_HEADING
-} from '../../constants/ReportingPortalconstants'
+   RP_HEADING,
+   STATUSLIST
 
+} from '../../constants/ReportingPortalconstants'
+import "./SelectBoxStyles.css"
 class Navbar extends Component {
    render() {
-      const { heading, gotoUserForm, roleType } = this.props
+      const { heading, gotoUserForm, roleType,filterByStatus } = this.props
       return (
+         <>
          <NavabarContainer>
             <NavabarHeading>
                {roleType === 'user' ? USER_HEADING : RP_HEADING}
             </NavabarHeading>
-            {roleType === 'user' && (
+                      {roleType === 'user' && (
                <Button
                   buttonText={ADD_NEW}
                   isDisabled={roleType}
@@ -23,6 +27,17 @@ class Navbar extends Component {
                />
             )}
          </NavabarContainer>
+              <Wrapper>
+             <Select
+                        data-testid={"select"}
+                        className={'select-container'}
+                         classNamePrefix={'option'}
+                        onChange={filterByStatus}
+                        options={STATUSLIST}
+                        isMulti
+                      />
+                      </Wrapper>
+                      </>
       )
    }
 }

@@ -23,41 +23,12 @@ import {
 
 @observer
 class Table extends Component {
-   @observable sort_type="ASC"
-   static defaultProps = {
-      observationList: [
-         {
-            id: '1',
-            title: 'Learning deviations',
-            priority: 'HIGH',
-            description:
-               'It is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection',
-            category: 'category 1',
-            sub_category: 'sub_category 1',
-            due_date: '11/5/2020',
-            status: 'Action in progress',
-            assigned_to: {
-               name: 'lalitha',
-               phno: 913456788
-            }
-         }
-      ]
-   }
+   @observable sort_type
    onClick = (observationId) => {
       this.props.navigateToObservationScreen(observationId)
    }
    onClickToSort = (type) => {
-      
-      if(this.sort_type==="ASC")
-    {
-       this.sort_type="DESC"
-         this.props.sortBytDate(type,this.sort_type)
-   }
-      else
-      {
-         this.sort_type="ASC"
-      this.props.sortBytDate(type,this.sort_type,this.sort_type)
-      }
+      this.props.observationsSort(type)
    }
    renderRows = () => {
       let headings =
@@ -99,9 +70,9 @@ class Table extends Component {
                </thead>
                <tbody>
                   {observationList.map(eachObservation => (
+      
                      <TableRow
                         onClick={this.onClick.bind(this, eachObservation.id)}
-                        value={eachObservation.id}
                         key={eachObservation.id}
                      >
                         <TableData observation={eachObservation} />

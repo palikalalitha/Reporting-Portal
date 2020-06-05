@@ -12,7 +12,7 @@ export const SUB_CATEGORY_LIST = [
    { value: 'water', label: 'Water' },
    { value: 'Milk', label: 'Milk' }
 ]
-export const DEFAULT_VALUE=[{value:null}]
+export const DEFAULT_VALUE=null
 export const SEVERITY = [
    { value: 'HIGH', label: 'HIGH' },
    { value: 'LOW', label: 'LOW' },
@@ -39,7 +39,7 @@ export const RP_HEADINGS = [
    'messages'
 ]
 
-export const observationList = [
+export const OBSERVATIONLIST = [
    {
       id: '1',
       title: 'Learning deviations',
@@ -56,6 +56,7 @@ export const observationList = [
       }
    }
 ]
+
 export const TYPE_FILE = 'file'
 export const TITLE_TEST_ID = 'title'
 export const DESC_TEST_ID = 'description'

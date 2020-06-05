@@ -12,11 +12,12 @@ import { OBSERVATION_SCREEN } from '../../constants/RPRouteConstants/RPRouteCons
 @observer
 class RPAssignedObservationsRoute extends Component {
    role = this.props.history.location.state
+  
    componentDidMount() {
       this.getAssignedObservations()
    }
    getAssignedObservations = () => {
-      this.props.rpStore.getAssignedObservationList()
+      this.props.rpStore.getAssignedObservationList()    
    }
    navigateToObservationScreen = id => {
       const role = this.props.history.location.state
@@ -24,19 +25,19 @@ class RPAssignedObservationsRoute extends Component {
       this.props.history.push(`${OBSERVATION_SCREEN}/${id}`, role)
    }
    renderSuccessUI = observer(() => {
-      const { assignedObservationList,sortBytDate,offset,currentPage,totlaPages,date_type,selectedPage,sort_type,handlePage } = this.props.rpStore
+      const { assignedObservationList,sortBytDate,rpSelectedPage,rpCurrentPage,rpTotalPage,rpOffset,offset,currentPage,totlaPages,date_type,selectedPage,sort_type,handlePage } = this.props.rpStore
       return (
          <ObservationList
             roleType={this.role}
             navigateToObservationScreen={this.navigateToObservationScreen}
             sortBytDate={sortBytDate}
-            currentPage={currentPage}
-            totlaPages={totlaPages}
-            offset={offset}
+            currentPage={rpCurrentPage}
+            totlaPages={rpTotalPage}
+            offset={rpOffset}
             handlePage={handlePage}
             date_type={date_type}
             sort_type={sort_type}
-            selectedPage={selectedPage}
+            selectedPage={rpSelectedPage}
             observationList={assignedObservationList}
          />
       )

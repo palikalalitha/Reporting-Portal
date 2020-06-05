@@ -12,11 +12,11 @@ class RPServiceAPI {
          baseURL: URL
       })
    }
-   getUsersResponse() {
+   getUsersResponse(offset,limiy,request_data) {
       return networkCallWithApisauce(
          this.api,
-         `v1/observations`,
-         {},
+         `/get/rp/observations/v1/?offset=${offset}&limit=${limit}`,
+         request_data,
          apiMethods.get
       )
    }

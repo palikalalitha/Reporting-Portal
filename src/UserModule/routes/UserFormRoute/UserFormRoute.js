@@ -14,8 +14,8 @@ class UserFormRoute extends Component {
    @observable title
    @observable severity
    @observable description
-   @observable category
-   @observable sub_category
+   @observable category_id
+   @observable sub_category_id
 
    @observable errorMessageForSeverity
    @observable errorMessageForTitle
@@ -28,8 +28,8 @@ class UserFormRoute extends Component {
       this.title = ''
       this.severity = ''
       this.description = ''
-      this.category=DEFAULT_VALUE
-      this.sub_category=DEFAULT_VALUE
+      this.category_id=DEFAULT_VALUE
+      this.sub_category_id=DEFAULT_VALUE
 
       this.errorMessageForSeverity = ''
       this.errorMessageForTitle = ''
@@ -55,12 +55,12 @@ class UserFormRoute extends Component {
       this.errorMessageForSeverity = ''
    }
    onChangeToSelectCategory = option => {
-      this.category = option
+      this.category_id = option
      
    }
    onChangeToSelectSubCategory=option=>
    {
-      this.sub_category=option
+      this.sub_category_id=option
    }
    addObservation = () => {
       this.handleSubmit()
@@ -91,8 +91,8 @@ class UserFormRoute extends Component {
             this.title,
             this.severity.value,
             this.description,
-            this.category.value,
-            this.sub_category.value
+            this.category_id,
+            this.sub_category_id
          )
          this.gotoObservationList()
       }
@@ -118,9 +118,12 @@ class UserFormRoute extends Component {
          onChangeToSelectCategory,
          addObservation,
          onChangeToSelectSeverity,
-         naviagteToUserForm,
+         naviagteToUserForm,  
          gotoObservationList
       } = this
+      const {createObservationsAPIStatus,createObservationsAPIError}=userStore
+      console.log(createObservationsAPIError,createObservationsAPIStatus)
+    
 
       return (
          <UserForm

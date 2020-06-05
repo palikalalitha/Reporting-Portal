@@ -14,17 +14,16 @@ import {
 
 const ObservationScreenConatiner = styled.div`
    ${tw`flex flex-col p-10`}
-   width: 1131px;
-   height: 1045px;
    border-radius: 7px;
    border: 1px solid ${colors.lightBlueGrey};
-   margin: 60px 80px;
+   margin: 40px 80px;
 `
 
 const Wrapper = styled.div`
    ${tw`flex`}
    margin:20px 20px;
 `
+const Tab=styled.div `${tw`ml-4`}`
 const ObservationTitle = styled(Typo24DarkBlueGreyHKGroteskMedium)`
    ${tw`ml-2`}
 `
@@ -80,8 +79,12 @@ const ArrorSymbol = styled.div`
 const ButtonWrapper = styled.div`
    ${tw`flex justify-center mt-2`}
 `
+const ObservationNavbar=styled.div `${tw`flex `}
+margin: 10px 60px;
+`
 export {
    ObservationScreenConatiner,
+   ObservationNavbar,
    Dropdown,
    ButtonWrapper,
    ArrorSymbol,
@@ -92,5 +95,6 @@ export {
    Label,
    Description,
    Category,
-   SubCategory
+   SubCategory,
+   Tab
 }

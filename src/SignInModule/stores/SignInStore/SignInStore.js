@@ -26,8 +26,8 @@ class SignInStore {
    }
 
    @action.bound
-   userSignIn(requestObject, onSuccess, onFailure) {
-      const userResponse = this.authAPIService.signInAPI(requestObject)
+   userSignIn(request_data, onSuccess, onFailure) {
+      const userResponse = this.authAPIService.signInAPI(request_data)
       return bindPromiseWithOnSuccess(userResponse)
          .to(this.setGetUserSignInAPIStatus, response => {
             this.setUserSignInAPIResponse(response)
@@ -40,12 +40,12 @@ class SignInStore {
    }
 
    @action.bound
-   setUserSignInAPIResponse(response) {
-      console.log(response)
-      let token = response.access_token
-      this.access_token = token
+   setUserSignInAPIResponse(response) 
+   {
+console.log(response)
+      this.access_token = response.access_token
       this.role = response.role.toLowerCase()
-      setAccessToken(token)
+      setAccessToken(this.access_token)
    }
 
    @action.bound

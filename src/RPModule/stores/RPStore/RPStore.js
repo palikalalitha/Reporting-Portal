@@ -18,6 +18,12 @@ class RPStore extends UserStore {
    @observable due_date
    @observable due_date_privacy
 
+   @observable rpPageLimit
+   @observable rpCurrentPage
+   @observable rpOffset
+   @observable totalPages
+   @observable rpSelectedPage
+
    constructor(rpServiceResponse, userServiceResponse) {
       super(userServiceResponse)
       this.rpService = rpServiceResponse
@@ -31,6 +37,11 @@ class RPStore extends UserStore {
       this.getUpdateObservationListAPIError = null
       this.assignedObservationList = []
       this.updateRpObservationList = []
+      this.rpPageLimit=4
+      this.rpCurrentPage=1
+      this.offset=0
+      this.totalPages=0
+      this.selectedPage
       this.date = ''
       this.due_date = ''
       this.due_date_privacy = ''
@@ -70,6 +81,10 @@ class RPStore extends UserStore {
 
    @action.bound
    getAssignedObservationList() {
+      let requestObject= {
+         "date_type": this.date_type,
+         "sort_by": this.sort_type,
+         "filter_by": []} 
       const userPromise = this.rpService.getRPObservations()
       return bindPromiseWithOnSuccess(userPromise)
          .to(
@@ -84,8 +99,7 @@ class RPStore extends UserStore {
       const { offset, pageLimit } = this
       let list = response
       let updatedList = list.slice(offset, pageLimit + offset)
-      console.log(offset,pageLimit)
-      this.assignedObservationList = response.map(eachObservation => {
+      this.assignedObservationList = updatedList.map(eachObservation => {
          return new UserModel(eachObservation)
       })
    }

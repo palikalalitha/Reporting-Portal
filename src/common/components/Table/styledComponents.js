@@ -12,7 +12,7 @@ const TableRow = styled.tr`
 `
 
 const TableContainer = styled.table`
-   ${tw`ml-4`}
+   ${tw`ml-2`}
    background-color: #ffffff;
 `
 

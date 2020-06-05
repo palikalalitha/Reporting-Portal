@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import { observable } from "mobx"
 
+
 import { userStore } from '../../stores/index'
 import { ObservationList } from '../../components/ObservationList/ObservationList'
 import { UserPage } from '../../components/UserPage/UserPage'
@@ -11,21 +12,24 @@ import {
    USER_PATH,
    OBSERVATION_SCREEN
 } from '../../constants/RouteConstants'
-
+import { signInStore } from "../../../SignInModule/stores"
 @inject('signInStore')
 @observer
 class UserRoute extends React.Component {
    @observable roleType
+   @observable filterList
    constructor(props)
    {
       super(props)
+      this.filterList=[]
       this.roleType = this.props.history.location.state
    }
    componentDidMount() {
-      this.getObservationList()
+      this.doNetworkCalls()
    }
-   getObservationList = () => {
+   doNetworkCalls = () => {
       userStore.getObservationList()
+      console.log(userStore.observationList)
    }
    naviagteToUserForm = () => {
       this.props.history.push(USER_CREATION_FORM)
@@ -39,12 +43,27 @@ class UserRoute extends React.Component {
       history.push(`${OBSERVATION_SCREEN}/${id}`, this.roleType)
    }
 
+   observationsSort=(date_type,sort_type)=>
+   {
+      userStore.setDate_typeAndSortType(date_type,sort_type)
+   }
+   filterByStatus=(option)=>
+   {
+      this.filterList=option.map(eachOption=>eachOption.value)
+      console.log(this.filterList)
+   }
+   onClickToSignOut=()=>
+   {
+      this.props.signInStore.userSignOut();
+   }
    renderSuccessUI = observer(() => {
       const {
          gotoObservationList,
          naviagteToUserForm,
-         navigateToObservationScreen
+         navigateToObservationScreen,observationsSort,
+         filterByStatus
       } = this
+    
       const {
          navigatePrevPage,
          handlePage,
@@ -52,22 +71,24 @@ class UserRoute extends React.Component {
          navigateNextPage,
          currentPage,
          totlaPages,
+         observationList,
          userObservationList,
          offset,
          date_type,
          sort_type,
-         sortBytDate,
          getObservationDetailsById,
          getObservationDetailsAPIStatus,
-         getObservationDetailsAPIError
+         getObservationDetailsAPIError,
+         singleObservationDetails
       } = userStore
+      console.log(selectedPage,totlaPages,currentPage)
       return (
          <ObservationList
             detailsAPIStatus={getObservationDetailsAPIStatus}
             deatilsAPIError={getObservationDetailsAPIError}
-         
+            filterByStatus={filterByStatus}
             getObservationDetailsById={getObservationDetailsById}
-            sortBytDate={sortBytDate}
+            observationsSort={observationsSort} 
             roleType={this.roleType}
             handlePage={handlePage}
             date_type={date_type}
@@ -78,7 +99,8 @@ class UserRoute extends React.Component {
             navigateToObservationScreen={navigateToObservationScreen}
             navigateNextPage={navigateNextPage}
             gotoUserForm={naviagteToUserForm}
-            observationList={userObservationList}
+            observationList={observationList}
+            singleObservationDetails={singleObservationDetails}
             currentPage={currentPage}
             totlaPages={totlaPages}
             offset={offset}
@@ -91,23 +113,24 @@ class UserRoute extends React.Component {
          getObservationListAPIStatus,
          getObservationListAPIError,
          userObservationList,
-          getObservationDetailsAPIStatus,
-          getObservationDetailsAPIError,
-      
+         observationList,
+         getObservationDetailsAPIStatus,
+         getObservationDetailsAPIError,
       } = userStore
-      console.log(getObservationListAPIError,getObservationListAPIStatus)
-    return (
+      console.log(getObservationDetailsAPIStatus,getObservationListAPIError)
+       return (
          <UserPage
             roleType={this.roleType}
             gotoUserForm={this.gotoUserForm}
+            filterByStatus={this.filterByStatus}
             gotoUserForm={this.naviagteToUserForm}
-            observationList={userObservationList}
+            observationList={observationList}
             gotoObservationList={this.gotoObservationList}
             apiStatus={getObservationListAPIStatus}
             apiError={getObservationListAPIError}
             detailsAPIStatus={getObservationDetailsAPIStatus}
             deatilsAPIError={getObservationDetailsAPIError}
-            doNetworkCalls={this.getObservationList}
+            doNetworkCalls={this.doNetworkCalls}
             renderSuccessUI={this.renderSuccessUI}
          />
       )

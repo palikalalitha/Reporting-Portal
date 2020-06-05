@@ -13,7 +13,8 @@ import {
    TYPE_TEXT,
    LOGO,
    PRIMARY,
-   LOGIN
+   LOGIN,
+   LOADING
 } from '../../constants/SigninPageConstants'
 import i18n from '../../i18n/strings.json'
 
@@ -47,7 +48,6 @@ class SignInForm extends Component {
          errorMessageForUsername,
          onChangeUsername,
          onChangePassword,
-         status,
          apiStatus,
          apiError
       } = this.props
@@ -86,11 +86,11 @@ class SignInForm extends Component {
 
                <Button
                   buttonType={PRIMARY}
-                  buttonStatus={apiStatus === 100 ? true : false}
+                  buttonStatus={apiStatus === LOADING ? true : false}
                   onClickHandler={onClickSignIn}
                   buttonText={LOGIN}
                />
-               {/* <ErrorMessage>{apiError}</ErrorMessage> */}
+               <ErrorMessage>{errorMessage}</ErrorMessage>
                <NewAccount>
                   {noAccount}
                   <SignUPLink>{signUp}</SignUPLink>

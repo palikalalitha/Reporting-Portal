@@ -11,6 +11,7 @@ import {
 } from '../../constants/RPRouteConstants/RPRouteConstants'
 
 class RPObservations extends Component {
+   role=this.props.history.location.state
    gotoUserForm = () => {
       this.props.history.push(RP_CREATION_FORM)
    }
@@ -40,17 +41,19 @@ class RPObservations extends Component {
    }
 
    render() {
+      
       return (
-         <DesktopLayout roleType='rp'>
+         <DesktopLayout roleType={this.role}>
             <Navbar
-               roleType='user'
+               roleType={this.role}
                heading={HEADING}
                navigateToObservationScreen={this.navigateToObservationScreen}
                gotoUserForm={this.gotoUserForm}
                {...this.props}
             />
             <ObservationList
-               isRoleType='rp'
+               isRoleType={this.role}
+               roleType={this.role}
                {...this.props}
                navigateToObservationScreen={this.navigateToObservationScreen}
                gotoUserForm={this.gotoUserForm}

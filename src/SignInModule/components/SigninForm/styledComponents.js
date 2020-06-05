@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
-const Container = styled.div`${tw`flex justify-center items-center h-screen pt-20`}
+const Container = styled.div`${tw`flex justify-center items-center h-full pt-20`}
 background-color:#f1f7ff;
 }`
 const SignInContainer = styled.div`
-   ${tw`flex flex-col items-center `}
+   ${tw`flex flex-col justify-center items-center `}
    width: 500px;
    border-radius: 8px;
    background-color: white;
@@ -13,9 +13,8 @@ const SignInContainer = styled.div`
    padding-top: 48px;
 `
 
-const WelcomMessage = styled.p`
-   width: 214px;
-   height: 80px;
+const WelcomMessage = styled.p `${tw`mt-4 mb-4`} 
+ 
    font-family: Rubik;
    font-size: 32px;
    font-weight: normal;
@@ -24,14 +23,10 @@ const WelcomMessage = styled.p`
    line-height: 1.25;
    letter-spacing: normal;
    color: #171f46;
-   margin-left: 120px;
-   padding-top: 24px;
 `
 
-const Label = styled.label`
-   ${tw`mb-2`}
-   width: 66px;
-   height: 16px;
+const Label = styled.label `
+   ${tw`m-2`}
    font-family: HKGrotesk;
    font-size: 12px;
    font-weight: 600;
@@ -44,8 +39,6 @@ const Label = styled.label`
 
 const NewAccount = styled.div`
    ${tw`mb-10`}
-   width: 200px;
-   height: 24px;
    font-family: HKGrotesk;
    font-size: 14px;
    font-weight: normal;
@@ -66,7 +59,7 @@ const Wrapper = styled.div`
 `
 
 const ErrorMessage = styled.span`
-   ${tw` mt-2 w-48 text-sm`}
+   ${tw` mt-2 text-sm`}
    color:#ff0b37;
 `
 export {

@@ -12,6 +12,7 @@ import {
    Status,
    DueDate,
    Message,
+   NotAssignedText,
    TData
 } from './styledComponents'
 import { Image } from '../Image/'
@@ -28,25 +29,25 @@ class TableData extends Component {
          title,
          priority,
          due_date,
-         assigned_to,
          status,
          reported_on,
-         is_due_date_private,
-         message_count
-      } = this.props.observation
-      const { name, contact_number,role } = assigned_to
+         message_count,
+         assigned_to
+      } = this.props.observation 
+      const { name, contact_number,role } =  assigned_to
       const { bgColorStatus } = this.props
       return (
          <>
             <TData>{title}</TData>
-            <TData>{due_date}</TData>
+            <TData>{reported_on}</TData>
+            {assigned_to==="not assigned"? <NotAssignedText>Not assigned</NotAssignedText>:
             <AssignedContainer>
-               <Image imageURL={RP_PROFILE_URL} />
+            <Image imageURL={RP_PROFILE_URL} />
                <RPDetails>
                   <Name>{name}</Name>
                   <PhoneNumber>{contact_number}</PhoneNumber>
                </RPDetails>
-            </AssignedContainer>
+            </AssignedContainer>}
             <Severty status={priority}>
                <Mode>{priority}</Mode>
             </Severty>
@@ -56,7 +57,7 @@ class TableData extends Component {
                </StatusWrapper>
             </TData>
             <TData>
-               {is_due_date_private === 'public' ? due_date : 'Private'}
+               {due_date==="null"? "Private" :due_date}
             </TData>
             <TData>
                <Message>

@@ -11,11 +11,16 @@ import rpRoutes from './RPModule/routes/index'
 import userRoutes from './UserModule/routes'
 import { signInStore } from './SignInModule/stores/index'
 import { rpStore } from './RPModule/stores/index'
+import { userStore } from './UserModule/stores'
 
 class App extends React.Component {
    render() {
       return (
-         <Provider signInStore={signInStore} rpStore={rpStore}>
+         <Provider
+            signInStore={signInStore}
+            rpStore={rpStore}
+            userStore={userStore}
+         >
             <Router basename={process.env.PUBLIC_URL}>
                <Switch>
                   {signInRoutes}

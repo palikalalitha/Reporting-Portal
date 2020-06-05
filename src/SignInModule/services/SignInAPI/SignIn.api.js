@@ -2,8 +2,8 @@ import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../../constants/APIConstants'
 
-import { URL } from '../../constants/SigninPageConstants.js'
-
+// import { URL } from '../../constants/SigninPageConstants.js'
+import {URL} from "../../../common/constants/ReportingPortalconstants"
 class SignInAPI {
    api
    constructor() {
@@ -11,12 +11,11 @@ class SignInAPI {
          baseURL: URL
       })
    }
-   signInAPI(request) {
+   signInAPI(request_data) {
       return networkCallWithApisauce(
          this.api,
-         `/login/to/portal/v1`,
-         //'/sign_in/v1/',
-         request,
+         `/login/to/portal/v1/`,
+         request_data,
          apiMethods.post
       )
    }

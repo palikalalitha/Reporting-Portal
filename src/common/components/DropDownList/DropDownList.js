@@ -26,6 +26,7 @@ class DropDownList extends Component {
          testid,
          className
       } = this.props
+      console.log(value)
       return (
          <Select
             data-testid={testid}

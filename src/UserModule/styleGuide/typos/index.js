@@ -3,8 +3,6 @@ import tw from 'tailwind.macro'
 import { colors } from '../../Themes/Colors'
 
 const Typo24DarkBlueGreyHKGroteskMedium = styled.div`
-   width: 208px;
-   height: 32px;
    font-family: HKGrotesk;
    font-size: 24px;
    font-weight: 500;
@@ -55,8 +53,8 @@ const Typo14SteelHKGroteskRegular = styled.div`
 `
 
 const ObservationContainer = styled.div`
-   ${tw`focus:outline-none`}
-   margin:50px;
+   ${tw`focus:outline-none flex flex-col justify-center m-10`}
+  
 `
 //    ${tw``}
 //    border-radius: 7px;
