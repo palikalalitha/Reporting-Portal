@@ -31,13 +31,24 @@ class UserServiceAPI {
    }
 
    createObservations(request) {
-      console.log(request)
+     
       return networkCallWithApisauce(
          this.api,
          `/create/observation/v1/`,
          request,
          apiMethods.post
       )
+   }
+
+   getCategories()
+   {
+      return networkCallWithApisauce(
+         this.api,
+         `/get/categories/subcategories/v1/`,
+         {},
+         apiMethods.get
+      )
+     
    }
 }
 export { UserServiceAPI }

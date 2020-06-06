@@ -46,9 +46,6 @@ class Table extends Component {
                         onClick={this.onClickToSort.bind(this, eachHeading)}
                         imageURL={DROP_DOWN_URL}
                      />
-
-                     {/* <SortButton value={eachHeading} onClick={this.onClickToSort}>
-                       </SortButton> */}
                   </HeadingContainer>
                </TableHeadings>
             )

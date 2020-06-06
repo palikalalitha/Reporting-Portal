@@ -7,7 +7,6 @@ import { SIGN_IN_PATH } from '../../../SignInModule/constants/RouteConstants'
 
 export const ProtectedRoute = props => {
    const { component: Component, path } = props
-   console.log(isLoggedIn())
    if (isLoggedIn()) {
       return <Route component={Component} exact path={path} />
    }

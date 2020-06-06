@@ -15,7 +15,8 @@ import {
    ProfileName,
    HeaderMiddlePart,
    ObservationsTab,
-   AssignedTab
+   AssignedTab,
+   LogOutButton
 } from './styledComponents.js'
 
 import {
@@ -37,7 +38,7 @@ class Header extends Component {
       this.props.history.push(OBSERVATION_LIST, 'user')
    }
    render() {
-      const { roleType } = this.props
+      const { roleType,onClickToSignOut} = this.props
       return (
          <Container>
             <HeaderLeftPart>
@@ -54,7 +55,12 @@ class Header extends Component {
                   </ObservationsTab>
                </HeaderMiddlePart>
             )}
+               {/* <HeaderMiddlePart> */}
+            
+               {/* </HeaderMiddlePart> */}
             <HeaderRightPart>
+            <LogOutButton  onClick={onClickToSignOut}>Logout</LogOutButton>
+
                <ProfileName>Lalitha</ProfileName>
                <Image imageURL={PROFILE_URL} />
             </HeaderRightPart>

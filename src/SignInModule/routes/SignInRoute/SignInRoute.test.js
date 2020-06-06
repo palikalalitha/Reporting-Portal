@@ -41,7 +41,7 @@ describe('SignInRoute Tests', () => {
       const signInButton = getByRole('button', { name: 'Login' })
       fireEvent.click(signInButton)
       expect(usernameField).toHaveAttribute('type', 'text')
-      getByText(/Incorrect Username/i)
+      getByText(/Required Field/i)
    })
 
    it('should render password empty error message', () => {
@@ -62,7 +62,7 @@ describe('SignInRoute Tests', () => {
       const usernameField = getByRole('textbox', { type: 'text' })
       fireEvent.change(usernameField, { target: { value: username } })
       fireEvent.click(signInButton)
-      getByText(/Incorrect Password/i)
+      getByText(/Required Field/i)
    })
 
    it('should submit sign-in on press enter', () => {
@@ -81,7 +81,6 @@ describe('SignInRoute Tests', () => {
       fireEvent.change(usernameField, { target: { value: username } })
       fireEvent.change(passwordField, { target: { value: password } })
       fireEvent.click(signInButton)
-      getByText('Loading')
       getByRole('button', { name: 'Login', disabled: true })
    })
    it('should render signInRoute success state', async () => {

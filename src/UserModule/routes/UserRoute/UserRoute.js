@@ -11,15 +11,17 @@ import {
    USER_PATH,
    OBSERVATION_SCREEN
 } from '../../constants/RouteConstants'
-import { signInStore } from '../../../SignInModule/stores'
+
 @inject('signInStore')
 @observer
 class UserRoute extends React.Component {
    @observable roleType
    @observable filterList
+   @observable sort_type
    constructor(props) {
       super(props)
       this.filterList = []
+      this.sort_type="ASC"
       this.roleType = this.props.history.location.state
    }
    componentDidMount() {
@@ -27,7 +29,6 @@ class UserRoute extends React.Component {
    }
    doNetworkCalls = () => {
       userStore.getObservationList()
-      console.log(userStore.observationList)
    }
    naviagteToUserForm = () => {
       this.props.history.push(USER_CREATION_FORM)
@@ -41,12 +42,30 @@ class UserRoute extends React.Component {
       history.push(`${OBSERVATION_SCREEN}/${id}`, this.roleType)
    }
 
-   observationsSort = (date_type, sort_type) => {
-      userStore.setDate_typeAndSortType(date_type, sort_type)
+   observationsSort = (date_type) => {
+      if(this.sort_type==="ASC")
+      {
+         this.sort_type="DESC"
+      userStore.setDate_typeAndSortType(date_type, this.sort_type)
+      }
+      else
+     {
+         this.sort_type="ASC"
+      userStore.setDate_typeAndSortType(date_type, this.sort_type)
+      }
+   
    }
    filterByStatus = option => {
-      this.filterList = option.map(eachOption => eachOption.value)
-      console.log(this.filterList)
+      if(option===null)
+      {      
+         userStore.filterByStatus([])
+      }
+      else
+      {
+          this.filterList = option.map(eachOption => eachOption.value)
+         userStore.filterByStatus(this.filterList)
+      }
+      
    }
    onClickToSignOut = () => {
       this.props.signInStore.userSignOut()
@@ -77,7 +96,7 @@ class UserRoute extends React.Component {
          getObservationDetailsAPIError,
          singleObservationDetails
       } = userStore
-      console.log(selectedPage, totlaPages, currentPage)
+      console.log("getting observations",getObservationDetailsAPIError,getObservationDetailsAPIStatus)
       return (
          <ObservationList
             detailsAPIStatus={getObservationDetailsAPIStatus}
@@ -113,10 +132,10 @@ class UserRoute extends React.Component {
          getObservationDetailsAPIStatus,
          getObservationDetailsAPIError
       } = userStore
-      console.log(getObservationDetailsAPIStatus, getObservationListAPIError)
       return (
          <UserPage
             roleType={this.roleType}
+            onClickToSignOut={this.onClickToSignOut}
             gotoUserForm={this.gotoUserForm}
             filterByStatus={this.filterByStatus}
             gotoUserForm={this.naviagteToUserForm}

@@ -67,7 +67,6 @@ class ObservationScreenRoute extends React.Component {
          getObservationDetailsAPIError,
          getObservationDetailsAPIStatus
       } = this.props.userStore
-
       const { renderSuccessUI, doNetworkCalls } = this
       const role = this.props.history.location.state
       return (

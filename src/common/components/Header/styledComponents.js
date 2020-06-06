@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
+import { Button } from "../Button"
 const Heading = styled.h1`
-   width: 177px;
    outline: none;
-   height: 25px;
+  
    font-family: HKGrotesk;
    font-size: 20px;
    font-weight: 500;
@@ -46,8 +46,6 @@ const HeaderMiddlePart = styled.div`
    ${tw`flex mt-8`}
 `
 const AssignedTab = styled.h1`
-   width: 122px;
-   height: 24px;
    font-family: HKGrotesk;
    font-size: 18px;
    font-weight: bold;
@@ -59,8 +57,7 @@ const AssignedTab = styled.h1`
    margin-left: 20px;
 `
 const ObservationsTab = styled.h1`
-   width: 146px;
-   height: 24px;
+  
    font-family: HKGrotesk;
    font-size: 18px;
    font-weight: normal;
@@ -71,6 +68,18 @@ const ObservationsTab = styled.h1`
    color: #7e858e;
    margin-left: 20px;
 `
+const LogOutButton=styled.button `${tw`p-2 focus:outline-none h-10 mr-2 mt-3`} 
+background-color:#0b69ff;
+font-family: HKGrotesk;
+font-size: 16px;
+font-weight: 600;
+border-radius:4px;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.71;
+letter-spacing: normal;
+color: #ffffff;
+`
 
 export {
    Heading,
@@ -80,5 +89,6 @@ export {
    ProfileName,
    HeaderMiddlePart,
    AssignedTab,
+   LogOutButton,
    ObservationsTab
 }

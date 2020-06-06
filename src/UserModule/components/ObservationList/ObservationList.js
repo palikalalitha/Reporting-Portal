@@ -27,6 +27,7 @@ class ObservationList extends Component {
          selectedPage,
          roleType
       } = this.props
+      console.log(selectedPage,totlaPages)
       return (
          <ObservationContainer>
             {observationList.length > 0 ? (
@@ -39,8 +40,8 @@ class ObservationList extends Component {
                      breakClassName={'break-me'}
                      breakLinkClassName={'breakLinkClassName'}
                      pageCount={totlaPages}
-                     marginPagesDisplayed={2}
-                     pageRangeDisplayed={1}
+                     marginPagesDisplayed={5}
+                     pageRangeDisplayed={2}
                      onPageChange={handlePage}
                      containerClassName={'page-container'}
                      pageClassName={'page-box'}

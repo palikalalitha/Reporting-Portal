@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { Observer } from 'mobx-react'
 import Select from 'react-select'
-
-import { InputElement } from '../../../common/components/InputElement'
+import {toJS} from "mobx"
+ import { InputElement } from '../../../common/components/InputElement'
 import { DropDownList } from '../../../common/components/DropDownList/DropDownList'
 import { TextArea } from '../../../common/components/TextArea/TextArea'
 import { Button } from '../../../common/components/Button/index'
@@ -64,8 +64,13 @@ class UserForm extends Component {
          onChangeToSelectCategory,
          onChangeToSelectSubCategory,
          onChangeDescription,
-         addObservation
+         doNetworCalls,
+         getCategoriesAPIError,
+         getCategoriesAPIStatus,
+         addObservation,
+         categoryList
       } = this.props
+      console.log("in form",toJS(categoryList))
       return (
          <ReportedPortalContainer>
             <Header />
@@ -97,9 +102,7 @@ class UserForm extends Component {
                      <Label>{category}</Label>
                      <Select
                         data-testid={'select'}
-                        className={
-                           status ? 'border-container' : 'select-container'
-                        }
+                        className={'select-container'}
                         classNamePrefix={'option'}
                         onChange={onChangeToSelectCategory}
                         options={CATEGORY_LIST}
@@ -109,9 +112,7 @@ class UserForm extends Component {
                      <Label>{subCategory}</Label>
                      <Select
                         data-testid={'select'}
-                        className={
-                           status ? 'border-container' : 'select-container'
-                        }
+                        className={'select-container'}
                         classNamePrefix={'option'}
                         onChange={onChangeToSelectSubCategory}
                         options={SUB_CATEGORY_LIST}

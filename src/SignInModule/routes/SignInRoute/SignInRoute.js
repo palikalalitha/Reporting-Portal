@@ -55,7 +55,6 @@ class SignInRoute extends React.Component {
 
    onSuccess = () => {
       const { role } = this.props.signInStore
-      alert(role)
       if (role === 'user') this.props.history.push(USER_PATH, role)
       else if (role === 'rp') this.props.history.push(RP_PATH, role)
    }
@@ -106,7 +105,6 @@ class SignInRoute extends React.Component {
          errorMessageForUsername,
          errorMessageForPassword
       } = this
-      console.log(getUserSignInAPIError, getUserSignInAPIStatus)
       return (
          <SignInForm
             errorMessageForUsername={errorMessageForUsername}

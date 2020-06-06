@@ -20,7 +20,7 @@ class UserPage extends React.Component {
       } = this.props
       return (
          <DesktopLayout {...this.props}>
-            <Navbar {...this.props} />
+            <Navbar {...this.props}/>
             <LoadingWrapperWithFailure
                apiStatus={apiStatus}
                apiError={apiError}
