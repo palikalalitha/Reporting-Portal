@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavabarHeading, NavabarContainer, Wrapper } from './styledComponents'
+import { NavabarHeading, NavabarContainer, Wrapper,FilterHeading } from './styledComponents'
 import { Button } from '../Button/'
 import Select from 'react-select'
 import {
@@ -11,7 +11,7 @@ import {
 import './SelectBoxStyles.css'
 class Navbar extends Component {
    render() {
-      const { heading, gotoUserForm, roleType, filterByStatus } = this.props
+      const { heading, gotoUserForm, roleType, filterByStatus,FilterHeading } = this.props
       return (
          <>
             <NavabarContainer>

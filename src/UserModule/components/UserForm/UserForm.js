@@ -70,10 +70,9 @@ class UserForm extends Component {
          addObservation,
          categoryList
       } = this.props
-      console.log("in form",toJS(categoryList))
       return (
          <ReportedPortalContainer>
-            <Header />
+            {/* <Header /> */}
             <UserFormContainer>
                <Wrapper data-testid={back} onClick={gotoObservationList}>
                   <LeftSymbol>

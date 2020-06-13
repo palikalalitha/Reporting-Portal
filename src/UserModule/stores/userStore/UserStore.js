@@ -64,10 +64,10 @@ class UserStore {
       this.currentPage = CURRENT_PAGE
       this.totlaPages
       this.offset = OFFSET
-      this.pageLimit =12
+      this.pageLimit =3
       this.date_type = 'reported_on'
       this.sort_type = 'ASC'
-      this.selectedPage = 0
+      this.selectedPage = OFFSET
    }
    @action.bound
    setDate_typeAndSortType(date_type, sort_type) {
@@ -123,7 +123,7 @@ class UserStore {
    @action.bound
    handlePage(page) {
       let selected = page.selected
-      this.offset = Math.ceil(selected * this.currentPage)
+      this.offset = Math.ceil(selected * this.pageLimit)
       this.selectedPage = page.selected
       this.getObservationList()
    }
@@ -146,17 +146,20 @@ class UserStore {
 
    @action.bound
    setObservationDeatilsResponse(response) {
+      console.log(response)
+      const {title,description,priority,status,reported_on,due_date,is_due_date_private}=response
+
       this.singleObservationDetails = {
-         title: response.title,
-         description: response.description,
-         priority: response.priority,
-         status: response.status,
-         reported_on: response.reported_on,
-         category_id: response.category,
-         sub_category_id: response.sub_category,
-         due_date: response.due_date,
-         due_date_privacy: response.is_due_date_private,
-         assigned_to: response.assigned_to
+         title: title,
+         description:description,
+         priority:priority,
+         status: status,
+         reported_on: reported_on,
+         category_name: response.category_name,
+         sub_category_name :response.sub_category_name,
+         due_date: due_date,
+         due_date_privacy: is_due_date_private,
+         assigned_to_name: response.assigned_to_name
       }
    }
    @computed

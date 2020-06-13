@@ -11,6 +11,7 @@ class RadioButton extends Component {
    }
    render() {
       const { list, handleOptionChange, roleType, value } = this.props
+      console.log(value)
       return (
          <>
             {list.map(eachItem => (

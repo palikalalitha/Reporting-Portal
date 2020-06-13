@@ -50,8 +50,9 @@ class ObservationScreen extends Component {
          description,
          priority,
          due_date,
-         category,
-         sub_category,
+         sub_category_name,
+         category_name,
+         assigned_to_name,
          status,
          due_date_privacy,
          observation,
@@ -62,7 +63,7 @@ class ObservationScreen extends Component {
          isRoleType
       } = this.props
       const role = this.props.history.location.state
-      console.log(due_date_privacy, due_date)
+      console.log(assigned_to_name)
       return (
          <>
             <ObservationNavbar>
@@ -83,7 +84,7 @@ class ObservationScreen extends Component {
                      <Select
                         data-testid={'category'}
                         className={'select-container'}
-                        defaultInputValue={category}
+                        defaultInputValue={category_name}
                         classNamePrefix={'option'}
                         isDisabled={
                            role === 'user' || role === 'rp' ? true : false
@@ -91,11 +92,11 @@ class ObservationScreen extends Component {
                      />
                   </Category>
                   <SubCategory>
-                     <Label>sub Category</Label>
+                     <Label>Sub Category</Label>
                      <Select
                         data-testid={'sub'}
                         className={'select-container'}
-                        defaultInputValue={sub_category}
+                        defaultInputValue={sub_category_name}
                         classNamePrefix={'option'}
                         isDisabled={
                            role === 'user' || role === 'rp' ? true : false
@@ -139,7 +140,7 @@ class ObservationScreen extends Component {
                   <Label>Assigned to</Label>
                   <DropDownList
                      roleType={role}
-                     value={value}
+                     value={assigned_to_name}
                      onChangeHandler={onChangeSelectValue}
                   />
                </Wrapper>

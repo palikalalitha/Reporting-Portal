@@ -8,6 +8,7 @@ import { UserForm } from '../../components/UserForm/UserForm'
 import { ERROR_MESSAGE, DEFAULT_VALUE } from '../../constants/userPageConstants'
 import { USER_CREATION_FORM } from '../../constants/RouteConstants'
 import LoadingWrapperWithFailure from "../../../common/components/LoadingWrapperWithFailure"
+import { DesktopLayout } from "../../../common/components/DesktopLayout/DesktopLayout"
 
 @inject("userStore")
 @observer
@@ -144,7 +145,6 @@ class UserFormRoute extends Component {
          onChangeToSelectSubCategory,
          onChangeToSelectCategory,
          addObservation,
-         
          onChangeToSelectSeverity,
          naviagteToUserForm,
          gotoObservationList
@@ -183,6 +183,7 @@ class UserFormRoute extends Component {
          getCategoriesAPIStatus,
       } =this.props.userStore
       return (
+         <DesktopLayout>
          <LoadingWrapperWithFailure
 
          apiStatus={getCategoriesAPIStatus}
@@ -190,6 +191,7 @@ class UserFormRoute extends Component {
          renderSuccessUI={this.renderSuccessUI}
          onRetryClick={this.doNetworkCalls}
          />
+         </DesktopLayout>
         
       )
    }

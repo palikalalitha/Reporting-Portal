@@ -11,6 +11,7 @@ import {
    USER_PATH,
    OBSERVATION_SCREEN
 } from '../../constants/RouteConstants'
+import {SIGN_IN_PATH} from "../../../SignInModule/constants/RouteConstants"
 
 @inject('signInStore')
 @observer
@@ -68,7 +69,9 @@ class UserRoute extends React.Component {
       
    }
    onClickToSignOut = () => {
+      let { history } = this.props
       this.props.signInStore.userSignOut()
+      history.replace(SIGN_IN_PATH)
    }
    renderSuccessUI = observer(() => {
       const {
@@ -96,7 +99,6 @@ class UserRoute extends React.Component {
          getObservationDetailsAPIError,
          singleObservationDetails
       } = userStore
-      console.log("getting observations",getObservationDetailsAPIError,getObservationDetailsAPIStatus)
       return (
          <ObservationList
             detailsAPIStatus={getObservationDetailsAPIStatus}
@@ -132,6 +134,7 @@ class UserRoute extends React.Component {
          getObservationDetailsAPIStatus,
          getObservationDetailsAPIError
       } = userStore
+    
       return (
          <UserPage
             roleType={this.roleType}

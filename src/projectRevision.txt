@@ -1,0 +1,17 @@
+Routing
+
+nested path Routing 
+/project/projectid/screns/screeid
+usage -in page refreshing nested path used,find out specific page easily
+
+query paramaters
+used for state prersistance
+query string
+
+using NavigationUtils=>write push and replace functions in NavigationUtils
+cleancode
+
+push and replace 
+there is no usage of goback function use replace otherwise use push
+redirect=>
+?"

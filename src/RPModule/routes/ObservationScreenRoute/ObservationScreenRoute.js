@@ -15,7 +15,6 @@ class ObservationScreenRoute extends React.Component {
    @observable roleType
    @observable startDate
    componentDidMount() {
-      console.log(this.props.history)
       this.doNetworkCalls()
    }
    doNetworkCalls = () => {
@@ -34,8 +33,6 @@ class ObservationScreenRoute extends React.Component {
    renderSuccessUI = observer(() => {
       const {
          getSingleObservationDetails,
-         getObservationDetailsAPIError,
-         getObservationDetailsAPIStatus
       } = this.props.userStore
       const {
          title,
@@ -43,19 +40,22 @@ class ObservationScreenRoute extends React.Component {
          priority,
          status,
          reported_on,
-         category_id,
-         sub_category_id,
+         category_name,
+         sub_category_name,
          due_date,
          due_date_privacy,
-         assigned_to
+         assigned_to_name
       } = getSingleObservationDetails
       return (
          <ObservationScreen
             reported_on={reported_on}
             title={title}
             description={description}
+            sub_category_name={sub_category_name}
+            category_name={category_name}
             priority={priority}
             due_date={due_date}
+            assigned_to_name={assigned_to_name}
             status={status}
             due_date_privacy={due_date_privacy}
          />
@@ -63,6 +63,8 @@ class ObservationScreenRoute extends React.Component {
    })
 
    render() {
+      const {id}=this.props.match.params
+      console.log("id",this.props.match.params.id.slice(1))
       const {
          getObservationDetailsAPIError,
          getObservationDetailsAPIStatus

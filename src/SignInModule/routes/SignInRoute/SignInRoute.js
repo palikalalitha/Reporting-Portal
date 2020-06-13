@@ -54,10 +54,10 @@ class SignInRoute extends React.Component {
    }
 
    onSuccess = () => {
-      const { role } = this.props.signInStore
-      if (role === 'user') this.props.history.push(USER_PATH, role)
-      else if (role === 'rp') this.props.history.push(RP_PATH, role)
-   }
+      const { role,access_token } = this.props.signInStore
+      if (role==='user') 
+      this.props.history.replace(USER_PATH, role)
+      }
 
    onFailure = () => {
       const { getUserSignInAPIError: apiError } = this.props.signInStore
@@ -66,15 +66,15 @@ class SignInRoute extends React.Component {
       }
    }
    onClickSignIn = () => {
-      if (this.username === EMPTY_STRING || this.username === undefined) {
+      if(this.username===EMPTY_STRING)
+      {
          this.errorMessageForUsername = REQUIRED_FIELD
       }
-      if (this.password === EMPTY_STRING || this.password === undefined) {
+      if (this.password === EMPTY_STRING) {
          this.errorMessageForPassword = REQUIRED_FIELD
-      } else if (
-         this.username !== EMPTY_STRING &&
-         this.password !== EMPTY_STRING
-      ) {
+      }
+       else if (this.username !== EMPTY_STRING ||
+         this.password !== EMPTY_STRING) {
          this.handleSignIn()
       }
    }

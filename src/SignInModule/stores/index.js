@@ -4,6 +4,6 @@ import { SignInFixture } from '../services/SignInFixture/SignIn.fixture'
 const signInService = new SignInAPI()
 
 const signInFixture = new SignInFixture()
-const signInStore = new SignInStore(signInService)
+const signInStore = new SignInStore(signInFixture)
 
 export { signInService, signInStore }

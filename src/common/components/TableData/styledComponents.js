@@ -96,12 +96,7 @@ const Severty = styled.td`
    align-self: center;
    text-align: center;
    background-color: ${props =>
-      props.status == 'HIGH'
-         ? '#ff0b37'
-         : props.status == 'LOW'
-         ? '#2dca73'
-         : '#ffb800'};
-`
+      props.status == 'HIGH'? '#ff0b37': props.status == 'LOW'? '#2dca73': '#ffb800'};`
 
 const Mode = styled.label`
    ${tw`pt-1`}

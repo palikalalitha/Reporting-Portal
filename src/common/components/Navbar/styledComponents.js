@@ -12,9 +12,11 @@ const NavabarHeading = styled.h1`
    color: #0b69ff;
 `
 const Wrapper = styled.div`
-   ${tw`flex flex-col justify-end items-end mr-8`}
+   ${tw`flex  justify-end items-end mr-8`}
 `
 const NavabarContainer = styled.div`
    ${tw`flex justify-between items-center focus:outline-none m-10 `}
 `
-export { NavabarHeading, NavabarContainer, Wrapper }
+
+const FilterHeading=styled.div `${tw`mt-4`}`
+export { NavabarHeading, NavabarContainer,FilterHeading, Wrapper }

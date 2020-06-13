@@ -69,7 +69,7 @@ const ObservationsTab = styled.h1`
    margin-left: 20px;
 `
 const LogOutButton=styled.button `${tw`p-2 focus:outline-none h-10 mr-2 mt-3`} 
-background-color:#0b69ff;
+box-shadow: 0 0 0 1px silver;
 font-family: HKGrotesk;
 font-size: 16px;
 font-weight: 600;
@@ -78,7 +78,6 @@ font-stretch: normal;
 font-style: normal;
 line-height: 1.71;
 letter-spacing: normal;
-color: #ffffff;
 `
 
 export {
