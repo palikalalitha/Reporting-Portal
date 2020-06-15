@@ -2,16 +2,18 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
-import {getLoadingStatus} from "@ib/api-utils"
+import { getLoadingStatus } from '@ib/api-utils'
 import { userStore } from '../../stores/index'
 import { ObservationList } from '../../components/ObservationList/ObservationList'
 import { UserPage } from '../../components/UserPage/UserPage'
+import { OBSERVATION_SCREEN } from '../../constants/RouteConstants'
+import { SIGN_IN_PATH } from '../../../SignInModule/constants/RouteConstants'
 import {
-   OBSERVATION_SCREEN
-} from '../../constants/RouteConstants'
-import {SIGN_IN_PATH} from "../../../SignInModule/constants/RouteConstants"
-import { gotoObservationCreationForm,gotoObservationDetails,gotoSignInPage ,gotoPreviousPage} from "../../utils/NavigationUtils"
-
+   gotoObservationCreationForm,
+   gotoObservationDetails,
+   gotoSignInPage,
+   gotoPreviousPage
+} from '../../utils/NavigationUtils'
 
 @inject('signInStore')
 @observer
@@ -22,9 +24,9 @@ class UserRoute extends React.Component {
    constructor(props) {
       super(props)
       this.filterList = []
-      this.sort_type="ASC"
-     // console.log(this.props.signInStore.role)
-     console.log(this.props.history.location)
+      this.sort_type = 'ASC'
+      // console.log(this.props.signInStore.role)
+      console.log(this.props.history.location)
       this.roleType = this.props.history.location.state
    }
    componentDidMount() {
@@ -32,54 +34,45 @@ class UserRoute extends React.Component {
    }
    doNetworkCalls = () => {
       userStore.getObservationList()
-     userStore.onClickTogetCategories()
+      userStore.onClickTogetCategories()
    }
    naviagteToUserForm = () => {
-      const {history}=this.props
+      const { history } = this.props
       gotoObservationCreationForm(history)
       //this.props.history.push(USER_CREATION_FORM)
    }
    gotoObservationList = () => {
-      const {history}= this.props
+      const { history } = this.props
       gotoPreviousPage(history)
       // this.props.history.goBack()
    }
    navigateToObservationScreen = id => {
       let { history } = this.props
       userStore.getObservationDetailsById(id)
-      gotoObservationDetails(history,id,this.roleType)     
+      gotoObservationDetails(history, id, this.roleType)
    }
 
-   observationsSort = (date_type) => {
-      if(this.sort_type==="ASC")
-      {
-         this.sort_type="DESC"
-      userStore.setDate_typeAndSortType(date_type, this.sort_type)
+   observationsSort = date_type => {
+      if (this.sort_type === 'ASC') {
+         this.sort_type = 'DESC'
+         userStore.setDate_typeAndSortType(date_type, this.sort_type)
+      } else {
+         this.sort_type = 'ASC'
+         userStore.setDate_typeAndSortType(date_type, this.sort_type)
       }
-      else
-     {
-         this.sort_type="ASC"
-      userStore.setDate_typeAndSortType(date_type, this.sort_type)
-      }
-   
    }
    filterByStatus = option => {
-      if(option===null)
-      {      
+      if (option === null) {
          userStore.filterByStatus([])
-      }
-      else
-      {
-          this.filterList = option.map(eachOption => eachOption.value)
+      } else {
+         this.filterList = option.map(eachOption => eachOption.value)
          userStore.filterByStatus(this.filterList)
       }
-      
    }
    onClickToSignOut = () => {
       let { history } = this.props
       this.props.signInStore.userSignOut()
       gotoSignInPage(history)
-     
    }
    renderSuccessUI = observer(() => {
       const {
@@ -110,7 +103,7 @@ class UserRoute extends React.Component {
       } = userStore
       return (
          <ObservationList
-         categories={categories}
+            categories={categories}
             detailsAPIStatus={getObservationDetailsAPIStatus}
             deatilsAPIError={getObservationDetailsAPIError}
             filterByStatus={filterByStatus}
@@ -145,10 +138,10 @@ class UserRoute extends React.Component {
          getObservationDetailsAPIError,
          getCategoriesAPIError,
          getCategoriesAPIStatus,
-        categories
+         categories
       } = userStore
-   // const apiStatus=getLoadingStatus(getObservationListAPIStatus,getCategoriesAPIStatus) 
-   return (
+      // const apiStatus=getLoadingStatus(getObservationListAPIStatus,getCategoriesAPIStatus)
+      return (
          <UserPage
             roleType={this.roleType}
             categories={categories}

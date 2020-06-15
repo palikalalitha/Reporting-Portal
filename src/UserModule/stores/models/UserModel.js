@@ -20,7 +20,7 @@ class UserModel extends Component {
       this.status = observation.status
       if (observation.assigned_to !== null) {
          this.assigned_to = {
-          //  id: observation.assigned_to.id,
+            //  id: observation.assigned_to.id,
             name: observation.assigned_to.name,
             contact_number: observation.assigned_to.contact_number,
             role: observation.assigned_to.role

@@ -47,8 +47,10 @@ class TableData extends Component {
                   <Image imageURL={RP_PROFILE_URL} />
                   <RPDetails>
                      <Name>{name}</Name>
-                     <PhoneNumber>Phno:9234435656
-                        {contact_number}</PhoneNumber>
+                     <PhoneNumber>
+                        Phno:9234435656
+                        {contact_number}
+                     </PhoneNumber>
                   </RPDetails>
                </AssignedContainer>
             )}

@@ -10,7 +10,7 @@ import {
    LOADING,
    EMPTY_STRING
 } from '../../constants/SigninPageConstants.js'
-import {gotoUserPage,gotoRPPage} from "../../utils/NavigationUtils"
+import { gotoUserPage, gotoRPPage } from '../../utils/NavigationUtils'
 
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 
@@ -51,12 +51,10 @@ class SignInRoute extends React.Component {
    }
 
    onSuccess = () => {
-      const { role,access_token } = this.props.signInStore
-      const {history}= this.props
-      if(role==="user")
-      gotoUserPage(history,role)
-      else if(role==="rp")
-      gotoRPPage(history,role)
+      const { role, access_token } = this.props.signInStore
+      const { history } = this.props
+      if (role === 'user') gotoUserPage(history, role)
+      else if (role === 'rp') gotoRPPage(history, role)
    }
 
    onFailure = () => {
@@ -66,15 +64,15 @@ class SignInRoute extends React.Component {
       }
    }
    onClickSignIn = () => {
-      if(this.username===EMPTY_STRING)
-      {
+      if (this.username === EMPTY_STRING) {
          this.errorMessageForUsername = REQUIRED_FIELD
       }
       if (this.password === EMPTY_STRING) {
          this.errorMessageForPassword = REQUIRED_FIELD
-      }
-       else if (this.username !== EMPTY_STRING ||
-         this.password !== EMPTY_STRING) {
+      } else if (
+         this.username !== EMPTY_STRING ||
+         this.password !== EMPTY_STRING
+      ) {
          this.handleSignIn()
       }
    }

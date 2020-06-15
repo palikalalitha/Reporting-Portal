@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { observable, toJS } from 'mobx'
 import { withRouter } from 'react-router-dom'
-import { observer ,inject} from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import { UserForm } from '../../components/UserForm/UserForm'
 
 import { ERROR_MESSAGE, DEFAULT_VALUE } from '../../constants/userPageConstants'
 import { USER_CREATION_FORM } from '../../constants/RouteConstants'
-import LoadingWrapperWithFailure from "../../../common/components/LoadingWrapperWithFailure"
-import { DesktopLayout } from "../../../common/components/DesktopLayout/DesktopLayout"
+import LoadingWrapperWithFailure from '../../../common/components/LoadingWrapperWithFailure'
+import { DesktopLayout } from '../../../common/components/DesktopLayout/DesktopLayout'
 
-@inject("userStore")
+@inject('userStore')
 @observer
 class UserFormRoute extends Component {
    @observable title
@@ -18,8 +18,8 @@ class UserFormRoute extends Component {
    @observable description
    @observable category_id
    @observable sub_category_id
-   @observable category=[]
-    subCategory=[]
+   @observable category = []
+   subCategory = []
 
    @observable errorMessageForSeverity
    @observable errorMessageForTitle
@@ -30,22 +30,26 @@ class UserFormRoute extends Component {
       super()
       this.init()
    }
-   componentDidMount()
-   {
+   componentDidMount() {
       this.doNetworkCalls()
    }
-   doNetworkCalls=()=>
-   {
-      const {categories}=this.props.userStore
-      this.category[0]=[{value:"Select",label:""}]
+   doNetworkCalls = () => {
+      const { categories } = this.props.userStore
+      this.category[0] = [{ value: 'Select', label: '' }]
       this.props.userStore.onClickTogetCategories()
-      categories.map((eachCategory,index)=>
-         {
-            this.category[eachCategory.category_id]=[{value:eachCategory.category_name ,label:eachCategory.category_name}]
+      categories.map((eachCategory, index) => {
+         this.category[eachCategory.category_id] = [
+            {
+               value: eachCategory.category_name,
+               label: eachCategory.category_name
+            }
+         ]
 
-            this.subCategory[eachCategory.category_id]=[eachCategory.sub_category]
-         })
-       }
+         this.subCategory[eachCategory.category_id] = [
+            eachCategory.sub_category
+         ]
+      })
+   }
    init = () => {
       this.title = ''
       this.severity = ''
@@ -80,7 +84,7 @@ class UserFormRoute extends Component {
    onChangeToSelectSubCategory = option => {
       this.sub_category_id = option
    }
-     addObservation = () => {
+   addObservation = () => {
       this.handleSubmit()
    }
    handleSubmit = () => {
@@ -125,9 +129,7 @@ class UserFormRoute extends Component {
    gotoObservationList = () => {
       this.props.history.goBack()
    }
-   renderSuccessUI=observer(()=>
-   
-   {
+   renderSuccessUI = observer(() => {
       const {
          title,
          severity,
@@ -148,45 +150,45 @@ class UserFormRoute extends Component {
          createObservationsAPIStatus,
          createObservationsAPIError,
          getCategoriesAPIError,
-         getCategoriesAPIStatus,
-      } =this.props.userStore
-      return(
-      <UserForm
-      doNetworkCalls={this.doNetworkCalls}
-      categoryList={this.categoryList}
-         gotoObservationList={gotoObservationList}
-         gotoUserForm={naviagteToUserForm}
-         observationTitle={title}
-         observationDescription={description}
-         observationSeverity={severity}
-         errorMessageForSeverity={errorMessageForSeverity}
-         errorMessageForDescription={errorMessageForDescription}
-         errorMessageForTitle={errorMessageForTitle}
-         onChangeTitle={onChangeTitle}
-         onChangeToSelectCategory={onChangeToSelectCategory}
-         onChangeToSelectSubCategory={onChangeToSelectSubCategory}
-         onChangeDescription={onChangeDescription}
-         onChangeSelectValue={onChangeToSelectSeverity}
-         addObservation={addObservation}
-      />
-   )})
+         getCategoriesAPIStatus
+      } = this.props.userStore
+      return (
+         <UserForm
+            doNetworkCalls={this.doNetworkCalls}
+            categoryList={this.categoryList}
+            gotoObservationList={gotoObservationList}
+            gotoUserForm={naviagteToUserForm}
+            observationTitle={title}
+            observationDescription={description}
+            observationSeverity={severity}
+            errorMessageForSeverity={errorMessageForSeverity}
+            errorMessageForDescription={errorMessageForDescription}
+            errorMessageForTitle={errorMessageForTitle}
+            onChangeTitle={onChangeTitle}
+            onChangeToSelectCategory={onChangeToSelectCategory}
+            onChangeToSelectSubCategory={onChangeToSelectSubCategory}
+            onChangeDescription={onChangeDescription}
+            onChangeSelectValue={onChangeToSelectSeverity}
+            addObservation={addObservation}
+         />
+      )
+   })
    render() {
       const {
          createObservationsAPIStatus,
          createObservationsAPIError,
          getCategoriesAPIError,
-         getCategoriesAPIStatus,
-      } =this.props.userStore
+         getCategoriesAPIStatus
+      } = this.props.userStore
       return (
          <DesktopLayout>
-         <LoadingWrapperWithFailure
-         apiStatus={getCategoriesAPIStatus}
-         apiError={getCategoriesAPIError}
-         renderSuccessUI={this.renderSuccessUI}
-         onRetryClick={this.doNetworkCalls}
-         />
+            <LoadingWrapperWithFailure
+               apiStatus={getCategoriesAPIStatus}
+               apiError={getCategoriesAPIError}
+               renderSuccessUI={this.renderSuccessUI}
+               onRetryClick={this.doNetworkCalls}
+            />
          </DesktopLayout>
-        
       )
    }
 }

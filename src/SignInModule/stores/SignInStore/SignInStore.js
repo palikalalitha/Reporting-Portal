@@ -6,7 +6,7 @@ import {
    setAccessToken,
    clearUserSession
 } from '../../../common/utils/StorageUtils.js'
-import { SIGN_IN_PATH } from "../../constants/RouteConstants.js"
+import { SIGN_IN_PATH } from '../../constants/RouteConstants.js'
 
 class SignInStore {
    @observable getUserSignInAPIStatus

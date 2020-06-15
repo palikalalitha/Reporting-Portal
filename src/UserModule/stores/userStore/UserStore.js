@@ -13,15 +13,13 @@ import { UserModel } from '../models/UserModel'
 
 class UserStore {
    @observable observationList
-   
+
    @observable getObservationListAPIStatus
    @observable getObservationListAPIError
-
 
    @observable singleObservationDetails
    @observable getObservationDetailsAPIStatus
    @observable getObservationDetailsAPIError
-
 
    @observable createObservationsAPIStatus
    @observable createObservationsAPIError
@@ -59,12 +57,12 @@ class UserStore {
 
       this.observationList = []
       this.singleObservationDetails = []
-      this.filterList=[]
-      this.categories=[];
+      this.filterList = []
+      this.categories = []
       this.currentPage = CURRENT_PAGE
       this.totlaPages
       this.offset = OFFSET
-      this.pageLimit =3
+      this.pageLimit = 3
       this.date_type = 'reported_on'
       this.sort_type = 'ASC'
       this.selectedPage = OFFSET
@@ -73,12 +71,11 @@ class UserStore {
    setDate_typeAndSortType(date_type, sort_type) {
       this.date_Type = date_type
       this.sort_type = sort_type
-        this.getObservationList()
+      this.getObservationList()
    }
    @action.bound
-   filterByStatus(statusList)
-   {
-      this.filterList=statusList
+   filterByStatus(statusList) {
+      this.filterList = statusList
       this.getObservationList()
    }
    @action.bound
@@ -86,7 +83,7 @@ class UserStore {
       let requestObject = {
          date_type: this.date_type,
          sort_by: this.sort_type,
-         filter_by:this.filterList
+         filter_by: this.filterList
       }
       const userPromise = this.userService.getUsersResponse(
          this.offset,
@@ -102,17 +99,18 @@ class UserStore {
    }
    @action.bound
    setObservationListResponse(response) {
-      let list=response
-      let updateList=list.slice(this.offset,this.pageLimit+this.offset)
-      this.observationList=updateList.map(each=> {return new UserModel(each)})
-      this.totlaPages= Math.ceil(response.length/this.pageLimit)
+      let list = response
+      let updateList = list.slice(this.offset, this.pageLimit + this.offset)
+      this.observationList = updateList.map(each => {
+         return new UserModel(each)
+      })
+      this.totlaPages = Math.ceil(response.length / this.pageLimit)
       //below code using backend api response
       //   this.observationList = response['total_list'].map(eachObservation => {
       //          return new UserModel(eachObservation)
       //       })
-         
+
       //       this.totlaPages = Math.ceil(response['count'] / this.pageLimit)
-     
    }
    @action.bound
    setGetObservationListAPIError(error) {
@@ -151,15 +149,23 @@ class UserStore {
 
    @action.bound
    setObservationDeatilsResponse(response) {
-      const {title,description,priority,status,reported_on,due_date,is_due_date_private}=response
+      const {
+         title,
+         description,
+         priority,
+         status,
+         reported_on,
+         due_date,
+         is_due_date_private
+      } = response
       this.singleObservationDetails = {
          title: title,
-         description:description,
-         priority:priority,
+         description: description,
+         priority: priority,
          status: status,
          reported_on: reported_on,
          category_name: response.category_name,
-         sub_category_name :response.sub_category_name,
+         sub_category_name: response.sub_category_name,
          due_date: due_date,
          due_date_privacy: is_due_date_private,
          assigned_to_name: response.assigned_to_name
@@ -179,12 +185,11 @@ class UserStore {
       observationSeverity,
       observationDesc,
       category,
-      SubCategory)
-   {
-      if(category===null||SubCategory===null)
-      {
-      category=null
-      SubCategory=null
+      SubCategory
+   ) {
+      if (category === null || SubCategory === null) {
+         category = null
+         SubCategory = null
       }
       let observationObj = {
          title: observationTitle,
@@ -234,10 +239,8 @@ class UserStore {
       this.getCategoriesAPIError = error
    }
    @action.bound
-   setCategoriesResponse(response)
-   {
-      this.categories=response
-
+   setCategoriesResponse(response) {
+      this.categories = response
    }
    @computed
    get userObservationList() {

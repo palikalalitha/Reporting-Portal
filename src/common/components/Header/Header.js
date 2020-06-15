@@ -38,7 +38,7 @@ class Header extends Component {
       this.props.history.push(OBSERVATION_LIST, 'user')
    }
    render() {
-      const { roleType,onClickToSignOut} = this.props
+      const { roleType, onClickToSignOut } = this.props
       return (
          <Container>
             <HeaderLeftPart>
@@ -55,11 +55,11 @@ class Header extends Component {
                   </ObservationsTab>
                </HeaderMiddlePart>
             )}
-               {/* <HeaderMiddlePart> */}
-            
-               {/* </HeaderMiddlePart> */}
+            {/* <HeaderMiddlePart> */}
+
+            {/* </HeaderMiddlePart> */}
             <HeaderRightPart>
-            <LogOutButton  onClick={onClickToSignOut}>Logout</LogOutButton>
+               <LogOutButton onClick={onClickToSignOut}>Logout</LogOutButton>
 
                <ProfileName>Lalitha</ProfileName>
                <Image imageURL={PROFILE_URL} />

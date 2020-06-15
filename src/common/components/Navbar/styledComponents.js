@@ -18,5 +18,7 @@ const NavabarContainer = styled.div`
    ${tw`flex justify-between items-center focus:outline-none m-10 `}
 `
 
-const FilterHeading=styled.div `${tw`mt-4`}`
-export { NavabarHeading, NavabarContainer,FilterHeading, Wrapper }
+const FilterHeading = styled.div`
+   ${tw`mt-4`}
+`
+export { NavabarHeading, NavabarContainer, FilterHeading, Wrapper }

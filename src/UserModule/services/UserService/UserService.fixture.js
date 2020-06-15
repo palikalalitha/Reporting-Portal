@@ -1,10 +1,10 @@
 import observationList from '../../fixtures/getObservationList.json'
-import signleObservationDetails from "../../fixtures/getObservationById.json"
+import signleObservationDetails from '../../fixtures/getObservationById.json'
 
 class UserService {
    getUsersResponse() {
       return new Promise((resolve, reject) => {
-        setTimeout(()=> resolve(observationList),3000)
+         setTimeout(() => resolve(observationList), 3000)
       })
    }
    createObservations(request) {
@@ -15,16 +15,21 @@ class UserService {
    }
    getObservationDeatilsById(id) {
       return new Promise((resolve, reject) => {
-         resolve(observationList[id-1])
+         resolve(observationList[id - 1])
       })
    }
-   getCategories()
-   {
-         return new Promise((resolve, reject) => {
-            setTimeout(()=>   resolve([{ value: "1", label: 'Cleaning' },
-            { value: "2", label: 'Water' },
-            { value: "3", label: 'KeybBoard' }]),3000)
-         })
+   getCategories() {
+      return new Promise((resolve, reject) => {
+         setTimeout(
+            () =>
+               resolve([
+                  { value: '1', label: 'Cleaning' },
+                  { value: '2', label: 'Water' },
+                  { value: '3', label: 'KeybBoard' }
+               ]),
+            3000
+         )
+      })
    }
 }
 export default UserService

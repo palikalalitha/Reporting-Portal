@@ -30,9 +30,7 @@ class ObservationScreenRoute extends React.Component {
       this.value = option
    }
    renderSuccessUI = observer(() => {
-      const {
-         getSingleObservationDetails,
-      } = this.props.userStore
+      const { getSingleObservationDetails } = this.props.userStore
       const {
          title,
          description,
@@ -62,7 +60,7 @@ class ObservationScreenRoute extends React.Component {
    })
 
    render() {
-      const {id}=this.props.match.params
+      const { id } = this.props.match.params
       const {
          getObservationDetailsAPIError,
          getObservationDetailsAPIStatus

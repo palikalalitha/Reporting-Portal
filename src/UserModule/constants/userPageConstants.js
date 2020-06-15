@@ -3,22 +3,22 @@ export const SUBMIT = 'Submit'
 export const ERROR_MESSAGE = 'Enter Required field'
 export const STATUS = 'optional'
 export const CATEGORY_LIST = [
-   { value: "1", label: 'Cleaning' },
-   { value: "2", label: 'Water' },
-   { value: "3", label: 'KeybBoard' }
+   { value: '1', label: 'Cleaning' },
+   { value: '2', label: 'Water' },
+   { value: '3', label: 'KeybBoard' }
 ]
 export const SUB_CATEGORY_LIST = [
-   { value: "1", label: 'Cleaning is not completed' },
-   { value: "2", label: 'Dustbin in not clead' },
-   { value: "3", label: 'Water leakage' },
-   { value: "4", label: 'Water Blocked' },
-   { value: "5", label: 'keyboards not working' } 
+   { value: '1', label: 'Cleaning is not completed' },
+   { value: '2', label: 'Dustbin in not clead' },
+   { value: '3', label: 'Water leakage' },
+   { value: '4', label: 'Water Blocked' },
+   { value: '5', label: 'keyboards not working' }
 ]
-export const DEFAULT_VALUE ={ value:null, label: '' }
+export const DEFAULT_VALUE = { value: null, label: '' }
 export const SEVERITY = [
    { value: 'HIGH', label: 'HIGH' },
    { value: 'LOW', label: 'LOW' },
-   { value: 'MEDIUM', label: 'MEDIUM' },
+   { value: 'MEDIUM', label: 'MEDIUM' }
 ]
 export const USER_HEADINGS = [
    'title',

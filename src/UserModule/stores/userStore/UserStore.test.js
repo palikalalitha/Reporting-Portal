@@ -50,7 +50,7 @@ describe('user store test', () => {
       const mockSignInAPI = jest.fn()
       mockSignInAPI.mockReturnValue(mockSuccessPromise)
       userService.getUsersResponse = mockSignInAPI
-      const handlePage=jest.fn()
+      const handlePage = jest.fn()
       handlePage(1)
       expect(handlePage).toHaveBeenCalled()
       await userStore.getObservationList()
@@ -58,7 +58,7 @@ describe('user store test', () => {
       // handlePage(5)
       // expect(handlePage).toHaveBeenCalled()
       // await userStore.getObservationList()
-      // console.log(userStore.observationList) 
+      // console.log(userStore.observationList)
       // expect(userStore.getObservationListAPIStatus).toBe(API_SUCCESS)
    })
    it('should test the add Observation function in user store', async () => {
@@ -68,17 +68,18 @@ describe('user store test', () => {
       const mockSignInAPI = jest.fn()
       mockSignInAPI.mockReturnValue(mockSuccessPromise)
       userService.getUsersResponse = mockSignInAPI
-      const   onAddObservationList=jest.fn()
-      onAddObservationList("observationTitle",
-         "observationSeverity",
-         "observationDesc",
-         "category",
-         "SubCategory")
+      const onAddObservationList = jest.fn()
+      onAddObservationList(
+         'observationTitle',
+         'observationSeverity',
+         'observationDesc',
+         'category',
+         'SubCategory'
+      )
       expect(onAddObservationList).toHaveBeenCalled()
       await userStore.getObservationList()
       console.log(userStore.observationList)
-    })
-
+   })
 
    it('should test user store failure state', async () => {
       const mockFailurePromise = new Promise(function(resolve, reject) {

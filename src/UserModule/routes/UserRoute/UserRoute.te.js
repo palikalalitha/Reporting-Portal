@@ -6,7 +6,7 @@ import { createMemoryHistory } from 'history'
 
 import { USER_CREATION_FORM, USER_PATH } from '../../constants/RouteConstants'
 import { UserServiceAPI } from '../../services/UserService/UserService.api'
-import  UserService from '../../services/UserService/UserService.fixture'
+import UserService from '../../services/UserService/UserService.fixture'
 import { UserStore } from '../../stores/UserStore'
 import { SignInStore } from '../../../SignInModule/stores/SignInStore/SignInStore'
 
@@ -23,11 +23,11 @@ describe('UserRoute Tests', () => {
    let signInStore
    let signInService
    beforeEach(() => {
-     // userService = new UserServiceAPI()
-     userService = new UserService()
-     signInService=new SignInFixture()
+      // userService = new UserServiceAPI()
+      userService = new UserService()
+      signInService = new SignInFixture()
       userStore = new UserStore(userService)
-      signInStore=new SignInStore(signInService)
+      signInStore = new SignInStore(signInService)
    })
    it('should render the user from ', async () => {
       const history = createMemoryHistory()

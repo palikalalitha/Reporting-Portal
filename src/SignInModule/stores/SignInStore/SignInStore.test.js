@@ -27,7 +27,7 @@ describe('SignInStore Tests', () => {
    beforeEach(() => {
       //signInAPI = new SignInAPI()
       signInAPI = new SignInFixture()
-       
+
       signInStore = new SignInStore(signInAPI)
    })
 

@@ -22,9 +22,9 @@ describe('SignInRoute Tests', () => {
    let signInAPI
    let signInStore
    beforeEach(() => {
-     // signInAPI = new SignInAPI()
-     signInAPI = new SignInFixture ()
-     signInStore = new SignInStore(signInAPI)
+      // signInAPI = new SignInAPI()
+      signInAPI = new SignInFixture()
+      signInStore = new SignInStore(signInAPI)
    })
 
    afterEach(() => {
@@ -32,7 +32,7 @@ describe('SignInRoute Tests', () => {
    })
 
    it('should render username empty error message', () => {
-      const { getByText, getByRole, debug ,queryAllByText} = render(
+      const { getByText, getByRole, debug, queryAllByText } = render(
          <Router history={createMemoryHistory()}>
             <SignInRoute signInStore={signInStore} />
          </Router>
@@ -42,12 +42,11 @@ describe('SignInRoute Tests', () => {
       expect(usernameField).toBeInTheDocument()
       const signInButton = getByRole('button', { name: 'Login' })
       fireEvent.click(signInButton)
-     // expect(usernameField).toHaveAttribute('type', 'text')
-     queryAllByText(/Required Field/i)
+      // expect(usernameField).toHaveAttribute('type', 'text')
+      queryAllByText(/Required Field/i)
    })
 
    it('should render password empty error message', () => {
-      
       const {
          getByText,
          getAllByText,
@@ -84,7 +83,7 @@ describe('SignInRoute Tests', () => {
       fireEvent.change(usernameField, { target: { value: username } })
       fireEvent.change(passwordField, { target: { value: password } })
       fireEvent.click(signInButton)
-      getByRole('button', {disabled:true})
+      getByRole('button', { disabled: true })
    })
    it('should render signInRoute success state', async () => {
       const history = createMemoryHistory()
