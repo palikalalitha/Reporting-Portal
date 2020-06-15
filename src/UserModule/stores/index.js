@@ -6,6 +6,7 @@ const userServiceFixture = new UserService()
 
 const userServiceAPI = new UserServiceAPI()
 
-const userStore = new UserStore(userServiceFixture)
+const userStore = new UserStore(userServiceFixture  )
 
 export { userStore, userServiceFixture, userServiceAPI }
+  

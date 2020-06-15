@@ -24,7 +24,6 @@ import {
    SubCategory
 } from './styledComponents'
 import { FaAngleLeft } from 'react-icons/fa'
-import observationFixture from '../../../UserModule/fixtures/userData.json'
 import { DropDownList } from '../../../common/components/DropDownList/DropDownList'
 import { RadioButton } from '../../../common/components/RadioButton/index'
 import { InputElement } from '../../../common/components/InputElement'
@@ -37,9 +36,7 @@ class ObservationScreen extends Component {
       this.props.history.goBack()
    }
    onClickToreset = () => {
-      console.log(this.props.history.location.state)
       alert('reset')
-      // this.clearUpdateValues()
    }
    onClickToUpdate = () => {
       alert('update')
@@ -63,7 +60,6 @@ class ObservationScreen extends Component {
          isRoleType
       } = this.props
       const role = this.props.history.location.state
-      console.log(assigned_to_name)
       return (
          <>
             <ObservationNavbar>

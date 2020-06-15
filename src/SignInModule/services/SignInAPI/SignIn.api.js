@@ -17,5 +17,13 @@ class SignInAPI {
          apiMethods.post
       )
    }
+   signOutAPI(request) {
+      return networkCallWithApisauce(
+         this.api,
+         `/logout/to/portal/v1/`,
+         request_data,
+         apiMethods.post
+      )
+   }
 }
 export { SignInAPI }

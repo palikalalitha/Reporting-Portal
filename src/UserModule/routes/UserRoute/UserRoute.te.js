@@ -6,7 +6,11 @@ import { createMemoryHistory } from 'history'
 
 import { USER_CREATION_FORM, USER_PATH } from '../../constants/RouteConstants'
 import { UserServiceAPI } from '../../services/UserService/UserService.api'
+import  UserService from '../../services/UserService/UserService.fixture'
 import { UserStore } from '../../stores/UserStore'
+import { SignInStore } from '../../../SignInModule/stores/SignInStore/SignInStore'
+
+import { SignInFixture } from '../../../SignInModule/services/SignInFixture/SignIn.fixture'
 
 import { UserRoute } from '.'
 
@@ -16,9 +20,14 @@ const LocationDisplay = withRouter(({ location }) => (
 describe('UserRoute Tests', () => {
    let userService
    let userStore
+   let signInStore
+   let signInService
    beforeEach(() => {
-      userService = new UserServiceAPI()
+     // userService = new UserServiceAPI()
+     userService = new UserService()
+     signInService=new SignInFixture()
       userStore = new UserStore(userService)
+      signInStore=new SignInStore(signInService)
    })
    it('should render the user from ', async () => {
       const history = createMemoryHistory()
@@ -26,7 +35,7 @@ describe('UserRoute Tests', () => {
       history.push(route)
 
       const { getByRole, getByTestId } = render(
-         <Provider>
+         <Provider signInStore={signInStore}>
             <Router history={history}>
                <Route path={USER_CREATION_FORM}>
                   <LocationDisplay />

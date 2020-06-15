@@ -3,9 +3,6 @@ import { observable } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
 
-import { USER_PATH } from '../../../UserModule/constants/RouteConstants'
-import { RP_PATH } from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
-
 import { SignInForm } from '../../components/SigninForm/'
 import {
    NETWORK_ERROR,
@@ -13,8 +10,8 @@ import {
    LOADING,
    EMPTY_STRING
 } from '../../constants/SigninPageConstants.js'
+import {gotoUserPage,gotoRPPage} from "../../utils/NavigationUtils"
 
-import { SIGN_IN_PATH } from '../../constants/RouteConstants'
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 
 @inject('signInStore')
@@ -55,9 +52,12 @@ class SignInRoute extends React.Component {
 
    onSuccess = () => {
       const { role,access_token } = this.props.signInStore
-      if (role==='user') 
-      this.props.history.replace(USER_PATH, role)
-      }
+      const {history}= this.props
+      if(role==="user")
+      gotoUserPage(history,role)
+      else if(role==="rp")
+      gotoRPPage(history,role)
+   }
 
    onFailure = () => {
       const { getUserSignInAPIError: apiError } = this.props.signInStore

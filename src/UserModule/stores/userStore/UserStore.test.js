@@ -3,7 +3,7 @@ import {
    API_FAILED,
    API_FETCHING,
    API_INITIAL
-} from './node_modules/@ib/api-constants'
+} from '@ib/api-constants'
 
 import observationList from '../../fixtures/getObservationList'
 import UserService from '../../services/UserService/UserService.fixture'
@@ -43,6 +43,42 @@ describe('user store test', () => {
       expect(userStore.observationList.length).toBe(3)
       expect(userStore.getObservationListAPIStatus).toBe(API_SUCCESS)
    })
+   it('should test user store pagination function', async () => {
+      const mockSuccessPromise = new Promise(function(resolve, reject) {
+         resolve(observationList)
+      })
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockSuccessPromise)
+      userService.getUsersResponse = mockSignInAPI
+      const handlePage=jest.fn()
+      handlePage(1)
+      expect(handlePage).toHaveBeenCalled()
+      await userStore.getObservationList()
+      expect(userStore.observationList.length).toBe(3)
+      // handlePage(5)
+      // expect(handlePage).toHaveBeenCalled()
+      // await userStore.getObservationList()
+      // console.log(userStore.observationList) 
+      // expect(userStore.getObservationListAPIStatus).toBe(API_SUCCESS)
+   })
+   it('should test the add Observation function in user store', async () => {
+      const mockSuccessPromise = new Promise(function(resolve, reject) {
+         resolve(observationList)
+      })
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockSuccessPromise)
+      userService.getUsersResponse = mockSignInAPI
+      const   onAddObservationList=jest.fn()
+      onAddObservationList("observationTitle",
+         "observationSeverity",
+         "observationDesc",
+         "category",
+         "SubCategory")
+      expect(onAddObservationList).toHaveBeenCalled()
+      await userStore.getObservationList()
+      console.log(userStore.observationList)
+    })
+
 
    it('should test user store failure state', async () => {
       const mockFailurePromise = new Promise(function(resolve, reject) {

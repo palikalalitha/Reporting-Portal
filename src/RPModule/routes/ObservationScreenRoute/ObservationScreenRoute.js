@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom'
 import ObservationScreen from '../../components/ObservationScreen/ObservationScreen'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
-import observationFixture from '../../../UserModule/fixtures/userData.json'
 import LoadingWrapperWithFailure from '../../../common/components/LoadingWrapperWithFailure'
 import { DesktopLayout } from '../../../common/components/DesktopLayout/DesktopLayout'
 import { userStore } from '../../../UserModule/stores'
@@ -64,7 +63,6 @@ class ObservationScreenRoute extends React.Component {
 
    render() {
       const {id}=this.props.match.params
-      console.log("id",this.props.match.params.id.slice(1))
       const {
          getObservationDetailsAPIError,
          getObservationDetailsAPIStatus

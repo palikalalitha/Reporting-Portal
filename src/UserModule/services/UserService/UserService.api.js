@@ -10,13 +10,16 @@ class UserServiceAPI {
    api
    constructor() {
       this.api = create({
-         baseURL: URL
+         //baseURL: URL
+         baseURL:"https://5ecf59d316017c00165e29bc.mockapi.io/"
+         
       })
    }
    getUsersResponse(offset, limit, request_data) {
       return networkCallWithApisauce(
          this.api,
-         `/get/user/observations/v1/?offset=${offset}&limit=${limit}`,
+        // `/get/user/observations/v1/?offset=${offset}&limit=${limit}`,
+        "get/user/observations/v1/observations",
          request_data,
          apiMethods.post
       )
@@ -39,16 +42,23 @@ class UserServiceAPI {
          apiMethods.post
       )
    }
-
    getCategories()
    {
-      return networkCallWithApisauce(
-         this.api,
-         `/get/categories/subcategories/v1/`,
-         {},
-         apiMethods.get
-      )
-     
+         return new Promise((resolve, reject) => {
+            resolve( [{ value: "1", label: 'Cleaning' },
+            { value: "2", label: 'Water' },
+            { value: "3", label: 'KeybBoard' }])
+         })
    }
+   // getCategories()
+   // {
+   //    return networkCallWithApisauce(
+   //       this.api,
+   //       `/get/categories/subcategories/v1/`,
+   //       {},
+   //       apiMethods.get
+   //    )
+     
+   // }
 }
 export { UserServiceAPI }

@@ -2,16 +2,16 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
-
+import {getLoadingStatus} from "@ib/api-utils"
 import { userStore } from '../../stores/index'
 import { ObservationList } from '../../components/ObservationList/ObservationList'
 import { UserPage } from '../../components/UserPage/UserPage'
 import {
-   USER_CREATION_FORM,
-   USER_PATH,
    OBSERVATION_SCREEN
 } from '../../constants/RouteConstants'
 import {SIGN_IN_PATH} from "../../../SignInModule/constants/RouteConstants"
+import { gotoObservationCreationForm,gotoObservationDetails,gotoSignInPage ,gotoPreviousPage} from "../../utils/NavigationUtils"
+
 
 @inject('signInStore')
 @observer
@@ -23,6 +23,8 @@ class UserRoute extends React.Component {
       super(props)
       this.filterList = []
       this.sort_type="ASC"
+     // console.log(this.props.signInStore.role)
+     console.log(this.props.history.location)
       this.roleType = this.props.history.location.state
    }
    componentDidMount() {
@@ -30,17 +32,22 @@ class UserRoute extends React.Component {
    }
    doNetworkCalls = () => {
       userStore.getObservationList()
+     userStore.onClickTogetCategories()
    }
    naviagteToUserForm = () => {
-      this.props.history.push(USER_CREATION_FORM)
+      const {history}=this.props
+      gotoObservationCreationForm(history)
+      //this.props.history.push(USER_CREATION_FORM)
    }
    gotoObservationList = () => {
-      this.props.history.goBack()
+      const {history}= this.props
+      gotoPreviousPage(history)
+      // this.props.history.goBack()
    }
    navigateToObservationScreen = id => {
       let { history } = this.props
       userStore.getObservationDetailsById(id)
-      history.push(`${OBSERVATION_SCREEN}/${id}`, this.roleType)
+      gotoObservationDetails(history,id,this.roleType)     
    }
 
    observationsSort = (date_type) => {
@@ -71,7 +78,8 @@ class UserRoute extends React.Component {
    onClickToSignOut = () => {
       let { history } = this.props
       this.props.signInStore.userSignOut()
-      history.replace(SIGN_IN_PATH)
+      gotoSignInPage(history)
+     
    }
    renderSuccessUI = observer(() => {
       const {
@@ -97,10 +105,12 @@ class UserRoute extends React.Component {
          getObservationDetailsById,
          getObservationDetailsAPIStatus,
          getObservationDetailsAPIError,
-         singleObservationDetails
+         singleObservationDetails,
+         categories
       } = userStore
       return (
          <ObservationList
+         categories={categories}
             detailsAPIStatus={getObservationDetailsAPIStatus}
             deatilsAPIError={getObservationDetailsAPIError}
             filterByStatus={filterByStatus}
@@ -132,12 +142,16 @@ class UserRoute extends React.Component {
          userObservationList,
          observationList,
          getObservationDetailsAPIStatus,
-         getObservationDetailsAPIError
+         getObservationDetailsAPIError,
+         getCategoriesAPIError,
+         getCategoriesAPIStatus,
+        categories
       } = userStore
-    
-      return (
+   // const apiStatus=getLoadingStatus(getObservationListAPIStatus,getCategoriesAPIStatus) 
+   return (
          <UserPage
             roleType={this.roleType}
+            categories={categories}
             onClickToSignOut={this.onClickToSignOut}
             gotoUserForm={this.gotoUserForm}
             filterByStatus={this.filterByStatus}

@@ -27,7 +27,6 @@ class ObservationList extends Component {
          selectedPage,
          roleType
       } = this.props
-      console.log(selectedPage,totlaPages)
       return (
          <ObservationContainer>
             {observationList.length > 0 ? (

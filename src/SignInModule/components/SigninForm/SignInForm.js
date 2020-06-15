@@ -51,7 +51,6 @@ class SignInForm extends Component {
          apiStatus,
          apiError
       } = this.props
-      console.log("hii")
       return (
          <Container>
             <SignInContainer>

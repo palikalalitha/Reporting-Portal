@@ -25,7 +25,7 @@ class App extends React.Component {
                <Switch>
                   {signInRoutes}
                   {userRoutes}
-                  {rpRoutes}
+                  {/* {rpRoutes} */}
                </Switch>
             </Router>
          </Provider>

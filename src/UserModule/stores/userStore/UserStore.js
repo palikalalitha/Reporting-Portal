@@ -102,12 +102,16 @@ class UserStore {
    }
    @action.bound
    setObservationListResponse(response) {
-     
-      this.observationList = response['total_list'].map(eachObservation => {
-         return new UserModel(eachObservation)
-      })
-    
-      this.totlaPages = Math.ceil(response['count'] / this.pageLimit)
+      let list=response
+      let updateList=list.slice(this.offset,this.pageLimit+this.offset)
+      this.observationList=updateList.map(each=> {return new UserModel(each)})
+      this.totlaPages= Math.ceil(response.length/this.pageLimit)
+      //below code using backend api response
+      //   this.observationList = response['total_list'].map(eachObservation => {
+      //          return new UserModel(eachObservation)
+      //       })
+         
+      //       this.totlaPages = Math.ceil(response['count'] / this.pageLimit)
      
    }
    @action.bound
@@ -122,6 +126,7 @@ class UserStore {
 
    @action.bound
    handlePage(page) {
+      console.log(page)
       let selected = page.selected
       this.offset = Math.ceil(selected * this.pageLimit)
       this.selectedPage = page.selected
@@ -146,9 +151,7 @@ class UserStore {
 
    @action.bound
    setObservationDeatilsResponse(response) {
-      console.log(response)
       const {title,description,priority,status,reported_on,due_date,is_due_date_private}=response
-
       this.singleObservationDetails = {
          title: title,
          description:description,
@@ -176,8 +179,8 @@ class UserStore {
       observationSeverity,
       observationDesc,
       category,
-      SubCategory
-   ) {
+      SubCategory)
+   {
       if(category===null||SubCategory===null)
       {
       category=null
@@ -191,7 +194,6 @@ class UserStore {
          sub_category_id: SubCategory,
          attachments: []
       }
-      console.log("in store",observationObj)
       const userPromise = this.userService.createObservations(observationObj)
       return bindPromiseWithOnSuccess(userPromise)
          .to(
@@ -203,7 +205,9 @@ class UserStore {
 
    @action.bound
    setCreateObservationsResponse(response) {
-      this.getObservationList()
+      this.observationList.push(new UserModel(response))
+      console.log(this.observationList)
+      this.getObservationList(response)
    }
    @action.bound
    setGetCreateObservationsAPIError(error) {

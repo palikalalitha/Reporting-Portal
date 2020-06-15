@@ -8,6 +8,8 @@ import {
 } from '@ib/api-constants'
 
 import { SignInAPI } from '../../services/SignInAPI/SignIn.api'
+import { SignInFixture } from '../../services/SignInFixture/SignIn.fixture'
+
 import getUserSignInResponse from '../../fixtures/getUserSignInResponse.json'
 
 import { SignInStore } from '.'
@@ -23,7 +25,9 @@ describe('SignInStore Tests', () => {
    let signInStore
 
    beforeEach(() => {
-      signInAPI = new SignInAPI()
+      //signInAPI = new SignInAPI()
+      signInAPI = new SignInFixture()
+       
       signInStore = new SignInStore(signInAPI)
    })
 

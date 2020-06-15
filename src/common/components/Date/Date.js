@@ -4,10 +4,8 @@ import styled from './Date.css'
 class Date extends React.Component {
    render() {
       const { roleType, startDate, handleChange, text } = this.props
-      console.log(text)
       return (
          <DatePicker
-            // showTimeSelect
             placeholderText={text}
             dateFormat='dd/MM/yyyy h:mm aa'
             selected={startDate}

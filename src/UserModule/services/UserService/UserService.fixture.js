@@ -1,19 +1,30 @@
-import { create } from 'apisauce'
+import observationList from '../../fixtures/getObservationList.json'
+import signleObservationDetails from "../../fixtures/getObservationById.json"
 
-import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { networkCallWithApisauce } from '../../../utils/APIUtils'
-import { apiMethods } from '../../../constants/APIConstants'
-import observationList from '../../fixtures/userData.json'
 class UserService {
    getUsersResponse() {
       return new Promise((resolve, reject) => {
-         resolve(observationList)
+        setTimeout(()=> resolve(observationList),3000)
       })
    }
    createObservations(request) {
+      console.log(request)
       return new Promise((resolve, reject) => {
-         resolve('observation-id:0')
+         resolve(request)
       })
+   }
+   getObservationDeatilsById(id) {
+      return new Promise((resolve, reject) => {
+         resolve(observationList[id-1])
+      })
+   }
+   getCategories()
+   {
+         return new Promise((resolve, reject) => {
+            setTimeout(()=>   resolve([{ value: "1", label: 'Cleaning' },
+            { value: "2", label: 'Water' },
+            { value: "3", label: 'KeybBoard' }]),3000)
+         })
    }
 }
 export default UserService

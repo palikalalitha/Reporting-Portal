@@ -20,7 +20,7 @@ class UserModel extends Component {
       this.status = observation.status
       if (observation.assigned_to !== null) {
          this.assigned_to = {
-            id: observation.assigned_to.id,
+          //  id: observation.assigned_to.id,
             name: observation.assigned_to.name,
             contact_number: observation.assigned_to.contact_number,
             role: observation.assigned_to.role
@@ -30,23 +30,6 @@ class UserModel extends Component {
       }
       this.message_count = observation.message_count
    }
-   // this.id =observation.observation_id
-   // this.title = observation.title_of_the_observation
-   // this.priority = observation.severity.severity
-   // this.description = observation.description,
-   // this.category = 'Asset Mangement',
-   // this.sub_category = 'food',
-   // this.due_date = observation.due_date
-   // //this.due_date_privacy = observation.is_due_date_private
-   // this.status = observation.status.status
-   // this.assigned_to = {
-   //    id:observation.assigned_to.user_id,
-   //    name: observation.assigned_to.username,
-   //    phno: observation.assigned_to.phone_number,
-   //    role:observation.assigned_to.role
-
-   // }
-   //this.message_count = observation.message_count
 }
 
 export { UserModel }

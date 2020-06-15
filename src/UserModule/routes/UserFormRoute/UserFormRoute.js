@@ -32,7 +32,6 @@ class UserFormRoute extends Component {
    }
    componentDidMount()
    {
-      console.log("in did")
       this.doNetworkCalls()
    }
    doNetworkCalls=()=>
@@ -81,10 +80,6 @@ class UserFormRoute extends Component {
    onChangeToSelectSubCategory = option => {
       this.sub_category_id = option
    }
-   renderSucessUI=observer(()=>
-   {
-      return (<Select />)
-   })
      addObservation = () => {
       this.handleSubmit()
    }
@@ -185,7 +180,6 @@ class UserFormRoute extends Component {
       return (
          <DesktopLayout>
          <LoadingWrapperWithFailure
-
          apiStatus={getCategoriesAPIStatus}
          apiError={getCategoriesAPIError}
          renderSuccessUI={this.renderSuccessUI}
