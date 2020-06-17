@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 
-import { AssignedRPObservations } from '../../components/AssignedRPObservations/AssignedRPObservations'
+import { RPPage } from '../../components/RPPage/RPPage'
 import { RPObservations } from '../RPObservationsRoute/RPObservationsRoute'
 import { ObservationList } from '../../../UserModule/components/ObservationList/ObservationList'
 import { RP_HEADINGS } from '../../constants/RPPageConstants'
 import { OBSERVATION_SCREEN } from '../../constants/RPRouteConstants/RPRouteConstants'
+import { AssignedObservationList } from "../../components/AssignedObservationList/AssignedObservationList"
 
 @inject('rpStore')
 @observer
-class RPAssignedObservationsRoute extends Component {
-   role = this.props.history.location.state
-
+class RPRoute extends Component {
+   role
    componentDidMount() {
       this.getAssignedObservations()
+      this.role = this.props.history.location.state
    }
    getAssignedObservations = () => {
       this.props.rpStore.getAssignedObservationList()
@@ -41,8 +42,8 @@ class RPAssignedObservationsRoute extends Component {
          handlePage
       } = this.props.rpStore
       return (
-         <ObservationList
-            roleType={this.role}
+         <AssignedObservationList 
+             roleType={this.role}
             navigateToObservationScreen={this.navigateToObservationScreen}
             sortBytDate={sortBytDate}
             currentPage={rpCurrentPage}
@@ -54,6 +55,19 @@ class RPAssignedObservationsRoute extends Component {
             selectedPage={rpSelectedPage}
             observationList={assignedObservationList}
          />
+         // <ObservationList
+         //    roleType={this.role}
+         //    navigateToObservationScreen={this.navigateToObservationScreen}
+         //    sortBytDate={sortBytDate}
+         //    currentPage={rpCurrentPage}
+         //    totlaPages={rpTotalPage}
+         //    offset={rpOffset}
+         //    handlePage={handlePage}
+         //    date_type={date_type}
+         //    sort_type={sort_type}
+         //    selectedPage={rpSelectedPage}
+         //    observationList={assignedObservationList}
+         // />
       )
    })
    render() {
@@ -63,7 +77,7 @@ class RPAssignedObservationsRoute extends Component {
          assignedObservationList
       } = this.props.rpStore
       return (
-         <AssignedRPObservations
+         <RPPage
             roleType={this.role}
             navigateToObservationScreen={this.navigateToObservationScreen}
             observationList={assignedObservationList}
@@ -76,4 +90,4 @@ class RPAssignedObservationsRoute extends Component {
    }
 }
 
-export { RPAssignedObservationsRoute }
+export { RPRoute }

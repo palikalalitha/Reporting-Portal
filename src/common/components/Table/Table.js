@@ -31,10 +31,11 @@ class Table extends Component {
       this.props.observationsSort(type)
    }
    renderRows = () => {
-      let headings =
-         this.props.roleType === 'user' ? USER_HEADINGS : RP_HEADINGS
+      const {tableHeadings}=this.props
+      // let headings =
+      //    this.props.roleType === 'user' ? USER_HEADINGS : RP_HEADINGS
 
-      return headings.map(eachHeading => {
+      return tableHeadings.map(eachHeading => {
          if (eachHeading === 'reported on' || eachHeading === 'due date')
             return (
                <TableHeadings key={eachHeading}>

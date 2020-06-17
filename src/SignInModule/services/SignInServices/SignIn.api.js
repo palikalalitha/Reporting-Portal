@@ -1,5 +1,5 @@
 import { create } from 'apisauce'
-import { networkCallWithApisauce } from '../../../utils/APIUtils'
+import { networkCallWithApisauceWithAccessToken } from '../../../utils/AuthUtils'
 import { apiMethods } from '../../../constants/APIConstants'
 import { URL } from '../../../common/constants/ReportingPortalconstants.js'
 class SignInAPI {
@@ -10,7 +10,7 @@ class SignInAPI {
       })
    }
    signInAPI(request_data) {
-      return networkCallWithApisauce(
+      return networkCallWithApisauceWithAccessToken(
          this.api,
          `/login/to/portal/v1/`,
          request_data,

@@ -7,8 +7,8 @@ import {
    API_FETCHING
 } from '@ib/api-constants'
 
-import { SignInAPI } from '../../services/SignInAPI/SignIn.api'
-import { SignInFixture } from '../../services/SignInFixture/SignIn.fixture'
+
+import { SignInFixture } from '../../services/SignInServices/SignIn.fixture'
 
 import getUserSignInResponse from '../../fixtures/getUserSignInResponse.json'
 
@@ -49,6 +49,10 @@ describe('SignInStore Tests', () => {
 
       const mockSignInAPI = jest.fn()
       mockSignInAPI.mockReturnValue(mockLoadingPromise)
+      //internal code for signInAPI-{
+      //    signInAPI:realfn
+      //    signInAPI:mockSignInAPI it overrides the realfn
+      // }
       signInAPI.signInAPI = mockSignInAPI
 
       signInStore.userSignIn(requestObject, onSuccess, onFailure)

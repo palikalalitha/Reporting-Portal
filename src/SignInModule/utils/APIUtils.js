@@ -7,8 +7,6 @@ import {
    apiErrorProblems
 } from '../constants/APIConstants'
 
-import { getAccessToken } from './StorageUtils'
-
 export const networkCallWithApisauce = async (
    api,
    url,
@@ -16,10 +14,6 @@ export const networkCallWithApisauce = async (
    type = apiMethods.post
 ) => {
    let response = null
-   const accessToken = getAccessToken()
-   if (accessToken) {
-      api.setHeader('Authorization', `Bearer ${accessToken}`)
-   }
    api.setHeader('Content-Type', 'application/json; charset=UTF-8')
    try {
       response = await getData(api, url, requestObject, type)

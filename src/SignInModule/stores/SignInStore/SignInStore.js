@@ -6,11 +6,12 @@ import {
    setAccessToken,
    clearUserSession
 } from '../../../common/utils/StorageUtils.js'
-import { SIGN_IN_PATH } from '../../constants/RouteConstants.js'
 
 class SignInStore {
    @observable getUserSignInAPIStatus
    @observable getUserSignInAPIError
+   @observable getUserSignOutAPIError
+   @observable getUserSignOutAPIStatus
    @observable access_token
    @observable role
    authAPIService
@@ -21,6 +22,9 @@ class SignInStore {
    init() {
       this.getUserSignInAPIStatus = API_INITIAL
       this.getUserSignInAPIError = null
+
+      this.getUserSignOutAPIError=null
+      this.getUserSignOutAPIStatus=API_INITIAL
       this.access_token = ''
       this.role = ''
    }
@@ -56,10 +60,37 @@ class SignInStore {
       this.getUserSignInAPIStatus = status
    }
 
+      @action.bound
+   userSignOut(request_data, onSuccess, onFailure) {
+      const userResponse = this.authAPIService.signOutAPI(request_data)
+      return bindPromiseWithOnSuccess(userResponse)
+         .to(this.setGetUserSignOutAPIStatus, response => {
+            this.setUserSignOutAPIResponse(response)
+            onSuccess()
+         })
+         .catch(error => {
+            this.setGetUserSignOutAPIError(error)
+            onFailure()
+         })
+   }
+
    @action.bound
-   userSignOut() {
-      clearUserSession()
+   setUserSignOutAPIResponse(response) {
+        clearUserSession()
       this.init()
+      // this.access_token = response.access_token
+      // this.role = response.role.toLowerCase()
+      // setAccessToken(this.access_token)
+   }
+
+   @action.bound
+   setGetUserSignOutAPIError(error) {
+      this.getUserSignOutAPIError = error
+   }
+
+   @action.bound
+   setGetUserSignOutAPIStatus(status) {
+      this.getUserSignOutAPIStatus = status
    }
 }
 export { SignInStore }

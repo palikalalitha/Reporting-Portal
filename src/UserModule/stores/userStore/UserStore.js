@@ -13,6 +13,7 @@ import { UserModel } from '../models/UserModel'
 
 class UserStore {
    @observable observationList
+   @observable observation
 
    @observable getObservationListAPIStatus
    @observable getObservationListAPIError
@@ -56,6 +57,7 @@ class UserStore {
       this.createObservationsAPIError = null
 
       this.observationList = []
+      this.observation=[]
       this.singleObservationDetails = []
       this.filterList = []
       this.categories = []
@@ -68,10 +70,11 @@ class UserStore {
       this.selectedPage = OFFSET
    }
    @action.bound
-   setDate_typeAndSortType(date_type, sort_type) {
-      this.date_Type = date_type
-      this.sort_type = sort_type
+   setDate_typeAndSortType(date,sort) {
+      this.date_Type = date
+      this.sort_type = sort
       this.getObservationList()
+
    }
    @action.bound
    filterByStatus(statusList) {
@@ -124,7 +127,6 @@ class UserStore {
 
    @action.bound
    handlePage(page) {
-      console.log(page)
       let selected = page.selected
       this.offset = Math.ceil(selected * this.pageLimit)
       this.selectedPage = page.selected
@@ -156,9 +158,11 @@ class UserStore {
          status,
          reported_on,
          due_date,
-         is_due_date_private
+         is_due_date_private,
+         id
       } = response
       this.singleObservationDetails = {
+         id:id,
          title: title,
          description: description,
          priority: priority,
@@ -185,7 +189,7 @@ class UserStore {
       observationSeverity,
       observationDesc,
       category,
-      SubCategory
+      SubCategory,onSuccess,onFailure
    ) {
       if (category === null || SubCategory === null) {
          category = null
@@ -201,18 +205,23 @@ class UserStore {
       }
       const userPromise = this.userService.createObservations(observationObj)
       return bindPromiseWithOnSuccess(userPromise)
-         .to(
-            this.setGetCreateObservationsAPIStatus,
-            this.setCreateObservationsResponse
-         )
-         .catch(this.setGetCreateObservationsAPIError)
+       .to(this.setGetCreateObservationsAPIStatus, response => {
+            this.setCreateObservationsResponse(response)
+            onSuccess()
+         })
+         .catch(error => {
+            this.setGetCreateObservationsAPIError(error)
+            onFailure()
+         })
+
    }
 
    @action.bound
    setCreateObservationsResponse(response) {
-      this.observationList.push(new UserModel(response))
-      console.log(this.observationList)
-      this.getObservationList(response)
+      this.observation=response
+      // this.observationList.push(new UserModel(response))
+      // console.log(this.observationList)
+      // this.getObservationList(response)
    }
    @action.bound
    setGetCreateObservationsAPIError(error) {

@@ -27,7 +27,7 @@ class Navbar extends Component {
          <>
             <NavabarContainer>
                <NavabarHeading>
-                  {roleType === 'user' ? USER_HEADING : RP_HEADING}
+                  {roleType === 'user' ? USER_HEADING : roleType==="rp"? RP_HEADING:""}
                </NavabarHeading>
                {roleType === 'user' && (
                   <Button
@@ -39,7 +39,7 @@ class Navbar extends Component {
             </NavabarContainer>
             <Wrapper>
                <Select
-                  data-testid={'select'}
+                  data-testid={'filterList'}
                   className={'select-container'}
                   classNamePrefix={'option'}
                   onChange={filterByStatus}

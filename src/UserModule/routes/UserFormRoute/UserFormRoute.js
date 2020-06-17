@@ -10,6 +10,9 @@ import { USER_CREATION_FORM } from '../../constants/RouteConstants'
 import LoadingWrapperWithFailure from '../../../common/components/LoadingWrapperWithFailure'
 import { DesktopLayout } from '../../../common/components/DesktopLayout/DesktopLayout'
 
+
+import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+
 @inject('userStore')
 @observer
 class UserFormRoute extends Component {
@@ -18,13 +21,13 @@ class UserFormRoute extends Component {
    @observable description
    @observable category_id
    @observable sub_category_id
+   @observable errorMessage
    @observable category = []
    subCategory = []
 
    @observable errorMessageForSeverity
    @observable errorMessageForTitle
    @observable errorMessageForDescription
-   subCategory
    @observable categoryList
    constructor() {
       super()
@@ -60,6 +63,7 @@ class UserFormRoute extends Component {
       this.errorMessageForSeverity = ''
       this.errorMessageForTitle = ''
       this.errorMessageForDescription = ''
+      this.errorMessage=""
    }
 
    onChangeTitle = event => {
@@ -117,12 +121,22 @@ class UserFormRoute extends Component {
             this.severity.value,
             this.description,
             this.category_id.value,
-            this.sub_category_id.value
+            this.sub_category_id.value,this.onSuccess,this.onFailure
          )
-         this.gotoObservationList()
       }
    }
 
+    onSuccess = () => {
+        this.gotoObservationList()
+      
+      }
+
+   onFailure = () => {
+      const { createObservationsAPIError: apiError } = this.props.userStore
+      if (apiError !== undefined || apiError != null) {
+         this.errorMessage = getUserDisplayableErrorMessage(apiError)
+      }
+   }
    naviagteToUserForm = () => {
       this.props.history.push(USER_CREATION_FORM)
    }

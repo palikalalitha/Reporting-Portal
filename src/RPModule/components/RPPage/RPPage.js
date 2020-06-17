@@ -7,7 +7,7 @@ import Navbar from '../../../common/components/Navbar/Navbar'
 import { RpContainer, NavabarHeading } from './styledComponents'
 import LoadingWrapperWithFailure from '../../../common/components/LoadingWrapperWithFailure'
 
-class AssignedRPObservations extends Component {
+class RPPage extends Component {
    render() {
       const {
          doNetworkCalls,
@@ -30,4 +30,4 @@ class AssignedRPObservations extends Component {
    }
 }
 
-export { AssignedRPObservations }
+export { RPPage }

@@ -11,16 +11,19 @@ import { SignInRoute } from '.'
 import { SIGN_IN_PATH } from '../../constants/RouteConstants'
 
 import { USER_PATH } from '../../../UserModule/constants/RouteConstants'
-import { SignInAPI } from '../../services/SignInAPI/SignIn.api'
-import { SignInFixture } from '../../services/SignInFixture/SignIn.fixture'
+// import { SignInAPI } from '../../services/SignInAPI/SignIn.api'
+import { SignInFixture } from '../../services/SignInServices/SignIn.fixture'
 import { SignInStore } from '../../stores/SignInStore/'
+import { RP_PATH } from "../../../RPModule/constants/RPRouteConstants/RPRouteConstants"
 
 const LocationDisplay = withRouter(({ location }) => (
    <div data-testid='location-display'>{location.pathname}</div>
 ))
+
 describe('SignInRoute Tests', () => {
    let signInAPI
    let signInStore
+   let role
    beforeEach(() => {
       // signInAPI = new SignInAPI()
       signInAPI = new SignInFixture()
@@ -67,35 +70,59 @@ describe('SignInRoute Tests', () => {
       getByText(/Required Field/i)
    })
 
-   it('should submit sign-in on press enter', () => {
+   it('should submit sign-in on press enter', async() => {
       const { getByTestId, getByRole, getByText } = render(
          <Router history={createMemoryHistory()}>
             <SignInRoute signInStore={signInStore} />
          </Router>
       )
+      const onSuccess = jest.fn()
+      const onFailure = jest.fn()
+      const requestObject = {
+         username: 'test-user',
+         password: 'test-password'
+      }
       const username = 'test-user'
       const password = 'test-password'
 
       const usernameField = getByTestId('username')
       const passwordField = getByTestId('password')
       const signInButton = getByRole('button', { name: 'Login' })
+      const mockSuccessPromise = new Promise(function(resolve, reject) {
+         resolve(getUserSignInResponse)
+      })
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockSuccessPromise)
+      signInAPI.signInAPI = mockSignInAPI
+      await signInStore.userSignIn(requestObject, onSuccess, onFailure)
 
       fireEvent.change(usernameField, { target: { value: username } })
       fireEvent.change(passwordField, { target: { value: password } })
       fireEvent.click(signInButton)
+      role=signInStore.role
       getByRole('button', { disabled: true })
+
    })
    it('should render signInRoute success state', async () => {
       const history = createMemoryHistory()
       const route = SIGN_IN_PATH
+      let path
       history.push(route)
+      if(role==="user")
+      {
+         path=USER_PATH
+      }
+      else if(role==="rp")
+      {
+         path=RP_PATH
+      }
       const { getByRole, queryByRole, getByTestId, debug } = render(
          <Provider signInStore={signInStore}>
             <Router history={history}>
                <Route path={SIGN_IN_PATH}>
                   <SignInRoute />
                </Route>
-               <Route path={USER_PATH}>
+               <Route path={path}>
                   <LocationDisplay />
                </Route>
             </Router>
@@ -124,8 +151,7 @@ describe('SignInRoute Tests', () => {
          expect(
             queryByRole('button', { name: 'Login' })
          ).not.toBeInTheDocument()
-
-         expect(getByTestId('location-display')).toHaveTextContent(USER_PATH)
+         expect(getByTestId('location-display')).toHaveTextContent(path)
       })
    })
    it('should render signInRoute failure state', async () => {

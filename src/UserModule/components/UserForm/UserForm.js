@@ -125,7 +125,7 @@ class UserForm extends Component {
                   </Label>
                   <div>
                      <Select
-                        data-testid={'select'}
+                        data-testid={'severity'}
                         className={
                            errorMessageForSeverity
                               ? 'border-container'

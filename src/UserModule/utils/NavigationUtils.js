@@ -11,7 +11,7 @@ export const gotoObservationDetails = (history, id, roleType) => {
    history.push(`${OBSERVATION_SCREEN}/${id}`, roleType)
 }
 
-export const gotoSignInPage = histroy => {
+export const gotoSignInPage = history => {
    history.replace(SIGN_IN_PATH)
 }
 

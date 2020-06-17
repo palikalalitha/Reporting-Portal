@@ -8,7 +8,7 @@ import userSignOutResponse from '../../fixtures/getUserSignOutResponse.json'
 class SignInFixture {
    signInAPI(request) {
       return new Promise((resolve, reject) => {
-         setTimeout(() => resolve(userSignInResponse, request), 2000)
+       resolve(userSignInResponse, request)
       })
    }
    signOutAPI(request) {

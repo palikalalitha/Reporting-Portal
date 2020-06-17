@@ -1,14 +1,13 @@
 import observationList from '../../fixtures/getObservationList.json'
 import signleObservationDetails from '../../fixtures/getObservationById.json'
-
+import categories from "../../fixtures/getCategories.json"
 class UserService {
    getUsersResponse() {
       return new Promise((resolve, reject) => {
-         setTimeout(() => resolve(observationList), 3000)
+        resolve(observationList)
       })
    }
    createObservations(request) {
-      console.log(request)
       return new Promise((resolve, reject) => {
          resolve(request)
       })
@@ -20,15 +19,7 @@ class UserService {
    }
    getCategories() {
       return new Promise((resolve, reject) => {
-         setTimeout(
-            () =>
-               resolve([
-                  { value: '1', label: 'Cleaning' },
-                  { value: '2', label: 'Water' },
-                  { value: '3', label: 'KeybBoard' }
-               ]),
-            3000
-         )
+               resolve(categories)
       })
    }
 }

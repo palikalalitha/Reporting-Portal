@@ -4,18 +4,15 @@ import ReactPaginate from 'react-paginate'
 import Select from 'react-select'
 import Table from '../../../common/components/Table/Table'
 import { TableData } from '../../../common/components/TableData/TableData'
-import strings from '../../i18n/strings.json'
-import NoObservations from '../NoObservations/NoObservations'
-import { ObservationContainer } from '../../styleGuide/typos'
+
+import NoObservations from '../../../UserModule/components/NoObservations/NoObservations'
+import { ObservationContainer } from '../../../UserModule/styleGuide/typos'
 import paginationCss from './pagination.css'
 import Navbar from '../../../common/components/Navbar/Navbar'
-import {
-   USER_HEADINGS,
-   OBSERVATIONLIST
-} from '../../constants/userPageConstants'
+import { RP_HEADINGS } from "../../../common/constants/ReportingPortalconstants"
 
 @observer
-class ObservationList extends Component {
+class AssignedObservationList extends Component {
    render() {
       const {
          observationList,
@@ -31,7 +28,7 @@ class ObservationList extends Component {
          <ObservationContainer>
             {observationList.length > 0 ? (
                <>
-                  <Table tableHeadings={USER_HEADINGS} {...this.props} observationList={observationList} />
+                  <Table tableHeadings={RP_HEADINGS} {...this.props} observationList={observationList} />
                   <ReactPaginate
                      previousLabel={'<'}
                      nextLabel={'>'}
@@ -61,4 +58,4 @@ class ObservationList extends Component {
    }
 }
 
-export { ObservationList }
+export { AssignedObservationList }

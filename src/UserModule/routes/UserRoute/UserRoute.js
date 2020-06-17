@@ -3,17 +3,18 @@ import { withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
 import { getLoadingStatus } from '@ib/api-utils'
+
+import { getUserDisplayableErrorMessage } from "../../../utils/APIUtils"
 import { userStore } from '../../stores/index'
 import { ObservationList } from '../../components/ObservationList/ObservationList'
 import { UserPage } from '../../components/UserPage/UserPage'
-import { OBSERVATION_SCREEN } from '../../constants/RouteConstants'
-import { SIGN_IN_PATH } from '../../../SignInModule/constants/RouteConstants'
 import {
    gotoObservationCreationForm,
    gotoObservationDetails,
    gotoSignInPage,
    gotoPreviousPage
 } from '../../utils/NavigationUtils'
+
 
 @inject('signInStore')
 @observer
@@ -25,12 +26,11 @@ class UserRoute extends React.Component {
       super(props)
       this.filterList = []
       this.sort_type = 'ASC'
-      // console.log(this.props.signInStore.role)
-      console.log(this.props.history.location)
-      this.roleType = this.props.history.location.state
+      // this.roleType = this.props.history.location.state
    }
    componentDidMount() {
       this.doNetworkCalls()
+      this.roleType = this.props.history.location.state
    }
    doNetworkCalls = () => {
       userStore.getObservationList()
@@ -70,9 +70,19 @@ class UserRoute extends React.Component {
       }
    }
    onClickToSignOut = () => {
+      const {userSignOut,access_token}=this.props.signInStore
+      this.props.signInStore.userSignOut(access_token,this.onSuccess,this.onFailure)
+   }
+   onSuccess = () => {
       let { history } = this.props
-      this.props.signInStore.userSignOut()
       gotoSignInPage(history)
+   }
+
+   onFailure = () => {
+      const { getUserSignOutAPIError: apiError } = this.props.signInStore
+      if (apiError !== undefined || apiError != null) {
+         this.errorMessage = getUserDisplayableErrorMessage(apiError)
+      }
    }
    renderSuccessUI = observer(() => {
       const {
@@ -140,7 +150,7 @@ class UserRoute extends React.Component {
          getCategoriesAPIStatus,
          categories
       } = userStore
-      // const apiStatus=getLoadingStatus(getObservationListAPIStatus,getCategoriesAPIStatus)
+    const apiStatus=getLoadingStatus(getObservationListAPIStatus,getCategoriesAPIStatus)
       return (
          <UserPage
             roleType={this.roleType}
@@ -151,7 +161,8 @@ class UserRoute extends React.Component {
             gotoUserForm={this.naviagteToUserForm}
             observationList={observationList}
             gotoObservationList={this.gotoObservationList}
-            apiStatus={getObservationListAPIStatus}
+       
+            apiStatus={apiStatus}
             apiError={getObservationListAPIError}
             detailsAPIStatus={getObservationDetailsAPIStatus}
             deatilsAPIError={getObservationDetailsAPIError}

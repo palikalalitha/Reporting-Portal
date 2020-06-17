@@ -1,0 +1,8 @@
+{
+    "title":"title",
+    "priority": "observationSeverity",
+    "description": "observationDesc",
+    "category_id": "category",
+    "sub_category_id": "SubCategory",
+    "attachments": []
+ }

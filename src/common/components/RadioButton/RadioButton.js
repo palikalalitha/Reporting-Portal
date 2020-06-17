@@ -20,7 +20,7 @@ class RadioButton extends Component {
                      type={RADIO}
                      name={PRIVACY}
                      onChange={handleOptionChange}
-                     defaultChecked={value}
+                     checked={value==="privacy"?true:false}
                      disabled={roleType === 'user' ? true : false}
                      deafultValue={eachItem}
                   />
