@@ -97,11 +97,81 @@ describe('SignInStore Tests', () => {
       mockSignInAPI.mockReturnValue(mockFailurePromise)
       signInAPI.signInAPI = mockSignInAPI
 
-      signInStore = new SignInStore(signInAPI)
       await signInStore.userSignIn(requestObject, onSuccess, onFailure)
 
       expect(signInStore.getUserSignInAPIStatus).toBe(API_FAILED)
       expect(signInStore.getUserSignInAPIError).toBe('error')
+      expect(onFailure).toBeCalled()
+   })
+   it("should test the userSignOutAPI initialising state",()=>
+   {
+      expect(signInStore.getUserSignOutAPIStatus).toBe(API_INITIAL)
+      expect(signInStore.getUserSignOutAPIError).toBe(null)
+      
+   })
+   it("should test the userSignOutAPI fetching state",()=>
+   {
+      const onSuccess = jest.fn()
+      const onFailure = jest.fn()
+
+      const requestObject = {
+        acces_token:"fgfg"
+      }
+
+      const mockLoadingPromise = new Promise(function(resolve, reject) {})
+
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockLoadingPromise)
+      //internal code for signInAPI-{
+      //    signInAPI:realfn
+      //    signInAPI:mockSignInAPI it overrides the realfn
+      // }
+      signInAPI.signOutAPI = mockSignInAPI
+
+      signInStore.userSignOut(requestObject, onSuccess, onFailure)
+      expect(signInStore.getUserSignOutAPIStatus).toBe(API_FETCHING)
+      expect(onSuccess).not.toBeCalled()
+      expect(onFailure).not.toBeCalled()
+   })
+   
+   it('should test userSignOutAPI success state', async () => {
+      const onSuccess = jest.fn()
+      const onFailure = jest.fn()
+
+      const requestObject = {
+         acces_token:"fgfg"
+       }
+
+      const mockSuccessPromise = Promise.resolve(getUserSignInResponse)
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockSuccessPromise)
+      signInAPI.signOutAPI = mockSignInAPI
+
+      await signInStore.userSignOut(requestObject, onSuccess, onFailure)
+      expect(signInStore.getUserSignOutAPIStatus).toBe(API_SUCCESS)
+      expect(mockSetCookie).toBeCalled()
+      expect(onSuccess).toBeCalled()
+   })
+
+   it('should test userSignInAPI failure state', async () => {
+      const onSuccess = jest.fn()
+      const onFailure = jest.fn()
+      const requestObject = {
+         acces_token:"fdgf"
+      }
+
+      const mockFailurePromise = new Promise(function(resolve, reject) {
+         reject(new Error('error'))
+      })
+
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockFailurePromise)
+      signInAPI.signOutAPI = mockSignInAPI
+
+      await signInStore.userSignOut(requestObject, onSuccess, onFailure)
+
+      expect(signInStore.getUserSignOutAPIStatus).toBe(API_FAILED)
+      expect(signInStore.getUserSignOutAPIError).toBe('error')
       expect(onFailure).toBeCalled()
    })
 })

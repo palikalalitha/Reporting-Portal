@@ -54,7 +54,8 @@ class SignInRoute extends React.Component {
       const { role, access_token } = this.props.signInStore
       const { history } = this.props
       if (role === 'user') gotoUserPage(history, role)
-      else if (role === 'rp') gotoRPPage(history, role)
+      else if (role === 'rp')
+       gotoRPPage(history, role)
    }
 
    onFailure = () => {

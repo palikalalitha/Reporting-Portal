@@ -17,18 +17,20 @@ class UserPage extends React.Component {
          apiStatus,
          apiError,
          renderSuccessUI,
-         categories
+         categories,
+         observationList
       } = this.props
+   
       return (
          <DesktopLayout {...this.props}>
             <Navbar {...this.props} />
-
             <LoadingWrapperWithFailure
                apiStatus={apiStatus}
                apiError={apiError}
                renderSuccessUI={renderSuccessUI}
                onRetryClick={doNetworkCalls}
             />
+
          </DesktopLayout>
       )
    }

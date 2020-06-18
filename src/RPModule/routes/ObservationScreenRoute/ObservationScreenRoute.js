@@ -13,7 +13,13 @@ import { userStore } from '../../../UserModule/stores'
 class ObservationScreenRoute extends React.Component {
    @observable roleType
    @observable startDate
+   
    componentDidMount() {
+      const { id } = this.props.match.params
+      console.log(this.props.match.params.id)
+      const { match: { params }, history } = this.props;
+      console.log("<<",params.id)
+     
       this.doNetworkCalls()
    }
    doNetworkCalls = () => {

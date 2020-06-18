@@ -8,8 +8,6 @@ import { TableData } from '../TableData/TableData'
 
 import {
    DROP_DOWN_URL,
-   USER_HEADINGS,
-   RP_HEADINGS
 } from '../../constants/ReportingPortalconstants'
 
 import {
@@ -23,7 +21,7 @@ import {
 
 @observer
 class Table extends Component {
-   @observable sort_type
+
    onClick = observationId => {
       this.props.navigateToObservationScreen(observationId)
    }
@@ -32,16 +30,13 @@ class Table extends Component {
    }
    renderRows = () => {
       const {tableHeadings}=this.props
-      // let headings =
-      //    this.props.roleType === 'user' ? USER_HEADINGS : RP_HEADINGS
-
       return tableHeadings.map(eachHeading => {
          if (eachHeading === 'reported on' || eachHeading === 'due date')
             return (
                <TableHeadings key={eachHeading}>
                   <HeadingContainer>
                      {eachHeading.toUpperCase()}
-                     <DropDownImage
+                     <DropDownImage data-testid={"sort-button"}
                         value={eachHeading}
                         buttonStatus={this.hideSortButton}
                         onClick={this.onClickToSort.bind(this, eachHeading)}
@@ -68,7 +63,7 @@ class Table extends Component {
                </thead>
                <tbody>
                   {observationList.map(eachObservation => (
-                     <TableRow
+                     <TableRow data-testid={"row"}
                         onClick={this.onClick.bind(this, eachObservation.id)}
                         key={eachObservation.id}
                      >

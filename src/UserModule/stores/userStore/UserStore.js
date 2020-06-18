@@ -10,6 +10,7 @@ import {
 } from '../../constants/userStoreConstants'
 
 import { UserModel } from '../models/UserModel'
+import { PaginationStore } from "../../../common/stores/PaginationStore"
 
 class UserStore {
    @observable observationList
@@ -29,19 +30,20 @@ class UserStore {
    @observable getCategoriesAPIError
    @observable getCategoriesAPIStatus
 
-   @observable currentPage
-   @observable totlaPages
-   @observable selectedPage
+ 
    @observable filterList
    @observable date_type
    @observable sort_type
+   paginationStore
    userService
    pageLimit
    offset
-
    constructor(userServiceResponse) {
-      this.userService = userServiceResponse
       this.init()
+      this.userService = userServiceResponse
+      this.paginationStore=new PaginationStore(this.userService.getUsersResponse,
+      this.pageLimit,this.offset,UserModel)
+       
    }
    init() {
       this.getObservationListAPIStatus = API_INITIAL
@@ -61,13 +63,12 @@ class UserStore {
       this.singleObservationDetails = []
       this.filterList = []
       this.categories = []
-      this.currentPage = CURRENT_PAGE
-      this.totlaPages
+     
       this.offset = OFFSET
       this.pageLimit = 3
       this.date_type = 'reported_on'
       this.sort_type = 'ASC'
-      this.selectedPage = OFFSET
+    
    }
    @action.bound
    setDate_typeAndSortType(date,sort) {
@@ -81,55 +82,55 @@ class UserStore {
       this.filterList = statusList
       this.getObservationList()
    }
-   @action.bound
-   getObservationList() {
-      let requestObject = {
-         date_type: this.date_type,
-         sort_by: this.sort_type,
-         filter_by: this.filterList
-      }
-      const userPromise = this.userService.getUsersResponse(
-         this.offset,
-         this.pageLimit,
-         requestObject
-      )
-      return bindPromiseWithOnSuccess(userPromise)
-         .to(
-            this.setGetObservationListAPIStatus,
-            this.setObservationListResponse
-         )
-         .catch(this.setGetObservationListAPIError)
+   @action
+   getObservationList = async() => {
+     await this.paginationStore.getEntitesList()
+     this.observationList= this.paginationStore.entityList
+      // let requestObject = {
+      //    date_type: this.date_type,
+      //    sort_by: this.sort_type,
+      //    filter_by: this.filterList
+      // }
+      // const userPromise = this.userService.getUsersResponse(
+      //    this.offset,
+      //    this.pageLimit,
+      //    requestObject
+      // )
+      // return bindPromiseWithOnSuccess(userPromise)
+      //    .to(
+      //       this.setGetObservationListAPIStatus,
+      //       this.setObservationListResponse
+      //    )
+      //    .catch(this.setGetObservationListAPIError)
    }
-   @action.bound
-   setObservationListResponse(response) {
-      let list = response
-      let updateList = list.slice(this.offset, this.pageLimit + this.offset)
-      this.observationList = updateList.map(each => {
-         return new UserModel(each)
-      })
-      this.totlaPages = Math.ceil(response.length / this.pageLimit)
-      //below code using backend api response
-      //   this.observationList = response['total_list'].map(eachObservation => {
-      //          return new UserModel(eachObservation)
-      //       })
+   // @action.bound
+   // setObservationListResponse(response) {
+   //    let list = response
+   //    let updateList = list.slice(this.offset, this.pageLimit + this.offset)
+   //    this.observationList = updateList.map(each => {
+   //       return new UserModel(each)
+   //    })
+   //    this.totlaPages = Math.ceil(response.length / this.pageLimit)
+   //    //below code using backend api response
+   //    //   this.observationList = response['total_list'].map(eachObservation => {
+   //    //          return new UserModel(eachObservation)
+   //    //       })
 
-      //       this.totlaPages = Math.ceil(response['count'] / this.pageLimit)
-   }
-   @action.bound
-   setGetObservationListAPIError(error) {
-      this.getObservationListAPIError = error
-   }
+   //    //       this.totlaPages = Math.ceil(response['count'] / this.pageLimit)
+   // }
+   // @action.bound
+   // setGetObservationListAPIError(error) {
+   //    this.getObservationListAPIError = error
+   // }
 
-   @action.bound
-   setGetObservationListAPIStatus(status) {
-      this.getObservationListAPIStatus = status
-   }
+   // @action.bound
+   // setGetObservationListAPIStatus(status) {
+   //    this.getObservationListAPIStatus = status
+   // }
 
    @action.bound
    handlePage(page) {
-      let selected = page.selected
-      this.offset = Math.ceil(selected * this.pageLimit)
-      this.selectedPage = page.selected
+      this.paginationStore.updatePage(page.selected)
       this.getObservationList()
    }
 
@@ -254,9 +255,6 @@ class UserStore {
    @computed
    get userObservationList() {
       return this.observationList
-   }
-   @computed get totalObservations() {
-      return this.observationList.length
    }
 }
 export { UserStore }

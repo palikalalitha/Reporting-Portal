@@ -76,7 +76,7 @@ class SignInStore {
 
    @action.bound
    setUserSignOutAPIResponse(response) {
-        clearUserSession()
+        clearUserSession(response)
       this.init()
       // this.access_token = response.access_token
       // this.role = response.role.toLowerCase()

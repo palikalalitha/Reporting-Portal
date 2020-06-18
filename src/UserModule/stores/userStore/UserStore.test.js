@@ -20,49 +20,9 @@ describe('user store test', () => {
 
    it('should test user store initialising state', () => {
       expect(userStore.observationList).toStrictEqual(new Array())
-      expect(userStore.getObservationListAPIStatus).toBe(API_INITIAL)
-      expect(userStore.getObservationListAPIError).toBe(null)
 
    })
-   it('should test user store data fetching state', () => {
-      const mockLoadingPromise = new Promise(function(resolve, reject) {})
-      const mockSignInAPI = jest.fn()
-      mockSignInAPI.mockReturnValue(mockLoadingPromise)
-      userService.getUsersResponse = mockSignInAPI
-
-      userStore.getObservationList()
-      expect(userStore.getObservationListAPIStatus).toBe(API_FETCHING)
-   })
-
-   it('should test user store success state', async () => {
-      const mockSuccessPromise = new Promise(function(resolve, reject) {
-         resolve(observationList)
-      })
-      const mockSignInAPI = jest.fn()
-      mockSignInAPI.mockReturnValue(mockSuccessPromise)
-      userService.getUsersResponse = mockSignInAPI
-
-      await userStore.getObservationList()
-      expect(userStore.totalObservations).toBe(3)
-      expect(userStore.userObservationList).toBeDefined()
-      expect(userStore.getObservationListAPIStatus).toBe(API_SUCCESS)
-
-   })
-    it('should test user store failure state', async () => {
-      const mockFailurePromise = new Promise(function(resolve, reject) {
-         reject(new Error('error'))
-      })
-
-      const mockSignInAPI = jest.fn()
-      mockSignInAPI.mockReturnValue(mockFailurePromise)
-      userService.getUsersResponse = mockSignInAPI
-
-      await userStore.getObservationList()
-      expect(userStore.getObservationListAPIStatus).toBe(API_FAILED)
-      expect(userStore.getObservationListAPIError).toBe('error')
-   })
-
-
+ 
     it('should test add Observation API initialising state', () => {
       expect(userStore.observation).toStrictEqual(new Array())
       expect(userStore.createObservationsAPIStatus).toBe(API_INITIAL)
@@ -214,8 +174,6 @@ describe('user store test', () => {
 
    })
 
-
-
    it("should test the date_type and sort_Type variables",()=>
    {
    expect(userStore.date_type).toBe("reported_on")
@@ -241,31 +199,14 @@ it("should test filterList function",()=>
    list=["closed","resolved"]
    userStore.filterByStatus(list)
    expect(userStore.filterList.length).toBe(2)
-})
- it('should test user store pagination function', async () => {
-      const mockSuccessPromise = new Promise(function(resolve, reject) {
-         resolve(observationList)
-      })
-      const mockSignInAPI = jest.fn()
-      mockSignInAPI.mockReturnValue(mockSuccessPromise)
-      userService.getUsersResponse = mockSignInAPI
-      let page={
-        selected:1
-     }
-      userStore.handlePage(page)
-      await userStore.getObservationList()
-      expect(userStore.offset).toBe(3)
-      expect(userStore.pageLimit).toBe(3)
-      expect(userStore.totalObservations).toBe(3)
-
-      page={
-         selected:3
-      }
-       userStore.handlePage(page)
-      await userStore.getObservationList()
-      expect(userStore.offset).toBe(9)
-      expect(userStore.pageLimit).toBe(3)
-      expect(userStore.totalObservations).toBe(2)
-   })
+})  
+it("should test andle hpage  function",async()=>
+{
+   let page={
+      selected:1
+   }
+   await userStore.handlePage(page)
+   expect(userStore.observationList).toBeDefined()
   
+})
 })

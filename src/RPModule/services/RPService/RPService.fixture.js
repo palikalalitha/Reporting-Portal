@@ -4,7 +4,7 @@ import observationList from '../../../UserModule/fixtures/getObservationList.jso
 class RPServiceFixture {
    getRPObservations() {
       return new Promise((resolve, reject) => {
-         setTimeout(() => resolve(observationList), 2000)
+         resolve(observationList)
       })
    }
 }

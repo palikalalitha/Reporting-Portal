@@ -13,6 +13,7 @@ import {
    USER_HEADINGS,
    OBSERVATIONLIST
 } from '../../constants/userPageConstants'
+import ReactPagination from "../../../common/components/ReactPagination/ReactPagination"
 
 @observer
 class ObservationList extends Component {
@@ -32,23 +33,10 @@ class ObservationList extends Component {
             {observationList.length > 0 ? (
                <>
                   <Table tableHeadings={USER_HEADINGS} {...this.props} observationList={observationList} />
-                  <ReactPaginate
-                     previousLabel={'<'}
-                     nextLabel={'>'}
-                     breakLabel={'...'}
-                     breakClassName={'break-me'}
-                     breakLinkClassName={'breakLinkClassName'}
-                     pageCount={totlaPages}
-                     marginPagesDisplayed={5}
-                     pageRangeDisplayed={2}
-                     onPageChange={handlePage}
-                     containerClassName={'page-container'}
-                     pageClassName={'page-box'}
-                     activeClassName={'active-page'}
-                     previousClassName={'prev'}
-                     nextClassName={'prev'}
-                     forcePage={selectedPage}
-                  />
+                  <ReactPagination  
+                   totlaPages={totlaPages} 
+                  handlePage={handlePage}    
+                  selectedPage={selectedPage}/>
                </>
             ) : (
                <NoObservations

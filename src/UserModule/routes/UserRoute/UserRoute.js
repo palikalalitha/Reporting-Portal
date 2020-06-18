@@ -94,45 +94,40 @@ class UserRoute extends React.Component {
       } = this
 
       const {
-         navigatePrevPage,
          handlePage,
-         selectedPage,
-         navigateNextPage,
-         currentPage,
-         totlaPages,
          observationList,
          userObservationList,
-         offset,
          date_type,
          sort_type,
          getObservationDetailsById,
          getObservationDetailsAPIStatus,
          getObservationDetailsAPIError,
          singleObservationDetails,
-         categories
+         categories,
+         paginationStore
       } = userStore
+   const { offset,selectedPage,totalPages}=paginationStore
       return (
          <ObservationList
             categories={categories}
             detailsAPIStatus={getObservationDetailsAPIStatus}
             deatilsAPIError={getObservationDetailsAPIError}
-            filterByStatus={filterByStatus}
             getObservationDetailsById={getObservationDetailsById}
+            singleObservationDetails={singleObservationDetails}
+            filterByStatus={filterByStatus}
             observationsSort={observationsSort}
             roleType={this.roleType}
-            handlePage={handlePage}
             date_type={date_type}
             sort_type={sort_type}
-            selectedPage={selectedPage}
-            gotoObservationList={gotoObservationList}
-            navigatePrevPage={navigatePrevPage}
+           
+            gotoObservationList={this.gotoObservationList}
             navigateToObservationScreen={navigateToObservationScreen}
-            navigateNextPage={navigateNextPage}
-            gotoUserForm={naviagteToUserForm}
+            gotoUserForm={this.naviagteToUserForm}
+
             observationList={observationList}
-            singleObservationDetails={singleObservationDetails}
-            currentPage={currentPage}
-            totlaPages={totlaPages}
+            selectedPage={selectedPage}
+            handlePage={handlePage}
+            totlaPages={totalPages}
             offset={offset}
          />
       )
@@ -140,32 +135,32 @@ class UserRoute extends React.Component {
 
    render() {
       const {
-         getObservationListAPIStatus,
-         getObservationListAPIError,
-         userObservationList,
+         
          observationList,
          getObservationDetailsAPIStatus,
          getObservationDetailsAPIError,
          getCategoriesAPIError,
          getCategoriesAPIStatus,
+         paginationStore,
          categories
       } = userStore
-    const apiStatus=getLoadingStatus(getObservationListAPIStatus,getCategoriesAPIStatus)
+      const {getEntityListAPIError,getEntityListAPIStatus}=paginationStore
+    const apiStatus=getLoadingStatus(getEntityListAPIStatus,getCategoriesAPIStatus)
       return (
          <UserPage
             roleType={this.roleType}
-            categories={categories}
-            onClickToSignOut={this.onClickToSignOut}
-            gotoUserForm={this.gotoUserForm}
-            filterByStatus={this.filterByStatus}
-            gotoUserForm={this.naviagteToUserForm}
-            observationList={observationList}
-            gotoObservationList={this.gotoObservationList}
-       
             apiStatus={apiStatus}
-            apiError={getObservationListAPIError}
+            apiError={getEntityListAPIError}
             detailsAPIStatus={getObservationDetailsAPIStatus}
             deatilsAPIError={getObservationDetailsAPIError}
+
+            categories={categories}
+           
+            observationList={observationList}
+         
+            gotoUserForm={this.naviagteToUserForm}
+            gotoObservationList={this.gotoObservationList}
+            onClickToSignOut={this.onClickToSignOut}
             doNetworkCalls={this.doNetworkCalls}
             renderSuccessUI={this.renderSuccessUI}
          />

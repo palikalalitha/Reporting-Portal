@@ -54,21 +54,7 @@ class RPRoute extends Component {
             sort_type={sort_type}
             selectedPage={rpSelectedPage}
             observationList={assignedObservationList}
-         />
-         // <ObservationList
-         //    roleType={this.role}
-         //    navigateToObservationScreen={this.navigateToObservationScreen}
-         //    sortBytDate={sortBytDate}
-         //    currentPage={rpCurrentPage}
-         //    totlaPages={rpTotalPage}
-         //    offset={rpOffset}
-         //    handlePage={handlePage}
-         //    date_type={date_type}
-         //    sort_type={sort_type}
-         //    selectedPage={rpSelectedPage}
-         //    observationList={assignedObservationList}
-         // />
-      )
+         />)
    })
    render() {
       const {
@@ -76,6 +62,7 @@ class RPRoute extends Component {
          getAssignedObservationListAPIError,
          assignedObservationList
       } = this.props.rpStore
+      console.log("fgi")
       return (
          <RPPage
             roleType={this.role}

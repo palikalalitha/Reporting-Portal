@@ -22,7 +22,7 @@ const routes = [
    />,
    // <ProtectedRoute path={OBSERVATION_LIST} component={RPObservationsRoute} />,
    // <ProtectedRoute path={RP_CREATION_FORM} component={UserFormRoute} />,
-   // <ProtectedRoute path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
+  //  <ProtectedRoute path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
 ]
 
 export default routes
