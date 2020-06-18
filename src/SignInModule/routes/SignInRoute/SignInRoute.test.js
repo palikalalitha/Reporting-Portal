@@ -14,7 +14,7 @@ import { USER_PATH } from '../../../UserModule/constants/RouteConstants'
 // import { SignInAPI } from '../../services/SignInAPI/SignIn.api'
 import { SignInFixture } from '../../services/SignInServices/SignIn.fixture'
 import { SignInStore } from '../../stores/SignInStore/'
-import { RP_PATH } from "../../../RPModule/constants/RPRouteConstants/RPRouteConstants"
+import { RP_PATH } from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
 
 const LocationDisplay = withRouter(({ location }) => (
    <div data-testid='location-display'>{location.pathname}</div>
@@ -70,7 +70,7 @@ describe('SignInRoute Tests', () => {
       getByText(/Required Field/i)
    })
 
-   it('should submit sign-in on press enter', async() => {
+   it('should submit sign-in on press enter', async () => {
       const { getByTestId, getByRole, getByText } = render(
          <Router history={createMemoryHistory()}>
             <SignInRoute signInStore={signInStore} />
@@ -99,22 +99,18 @@ describe('SignInRoute Tests', () => {
       fireEvent.change(usernameField, { target: { value: username } })
       fireEvent.change(passwordField, { target: { value: password } })
       fireEvent.click(signInButton)
-      role=signInStore.role
+      role = signInStore.role
       getByRole('button', { disabled: true })
-
    })
    it('should render signInRoute success state', async () => {
       const history = createMemoryHistory()
       const route = SIGN_IN_PATH
       let path
       history.push(route)
-      if(role==="user")
-      {
-         path=USER_PATH
-      }
-      else if(role==="rp")
-      {
-         path=RP_PATH
+      if (role === 'user') {
+         path = USER_PATH
+      } else if (role === 'rp') {
+         path = RP_PATH
       }
       const { getByRole, queryByRole, getByTestId, debug } = render(
          <Provider signInStore={signInStore}>

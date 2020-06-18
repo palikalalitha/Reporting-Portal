@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import {
    API_SUCCESS,
@@ -13,7 +11,11 @@ import { Router, Route, withRouter } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import { createMemoryHistory } from 'history'
 
-import { USER_CREATION_FORM, USER_PATH, OBSERVATION_SCREEN } from '../../constants/RouteConstants'
+import {
+   USER_CREATION_FORM,
+   USER_PATH,
+   OBSERVATION_SCREEN
+} from '../../constants/RouteConstants'
 import { UserServiceAPI } from '../../services/UserService/UserService.api'
 import UserService from '../../services/UserService/UserService.fixture'
 import { UserStore } from '../../stores/UserStore'
@@ -24,10 +26,10 @@ import getUserSignInResponse from '../../../SignInModule/fixtures/getUserSignInR
 import { SignInFixture } from '../../../SignInModule/services/SignInServices/SignIn.fixture'
 
 import { UserRoute } from '.'
-import { SIGN_IN_PATH } from "../../../SignInModule/constants/RouteConstants"
+import { SIGN_IN_PATH } from '../../../SignInModule/constants/RouteConstants'
 
 import observationList from '../../fixtures/getObservationList'
-import UserFormRoute from "../UserFormRoute/UserFormRoute"
+import UserFormRoute from '../UserFormRoute/UserFormRoute'
 
 const LocationDisplay = withRouter(({ location }) => (
    <div data-testid='location-display'>{location.pathname}</div>
@@ -44,23 +46,21 @@ describe('UserRoute Tests', () => {
       userStore = new UserStore(userService)
       signInStore = new SignInStore(signInAPI)
    })
-   it("should test logout button in userpage",async()=>
-   {
+   it('should test logout button in userpage', async () => {
       const { getByTestId, debug } = render(
          <Router history={createMemoryHistory()}>
             <UserRoute signInStore={signInStore} />
          </Router>
       )
 
-      const logoutButton=getByTestId("logout")
+      const logoutButton = getByTestId('logout')
       expect(logoutButton).toBeInTheDocument()
    })
-   it("should test logout buttonAPI  in userpage",async()=>
-   {
+   it('should test logout buttonAPI  in userpage', async () => {
       const history = createMemoryHistory()
       const route = USER_PATH
       history.push(route)
-      const { getByTestId ,debug} = render(
+      const { getByTestId, debug } = render(
          <Provider signInStore={signInStore}>
             <Router history={history}>
                <Route path={SIGN_IN_PATH}>
@@ -73,22 +73,19 @@ describe('UserRoute Tests', () => {
          </Provider>
       )
 
-      const logoutButton=getByTestId("logout")
+      const logoutButton = getByTestId('logout')
       expect(logoutButton).toBeInTheDocument()
       fireEvent.click(logoutButton)
-      
+
       await (() => {
          getByTestId('location-display')
       })
-      expect(getByTestId('location-display')).toHaveTextContent(
-         SIGN_IN_PATH
-      )
-    
+      expect(getByTestId('location-display')).toHaveTextContent(SIGN_IN_PATH)
    })
    it('should render the user form ', async () => {
       const history = createMemoryHistory()
       const route = USER_PATH
-      history.push(route,"user")
+      history.push(route, 'user')
       const { getByRole, getByTestId } = render(
          <Provider signInStore={signInStore}>
             <Router history={history}>
@@ -117,8 +114,8 @@ describe('UserRoute Tests', () => {
    it('should render the observationDeatils form', async () => {
       const history = createMemoryHistory()
       const route = USER_PATH
-      history.push(route,"user")
-      const { getAllByTestId, getByTestId,debug } = render(
+      history.push(route, 'user')
+      const { getAllByTestId, getByTestId, debug } = render(
          <Provider signInStore={signInStore}>
             <Router history={history}>
                <Route path={OBSERVATION_SCREEN}>
@@ -131,15 +128,14 @@ describe('UserRoute Tests', () => {
          </Provider>
       )
       await userStore.getObservationList()
-      
 
-      const row = getAllByTestId("row")
+      const row = getAllByTestId('row')
       fireEvent.click(row[0])
 
       const mockSuccessPromise = new Promise(function(resolve, reject) {
          resolve(observationList[1])
       })
-      const ObservationId=1
+      const ObservationId = 1
 
       const mockSignInAPI = jest.fn()
       mockSignInAPI.mockReturnValue(mockSuccessPromise)
@@ -155,12 +151,11 @@ describe('UserRoute Tests', () => {
          `${OBSERVATION_SCREEN}${ObservationId}`
       )
    })
-   it("should test goBack button  in userpage",async()=>
-   {
+   it('should test goBack button  in userpage', async () => {
       const history = createMemoryHistory()
       const route = USER_CREATION_FORM
       history.push(route)
-      const { getByRole, getByTestId ,getByText,debug} = render(
+      const { getByRole, getByTestId, getByText, debug } = render(
          <Provider signInStore={signInStore} userStore={userStore}>
             <Router history={history}>
                <Route path={USER_CREATION_FORM}>
@@ -171,30 +166,28 @@ describe('UserRoute Tests', () => {
                </Route>
             </Router>
          </Provider>
-    )
-   
-   //    await waitFor (() => {
-   //       getByTestId("back")
-   //    })
-   //    const goBackButton=getByTestId("back")
-   //    expect(goBackButton).toBeInTheDocument()
-   //    // await waitFor (() => {   
-   //    fireEvent.click(goBackButton)
-   //    // })
-   //   debug()
+      )
+
+      //    await waitFor (() => {
+      //       getByTestId("back")
+      //    })
+      //    const goBackButton=getByTestId("back")
+      //    expect(goBackButton).toBeInTheDocument()
+      //    // await waitFor (() => {
+      //    fireEvent.click(goBackButton)
+      //    // })
+      //   debug()
       // await (() => {
       //    getByTestId('location-display')
       // })
-     
+
       // await waitFor (() => { expect(getByTestId('location-display')).toHaveTextContent(USER_PATH)})
-    
    })
-   it("should test logout buttonAPI  in userpage",async()=>
-   {
+   it('should test logout buttonAPI  in userpage', async () => {
       const history = createMemoryHistory()
       const route = USER_PATH
       history.push(route)
-      const { getByRole, getByTestId ,debug} = render(
+      const { getByRole, getByTestId, debug } = render(
          <Provider signInStore={signInStore}>
             <Router history={history}>
                <Route path={SIGN_IN_PATH}>
@@ -207,18 +200,13 @@ describe('UserRoute Tests', () => {
          </Provider>
       )
 
-      const logoutButton=getByTestId("logout")
+      const logoutButton = getByTestId('logout')
       expect(logoutButton).toBeInTheDocument()
       fireEvent.click(logoutButton)
-   
+
       await (() => {
          getByTestId('location-display')
       })
-      expect(getByTestId('location-display')).toHaveTextContent(
-         SIGN_IN_PATH
-      )
-    
+      expect(getByTestId('location-display')).toHaveTextContent(SIGN_IN_PATH)
    })
-    
-    
 })

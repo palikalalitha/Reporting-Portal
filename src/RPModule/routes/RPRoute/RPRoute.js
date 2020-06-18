@@ -7,7 +7,7 @@ import { RPObservations } from '../RPObservationsRoute/RPObservationsRoute'
 import { ObservationList } from '../../../UserModule/components/ObservationList/ObservationList'
 import { RP_HEADINGS } from '../../constants/RPPageConstants'
 import { OBSERVATION_SCREEN } from '../../constants/RPRouteConstants/RPRouteConstants'
-import { AssignedObservationList } from "../../components/AssignedObservationList/AssignedObservationList"
+import { AssignedObservationList } from '../../components/AssignedObservationList/AssignedObservationList'
 
 @inject('rpStore')
 @observer
@@ -42,8 +42,8 @@ class RPRoute extends Component {
          handlePage
       } = this.props.rpStore
       return (
-         <AssignedObservationList 
-             roleType={this.role}
+         <AssignedObservationList
+            roleType={this.role}
             navigateToObservationScreen={this.navigateToObservationScreen}
             sortBytDate={sortBytDate}
             currentPage={rpCurrentPage}
@@ -54,7 +54,8 @@ class RPRoute extends Component {
             sort_type={sort_type}
             selectedPage={rpSelectedPage}
             observationList={assignedObservationList}
-         />)
+         />
+      )
    })
    render() {
       const {
@@ -62,7 +63,7 @@ class RPRoute extends Component {
          getAssignedObservationListAPIError,
          assignedObservationList
       } = this.props.rpStore
-      console.log("fgi")
+      console.log('fgi')
       return (
          <RPPage
             roleType={this.role}

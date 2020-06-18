@@ -1,12 +1,11 @@
-
-import React, { Component } from 'react';
-import ReactPaginate from "react-paginate"
+import React, { Component } from 'react'
+import ReactPaginate from 'react-paginate'
 
 class ReactPagination extends Component {
-    render() {
-        const {totlaPages,handlePage,selectedPage}=this.props
-        return (
-            <ReactPaginate
+   render() {
+      const { totlaPages, handlePage, selectedPage } = this.props
+      return (
+         <ReactPaginate
             previousLabel={'<'}
             nextLabel={'>'}
             breakLabel={'...'}
@@ -22,9 +21,9 @@ class ReactPagination extends Component {
             previousClassName={'prev'}
             nextClassName={'prev'}
             forcePage={selectedPage}
-            />
-        );
-    }
+         />
+      )
+   }
 }
 
-export default ReactPagination;
+export default ReactPagination

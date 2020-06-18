@@ -7,7 +7,6 @@ import {
    API_FETCHING
 } from '@ib/api-constants'
 
-
 import { SignInFixture } from '../../services/SignInServices/SignIn.fixture'
 
 import getUserSignInResponse from '../../fixtures/getUserSignInResponse.json'
@@ -103,19 +102,16 @@ describe('SignInStore Tests', () => {
       expect(signInStore.getUserSignInAPIError).toBe('error')
       expect(onFailure).toBeCalled()
    })
-   it("should test the userSignOutAPI initialising state",()=>
-   {
+   it('should test the userSignOutAPI initialising state', () => {
       expect(signInStore.getUserSignOutAPIStatus).toBe(API_INITIAL)
       expect(signInStore.getUserSignOutAPIError).toBe(null)
-      
    })
-   it("should test the userSignOutAPI fetching state",()=>
-   {
+   it('should test the userSignOutAPI fetching state', () => {
       const onSuccess = jest.fn()
       const onFailure = jest.fn()
 
       const requestObject = {
-        acces_token:"fgfg"
+         acces_token: 'fgfg'
       }
 
       const mockLoadingPromise = new Promise(function(resolve, reject) {})
@@ -133,14 +129,14 @@ describe('SignInStore Tests', () => {
       expect(onSuccess).not.toBeCalled()
       expect(onFailure).not.toBeCalled()
    })
-   
+
    it('should test userSignOutAPI success state', async () => {
       const onSuccess = jest.fn()
       const onFailure = jest.fn()
 
       const requestObject = {
-         acces_token:"fgfg"
-       }
+         acces_token: 'fgfg'
+      }
 
       const mockSuccessPromise = Promise.resolve(getUserSignInResponse)
       const mockSignInAPI = jest.fn()
@@ -157,7 +153,7 @@ describe('SignInStore Tests', () => {
       const onSuccess = jest.fn()
       const onFailure = jest.fn()
       const requestObject = {
-         acces_token:"fdgf"
+         acces_token: 'fdgf'
       }
 
       const mockFailurePromise = new Promise(function(resolve, reject) {

@@ -5,7 +5,7 @@ export const gotoUserPage = (history, role) => {
    history.replace(USER_PATH, role)
 }
 export const gotoRPPage = (history, role) => {
-   console.log(history,role)
+   console.log(history, role)
    history.replace(RP_PATH, role)
 }
 

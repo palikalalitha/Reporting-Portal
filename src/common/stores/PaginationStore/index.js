@@ -1,1 +1,1 @@
-export {PaginationStore} from "./PaginationStore"
+export { PaginationStore } from './PaginationStore'

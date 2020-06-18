@@ -59,7 +59,9 @@ class Header extends Component {
 
             {/* </HeaderMiddlePart> */}
             <HeaderRightPart>
-               <LogOutButton data-testid="logout" onClick={onClickToSignOut}>Logout</LogOutButton>
+               <LogOutButton data-testid='logout' onClick={onClickToSignOut}>
+                  Logout
+               </LogOutButton>
                <ProfileName>Lalitha</ProfileName>
                <Image imageURL={PROFILE_URL} />
             </HeaderRightPart>

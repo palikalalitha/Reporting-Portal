@@ -1,81 +1,65 @@
-import { observable,action } from "mobx";
-import { bindPromiseWithOnSuccess } from "@ib/mobx-promise";
-import { API_INITIAL } from "@ib/api-constants";
-import { PAGE_LIMIT } from "../../../UserModule/constants/userStoreConstants";
-import { getUserDisplayableErrorMessage } from "../../../utils/APIUtils";
+import { observable, action } from 'mobx'
+import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+import { API_INITIAL } from '@ib/api-constants'
+import { PAGE_LIMIT } from '../../../UserModule/constants/userStoreConstants'
+import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 
+class PaginationStore {
+   @observable selectedPage
+   @observable totalPages
+   @observable getEntityListAPIError
+   @observable getEntityListAPIStatus
+   @observable entityList
+   entityModel
+   serviceMethod
+   pageLimit
+   offset
+   constructor(method, limit, offset, entityModel) {
+      this.serviceMethod = method
+      this.pageLimit = limit
+      this.offset = offset
+      this.entityModel = entityModel
+      this.init()
+   }
+   init() {
+      this.selectedPage = 0
+      this.totalPages = ''
+      this.entityList = []
+      this.getEntityListAPIError = null
+      this.getEntityListAPIStatus = API_INITIAL
+   }
+   @action.bound
+   updatePage(page) {
+      this.selectedPage = page
+      this.offset = Math.ceil(page * this.pageLimit)
+   }
+   @action.bound
+   getEntitesList() {
+      const userPromise = this.serviceMethod(this.offset, this.pageLimit)
+      return bindPromiseWithOnSuccess(userPromise)
+         .to(this.setGetEntityListAPIStatus, this.setEntityListResponse)
+         .catch(this.setGetEntityListAPIError)
+   }
+   @action.bound
+   setEntityListResponse(response) {
+      this.entityList = response.result.map(each => {
+         return new this.entityModel(each)
+      })
+      this.totalPages = Math.ceil(response.totalCount / this.pageLimit)
+   }
 
-class PaginationStore  {
-    @observable selectedPage
-    @observable totalPages
-    @observable getEntityListAPIError
-    @observable getEntityListAPIStatus
-    @observable entityList
-    entityModel
-    serviceMethod
-    pageLimit
-    offset
-    constructor(method,limit,offset,entityModel)
-    {
-        this.serviceMethod=method
-        this.pageLimit=limit
-        this.offset=offset
-        this.entityModel=entityModel
-        this.init() 
-    }
-    init()
-    {
-        this.selectedPage=0
-        this.totalPages=""
-        this.entityList=[]
-        this.getEntityListAPIError=null
-        this.getEntityListAPIStatus=API_INITIAL
-    }
-    @action.bound
-    updatePage(page)
-    {
-        this.selectedPage=page
-        this.offset = Math.ceil(page * this.pageLimit)
-    }
-    @action.bound
-    getEntitesList()
-    {
-        const userPromise = this.serviceMethod(
-            this.offset,
-            this.pageLimit
-         )
-         return bindPromiseWithOnSuccess(userPromise)
-            .to(
-               this.setGetEntityListAPIStatus,
-               this.setEntityListResponse
-            )
-            .catch(this.setGetEntityListAPIError)
-      
-    }
-    @action.bound
-    setEntityListResponse(response) {
-            this.entityList = response.result.map(each => {
-          return new this.entityModel(each)
-       })
-       this.totalPages = Math.ceil(response.totalCount / this.pageLimit)
-    }
+   @action.bound
+   setGetEntityListAPIError(error) {
+      this.getEntityListAPIError = error
+   }
 
-    @action.bound
-    setGetEntityListAPIError(error) {
-       this.getEntityListAPIError =error
-    }
- 
-    @action.bound
-    setGetEntityListAPIStatus(status) {
-       this.getEntityListAPIStatus = status
-    }
- 
-
-
+   @action.bound
+   setGetEntityListAPIStatus(status) {
+      this.getEntityListAPIStatus = status
+   }
 }
 
-export  {PaginationStore};
-
+export { PaginationStore }
 
 // Class PaginatioStore
 // {
@@ -98,8 +82,6 @@ export  {PaginationStore};
 // {return new this.enitityModel(eachdata
 // }
 // }
-
-
 
 // Class DashbordStore
 // {

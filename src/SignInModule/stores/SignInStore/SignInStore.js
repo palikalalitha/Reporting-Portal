@@ -23,8 +23,8 @@ class SignInStore {
       this.getUserSignInAPIStatus = API_INITIAL
       this.getUserSignInAPIError = null
 
-      this.getUserSignOutAPIError=null
-      this.getUserSignOutAPIStatus=API_INITIAL
+      this.getUserSignOutAPIError = null
+      this.getUserSignOutAPIStatus = API_INITIAL
       this.access_token = ''
       this.role = ''
    }
@@ -60,7 +60,7 @@ class SignInStore {
       this.getUserSignInAPIStatus = status
    }
 
-      @action.bound
+   @action.bound
    userSignOut(request_data, onSuccess, onFailure) {
       const userResponse = this.authAPIService.signOutAPI(request_data)
       return bindPromiseWithOnSuccess(userResponse)
@@ -76,7 +76,7 @@ class SignInStore {
 
    @action.bound
    setUserSignOutAPIResponse(response) {
-        clearUserSession(response)
+      clearUserSession(response)
       this.init()
       // this.access_token = response.access_token
       // this.role = response.role.toLowerCase()

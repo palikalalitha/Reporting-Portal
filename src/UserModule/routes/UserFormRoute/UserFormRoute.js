@@ -10,7 +10,6 @@ import { USER_CREATION_FORM } from '../../constants/RouteConstants'
 import LoadingWrapperWithFailure from '../../../common/components/LoadingWrapperWithFailure'
 import { DesktopLayout } from '../../../common/components/DesktopLayout/DesktopLayout'
 
-
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 
 @inject('userStore')
@@ -63,7 +62,7 @@ class UserFormRoute extends Component {
       this.errorMessageForSeverity = ''
       this.errorMessageForTitle = ''
       this.errorMessageForDescription = ''
-      this.errorMessage=""
+      this.errorMessage = ''
    }
 
    onChangeTitle = event => {
@@ -121,15 +120,16 @@ class UserFormRoute extends Component {
             this.severity.value,
             this.description,
             this.category_id.value,
-            this.sub_category_id.value,this.onSuccess,this.onFailure
+            this.sub_category_id.value,
+            this.onSuccess,
+            this.onFailure
          )
       }
    }
 
-    onSuccess = () => {
-        this.gotoObservationList()
-      
-      }
+   onSuccess = () => {
+      this.gotoObservationList()
+   }
 
    onFailure = () => {
       const { createObservationsAPIError: apiError } = this.props.userStore

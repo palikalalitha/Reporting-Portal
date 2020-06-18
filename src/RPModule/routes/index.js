@@ -12,17 +12,14 @@ import UserFormRoute from '../../UserModule/routes/UserFormRoute/UserFormRoute'
 import ObservationScreenRoute from './ObservationScreenRoute/ObservationScreenRoute'
 import RPObservationsRoute from './RPObservationsRoute/RPObservationsRoute'
 import { RPRoute } from './RPRoute/RPRoute'
-import { ProtectedRoute } from "../../common/routes/ProtectedRoute/ProtectedRoute"
+import { ProtectedRoute } from '../../common/routes/ProtectedRoute/ProtectedRoute'
 
 const routes = [
    <ProtectedRoute path={RP_PATH} component={RPRoute} />,
-   <ProtectedRoute
-      path={Assigned_OBSERVATIONS_PATH}
-      component={RPRoute}
-   />,
+   <ProtectedRoute path={Assigned_OBSERVATIONS_PATH} component={RPRoute} />
    // <ProtectedRoute path={OBSERVATION_LIST} component={RPObservationsRoute} />,
    // <ProtectedRoute path={RP_CREATION_FORM} component={UserFormRoute} />,
-  //  <ProtectedRoute path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
+   //  <ProtectedRoute path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
 ]
 
 export default routes

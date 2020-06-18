@@ -20,7 +20,7 @@ class UserPage extends React.Component {
          categories,
          observationList
       } = this.props
-   
+
       return (
          <DesktopLayout {...this.props}>
             <Navbar {...this.props} />
@@ -30,7 +30,6 @@ class UserPage extends React.Component {
                renderSuccessUI={renderSuccessUI}
                onRetryClick={doNetworkCalls}
             />
-
          </DesktopLayout>
       )
    }

@@ -4,7 +4,7 @@ import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { API_INITIAL } from '@ib/api-constants'
 import { UserStore } from '../../../UserModule/stores/UserStore/'
 import { UserModel } from '../../../UserModule/stores/models/UserModel'
-import { SamplePaginationStore } from "../../../common/stores/SamplePaginationStore/SamplePaginationStore"
+import { SamplePaginationStore } from '../../../common/stores/SamplePaginationStore/SamplePaginationStore'
 
 class RPStore extends UserStore {
    @observable updateRpObservationList
@@ -26,13 +26,15 @@ class RPStore extends UserStore {
    @observable rpSelectedPage
 
    constructor(rpServiceResponse, userServiceResponse) {
-     
-   
       super(userServiceResponse)
       this.init()
       this.rpService = rpServiceResponse
-      this.paginationStore=new SamplePaginationStore(this.rpServiceResponse,UserModel,this.totalPages,this.pageLimit)
-     
+      this.paginationStore = new SamplePaginationStore(
+         this.rpServiceResponse,
+         UserModel,
+         this.totalPages,
+         this.pageLimit
+      )
    }
    init() {
       this.getAssignedObservationListAPIStatus = API_INITIAL

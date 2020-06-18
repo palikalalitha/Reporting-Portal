@@ -74,11 +74,11 @@ class UserForm extends Component {
       return (
          <ReportedPortalContainer>
             <UserFormContainer>
-               <Wrapper data-testid={"back"} onClick={gotoObservationList}>
+               <Wrapper data-testid={'back'} onClick={gotoObservationList}>
                   <LeftSymbol>
                      <FaAngleLeft />
                   </LeftSymbol>
-                  <BackToObservation >{observation}</BackToObservation>
+                  <BackToObservation>{observation}</BackToObservation>
                </Wrapper>
                <Wrapper>
                   <Label>

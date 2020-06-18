@@ -1,11 +1,8 @@
 import getData from '@ib/api'
 
-import {
-   apiMethods
-} from '../constants/APIConstants'
+import { apiMethods } from '../constants/APIConstants'
 
 import { getAccessToken } from './StorageUtils'
-
 
 export const networkCallWithApisauceWithAccessToken = async (
    api,

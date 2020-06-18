@@ -10,7 +10,7 @@ import {
 } from '../../constants/userStoreConstants'
 
 import { UserModel } from '../models/UserModel'
-import { PaginationStore } from "../../../common/stores/PaginationStore"
+import { PaginationStore } from '../../../common/stores/PaginationStore'
 
 class UserStore {
    @observable observationList
@@ -30,7 +30,6 @@ class UserStore {
    @observable getCategoriesAPIError
    @observable getCategoriesAPIStatus
 
- 
    @observable filterList
    @observable date_type
    @observable sort_type
@@ -41,9 +40,12 @@ class UserStore {
    constructor(userServiceResponse) {
       this.init()
       this.userService = userServiceResponse
-      this.paginationStore=new PaginationStore(this.userService.getUsersResponse,
-      this.pageLimit,this.offset,UserModel)
-       
+      this.paginationStore = new PaginationStore(
+         this.userService.getUsersResponse,
+         this.pageLimit,
+         this.offset,
+         UserModel
+      )
    }
    init() {
       this.getObservationListAPIStatus = API_INITIAL
@@ -59,23 +61,21 @@ class UserStore {
       this.createObservationsAPIError = null
 
       this.observationList = []
-      this.observation=[]
+      this.observation = []
       this.singleObservationDetails = []
       this.filterList = []
       this.categories = []
-     
+
       this.offset = OFFSET
       this.pageLimit = 3
       this.date_type = 'reported_on'
       this.sort_type = 'ASC'
-    
    }
    @action.bound
-   setDate_typeAndSortType(date,sort) {
+   setDate_typeAndSortType(date, sort) {
       this.date_Type = date
       this.sort_type = sort
       this.getObservationList()
-
    }
    @action.bound
    filterByStatus(statusList) {
@@ -83,9 +83,9 @@ class UserStore {
       this.getObservationList()
    }
    @action
-   getObservationList = async() => {
-     await this.paginationStore.getEntitesList()
-     this.observationList= this.paginationStore.entityList
+   getObservationList = async () => {
+      await this.paginationStore.getEntitesList()
+      this.observationList = this.paginationStore.entityList
       // let requestObject = {
       //    date_type: this.date_type,
       //    sort_by: this.sort_type,
@@ -163,7 +163,7 @@ class UserStore {
          id
       } = response
       this.singleObservationDetails = {
-         id:id,
+         id: id,
          title: title,
          description: description,
          priority: priority,
@@ -190,7 +190,9 @@ class UserStore {
       observationSeverity,
       observationDesc,
       category,
-      SubCategory,onSuccess,onFailure
+      SubCategory,
+      onSuccess,
+      onFailure
    ) {
       if (category === null || SubCategory === null) {
          category = null
@@ -206,7 +208,7 @@ class UserStore {
       }
       const userPromise = this.userService.createObservations(observationObj)
       return bindPromiseWithOnSuccess(userPromise)
-       .to(this.setGetCreateObservationsAPIStatus, response => {
+         .to(this.setGetCreateObservationsAPIStatus, response => {
             this.setCreateObservationsResponse(response)
             onSuccess()
          })
@@ -214,12 +216,11 @@ class UserStore {
             this.setGetCreateObservationsAPIError(error)
             onFailure()
          })
-
    }
 
    @action.bound
    setCreateObservationsResponse(response) {
-      this.observation=response
+      this.observation = response
       // this.observationList.push(new UserModel(response))
       // console.log(this.observationList)
       // this.getObservationList(response)

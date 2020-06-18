@@ -1,16 +1,16 @@
 import observationList from '../../fixtures/getObservationList.json'
 import signleObservationDetails from '../../fixtures/getObservationById.json'
-import categories from "../../fixtures/getCategories.json"
+import categories from '../../fixtures/getCategories.json'
 class UserService {
-   getUsersResponse(offset,limit) {
+   getUsersResponse(offset, limit) {
       let list = observationList
-      let updateList = list.slice(offset,limit + offset)
-      let result={
-         result:updateList,
-         totalCount:observationList.length
+      let updateList = list.slice(offset, limit + offset)
+      let result = {
+         result: updateList,
+         totalCount: observationList.length
       }
       return new Promise((resolve, reject) => {
-        resolve(result)
+         resolve(result)
       })
    }
    createObservations(request) {
@@ -25,7 +25,7 @@ class UserService {
    }
    getCategories() {
       return new Promise((resolve, reject) => {
-               resolve(categories)
+         resolve(categories)
       })
    }
 }

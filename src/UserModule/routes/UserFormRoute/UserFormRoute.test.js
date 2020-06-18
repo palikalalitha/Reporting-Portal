@@ -33,19 +33,16 @@ describe('UserFormRoute Tests', () => {
       // userService = new UserServiceAPI()
       userService = new UserService()
       userStore = new UserStore(userService)
-     
    })
-   it('should render  error message', async() => {
-      const { getByText, getByTestId, getByRole ,debug,getAllByText} = render(
-       
+   it('should render  error message', async () => {
+      const { getByText, getByTestId, getByRole, debug, getAllByText } = render(
          <Provider userStore={userStore}>
             <Router history={createMemoryHistory()}>
-            <UserFormRoute />
-         </Router>
-      </Provider>
+               <UserFormRoute />
+            </Router>
+         </Provider>
       )
-      await waitFor(()=>
-      {
+      await waitFor(() => {
          getByTestId('title')
       })
       const title = getByTestId('title')
@@ -55,25 +52,23 @@ describe('UserFormRoute Tests', () => {
       fireEvent.click(submitButton)
       getAllByText(/Enter Required Field/i)
    })
-   it('should render  onChange function for title', async() => {
-      const { getByText, getByTestId, getByRole ,debug,getAllByText} = render(
-       
+   it('should render  onChange function for title', async () => {
+      const { getByText, getByTestId, getByRole, debug, getAllByText } = render(
          <Provider userStore={userStore}>
             <Router history={createMemoryHistory()}>
-            <UserFormRoute />
-         </Router>
-      </Provider>
+               <UserFormRoute />
+            </Router>
+         </Provider>
       )
-      await waitFor(()=>
-      {
+      await waitFor(() => {
          getByTestId('title')
       })
-      const titleText="test-title"
+      const titleText = 'test-title'
       const title = getByTestId('title')
 
       expect(title).toBeInTheDocument()
 
-      fireEvent.change(title, { target: { value:titleText } })
+      fireEvent.change(title, { target: { value: titleText } })
       const submitButton = getByRole('button', { name: 'Submit' })
 
       expect(submitButton).toBeInTheDocument()

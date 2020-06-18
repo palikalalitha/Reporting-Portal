@@ -1,7 +1,5 @@
 describe('StorageUtils  Tests', () => {
-    it("should test the access token ",()=>
-    {
-       isLoggedIn=jest.fn()
-       
-    })
+   it('should test the access token ', () => {
+      isLoggedIn = jest.fn()
+   })
 })

@@ -6,9 +6,7 @@ import { observable } from 'mobx'
 
 import { TableData } from '../TableData/TableData'
 
-import {
-   DROP_DOWN_URL,
-} from '../../constants/ReportingPortalconstants'
+import { DROP_DOWN_URL } from '../../constants/ReportingPortalconstants'
 
 import {
    TableContainer,
@@ -21,7 +19,6 @@ import {
 
 @observer
 class Table extends Component {
-
    onClick = observationId => {
       this.props.navigateToObservationScreen(observationId)
    }
@@ -29,14 +26,15 @@ class Table extends Component {
       this.props.observationsSort(type)
    }
    renderRows = () => {
-      const {tableHeadings}=this.props
+      const { tableHeadings } = this.props
       return tableHeadings.map(eachHeading => {
          if (eachHeading === 'reported on' || eachHeading === 'due date')
             return (
                <TableHeadings key={eachHeading}>
                   <HeadingContainer>
                      {eachHeading.toUpperCase()}
-                     <DropDownImage data-testid={"sort-button"}
+                     <DropDownImage
+                        data-testid={'sort-button'}
                         value={eachHeading}
                         buttonStatus={this.hideSortButton}
                         onClick={this.onClickToSort.bind(this, eachHeading)}
@@ -63,7 +61,8 @@ class Table extends Component {
                </thead>
                <tbody>
                   {observationList.map(eachObservation => (
-                     <TableRow data-testid={"row"}
+                     <TableRow
+                        data-testid={'row'}
                         onClick={this.onClick.bind(this, eachObservation.id)}
                         key={eachObservation.id}
                      >
