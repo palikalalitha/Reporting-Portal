@@ -102,23 +102,17 @@ describe('SignInRoute Tests', () => {
       role = signInStore.role
       getByRole('button', { disabled: true })
    })
-   it('should render signInRoute success state', async () => {
+   it('should render signInRoute success state for user Page', async () => {
       const history = createMemoryHistory()
       const route = SIGN_IN_PATH
-      let path
       history.push(route)
-      if (role === 'user') {
-         path = USER_PATH
-      } else if (role === 'rp') {
-         path = RP_PATH
-      }
       const { getByRole, queryByRole, getByTestId, debug } = render(
          <Provider signInStore={signInStore}>
             <Router history={history}>
                <Route path={SIGN_IN_PATH}>
                   <SignInRoute />
                </Route>
-               <Route path={path}>
+               <Route path={USER_PATH}>
                   <LocationDisplay />
                </Route>
             </Router>
@@ -147,7 +141,53 @@ describe('SignInRoute Tests', () => {
          expect(
             queryByRole('button', { name: 'Login' })
          ).not.toBeInTheDocument()
-         expect(getByTestId('location-display')).toHaveTextContent(path)
+         expect(getByTestId('location-display')).toHaveTextContent(USER_PATH)
+      })
+   })
+
+   it('should render signInRoute success state for rp Page', async () => {
+      const history = createMemoryHistory()
+      const route = SIGN_IN_PATH
+      history.push(route)
+      const { getByRole, queryByRole, getByTestId, debug } = render(
+         <Provider signInStore={signInStore}>
+            <Router history={history}>
+               <Route path={SIGN_IN_PATH}>
+                  <SignInRoute />
+               </Route>
+               <Route path={RP_PATH}>
+                  <LocationDisplay />
+               </Route>
+            </Router>
+         </Provider>
+      )
+
+      const username = 'test-user'
+      const password = 'test-password'
+      const signInFixture={
+         "access_token": "f5af9f51-07e6-4332-8f1a-c0c11c1e3434",
+         "role": "rp"
+       }
+      const usernameField = getByTestId('username')
+      const passwordField = getByTestId('password')
+      const signInButton = getByRole('button', { name: 'Login' })
+
+      const mockSuccessPromise = new Promise(function(resolve, reject) {
+         resolve(signInFixture)
+      })
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockSuccessPromise)
+      signInAPI.signInAPI = mockSignInAPI
+
+      fireEvent.change(usernameField, { target: { value: username } })
+      fireEvent.change(passwordField, { target: { value: password } })
+      fireEvent.click(signInButton)
+
+      await (() => {
+         expect(
+            queryByRole('button', { name: 'Login' })
+         ).not.toBeInTheDocument()
+         expect(getByTestId('location-display')).toHaveTextContent(RP_PATH)
       })
    })
    it('should render signInRoute failure state', async () => {

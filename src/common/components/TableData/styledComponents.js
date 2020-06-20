@@ -38,7 +38,7 @@ const ReportedDate = styled.td`
 `
 
 const data = styled.div``
-const NotAssignedText = styled.div`
+const NotAssignedText = styled.td`
    ${tw`flex items-center justify-center mr-10`}
    margin-left:40px;
    margin-top: 8px;
@@ -130,11 +130,22 @@ color:dark-blue-grey;
 border-radius: 50px;-
   `
 
-const StatusWrapper = styled.div`
-   width: 103px;
-   height: 16px;
+const StatusWrapper = styled.div `${tw`self-center`}
+width: 104px;
+font-family: HKGrotesk;
+font-size: 11px;
+font-weight: 400;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.33;
+letter-spacing: normal;
+color: #7e858e;
+margin-left: 28px;
+text-align: center;
+margin-top: 15px;
+margin-bottom: 15px;
    border-radius: 100px;
-   border: '1px solid #171f46';
+   border: '1px solid black';
    background-color: white;
 `
 

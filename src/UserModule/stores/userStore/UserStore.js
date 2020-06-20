@@ -86,6 +86,7 @@ class UserStore {
    getObservationList = async () => {
       await this.paginationStore.getEntitesList()
       this.observationList = this.paginationStore.entityList
+
       // let requestObject = {
       //    date_type: this.date_type,
       //    sort_by: this.sort_type,

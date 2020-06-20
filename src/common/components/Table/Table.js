@@ -30,11 +30,12 @@ class Table extends Component {
       return tableHeadings.map(eachHeading => {
          if (eachHeading === 'reported on' || eachHeading === 'due date')
             return (
+              
                <TableHeadings key={eachHeading}>
-                  <HeadingContainer>
+                  <HeadingContainer  data-testid="test">
                      {eachHeading.toUpperCase()}
                      <DropDownImage
-                        data-testid={'sort-button'}
+                    
                         value={eachHeading}
                         buttonStatus={this.hideSortButton}
                         onClick={this.onClickToSort.bind(this, eachHeading)}
@@ -76,4 +77,4 @@ class Table extends Component {
    }
 }
 
-export default withRouter(Table)
+export {Table}

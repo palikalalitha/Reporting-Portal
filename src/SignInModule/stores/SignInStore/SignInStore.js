@@ -45,6 +45,7 @@ class SignInStore {
 
    @action.bound
    setUserSignInAPIResponse(response) {
+   
       this.access_token = response.access_token
       this.role = response.role.toLowerCase()
       setAccessToken(this.access_token)
@@ -66,11 +67,11 @@ class SignInStore {
       return bindPromiseWithOnSuccess(userResponse)
          .to(this.setGetUserSignOutAPIStatus, response => {
             this.setUserSignOutAPIResponse(response)
-            onSuccess()
+            // onSuccess()
          })
          .catch(error => {
             this.setGetUserSignOutAPIError(error)
-            onFailure()
+            // onFailure()
          })
    }
 

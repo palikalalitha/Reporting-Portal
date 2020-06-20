@@ -5,6 +5,7 @@ import { API_INITIAL } from '@ib/api-constants'
 import { UserStore } from '../../../UserModule/stores/UserStore/'
 import { UserModel } from '../../../UserModule/stores/models/UserModel'
 import { SamplePaginationStore } from '../../../common/stores/SamplePaginationStore/SamplePaginationStore'
+import { PaginationStore } from "../../../common/stores/PaginationStore"
 
 class RPStore extends UserStore {
    @observable updateRpObservationList
@@ -29,12 +30,12 @@ class RPStore extends UserStore {
       super(userServiceResponse)
       this.init()
       this.rpService = rpServiceResponse
-      this.paginationStore = new SamplePaginationStore(
-         this.rpServiceResponse,
-         UserModel,
-         this.totalPages,
-         this.pageLimit
-      )
+      // this.paginationStore = new PaginationStore(
+      //    this.rpServiceResponse.getRPObservations(),
+      //    this.rpOffset,
+      //    this.rpPageLimit,
+      //    UserModel,
+      // )
    }
    init() {
       this.getAssignedObservationListAPIStatus = API_INITIAL

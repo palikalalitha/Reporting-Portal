@@ -71,21 +71,12 @@ class UserRoute extends React.Component {
    onClickToSignOut = () => {
       const { userSignOut, access_token } = this.props.signInStore
       this.props.signInStore.userSignOut(
-         access_token,
-         this.onSuccess,
-         this.onFailure
-      )
+         access_token    )
+      this.onSuccess()
    }
    onSuccess = () => {
       let { history } = this.props
       gotoSignInPage(history)
-   }
-
-   onFailure = () => {
-      const { getUserSignOutAPIError: apiError } = this.props.signInStore
-      if (apiError !== undefined || apiError != null) {
-         this.errorMessage = getUserDisplayableErrorMessage(apiError)
-      }
    }
    renderSuccessUI = observer(() => {
       const {

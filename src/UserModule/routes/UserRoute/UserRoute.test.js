@@ -23,6 +23,7 @@ import { SignInStore } from '../../../SignInModule/stores/SignInStore/SignInStor
 
 import getUserSignInResponse from '../../../SignInModule/fixtures/getUserSignInResponse.json'
 
+import getUserSignOutResponse from '../../../SignInModule/fixtures/getUserSignOutResponse.json'
 import { SignInFixture } from '../../../SignInModule/services/SignInServices/SignIn.fixture'
 
 import { UserRoute } from '.'
@@ -46,6 +47,12 @@ describe('UserRoute Tests', () => {
       userStore = new UserStore(userService)
       signInStore = new SignInStore(signInAPI)
    })
+   it("should test intilaise logout states",()=>
+   {
+      expect(signInStore.getUserSignOutAPIError).toBe(null)
+      expect(signInStore.getUserSignOutAPIStatus).toBe(API_INITIAL)
+      
+   })
    it('should test logout button in userpage', async () => {
       const { getByTestId, debug } = render(
          <Router history={createMemoryHistory()}>
@@ -56,7 +63,7 @@ describe('UserRoute Tests', () => {
       const logoutButton = getByTestId('logout')
       expect(logoutButton).toBeInTheDocument()
    })
-   it('should test logout buttonAPI  in userpage', async () => {
+   it('should test logout button function in userpage', async () => {
       const history = createMemoryHistory()
       const route = USER_PATH
       history.push(route)
@@ -76,11 +83,11 @@ describe('UserRoute Tests', () => {
       const logoutButton = getByTestId('logout')
       expect(logoutButton).toBeInTheDocument()
       fireEvent.click(logoutButton)
-
       await (() => {
          getByTestId('location-display')
       })
       expect(getByTestId('location-display')).toHaveTextContent(SIGN_IN_PATH)
+
    })
    it('should render the user form ', async () => {
       const history = createMemoryHistory()
@@ -172,41 +179,8 @@ describe('UserRoute Tests', () => {
       //       getByTestId("back")
       //    })
       //    const goBackButton=getByTestId("back")
-      //    expect(goBackButton).toBeInTheDocument()
-      //    // await waitFor (() => {
-      //    fireEvent.click(goBackButton)
-      //    // })
-      //   debug()
-      // await (() => {
-      //    getByTestId('location-display')
       // })
 
       // await waitFor (() => { expect(getByTestId('location-display')).toHaveTextContent(USER_PATH)})
    })
-   it('should test logout buttonAPI  in userpage', async () => {
-      const history = createMemoryHistory()
-      const route = USER_PATH
-      history.push(route)
-      const { getByRole, getByTestId, debug } = render(
-         <Provider signInStore={signInStore}>
-            <Router history={history}>
-               <Route path={SIGN_IN_PATH}>
-                  <LocationDisplay />
-               </Route>
-               <Route path={USER_PATH}>
-                  <UserRoute />
-               </Route>
-            </Router>
-         </Provider>
-      )
-
-      const logoutButton = getByTestId('logout')
-      expect(logoutButton).toBeInTheDocument()
-      fireEvent.click(logoutButton)
-
-      await (() => {
-         getByTestId('location-display')
-      })
-      expect(getByTestId('location-display')).toHaveTextContent(SIGN_IN_PATH)
-   })
-})
+  })

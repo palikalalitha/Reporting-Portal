@@ -8,5 +8,11 @@
                "due_date": "11/5/2020",
                "status": "Action in progress",
                "is_due_date_private":"true",
-               "assigned_to_name":"Lalitha"
-}
+               "assigned_to_name":"Lalitha",
+
+               "assigned_to":{
+                   "name":"sri ram",
+                   "contact_number":983748374,
+                   "role":"user"
+               }
+}  
