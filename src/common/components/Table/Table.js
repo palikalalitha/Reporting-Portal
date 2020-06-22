@@ -6,7 +6,7 @@ import { observable } from 'mobx'
 
 import { TableData } from '../TableData/TableData'
 
-import { DROP_DOWN_URL } from '../../constants/ReportingPortalconstants'
+import { DROP_DOWN_URL } from '../../constants/reportingPortalconstants'
 
 import {
    TableContainer,

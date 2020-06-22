@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import Table from '../../../common/components/Table/Table'
+import {Table} from '../../../common/components/Table/Table'
 
 import NoObservations from '../../../UserModule/components/NoObservations/NoObservations'
 import { ObservationContainer } from '../../../UserModule/styleGuide/typos'
 
-import { RP_HEADINGS } from '../../../common/constants/ReportingPortalconstants'
+import { RP_HEADINGS } from '../../../common/constants/reportingPortalconstants'
 import ReactPagination from '../../../common/components/ReactPagination/ReactPagination'
 
 @observer

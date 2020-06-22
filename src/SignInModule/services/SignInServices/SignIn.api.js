@@ -1,7 +1,7 @@
 import { create } from 'apisauce'
 import { networkCallWithApisauceWithAccessToken } from '../../utils/AuthUtils'
 import { apiMethods } from '../../../constants/APIConstants'
-import { URL } from '../../../common/constants/ReportingPortalconstants.js'
+import { URL } from '../../../common/constants/reportingPortalconstants.js'
 class SignInAPI {
    api
    constructor() {

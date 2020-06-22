@@ -61,7 +61,7 @@ const ObservationContainer = styled.div`
 //   ;`
 
 const ReportedPortalContainer = styled.div`
-   ${tw``}
+   ${tw`h-screen`}
    background-color: #fbfbfb;
    outline: none;
 `

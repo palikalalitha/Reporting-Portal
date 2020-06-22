@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
-const Container = styled.div`${tw`flex justify-center items-center h-full pt-20`}
+const Container = styled.div`${tw`flex justify-center items-center h-screen pt-20`}
 background-color:#f1f7ff;
 }`
 const SignInContainer = styled.div`

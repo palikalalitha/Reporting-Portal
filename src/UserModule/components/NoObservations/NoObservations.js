@@ -7,7 +7,7 @@ import {
 } from '../../styleGuide/typos'
 
 import { Button } from '../../../common/components/Button/'
-import { ADD_NEW } from '../../../common/constants/ReportingPortalconstants'
+import { ADD_NEW } from '../../../common/constants/reportingPortalconstants'
 
 @observer
 class NoObservations extends Component {

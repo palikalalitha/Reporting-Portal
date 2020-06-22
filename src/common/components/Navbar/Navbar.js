@@ -12,7 +12,7 @@ import {
    USER_HEADING,
    RP_HEADING,
    STATUSLIST
-} from '../../constants/ReportingPortalconstants'
+} from '../../constants/reportingPortalconstants'
 import './SelectBoxStyles.css'
 class Navbar extends Component {
    render() {

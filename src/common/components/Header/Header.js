@@ -5,7 +5,7 @@ import {
    RP,
    LOGO_IMAGEURL,
    PROFILE_URL
-} from '../../constants/ReportingPortalconstants'
+} from '../../constants/reportingPortalconstants'
 
 import {
    Heading,

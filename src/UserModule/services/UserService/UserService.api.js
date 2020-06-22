@@ -4,7 +4,7 @@ import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../../constants/APIConstants'
 
 import { SWAGER_URL } from '../../constants/RouteConstants'
-import { URL } from '../../../common/constants/ReportingPortalconstants'
+import { URL } from '../../../common/constants/reportingPortalconstants'
 
 class UserServiceAPI {
    api

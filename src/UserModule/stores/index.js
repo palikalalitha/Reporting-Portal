@@ -1,4 +1,4 @@
-import { UserStore } from './UserStore'
+import {UserStore} from "./userStore/UserStore"
 import UserService from '../services/UserService/UserService.fixture'
 import { UserServiceAPI } from '../services/UserService/UserService.api'
 
