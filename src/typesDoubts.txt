@@ -1,0 +1,22 @@
+// /home/ib_developer/Desktop/Reporting-Portal/src/SignInModule/utils/APIUtils.ts
+// TypeScript error in /home/ib_developer/Desktop/Reporting-Portal/src/SignInModule/utils/APIUtils.ts(19,7):
+// Type 'null | undefined' is not assignable to type 'null'.
+//   Type 'undefined' is not assignable to type 'null'.  TS2322
+
+//     17 |    api.setHeader('Content-Type', 'application/json; charset=UTF-8')
+//     18 |    try {
+//   > 19 |       response = await getData(api, url, requestObject, type)
+//        |       ^
+//     20 |    } catch (error) {
+//     21 |       throw error
+//     22 |    }   
+
+
+Could not find a declaration file for module 'react-router-dom'. '/home/ib_developer/Desktop/Reporting-Portal/node_modules/react-router-dom/index.js' implicitly has an 'any' type.
+  Try `npm install @types/react-router-dom` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-router-dom';`ts(7016)
+  
+where to keep tsx and ts
+how to set the types for stores
+how to set types for event handler function and normal function
+how to set the return types for functions
+ho to find out type script errors easily

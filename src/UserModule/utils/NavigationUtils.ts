@@ -1,0 +1,20 @@
+import {
+   USER_CREATION_FORM,
+   OBSERVATION_SCREEN
+} from '../constants/RouteConstants.js'
+import { SIGN_IN_PATH } from '../../SignInModule/constants/RouteConstants'
+
+export const gotoObservationCreationForm = history => {
+   history.push(USER_CREATION_FORM)
+}
+export const gotoObservationDetails = (history, id, roleType) => {
+   history.push(`${OBSERVATION_SCREEN}${id}`, roleType)
+}
+
+export const gotoSignInPage = history => {
+   history.replace(SIGN_IN_PATH)
+}
+
+export const gotoPreviousPage = history => {
+   history.goBack()
+}

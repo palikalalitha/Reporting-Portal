@@ -50,7 +50,7 @@ class RPStore extends UserStore {
       this.rpCurrentPage = 1
       this.offset = 0
       this.totalPages = 0
-      this.selectedPage
+      this.selectedPage=0
       this.date = ''
       this.due_date = ''
       this.due_date_privacy = ''
@@ -68,9 +68,9 @@ class RPStore extends UserStore {
 
    @action.bound
    setUpdateObservationList(response) {
-      this.updateRpObservationList = response.map(eachObservation => {
-         return new RpModel(eachObservation)
-      })
+      // this.updateRpObservationList = response.map(eachObservation => {
+      //    return new RpModel(eachObservation)
+      // })
    }
    @action.bound
    setGetUpdateObservtionListAPIError(error) {
