@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { observable, action } from 'mobx'
+import { ObservationObject } from "../types"
 
 class UserModel extends Component{
-   id:number
+   id:string
    @observable  title:string
-   @observable description:string=""
-   @observable     priority:string
+   @observable  priority:string
    @observable due_date:string
    @observable   status:string
    @observable assigned_to:
@@ -14,9 +14,9 @@ class UserModel extends Component{
       contact_number:number
       role:string
    }|any
-   @observable   reported_on:string
-   @observable message_count:string
-   constructor(observation) {
+   @observable   reported_on?:string
+   @observable   message_count:number
+   constructor(observation:ObservationObject) {
       super(observation)
       this.id = observation.id
       this.title = observation.title

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Header from '../Header/Header'
-import { DesktopLayoutContainer } from './styledComponents'
-import Navbar from '../Navbar/Navbar'
 import { ReportedPortalContainer } from '../../../UserModule/styleGuide/typos'
+import Header from '../Header/Header'
 
 class DesktopLayout extends Component {
    render() {

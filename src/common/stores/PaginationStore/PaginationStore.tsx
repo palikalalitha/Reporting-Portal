@@ -34,11 +34,19 @@ class PaginationStore {
       this.offset = Math.ceil(page * this.pageLimit)
    }
    @action.bound
-   getEntitesList() {
-      const userPromise = this.serviceMethod(this.offset, this.pageLimit)
+   getEntitesList(requestObject) {
+      const userPromise = this.serviceMethod(this.offset,this.pageLimit,requestObject)
       return bindPromiseWithOnSuccess(userPromise)
          .to(this.setGetEntityListAPIStatus, this.setEntityListResponse)
          .catch(this.setGetEntityListAPIError)
+
+         //below code using backend api response
+         //   this.observationList = response['total_list'].map(eachObservation => {
+         //          return new UserModel(eachObservation)
+         //       })
+
+         //       this.totlaPages = Math.ceil(response['count'] / this.pageLimit)
+      
    }
    @action.bound
    setEntityListResponse(response) {

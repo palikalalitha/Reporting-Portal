@@ -10,22 +10,22 @@ interface DropDownListProps
    onChangeHandler:(option: any)=>void
    value:string
    status:string
-   roleType,
-   testid,
-   className
+   roleType?:string
+   testid:string
+   className:string
 }
 @observer
-class DropDownList extends Component {
-   static defaultProps = {
-      status: false,
-      testid: 'select',
-      onChangeHandler: () => {},
-      roleType: 'user',
-      optionsList: [
-         { value: 'food', label: 'Food' },
-         { value: 'Accomdation', label: 'Accomadation' }
-      ]
-   }
+class DropDownList extends Component<DropDownListProps> {
+   // static defaultProps = {
+   //    status: false,
+   //    testid: 'select',
+   //    onChangeHandler: () => {},
+   //    roleType: 'user',
+   //    optionsList: [
+   //       { value: 'food', label: 'Food' },
+   //       { value: 'Accomdation', label: 'Accomadation' }
+   //    ]
+   // }
    render() {
       const {
          optionsList,

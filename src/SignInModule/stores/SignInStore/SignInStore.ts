@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx'
 
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { API_INITIAL } from '@ib/api-constants'
+import { API_INITIAL, APIStatus } from '@ib/api-constants'
 import {
    setAccessToken,
    clearUserSession
@@ -9,14 +9,19 @@ import {
 import { SignInFixture } from "../../services/SignInServices/SignIn.fixture"
 
 class SignInStore {
-   @observable getUserSignInAPIStatus: number=API_INITIAL
-   @observable getUserSignInAPIError:any
-   @observable getUserSignOutAPIError: any
-   @observable getUserSignOutAPIStatus: number=API_INITIAL
-   @observable access_token: string=""
-   @observable role: string=""
    authAPIService:SignInFixture
-   constructor(authService) {
+
+   @observable getUserSignInAPIStatus!:APIStatus
+   @observable getUserSignInAPIError!:Error|null
+   
+   @observable getUserSignOutAPIError!:Error|null
+   @observable getUserSignOutAPIStatus!:APIStatus
+
+   @observable access_token!: string
+   @observable role!:string
+  
+
+   constructor(authService:SignInFixture) {
       this.authAPIService = authService
       this.init()
    }
@@ -30,6 +35,23 @@ class SignInStore {
       this.role = ''
    }
 
+ 
+   @action.bound
+   setUserSignInAPIResponse(response) {
+      this.access_token = response.access_token
+      this.role = response.role.toLowerCase()
+      setAccessToken(this.access_token)
+   }
+
+   @action.bound
+   setGetUserSignInAPIError(error) {
+      this.getUserSignInAPIError = error
+   }
+
+   @action.bound
+   setGetUserSignInAPIStatus(status) {
+      this.getUserSignInAPIStatus = status
+   }
    @action.bound
    userSignIn(request_data,onSuccess,onFailure) {
       const userResponse = this.authAPIService.signInAPI(request_data)
@@ -44,25 +66,25 @@ class SignInStore {
          })
    }
 
+
    @action.bound
-   setUserSignInAPIResponse(response:any) {
-      this.access_token = response.access_token
-      this.role = response.role.toLowerCase()
-      setAccessToken(this.access_token)
+   setUserSignOutAPIResponse(response) {
+      clearUserSession()
+      this.init()
    }
 
    @action.bound
-   setGetUserSignInAPIError(error:number) {
-      this.getUserSignInAPIError = error
+   setGetUserSignOutAPIError(error) {
+      this.getUserSignOutAPIError = error
    }
 
    @action.bound
-   setGetUserSignInAPIStatus(status:number) {
-      this.getUserSignInAPIStatus = status
+   setGetUserSignOutAPIStatus(status) {
+      this.getUserSignOutAPIStatus = status
    }
 
    @action.bound
-   userSignOut(request_data:Object) {
+   userSignOut(request_data) {
       const userResponse = this.authAPIService.signOutAPI(request_data)
       return bindPromiseWithOnSuccess(userResponse)
          .to(this.setGetUserSignOutAPIStatus, response => {
@@ -74,20 +96,5 @@ class SignInStore {
          })
    }
 
-   @action.bound
-   setUserSignOutAPIResponse(response) {
-      clearUserSession()
-      this.init()
-   }
-
-   @action.bound
-   setGetUserSignOutAPIError(error:number) {
-      this.getUserSignOutAPIError = error
-   }
-
-   @action.bound
-   setGetUserSignOutAPIStatus(status:number) {
-      this.getUserSignOutAPIStatus = status
-   }
 }
 export { SignInStore }

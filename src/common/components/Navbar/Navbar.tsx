@@ -14,14 +14,20 @@ import {
    STATUSLIST
 } from '../../constants/reportingPortalconstants'
 import './SelectBoxStyles.css'
-class Navbar extends Component {
+
+interface NavbarPropos
+{
+   gotoUserForm:()=>void
+   roleType:string
+   filterByStatus: (option: { value: any }[] | null)=>void
+
+}
+class Navbar extends Component<NavbarPropos> {
    render() {
       const {
-         heading,
          gotoUserForm,
          roleType,
          filterByStatus,
-         FilterHeading
       } = this.props
       return (
          <>
@@ -36,7 +42,7 @@ class Navbar extends Component {
                {roleType === 'user' && (
                   <Button
                      buttonText={ADD_NEW}
-                     isDisabled={roleType}
+                     // isDisabled={roleType}
                      onClickHandler={gotoUserForm}
                   />
                )}

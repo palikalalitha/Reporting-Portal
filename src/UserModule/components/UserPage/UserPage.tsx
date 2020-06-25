@@ -13,6 +13,7 @@ interface UserPageProps{
    roleType:string
    onClickToSignOut:()=>void
    gotoUserForm:()=>void
+   filterByStatus: (option: { value: any }[] | null)=>void
 
 }
 @observer
@@ -23,11 +24,17 @@ class UserPage extends React.Component<UserPageProps> {
          apiStatus,
          apiError,
          renderSuccessUI,
-      } = this.props
+         roleType,
+         gotoUserForm,
+         filterByStatus
 
+      } = this.props
       return (
          <DesktopLayout {...this.props}>
-            <Navbar {...this.props} />
+            <Navbar
+         gotoUserForm={gotoUserForm}
+         roleType={roleType}
+         filterByStatus={filterByStatus} />
             <LoadingWrapperWithFailure
                apiStatus={apiStatus}
                apiError={apiError}

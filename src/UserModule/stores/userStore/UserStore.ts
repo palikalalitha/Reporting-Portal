@@ -1,7 +1,7 @@
 import React from 'react'
 import { observable, action, computed, toJS } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { API_INITIAL } from '@ib/api-constants'
+import { API_INITIAL, APIStatus } from '@ib/api-constants'
 
 import {
    CURRENT_PAGE,
@@ -12,57 +12,35 @@ import {
 import { UserModel } from '../models/UserModel'
 import { PaginationStore } from '../../../common/stores/PaginationStore'
 import UserService from "../../services/UserService/UserService.fixture"
-// export interface Response
-// {
-//    title:string
-//          description:string
-//          priority:string
-//          status:string
-//          reported_on:string
-//          due_date:string
-//          is_due_date_private:boolean
-//          id:number
-//          category_name:
-//          {
-//             category_name:string
-//          }  
-//          sub_category_name:
-//          {
-//             sub_category_name:string
-//          }
-//          assigned_to_name:
-//          {
-//             assigned_to_name:string
-//          }
-// }
-// // interface Props
-// // {}
+import { getObservationDetailsResponse, ObservationObject } from "../types"
 
 class UserStore {
-   @observable observationList:Array<Object>=[]
-   @observable observation:string=""
+   @observable observationList!:Array<UserModel>
+   @observable observation!:string
 
-   @observable getObservationListAPIStatus:number|any
-   @observable getObservationListAPIError:number|any
+   @observable getObservationListAPIStatus!:APIStatus
+   @observable getObservationListAPIError!:Error|null
 
-   @observable singleObservationDetails:any
-   @observable getObservationDetailsAPIStatus:number|any
-   @observable getObservationDetailsAPIError:number|any
+   @observable singleObservationDetails!:getObservationDetailsResponse|Array<[]>
+   @observable getObservationDetailsAPIStatus!:APIStatus
+   @observable getObservationDetailsAPIError!:Error|null
 
-   @observable createObservationsAPIStatus:number|any
-   @observable createObservationsAPIError:number|any
+   @observable createObservationsAPIStatus!:APIStatus
+   @observable createObservationsAPIError!:Error|null
 
-   @observable categories:Array<Object>=[]
-   @observable getCategoriesAPIError:number|any
-   @observable getCategoriesAPIStatus:number|any
+   @observable categories!:Array<Object>
+   @observable getCategoriesAPIError!:Error|null
+   @observable getCategoriesAPIStatus!:APIStatus
 
-   @observable filterList:Array<Object>=[]
-   @observable date_type:string=""
-   @observable sort_type:string=""
+   @observable filterList!:Array<Object>
+   @observable date_type!:string
+   @observable sort_type!:string
+
    paginationStore:PaginationStore
+
    userService:UserService
-   pageLimit:number=0
-   offset:number=0
+   pageLimit!:number
+   offset!:number
    constructor(userServiceResponse: UserService) {
       this.init()
       this.userService = userServiceResponse
@@ -93,7 +71,7 @@ class UserStore {
       this.categories = []
 
       this.offset = OFFSET
-      this.pageLimit = 3
+      this.pageLimit = PAGE_LIMIT
       this.date_type = 'reported_on'
       this.sort_type = 'ASC'
    }
@@ -104,13 +82,18 @@ class UserStore {
       this.getObservationList()
    }
    @action.bound
-   filterByStatus(statusList:Array<Object>) {
+   filterByStatus(statusList) {
       this.filterList = statusList
       this.getObservationList()
    }
    @action
    getObservationList = async () => {
-      await this.paginationStore.getEntitesList()
+      let requestObject = {
+         date_type: this.date_type,
+         sort_by: this.sort_type,
+         filter_by: this.filterList
+      }
+      await this.paginationStore.getEntitesList(requestObject)
       this.observationList = this.paginationStore.entityList
    }
    @action.bound
@@ -120,7 +103,7 @@ class UserStore {
    }
 
    @action.bound
-   getObservationDetailsById(id:number) {
+   getObservationDetailsById(id) {
       const userPromise = this.userService.getObservationDeatilsById(id)
       return bindPromiseWithOnSuccess(userPromise)
          .to(
@@ -131,7 +114,7 @@ class UserStore {
    }
 
    @action.bound
-   setGetObservationDetailsAPIStatus(status:number) {
+   setGetObservationDetailsAPIStatus(status) {
       this.getObservationDetailsAPIStatus = status
    }
 
@@ -241,6 +224,11 @@ class UserStore {
    @computed
    get userObservationList() {
       return this.observationList
+   }
+   @action.bound
+   clearStore()
+   {
+      this.init()
    }
 }
 export { UserStore }

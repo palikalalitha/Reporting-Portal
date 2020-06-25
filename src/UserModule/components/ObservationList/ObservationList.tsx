@@ -9,20 +9,22 @@ import {
    USER_HEADINGS
 } from '../../constants/userPageConstants'
 import ReactPagination from '../../../common/components/ReactPagination/ReactPagination'
+import { getObservationDetailsResponse } from "../../stores/types"
+import { UserModel } from "../../stores/models/UserModel"
 
-interface ObservationListProps
+export interface ObservationListProps
 {
   
    gotoUserForm:()=>void
-   filterByStatus: (option: { value: any }[] | null)=>void
+  
    observationsSort: (date_type: string)=>void
    handlePage:(page: { selected: any })=>void
    gotoObservationList:()=>void
    getObservationDetailsById: (id: number)=>void
    navigateToObservationScreen:(id: number)=>void
 
-   observationList:Array<Object>
-   singleObservationDetails:Array<Object>
+   observationList:Array<UserModel>
+   singleObservationDetails:getObservationDetailsResponse|Array<[]>
    selectedPage:number
    roleType:string
    date_type:string

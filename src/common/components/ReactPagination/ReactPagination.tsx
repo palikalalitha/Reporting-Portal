@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import ReactPaginate from 'react-paginate'
-
-class ReactPagination extends Component {
+interface ReactPaginationPropos
+{
+   totlaPages:number
+   handlePage:(page:{selected:number})=>void
+   selectedPage:number
+}
+class ReactPagination extends Component<ReactPaginationPropos> {
    render() {
       const { totlaPages, handlePage, selectedPage } = this.props
       return (

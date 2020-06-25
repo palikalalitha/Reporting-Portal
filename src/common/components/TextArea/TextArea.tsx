@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { TextAreaElement } from './styledComponents'
+
 interface TextAreaProps {
    data: string
    onChangeHandler: (event: { target: { value: string } })=>void

@@ -2,18 +2,19 @@ import React, { Component } from 'react'
 
 import { InputTypeRadioButton, Label } from './styledComponents'
 import { RADIO, PRIVACY } from '../../constants/reportingPortalconstants'
-
-class RadioButton extends Component {
-   static defaultProps = {
-      status: false,
-      testid: '',
-      list: ['public', 'private']
-   }
+interface RadioButtonProps
+{
+   list:any
+   handleOptionChange:()=>void
+   roleType?:string
+   value:string
+}
+class RadioButton extends Component <RadioButtonProps>{
    render() {
       const { list, handleOptionChange, roleType, value } = this.props
       return (
          <>
-            {list.map(eachItem => (
+            {list.map(eachItem=> (
                <React.Fragment key={Math.random()}>
                   <InputTypeRadioButton
                      key={Math.random()}
@@ -22,9 +23,9 @@ class RadioButton extends Component {
                      onChange={handleOptionChange}
                      checked={value === 'privacy' ? true : false}
                      disabled={roleType === 'user' ? true : false}
-                     deafultValue={eachItem}
+                     defaultValue={eachItem}
                   />
-                  <Label>{eachItem.toUpperCase()}</Label>
+                  <Label>{eachItem}</Label>
                </React.Fragment>
             ))}
          </>

@@ -1,2 +1,2 @@
-import { DropDownList } from '.'
-export { DropDownList }
+
+export { DropDownList } from "./DropDownList"

@@ -11,7 +11,7 @@
     "reported_on":"2/5/2020",
     "assigned_to": {
       "name": "lalitha",
-      "phno": 913456788
+      "contact_number": 913456788
     },
     "is_due_date_private": "public",
     "message_count": 3
@@ -28,7 +28,7 @@
     "status": "Action in progress",
     "assigned_to": {
       "name": "sri",
-      "phno": 9374673484
+      "contact_number": 9374673484
     },
     "is_due_date_private": "true",
     "message_count": 1
@@ -44,7 +44,7 @@
     "status": "Resolved",
     "assigned_to": {
       "name": "lalitha",
-      "phno": 913456788
+      "contact_number": 913456788
     },
     "is_due_date_private": "false",
     "message_count": 6
@@ -60,7 +60,7 @@
     "status": "Closed",
     "assigned_to": {
       "name": "lavanya",
-      "phno": 9232874734
+      "contact_number": 9232874734
     },
     "is_due_date_private": "public",
     "message_count": 9
@@ -77,7 +77,7 @@
     "status": "Action in progress",
     "assigned_to": {
       "name": "sri",
-      "phno": 9238748384
+      "contact_number": 9238748384
     },
     "is_due_date_private": "private",
     "message_count": 6
@@ -94,7 +94,7 @@
     "status": "Resolved",
     "assigned_to": {
       "name": "lalitha",
-      "phno": 913456788
+      "contact_number": 913456788
     },
     "is_due_date_private": "true",
     "message_count": 75
@@ -111,7 +111,7 @@
     "status": "Resolved",
     "assigned_to": {
       "name": "Manga",
-      "phno": 92137648545
+      "contact_number": 92137648545
     },
     "is_due_date_private": "public",
     "message_count": 6
@@ -128,7 +128,7 @@
     "status": "Action in progress", 
     "assigned_to": {
       "name": "lalitha",
-      "phno": 913456788
+      "contact_number": 913456788
     },
     "is_due_date_private": "private",
     "message_count": 5
@@ -145,7 +145,7 @@
     "status": "Action in progress",
     "assigned_to": {
       "name": "lalitha",
-      "phno": 913456788
+      "contact_number": 913456788
     },
     "is_due_date_private": "private",
     "message_count": 5
@@ -162,7 +162,7 @@
     "status": "Closed",
     "assigned_to": {
       "name": "lalitha",
-      "phno": 913456788
+      "contact_number": 913456788
     },
     "is_due_date_private": "true",
     "message_count": 2
@@ -178,7 +178,7 @@
     "status": "Resolved",
     "assigned_to": {
       "name": "lalitha",
-      "phno": 913456788
+      "contact_number": 913456788
     },
     "is_due_date_private": "false",
     "message_count": 5

@@ -16,9 +16,15 @@ import {
    SortButton,
    HeadingContainer
 } from './styledComponents'
+import { ObservationListProps } from "../../../UserModule/components/ObservationList/ObservationList"
 
+interface TableProps extends ObservationListProps
+{
+   tableHeadings:Array<string>
+   
+}
 @observer
-class Table extends Component {
+class Table extends Component<TableProps>{
    onClick = observationId => {
       this.props.navigateToObservationScreen(observationId)
    }
@@ -32,12 +38,10 @@ class Table extends Component {
             return (
               
                <TableHeadings key={eachHeading}>
-                  <HeadingContainer  data-testid="test">
+                  <HeadingContainer  
+                     data-testid="test">
                      {eachHeading.toUpperCase()}
                      <DropDownImage
-                    
-                        value={eachHeading}
-                        buttonStatus={this.hideSortButton}
                         onClick={this.onClickToSort.bind(this, eachHeading)}
                         imageURL={DROP_DOWN_URL}
                      />

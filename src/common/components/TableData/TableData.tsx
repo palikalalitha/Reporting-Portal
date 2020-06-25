@@ -22,8 +22,15 @@ import {
    RP_PROFILE_URL,
    MESSAGE_ICON_URL
 } from '../../constants/reportingPortalconstants'
+import { ObservationObject} from "../../../UserModule/stores/types"
 
-class TableData extends Component {
+interface TableDataProps
+{
+   observation:ObservationObject
+}
+
+
+class TableData extends Component<TableDataProps> {
    render() {
       const {
          title,
@@ -35,7 +42,6 @@ class TableData extends Component {
          assigned_to
       } = this.props.observation
       const { name, contact_number, role } = assigned_to
-      const { bgColorStatus } = this.props
       return (
          <>
             <TData>{title}</TData>
@@ -58,7 +64,7 @@ class TableData extends Component {
                <Mode>{priority}</Mode>
             </Severty>
             {/* <TData> */}
-               <StatusWrapper bgColorStatus={bgColorStatus}>
+               <StatusWrapper >
                   <Status>{status}</Status>
                </StatusWrapper>
             {/* </TData> */}

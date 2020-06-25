@@ -1,32 +1,32 @@
 import observationList from '../../fixtures/getObservationList.json'
 import signleObservationDetails from '../../fixtures/getObservationById.json'
 import categories from '../../fixtures/getCategories.json'
-class UserService {
-   getUsersResponse(offset, limit) {
+
+
+import {UserServiceTypes} from "./index"
+import { resolveWithTimeout } from "../../../SignInModule/utils/TestUtils"
+
+class UserService implements UserServiceTypes {
+
+   getUsersResponse(offset, limit,request_data) {
       let list = observationList
       let updateList = list.slice(offset, limit + offset)
-      let result = {
+      const response = {
          result: updateList,
          totalCount: observationList.length
       }
-      return new Promise((resolve, reject) => {
-         resolve(result)
-      })
+      return resolveWithTimeout(response)
    }
-   createObservations(request) {
-      return new Promise((resolve, reject) => {
-         resolve(request)
-      })
-   }
+
    getObservationDeatilsById(id) {
-      return new Promise((resolve, reject) => {
-         resolve(observationList[id - 1])
-      })
+      return resolveWithTimeout(signleObservationDetails)
+   } 
+   createObservations(request) {
+      return resolveWithTimeout(request)
    }
+  
    getCategories() {
-      return new Promise((resolve, reject) => {
-         resolve(categories)
-      })
+      return resolveWithTimeout(categories)
    }
 }
 export default UserService

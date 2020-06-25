@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter,RouteComponentProps } from 'react-router-dom'
 import { Image } from '../Image'
 import {
    LOGO,
@@ -6,7 +7,7 @@ import {
    LOGO_IMAGEURL,
    PROFILE_URL
 } from '../../constants/reportingPortalconstants'
-
+import {History} from "history"
 import {
    Heading,
    Container,
@@ -17,25 +18,31 @@ import {
    ObservationsTab,
    AssignedTab,
    LogOutButton
-} from './styledComponents.js'
+} from './styledComponents'
 
-import {
-   Assigned_OBSERVATIONS_PATH,
-   OBSERVATION_SCREEN,
-   OBSERVATION_LIST
-} from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
-import { withRouter } from 'react-router-dom'
+// import {
+//    Assigned_OBSERVATIONS_PATH,
+//    OBSERVATION_SCREEN,
+//    OBSERVATION_LIST
+// } from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
+
 import { Button } from '../Button'
-class Header extends Component {
+
+interface HeaderProps extends RouteComponentProps
+{
+   roleType?:string
+   onClickToSignOut?:()=>void
+}
+class Header extends Component<HeaderProps> {
    role = this.props.roleType
    renderAssignedObservations = () => {
-      this.props.history.push(Assigned_OBSERVATIONS_PATH, this.role)
+    //  this.props.history.push(Assigned_OBSERVATIONS_PATH, this.role)
    }
    onClick = () => {
       alert('signout')
    }
    renderObservations = () => {
-      this.props.history.push(OBSERVATION_LIST, 'user')
+      //this.props.history.push(OBSERVATION_LIST, 'user')
    }
    render() {
       const { roleType, onClickToSignOut } = this.props

@@ -1,24 +1,24 @@
 import { create } from 'apisauce'
-import { toJS } from 'mobx'
-import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../../constants/APIConstants'
-
-import { SWAGER_URL } from '../../constants/RouteConstants'
+import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { URL } from '../../../common/constants/reportingPortalconstants'
 
-class UserServiceAPI {
-   api
+import {UserServiceTypes} from "./index"
+import endpoints from "../endpoints"
+
+class UserServiceAPI implements UserServiceTypes {
+   api:Record<string,any>
    constructor() {
       this.api = create({
-         //baseURL: URL
-         baseURL: 'https://5ecf59d316017c00165e29bc.mockapi.io/'
+        baseURL: URL
+         // baseURL: 'https://5ecf59d316017c00165e29bc.mockapi.io/'
       })
    }
-   getUsersResponse(offset, limit, request_data) {
+   getUsersResponse(offset,limit,request_data) {
       return networkCallWithApisauce(
          this.api,
-         // `/get/user/observations/v1/?offset=${offset}&limit=${limit}`,
-         'get/user/observations/v1/observations',
+        `/get/user/observations/v1/?offset=${offset}&limit=${limit}`,
+         // endpoints.reportingPortal.getObservationList,
          request_data,
          apiMethods.post
       )
@@ -27,7 +27,7 @@ class UserServiceAPI {
       return networkCallWithApisauce(
          this.api,
          `observation/${id}/v1/`,
-         { id },
+         id,
          apiMethods.post
       )
    }
@@ -35,7 +35,7 @@ class UserServiceAPI {
    createObservations(request) {
       return networkCallWithApisauce(
          this.api,
-         `/create/observation/v1/`,
+         endpoints.reportingPortal.createObservations,
          request,
          apiMethods.post
       )
@@ -49,15 +49,6 @@ class UserServiceAPI {
          ])
       })
    }
-   // getCategories()
-   // {
-   //    return networkCallWithApisauce(
-   //       this.api,
-   //       `/get/categories/subcategories/v1/`,
-   //       {},
-   //       apiMethods.get
-   //    )
 
-   // }
 }
 export { UserServiceAPI }

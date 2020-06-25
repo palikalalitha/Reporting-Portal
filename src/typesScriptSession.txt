@@ -1,0 +1,40 @@
+
+services
+stores
+routes
+
+
+(reuqest)=>response
+
+
+-Map of strings or objects=> api: Record<string, any>  it is used of instead if object
+-Promise
+ resolveWithTimeout<T>(response: T): Promise<T> {}
+
+
+services steps:
+step1 :
+define the APIS request and APIS response types in stores.types.ts
+step 2:
+define interfaces for services
+step3 :
+extend interfaces ,fixture services adn api  services
+
+Stores
+-Model
+    -model.test
+-store
+    In functions by default its return type is void if returns something  mention the return type 
+    no need mention function arguments types for header calls
+
+
+Components
+
+Routes
+
+Ref
+
+first refer todoAplication 
+next assignment for posts
+
+

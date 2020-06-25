@@ -1,23 +1,26 @@
 import React from 'react'
 import { observable } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { withRouter } from 'react-router-dom'
+import { withRouter,RouteComponentProps } from 'react-router-dom'
+import {History} from "history"
 
-import { SignInForm } from '../../components/SigninForm'
+import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+
+import { gotoUserPage, gotoRPPage } from '../../utils/NavigationUtils'
 import {
    REQUIRED_FIELD,
    EMPTY_STRING
 } from '../../constants/SigninPageConstants'
-import { gotoUserPage, gotoRPPage } from '../../utils/NavigationUtils'
-
-import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+import { SignInForm } from '../../components/SigninForm'
 import {SignInStore} from "../../stores/SignInStore/SignInStore"
 
-interface SignInRouteProps{
-   signInStore:SignInStore
-   history:Object
+interface SignInRouteProps extends RouteComponentProps{
+  
 }
-
+interface InjectedProps extends SignInRouteProps
+{
+   signInStore:SignInStore
+}
 @inject('signInStore')
 @observer
 class SignInRoute extends React.Component<SignInRouteProps> {
@@ -39,6 +42,12 @@ class SignInRoute extends React.Component<SignInRouteProps> {
       this.errorMessageForPassword = EMPTY_STRING
       this.errorMessage = EMPTY_STRING
    }
+   getInjectedProps=():InjectedProps=>this.props as InjectedProps
+
+   getSignInStore=()=>
+   {
+      return this.getInjectedProps().signInStore
+   }
 
    onChangeUsernameField=(event: { target: { value: string } }):void=> {
       this.username = event.target.value
@@ -55,14 +64,14 @@ class SignInRoute extends React.Component<SignInRouteProps> {
    }
 
    onSuccess = () => {
-      const { role } = this.props.signInStore
+      const { role } = this.getSignInStore()
       const { history } = this.props
       if (role === 'user') gotoUserPage(history, role)
       else if (role === 'rp') gotoRPPage(history, role)
    }
 
    onFailure = ()=> {
-      const { getUserSignInAPIError: apiError } = this.props.signInStore
+      const { getUserSignInAPIError: apiError } = this.getSignInStore()
       if (apiError !== undefined || apiError != null) {
          this.errorMessage = getUserDisplayableErrorMessage(apiError)
       }
@@ -80,8 +89,9 @@ class SignInRoute extends React.Component<SignInRouteProps> {
          this.handleSignIn()
       }
    }
+   
    handleSignIn = async ()=>  {
-      const { userSignIn } = this.props.signInStore
+      const { userSignIn} = this.getSignInStore()
       await userSignIn(
          {
             user_name: this.username,
@@ -96,7 +106,7 @@ class SignInRoute extends React.Component<SignInRouteProps> {
       const {
          getUserSignInAPIStatus,
          getUserSignInAPIError
-      } = this.props.signInStore
+      } =this.getSignInStore()
       const {
          username,
          password,

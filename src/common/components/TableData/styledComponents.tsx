@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
+
+type SevertyProps={
+   status?:string
+}
 const UserFormContainer = styled.div`
    ${tw`flex justify-between`}
 `
@@ -88,7 +92,7 @@ const PhoneNumber = styled.p`
    color: #7e858e;
 `
 
-const Severty = styled.td`
+const Severty = styled.td<SevertyProps>`
    ${tw`ml-4`}
    width: 72px;
    height: 25px;

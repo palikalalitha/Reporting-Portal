@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { APIStatus } from "@ib/api-constants"
 
-import { InputElement } from '../../../common/components/InputElement'
 import { Button } from '../../../common/components/Button'
+import { InputElement } from '../../../common/components/InputElement'
 import { Image } from '../../../common/components/Image/'
 
 import {
@@ -32,13 +33,16 @@ interface SignInFormProps {
    username: string
    userpassword: string
    errorMessage:string
-   onClickSignIn: () => void
+ 
    errorMessageForPassword:string
    errorMessageForUsername:string
+
+   apiStatus:APIStatus
+   apiError:Error|null
+  
    onChangeUsername:(event: { target: { value: string } })=>void
    onChangePassword:(event: { target: { value: string } })=>void
-   apiStatus:number
-   apiError:number|null
+   onClickSignIn: () => void
   
 }
 class SignInForm extends Component<SignInFormProps> {

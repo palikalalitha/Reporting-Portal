@@ -3,8 +3,6 @@ import { withRouter ,RouteComponentProps} from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
 import { getLoadingStatus } from '@ib/api-utils'
-import { History } from 'history';
-import { userStore } from '../../stores/index'
 import { ObservationList } from '../../components/ObservationList/ObservationList'
 import { UserPage } from '../../components/UserPage/UserPage'
 import {
@@ -14,32 +12,46 @@ import {
    gotoPreviousPage
 } from '../../utils/NavigationUtils'
 import { SignInStore } from "../../../SignInModule/stores/SignInStore"
+import { UserStore } from "../../stores/userStore"
+UserStore
 
-
-export interface UserPageProps 
+export interface UserRouteProps  extends RouteComponentProps
 {
-   history:History
-   signInStore:SignInStore
 }
-
-@inject('signInStore')
+export interface InjectedProps extends UserRouteProps
+{
+   signInStore:SignInStore
+   userStore: UserStore
+}
+@inject('signInStore',"userStore")
 @observer
-class UserRoute extends React.Component<UserPageProps> {
+class UserRoute extends React.Component<UserRouteProps> {
    @observable roleType:string|any=""
    @observable filterList:Array<Object>=[]
    @observable sort_type:string=""
-   constructor(props: Readonly<UserPageProps>) {
+   constructor(props) {
       super(props)
       this.filterList = []
       this.sort_type = 'ASC'
    }
+
+   getInjectedProps = (): InjectedProps => this.props as InjectedProps
+   getSignInStore=()=>
+   {
+      return this.getInjectedProps().signInStore
+   }
+   getUserStore=()=>
+   {
+      return this.getInjectedProps().userStore
+   }
+   
    componentDidMount() {
       this.doNetworkCalls()
       this.roleType = this.props.history.location.state
    }
    doNetworkCalls = () => {
-      userStore.getObservationList()
-      userStore.onClickTogetCategories()
+      this.getUserStore().getObservationList()
+      this.getUserStore().onClickTogetCategories()
    }
    naviagteToUserForm = () :void=> {
       const { history } = this.props
@@ -53,30 +65,30 @@ class UserRoute extends React.Component<UserPageProps> {
    }
    navigateToObservationScreen = (id: number):void => {
       let { history } = this.props
-      userStore.getObservationDetailsById(id)
+      this.getUserStore().getObservationDetailsById(id)
       gotoObservationDetails(history, id, this.roleType)
    }
 
    observationsSort = (date_type: string):void=> {
       if (this.sort_type === 'ASC') {
          this.sort_type    = 'DESC'
-         userStore.setDate_typeAndSortType(date_type, this.sort_type)
+         this.getUserStore().setDate_typeAndSortType(date_type, this.sort_type)
       } else {
          this.sort_type = 'ASC'
-         userStore.setDate_typeAndSortType(date_type, this.sort_type)
+         this.getUserStore().setDate_typeAndSortType(date_type, this.sort_type)
       }
    }
    filterByStatus = (option: { value: any }[] | null):void=> {
       if (option === null) {
-         userStore.filterByStatus([])
+         this.getUserStore().filterByStatus([])
       } else {
          this.filterList = option.map((eachOption: { value: any }) => eachOption.value)
-         userStore.filterByStatus(this.filterList)
+         this.getUserStore().filterByStatus(this.filterList)
       }
    }
    onClickToSignOut = () :void=> {
-      const { access_token } = this.props.signInStore
-      this.props.signInStore.userSignOut(
+      const { access_token } =  this.getSignInStore()
+     this.getSignInStore().userSignOut(
          access_token    )
       this.onSuccess()
    }
@@ -100,20 +112,21 @@ class UserRoute extends React.Component<UserPageProps> {
          sort_type,
          getObservationDetailsById,
          singleObservationDetails,
+         getSingleObservationDetails,
          paginationStore
-      } = userStore
+      } = this.getUserStore()
       const {  selectedPage, totalPages } = paginationStore
       return (
          <ObservationList
          gotoUserForm={naviagteToUserForm}
-         filterByStatus={filterByStatus}
+        
          observationsSort={observationsSort}
          handlePage={handlePage}
          gotoObservationList={gotoObservationList}
          navigateToObservationScreen={navigateToObservationScreen}
          getObservationDetailsById={getObservationDetailsById}
          observationList={observationList}
-         singleObservationDetails={singleObservationDetails}
+         singleObservationDetails={getSingleObservationDetails}
          selectedPage={selectedPage}
          roleType={this.roleType}
          date_type={date_type}
@@ -127,7 +140,7 @@ class UserRoute extends React.Component<UserPageProps> {
       const {
          getCategoriesAPIStatus,
          paginationStore,
-      } = userStore
+      } =this.getUserStore()
       const { getEntityListAPIError, getEntityListAPIStatus } = paginationStore
       const apiStatus = getLoadingStatus(
          getEntityListAPIStatus,
@@ -136,6 +149,7 @@ class UserRoute extends React.Component<UserPageProps> {
       return (
          <UserPage
             roleType={this.roleType}
+            filterByStatus={this.filterByStatus}
             apiStatus={apiStatus}
             apiError={getEntityListAPIError}
             gotoUserForm={this.naviagteToUserForm}

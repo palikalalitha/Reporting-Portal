@@ -8,10 +8,10 @@ import './App.css'
 // import { store } from './SignInModule/stores'
 import signInRoutes from './SignInModule/routes'
 // import rpRoutes from './RPModule/routes/index'
-// import userRoutes from './UserModule/routes'
+import userRoutes from './UserModule/routes'
 import { signInStore } from './SignInModule/stores/index'
 // import { rpStore } from './RPModule/stores/index'
-// import { userStore } from './UserModule/stores'
+import { userStore } from './UserModule/stores'
 
 class App extends React.Component {
    render() {
@@ -19,12 +19,12 @@ class App extends React.Component {
          <Provider
             signInStore={signInStore}
             // rpStore={rpStore}
-            // userStore={userStore}
+            userStore={userStore}
          >
             <Router basename={process.env.PUBLIC_URL}>
                <Switch>
                   {signInRoutes}
-                  {/* {userRoutes} */}
+                  {userRoutes}
                   {/* {rpRoutes}  */}
                </Switch>
             </Router>

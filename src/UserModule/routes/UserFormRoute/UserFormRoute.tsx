@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { observable, toJS } from 'mobx'
-import { withRouter } from 'react-router-dom'
+import { withRouter,RouteComponentProps } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 
 import { UserForm } from '../../components/UserForm/UserForm'
@@ -10,18 +10,22 @@ import { USER_CREATION_FORM } from '../../constants/RouteConstants'
 import LoadingWrapperWithFailure from '../../../common/components/LoadingWrapperWithFailure'
 import { DesktopLayout } from '../../../common/components/DesktopLayout/DesktopLayout'
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
-import {UserPageProps} from "../UserRoute/UserRoute"
+
 import { UserStore } from "../../stores/userStore"
-interface UserFormProps extends UserPageProps
+interface UserFormProps extends RouteComponentProps
+{
+
+}
+interface InjectedProps extends UserFormProps
 {
    userStore:UserStore
 }
 @inject('userStore')
 @observer
 class UserFormRoute extends Component<UserFormProps> {
-   @observable title: string=""
+   @observable title!: string
    @observable severity:any
-   @observable description: string=""
+   @observable description!: string
    @observable category_id: {
       value: any
       label?: string
@@ -30,13 +34,13 @@ class UserFormRoute extends Component<UserFormProps> {
       value: any
       label?: string
    } | undefined
-   @observable errorMessage: string=""
+   @observable errorMessage!: string
    @observable category = []
    subCategory = []
 
-   @observable errorMessageForSeverity: string=""
-   @observable errorMessageForTitle: string=""
-   @observable errorMessageForDescription: string=""
+   @observable errorMessageForSeverity!: string
+   @observable errorMessageForTitle!: string
+   @observable errorMessageForDescription!: string
    @observable categoryList: any
    constructor(props: Readonly<UserFormProps>) {
       super(props)
@@ -45,10 +49,15 @@ class UserFormRoute extends Component<UserFormProps> {
    componentDidMount() {
       this.doNetworkCalls()
    }
+   getInjectedProps = (): InjectedProps => this.props as InjectedProps
+   getUserStore=()=>
+   {
+      return this.getInjectedProps().userStore
+   }
    doNetworkCalls = () => {
-      const { categories } = this.props.userStore
+      const { categories } =  this.getUserStore()
       // this.category[0] = [{ value: 'Select', label: '' }]
-      // this.props.userStore.onClickTogetCategories()
+      //  this.getUserStore().onClickTogetCategories()
       // categories.map((eachCategory, index) => {
       //    this.category[eachCategory.category_id] = [
       //       {
@@ -127,7 +136,7 @@ class UserFormRoute extends Component<UserFormProps> {
          alert('submitted successfully')
          if(this.category_id!==undefined&&this.sub_category_id!==undefined)
          {
-            this.props.userStore.onAddObservationList(
+             this.getUserStore().onAddObservationList(
                this.title,
                this.severity.value,
                this.description,
@@ -146,7 +155,7 @@ class UserFormRoute extends Component<UserFormProps> {
    }
 
    onFailure = () => {
-      const { createObservationsAPIError: apiError } = this.props.userStore
+      const { createObservationsAPIError: apiError } =  this.getUserStore()
       if (apiError !== undefined || apiError != null) {
          this.errorMessage = getUserDisplayableErrorMessage(apiError)
       }
@@ -178,7 +187,7 @@ class UserFormRoute extends Component<UserFormProps> {
          createObservationsAPIError,
          getCategoriesAPIError,
          getCategoriesAPIStatus
-      } = this.props.userStore
+      } =  this.getUserStore()
       return (
          <UserForm
          observationTitle={title}
@@ -207,7 +216,7 @@ class UserFormRoute extends Component<UserFormProps> {
          createObservationsAPIError,
          getCategoriesAPIError,
          getCategoriesAPIStatus
-      } = this.props.userStore
+      } =  this.getUserStore()
       return (
          <DesktopLayout>
             <LoadingWrapperWithFailure

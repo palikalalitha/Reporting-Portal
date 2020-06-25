@@ -1,7 +1,7 @@
 import {
    USER_CREATION_FORM,
    OBSERVATION_SCREEN
-} from '../constants/RouteConstants.js'
+} from '../constants/RouteConstants'
 import { SIGN_IN_PATH } from '../../SignInModule/constants/RouteConstants'
 
 export const gotoObservationCreationForm = history => {
