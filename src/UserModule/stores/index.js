@@ -1,6 +1,7 @@
-import { UserStore } from './UserStore'
+
 import UserService from '../services/UserService/UserService.fixture'
 import { UserServiceAPI } from '../services/UserService/UserService.api'
+import { UserStore } from "./userStore"
 
 const userServiceFixture = new UserService()
 

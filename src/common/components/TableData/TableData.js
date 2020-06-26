@@ -21,7 +21,7 @@ import { RiMessage2Line } from 'react-icons/ri'
 import {
    RP_PROFILE_URL,
    MESSAGE_ICON_URL
-} from '../../constants/ReportingPortalconstants'
+} from '../../constants/reportingPortalconstants'
 
 class TableData extends Component {
    render() {

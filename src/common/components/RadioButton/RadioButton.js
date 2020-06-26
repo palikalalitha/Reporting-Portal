@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { InputTypeRadioButton, Label } from './styledComponents'
-import { RADIO, PRIVACY } from '../../constants/ReportingPortalconstants'
+import { RADIO, PRIVACY } from '../../constants/reportingPortalconstants'
 
 class RadioButton extends Component {
    static defaultProps = {
