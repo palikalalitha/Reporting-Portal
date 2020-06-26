@@ -4,9 +4,9 @@ import { InputTypeRadioButton, Label } from './styledComponents'
 import { RADIO, PRIVACY } from '../../constants/reportingPortalconstants'
 interface RadioButtonProps
 {
-   list:any
-   handleOptionChange:()=>void
-   roleType?:string
+   list?:any
+   handleOptionChange?:()=>void
+   roleType?:string|any
    value:string
 }
 class RadioButton extends Component <RadioButtonProps>{

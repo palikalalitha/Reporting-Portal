@@ -1,19 +1,21 @@
 import { observable, action } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { API_INITIAL } from '@ib/api-constants'
+import { API_INITIAL, APIStatus } from '@ib/api-constants'
 import { PAGE_LIMIT } from '../../../UserModule/constants/userStoreConstants'
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+import { UserModel } from "../../../UserModule/stores/models/UserModel"
+import { RPModel } from "../../../RPModule/stores/Models/RPModel"
 
 class PaginationStore {
-   @observable selectedPage
-   @observable totalPages
-   @observable getEntityListAPIError
-   @observable getEntityListAPIStatus
-   @observable entityList
+   @observable selectedPage!:number
+   @observable totalPages!:number
+   @observable getEntityListAPIError!:Error|null
+   @observable getEntityListAPIStatus!:APIStatus
+   @observable entityList!:Array<RPModel>|Array<UserModel>
    entityModel
    serviceMethod
-   pageLimit
-   offset
+   pageLimit:number
+   offset:number
    constructor(method, limit, offset, entityModel) {
       this.serviceMethod = method
       this.pageLimit = limit
@@ -23,7 +25,7 @@ class PaginationStore {
    }
    init() {
       this.selectedPage = 0
-      this.totalPages = ''
+      this.totalPages = 0
       this.entityList = []
       this.getEntityListAPIError = null
       this.getEntityListAPIStatus = API_INITIAL

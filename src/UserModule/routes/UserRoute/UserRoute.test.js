@@ -47,11 +47,9 @@ describe('UserRoute Tests', () => {
       userStore = new UserStore(userService)
       signInStore = new SignInStore(signInAPI)
    })
-   it("should test intilaise logout states",()=>
-   {
+   it('should test intilaise logout states', () => {
       expect(signInStore.getUserSignOutAPIError).toBe(null)
       expect(signInStore.getUserSignOutAPIStatus).toBe(API_INITIAL)
-      
    })
    it('should test logout button in userpage', async () => {
       const { getByTestId, debug } = render(
@@ -87,7 +85,6 @@ describe('UserRoute Tests', () => {
          getByTestId('location-display')
       })
       expect(getByTestId('location-display')).toHaveTextContent(SIGN_IN_PATH)
-
    })
    it('should render the user form ', async () => {
       const history = createMemoryHistory()
@@ -183,4 +180,4 @@ describe('UserRoute Tests', () => {
 
       // await waitFor (() => { expect(getByTestId('location-display')).toHaveTextContent(USER_PATH)})
    })
-  })
+})

@@ -23,10 +23,11 @@ import {
    MESSAGE_ICON_URL
 } from '../../constants/reportingPortalconstants'
 import { ObservationObject} from "../../../UserModule/stores/types"
+import { RPObservationObject } from "../../../RPModule/stores/types"
 
 interface TableDataProps
 {
-   observation:ObservationObject
+   observation:any
 }
 
 
@@ -39,14 +40,12 @@ class TableData extends Component<TableDataProps> {
          status,
          reported_on,
          message_count,
-         assigned_to
       } = this.props.observation
-      const { name, contact_number, role } = assigned_to
       return (
          <>
             <TData>{title}</TData>
             <TData>{reported_on}</TData>
-            {assigned_to === 'not assigned' ? (
+            {this.props.observation.assigned_to === 'not assigned' ? (
                <NotAssignedText>Not assigned</NotAssignedText>
             ) : (
                <AssignedContainer>
@@ -55,7 +54,7 @@ class TableData extends Component<TableDataProps> {
                      <Name>{name}</Name>
                      <PhoneNumber>
                         Phno:9234435656
-                        {contact_number}
+                               {/* {contact_number} */}
                      </PhoneNumber>
                   </RPDetails>
                </AssignedContainer>
@@ -63,11 +62,9 @@ class TableData extends Component<TableDataProps> {
             <Severty status={priority}>
                <Mode>{priority}</Mode>
             </Severty>
-            {/* <TData> */}
                <StatusWrapper >
                   <Status>{status}</Status>
                </StatusWrapper>
-            {/* </TData> */}
             <TData>{due_date === 'null' ? 'Private' : due_date}</TData>
             <TData>
                <Message>

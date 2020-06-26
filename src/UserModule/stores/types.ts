@@ -9,7 +9,7 @@ export interface ObservationObject
     title:string
     description?:string
     priority:string
-    assigned_to:
+    assigned_to?:
     {
        name:string
        contact_number:number

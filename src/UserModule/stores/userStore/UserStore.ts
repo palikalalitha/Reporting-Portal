@@ -21,7 +21,7 @@ class UserStore {
    @observable getObservationListAPIStatus!:APIStatus
    @observable getObservationListAPIError!:Error|null
 
-   @observable singleObservationDetails!:getObservationDetailsResponse|Array<[]>
+   @observable singleObservationDetails!:getObservationDetailsResponse|{}
    @observable getObservationDetailsAPIStatus!:APIStatus
    @observable getObservationDetailsAPIError!:Error|null
 
@@ -52,6 +52,12 @@ class UserStore {
       )
    }
    init() {
+      this.observationList = []
+      this.observation = ""
+      this.singleObservationDetails = {}
+      this.filterList = []
+      this.categories = []
+
       this.getObservationListAPIStatus = API_INITIAL
       this.getObservationListAPIError = null
 
@@ -64,11 +70,7 @@ class UserStore {
       this.createObservationsAPIStatus = API_INITIAL
       this.createObservationsAPIError = null
 
-      this.observationList = []
-      this.observation = ""
-      this.singleObservationDetails = []
-      this.filterList = []
-      this.categories = []
+     
 
       this.offset = OFFSET
       this.pageLimit = PAGE_LIMIT

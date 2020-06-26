@@ -6,9 +6,9 @@ import Loader from 'react-loader-spinner'
 
 interface ButtonElementProps {
    buttonText: string
-   onClickHandler:()=>void
+   onClickHandler?:()=>void
    buttonType?:string
-   roleType?:string
+   roleType?:string|any
    buttonStatus?:boolean
    className?:string
 }

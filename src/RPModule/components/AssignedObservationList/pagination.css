@@ -1,0 +1,62 @@
+.page-container
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-box
+{
+    width: 24px;
+    height: 24px;
+    margin:10px;
+    padding-left:5px;
+    align-self: center;
+    border-radius: 2px;
+    border:1px solid #d7dfe9;
+    background-color: white;
+}
+.page-box:focus{
+  border: 1px solid rgba(51, 153, 255, 0.4);
+  box-shadow: 0 0 5px rgba(51, 153, 255, 0.4);
+}
+.active-page
+{
+    border:1px solid #171f46;
+   }
+
+.prev
+{   width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    border:  1px solid #d7dfe9;
+    padding-left:6px;
+    margin-left:5px;
+   
+    background-color:white;
+}
+.prev-button
+{
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+  .break-me
+  {
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+  }
+  .breakLinkClassName
+  {
+
+    font-family: HKGrotesk;
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;  
+    letter-spacing: 0.12px;
+    color: #7e858e;
+  }
+

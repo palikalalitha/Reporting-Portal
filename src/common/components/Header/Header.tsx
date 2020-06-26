@@ -16,15 +16,15 @@ import {
    ProfileName,
    HeaderMiddlePart,
    ObservationsTab,
-   AssignedTab,
+   AssignedTab,   
    LogOutButton
 } from './styledComponents'
 
-// import {
-//    Assigned_OBSERVATIONS_PATH,
-//    OBSERVATION_SCREEN,
-//    OBSERVATION_LIST
-// } from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
+import {
+   Assigned_OBSERVATIONS_PATH,
+   OBSERVATION_SCREEN,
+   OBSERVATION_LIST
+} from '../../../RPModule/constants/RPRouteConstants/RPRouteConstants'
 
 import { Button } from '../Button'
 
@@ -36,13 +36,13 @@ interface HeaderProps extends RouteComponentProps
 class Header extends Component<HeaderProps> {
    role = this.props.roleType
    renderAssignedObservations = () => {
-    //  this.props.history.push(Assigned_OBSERVATIONS_PATH, this.role)
+     this.props.history.push(Assigned_OBSERVATIONS_PATH, this.role)
    }
    onClick = () => {
       alert('signout')
    }
    renderObservations = () => {
-      //this.props.history.push(OBSERVATION_LIST, 'user')
+      this.props.history.push(OBSERVATION_LIST, 'user')
    }
    render() {
       const { roleType, onClickToSignOut } = this.props
@@ -62,9 +62,6 @@ class Header extends Component<HeaderProps> {
                   </ObservationsTab>
                </HeaderMiddlePart>
             )}
-            {/* <HeaderMiddlePart> */}
-
-            {/* </HeaderMiddlePart> */}
             <HeaderRightPart>
                <LogOutButton data-testid='logout' onClick={onClickToSignOut}>
                   Logout

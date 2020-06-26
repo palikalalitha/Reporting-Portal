@@ -17,9 +17,9 @@ import './SelectBoxStyles.css'
 
 interface NavbarPropos
 {
-   gotoUserForm:()=>void
+   gotoUserForm?:()=>void
    roleType:string
-   filterByStatus: (option: { value: any }[] | null)=>void
+   filterByStatus?: (option: { value: any }[] | null)=>void
 
 }
 class Navbar extends Component<NavbarPropos> {

@@ -16,12 +16,17 @@ import {
    SortButton,
    HeadingContainer
 } from './styledComponents'
-import { ObservationListProps } from "../../../UserModule/components/ObservationList/ObservationList"
+import { UserModel } from "../../../UserModule/stores/models/UserModel"
+import { RPModel } from "../../../RPModule/stores/Models/RPModel"
 
-interface TableProps extends ObservationListProps
+interface TableProps
 {
+   navigateToObservationScreen:(id: number)=>void
+   observationsSort: (date_type: string)=>void
+
    tableHeadings:Array<string>
-   
+   observationList:any
+   // observationList:Array<UserModel>|Array<RPModel>
 }
 @observer
 class Table extends Component<TableProps>{

@@ -7,10 +7,10 @@ import { Provider } from 'mobx-react'
 import './App.css'
 // import { store } from './SignInModule/stores'
 import signInRoutes from './SignInModule/routes'
-// import rpRoutes from './RPModule/routes/index'
+import rpRoutes from './RPModule/routes/index'
 import userRoutes from './UserModule/routes'
 import { signInStore } from './SignInModule/stores/index'
-// import { rpStore } from './RPModule/stores/index'
+import { rpStore } from './RPModule/stores/index'
 import { userStore } from './UserModule/stores'
 
 class App extends React.Component {
@@ -18,14 +18,14 @@ class App extends React.Component {
       return (
          <Provider
             signInStore={signInStore}
-            // rpStore={rpStore}
+            rpStore={rpStore}
             userStore={userStore}
          >
             <Router basename={process.env.PUBLIC_URL}>
                <Switch>
                   {signInRoutes}
                   {userRoutes}
-                  {/* {rpRoutes}  */}
+                  {rpRoutes}
                </Switch>
             </Router>
          </Provider>

@@ -12,12 +12,12 @@ import {
 import ProtectedRoute from '../../common/routes/ProtectedRoute/ProtectedRoute'
 import { UserRoute } from './UserRoute'
 import UserFormRoute from './UserFormRoute/UserFormRoute'
-// import ObservationScreenRoute from '../../RPModule/routes/ObservationScreenRoute/ObservationScreenRoute'
+import ObservationScreenRoute from '../../RPModule/routes/ObservationScreenRoute/ObservationScreenRoute'
 
 const routes = [
    <ProtectedRoute path={USER_PATH} component={UserRoute} />,
    <ProtectedRoute path={USER_CREATION_FORM} component={UserFormRoute} />,
-   // <Route path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
+   <Route path={OBSERVATION_SCREEN} component={ObservationScreenRoute} />
 ]
 
 export default routes

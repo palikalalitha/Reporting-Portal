@@ -6,26 +6,16 @@ import { observer } from 'mobx-react'
 
 interface DropDownListProps
 {
-   optionsList:string
+   optionsList?:string
    onChangeHandler:(option: any)=>void
    value:string
-   status:string
-   roleType?:string
-   testid:string
-   className:string
+   status?:string
+   roleType?:string|any
+   testid?:string
+   className?:string
 }
 @observer
 class DropDownList extends Component<DropDownListProps> {
-   // static defaultProps = {
-   //    status: false,
-   //    testid: 'select',
-   //    onChangeHandler: () => {},
-   //    roleType: 'user',
-   //    optionsList: [
-   //       { value: 'food', label: 'Food' },
-   //       { value: 'Accomdation', label: 'Accomadation' }
-   //    ]
-   // }
    render() {
       const {
          optionsList,

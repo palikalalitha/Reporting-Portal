@@ -3,17 +3,19 @@ import { withRouter ,RouteComponentProps} from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
 import { getLoadingStatus } from '@ib/api-utils'
-import { ObservationList } from '../../components/ObservationList/ObservationList'
-import { UserPage } from '../../components/UserPage/UserPage'
+
+import { SignInStore } from "../../../SignInModule/stores/SignInStore"
+
+
 import {
    gotoObservationCreationForm,
    gotoObservationDetails,
    gotoSignInPage,
    gotoPreviousPage
 } from '../../utils/NavigationUtils'
-import { SignInStore } from "../../../SignInModule/stores/SignInStore"
+import { ObservationList } from '../../components/ObservationList/ObservationList'
+import { UserPage } from '../../components/UserPage/UserPage'
 import { UserStore } from "../../stores/userStore"
-UserStore
 
 export interface UserRouteProps  extends RouteComponentProps
 {
@@ -26,9 +28,10 @@ export interface InjectedProps extends UserRouteProps
 @inject('signInStore',"userStore")
 @observer
 class UserRoute extends React.Component<UserRouteProps> {
-   @observable roleType:string|any=""
-   @observable filterList:Array<Object>=[]
-   @observable sort_type:string=""
+   @observable roleType:string|any
+   @observable filterList!:Array<Object>
+   @observable sort_type!:string
+   
    constructor(props) {
       super(props)
       this.filterList = []
@@ -53,23 +56,21 @@ class UserRoute extends React.Component<UserRouteProps> {
       this.getUserStore().getObservationList()
       this.getUserStore().onClickTogetCategories()
    }
-   naviagteToUserForm = () :void=> {
+   naviagteToUserForm = ()=> {
       const { history } = this.props
       gotoObservationCreationForm(history)
-      //this.props.history.push(USER_CREATION_FORM)
    }
-   gotoObservationList = () :void=> {
+   gotoObservationList = ()=> {
       const { history } = this.props
       gotoPreviousPage(history)
-      // this.props.history.goBack()
    }
-   navigateToObservationScreen = (id: number):void => {
+   navigateToObservationScreen = (id: number) => {
       let { history } = this.props
       this.getUserStore().getObservationDetailsById(id)
       gotoObservationDetails(history, id, this.roleType)
    }
 
-   observationsSort = (date_type: string):void=> {
+   observationsSort = (date_type: string)=> {
       if (this.sort_type === 'ASC') {
          this.sort_type    = 'DESC'
          this.getUserStore().setDate_typeAndSortType(date_type, this.sort_type)
@@ -78,7 +79,7 @@ class UserRoute extends React.Component<UserRouteProps> {
          this.getUserStore().setDate_typeAndSortType(date_type, this.sort_type)
       }
    }
-   filterByStatus = (option: { value: any }[] | null):void=> {
+   filterByStatus = (option: { value: any }[] | null)=> {
       if (option === null) {
          this.getUserStore().filterByStatus([])
       } else {
@@ -86,7 +87,7 @@ class UserRoute extends React.Component<UserRouteProps> {
          this.getUserStore().filterByStatus(this.filterList)
       }
    }
-   onClickToSignOut = () :void=> {
+   onClickToSignOut = ()=> {
       const { access_token } =  this.getSignInStore()
      this.getSignInStore().userSignOut(
          access_token    )
@@ -110,7 +111,6 @@ class UserRoute extends React.Component<UserRouteProps> {
          observationList,
          date_type,
          sort_type,
-         getObservationDetailsById,
          singleObservationDetails,
          getSingleObservationDetails,
          paginationStore
@@ -119,12 +119,11 @@ class UserRoute extends React.Component<UserRouteProps> {
       return (
          <ObservationList
          gotoUserForm={naviagteToUserForm}
-        
          observationsSort={observationsSort}
          handlePage={handlePage}
          gotoObservationList={gotoObservationList}
          navigateToObservationScreen={navigateToObservationScreen}
-         getObservationDetailsById={getObservationDetailsById}
+        
          observationList={observationList}
          singleObservationDetails={getSingleObservationDetails}
          selectedPage={selectedPage}

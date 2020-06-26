@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { observable, action } from 'mobx'
-import { ObservationObject } from "../types"
+import { RPObservationObject } from "../types"
 
-class UserModel extends Component{
+class RPModel extends Component{
    id:string
    @observable  title:string
    @observable  priority:string
    @observable due_date:string
    @observable   status:string
-   @observable assigned_to?:
+   @observable reported_by?:
    {
       name:string
       contact_number:number
@@ -16,7 +16,7 @@ class UserModel extends Component{
    }|any
    @observable   reported_on?:string
    @observable   message_count:number
-   constructor(observation:ObservationObject) {
+   constructor(observation:RPObservationObject) {
       super(observation)
       this.id = observation.id
       this.title = observation.title
@@ -24,18 +24,18 @@ class UserModel extends Component{
       this.reported_on = observation.reported_on
       this.due_date = observation.due_date
       this.status = observation.status
-      if (observation.assigned_to !== null) {
-         this.assigned_to = {
+      if (observation.reported_by !== null) {
+         this.reported_by = {
             //  id: observation.assigned_to.id,
-            name: observation.assigned_to.name,
-            contact_number: observation.assigned_to.contact_number,
-            role: observation.assigned_to.role
+            name: observation.reported_by.name,
+            contact_number: observation.reported_by.contact_number,
+            //role: observation.reported_by.role
          }
       } else {
-         this.assigned_to = 'not assigned'
+         this.reported_by = 'not assigned'
       }
       this.message_count = observation.message_count
    }
 }
 
-export { UserModel }
+export { RPModel }

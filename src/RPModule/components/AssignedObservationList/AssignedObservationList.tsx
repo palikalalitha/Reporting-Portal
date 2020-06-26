@@ -1,53 +1,51 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
+import { Table } from '../../../common/components/Table/Table'
 
-import {Table} from '../../../common/components/Table/Table'
-import NoObservations from '../NoObservations/NoObservations'
-import { ObservationContainer } from '../../styleGuide/typos'
-import './pagination.css'
-import {
-   USER_HEADINGS
-} from '../../constants/userPageConstants'
+import NoObservations from '../../../UserModule/components/NoObservations/NoObservations'
+import { ObservationContainer } from '../../../UserModule/styleGuide/typos'
+
+import { RP_HEADINGS } from '../../../common/constants/reportingPortalconstants'
 import ReactPagination from '../../../common/components/ReactPagination/ReactPagination'
-import { getObservationDetailsResponse } from "../../stores/types"
-import { UserModel } from "../../stores/models/UserModel"
+import {RPObservationObject} from "../../stores/types"
+import { RPModel } from "../../stores/Models/RPModel"
 
-export interface ObservationListProps
+interface AssignedObservationListProps
 {
-  
-   gotoUserForm:()=>void
-   handlePage:(page: { selected: any })=>void
-   gotoObservationList:()=>void
- 
-   navigateToObservationScreen:(id: number)=>void
-   observationsSort: (date_type: string)=>void
-
-
-   observationList:Array<UserModel>
-   singleObservationDetails:getObservationDetailsResponse|{}   
-   selectedPage:number
    roleType:string
+   navigateToObservationScreen:(id: number)=>void
+   totlaPages:number
+   handlePage:(page: { selected: any })=>void
+   observationList:Array<RPModel>
    date_type:string
    sort_type:string
-   totlaPages:number
+  
+   gotoObservationList:()=>void
+   selectedPage:number
+   gotoUserForm:()=>void
+   observationsSort:(date_type: string)=>void
 
+    // filterByStatus,  
+   
 }
 @observer
-class ObservationList extends Component<ObservationListProps>{
+class AssignedObservationList extends Component<AssignedObservationListProps> {
    render() {
       const {
          observationList,
-         gotoUserForm,
          totlaPages,
          handlePage,
+         gotoObservationList,
          selectedPage,
+         gotoUserForm,
+         roleType
       } = this.props
       return (
          <ObservationContainer>
             {observationList.length > 0 ? (
                <>
                   <Table
-                     tableHeadings={USER_HEADINGS}
+                     tableHeadings={RP_HEADINGS}
                      {...this.props}
                      observationList={observationList}
                   />
@@ -60,7 +58,6 @@ class ObservationList extends Component<ObservationListProps>{
             ) : (
                <NoObservations
                   gotoUserForm={gotoUserForm}
-                
                />
             )}
          </ObservationContainer>
@@ -68,4 +65,4 @@ class ObservationList extends Component<ObservationListProps>{
    }
 }
 
-export { ObservationList }
+export { AssignedObservationList }
