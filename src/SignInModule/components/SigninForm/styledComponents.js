@@ -13,7 +13,7 @@ const SignInContainer = styled.div`
    padding-top: 48px;
 `
 
-const WelcomMessage = styled.p`
+const WelcomeMessage = styled.p`
    ${tw`mt-4 mb-4`}
 
    font-family: Rubik;
@@ -65,7 +65,7 @@ const ErrorMessage = styled.span`
 `
 export {
    SignInContainer,
-   WelcomMessage,
+   WelcomeMessage,
    Label,
    NewAccount,
    SignUPLink,

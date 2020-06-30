@@ -14,6 +14,7 @@ import { gotoUserPage, gotoRPPage } from '../../utils/NavigationUtils'
 
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 
+
 @inject('signInStore')
 @observer
 class SignInRoute extends React.Component {
@@ -21,6 +22,7 @@ class SignInRoute extends React.Component {
    @observable password
    @observable errorMessageForUsername
    @observable errorMessageForPassword
+   @observable shouldShowUserNameErrorMessgae=false
    @observable errorMessage
 
    constructor() {
@@ -35,9 +37,9 @@ class SignInRoute extends React.Component {
       this.errorMessageForPassword = EMPTY_STRING
       this.errorMessage = EMPTY_STRING
    }
-
    onChangeUsername = event => {
-      this.username = event.target.value
+      this.username =event.target.value
+
       this.errorMessageForUsername = EMPTY_STRING
       this.errorMessage = EMPTY_STRING
       this.errorMessageForPassword = EMPTY_STRING
@@ -105,6 +107,7 @@ class SignInRoute extends React.Component {
       } = this
       return (
          <SignInForm
+         shouldShowUserNameErrorMessgae={this.shouldShowUserNameErrorMessgae}
             errorMessageForUsername={errorMessageForUsername}
             errorMessageForPassword={errorMessageForPassword}
             errorMessage={errorMessage}

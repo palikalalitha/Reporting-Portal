@@ -20,7 +20,7 @@ import i18n from '../../i18n/strings.json'
 
 import {
    SignInContainer,
-   WelcomMessage,
+   WelcomeMessage,
    Label,
    SignUPLink,
    NewAccount,
@@ -28,7 +28,8 @@ import {
    Wrapper,
    Container
 } from './styledComponents'
-
+import SampleInput from '../SampleInput/SampleInput'
+@observer
 class SignInForm extends Component {
    render() {
       const {
@@ -48,6 +49,7 @@ class SignInForm extends Component {
          errorMessageForUsername,
          onChangeUsername,
          onChangePassword,
+         shouldShowUserNameErrorMessgae,
          apiStatus,
          apiError
       } = this.props
@@ -55,7 +57,8 @@ class SignInForm extends Component {
          <Container>
             <SignInContainer>
                <Image type={LOGO} imageURL={imageURL} />
-               <WelcomMessage>{welcomeMessage}</WelcomMessage>
+               <WelcomeMessage>{welcomeMessage}</WelcomeMessage>
+
                <Wrapper>
                   <Label>{userName}</Label>
                   <InputElement

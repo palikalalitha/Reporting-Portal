@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { InPutTextBox } from './styledComponents'
 import { observer } from 'mobx-react'
+import { isEnterKeyEvent } from "../../utils/AppUtils"
+import { observable,action } from "mobx"
 
-@observer
 class InputElement extends Component {
+  
    static defaultProps = {
       status: false,
       testid: ''
@@ -25,7 +27,7 @@ class InputElement extends Component {
             data-testid={testid}
             status={status}
             defaultValue={value}
-            onChange={onChangeHandler}
+            onChange ={onChangeHandler}
             borderStyles={borderStyles}
          />
       )

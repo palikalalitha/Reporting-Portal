@@ -44,8 +44,8 @@ class SignInStore {
    }
 
    @action.bound
-   setUserSignInAPIResponse(response) {
-   
+   setUserSignInAPIResponse(response) { 
+      console.log(response)  
       this.access_token = response.access_token
       this.role = response.role.toLowerCase()
       setAccessToken(this.access_token)
