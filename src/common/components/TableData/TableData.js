@@ -58,9 +58,9 @@ class TableData extends Component {
                <Mode>{priority}</Mode>
             </Severty>
             {/* <TData> */}
-               <StatusWrapper bgColorStatus={bgColorStatus}>
-                  <Status>{status}</Status>
-               </StatusWrapper>
+            <StatusWrapper bgColorStatus={bgColorStatus}>
+               <Status>{status}</Status>
+            </StatusWrapper>
             {/* </TData> */}
             <TData>{due_date === 'null' ? 'Private' : due_date}</TData>
             <TData>
@@ -72,6 +72,5 @@ class TableData extends Component {
       )
    }
 }
-
 
 export { TableData }

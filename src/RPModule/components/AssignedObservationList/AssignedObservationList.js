@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import {Table} from '../../../common/components/Table/Table'
+import { Table } from '../../../common/components/Table/Table'
 
 import NoObservations from '../../../UserModule/components/NoObservations/NoObservations'
 import { ObservationContainer } from '../../../UserModule/styleGuide/typos'

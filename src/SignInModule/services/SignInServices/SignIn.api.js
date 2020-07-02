@@ -2,7 +2,7 @@ import { create } from 'apisauce'
 import { networkCallWithApisauceWithAccessToken } from '../../utils/AuthUtils'
 import { apiMethods } from '../../../constants/APIConstants'
 //import { BASE_URL } from '../../../common/constants/reportingPortalconstants.js'
-import BASE_URL from "../../../common/constants/EnvirnomentalConsants"
+import BASE_URL from '../../../common/constants/EnvirnomentalConsants'
 class SignInAPI {
    api
    constructor() {
@@ -13,7 +13,7 @@ class SignInAPI {
    signInAPI(request_data) {
       return networkCallWithApisauceWithAccessToken(
          this.api,
-         "signin",
+         'signin',
          //    `/login/to/portal/v1/`,
          request_data,
          apiMethods.post

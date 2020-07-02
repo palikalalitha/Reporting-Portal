@@ -69,7 +69,10 @@ describe('SignInStore Tests', () => {
          password: 'test-password'
       }
 
-      const mockSuccessPromise = Promise.resolve(getUserSignInResponse,requestObject)
+      const mockSuccessPromise = Promise.resolve(
+         getUserSignInResponse,
+         requestObject
+      )
       const mockSignInAPI = jest.fn()
       mockSignInAPI.mockReturnValue(mockSuccessPromise)
       signInAPI.signInAPI = mockSignInAPI
@@ -126,7 +129,6 @@ describe('SignInStore Tests', () => {
 
       signInStore.userSignOut(requestObject, onSuccess, onFailure)
       expect(signInStore.getUserSignOutAPIStatus).toBe(API_FETCHING)
-      
    })
 
    it('should test userSignOutAPI success state', async () => {

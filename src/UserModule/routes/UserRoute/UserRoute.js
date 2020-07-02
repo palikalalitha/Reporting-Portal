@@ -70,8 +70,7 @@ class UserRoute extends React.Component {
    }
    onClickToSignOut = () => {
       const { userSignOut, access_token } = this.props.signInStore
-      this.props.signInStore.userSignOut(
-         access_token    )
+      this.props.signInStore.userSignOut(access_token)
       this.onSuccess()
    }
    onSuccess = () => {

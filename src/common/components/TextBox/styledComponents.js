@@ -6,7 +6,6 @@ const InputBox = styled.input`
    outline: none;
    border-radius: 2px;
    box-shadow: 0 0 0 1px silver;
-
 `
 export { InputBox }
 

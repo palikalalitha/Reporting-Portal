@@ -164,10 +164,10 @@ describe('SignInRoute Tests', () => {
 
       const username = 'test-user'
       const password = 'test-password'
-      const signInFixture={
-         "access_token": "f5af9f51-07e6-4332-8f1a-c0c11c1e3434",
-         "role": "rp"
-       }
+      const signInFixture = {
+         access_token: 'f5af9f51-07e6-4332-8f1a-c0c11c1e3434',
+         role: 'rp'
+      }
       const usernameField = getByTestId('username')
       const passwordField = getByTestId('password')
       const signInButton = getByRole('button', { name: 'Login' })
