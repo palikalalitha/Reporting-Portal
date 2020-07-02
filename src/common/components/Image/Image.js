@@ -5,6 +5,7 @@ class Image extends Component {
       const { imageURL, type, value, className, onClick } = this.props
       return (
          <ImageElement
+            alt='Logo'
             value={value}
             onClick={onClick}
             className={className}

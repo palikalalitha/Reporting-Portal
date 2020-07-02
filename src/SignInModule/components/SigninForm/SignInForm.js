@@ -53,6 +53,7 @@ class SignInForm extends Component {
          apiStatus,
          apiError
       } = this.props
+
       return (
          <Container>
             <SignInContainer>
@@ -60,7 +61,7 @@ class SignInForm extends Component {
                <WelcomeMessage>{welcomeMessage}</WelcomeMessage>
 
                <Wrapper>
-                  <Label>{userName}</Label>
+                  <Label for={USERNAME}>{userName}</Label>
                   <InputElement
                      type={TYPE_TEXT}
                      testid={USERNAME}
@@ -73,7 +74,7 @@ class SignInForm extends Component {
                   </ErrorMessage>
                </Wrapper>
                <Wrapper>
-                  <Label>{password}</Label>
+                  <Label for={PASSWORD}>{password}</Label>
                   <InputElement
                      type={TYPE_PASSWORD}
                      testid={PASSWORD}

@@ -1,9 +1,20 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
-const Container = styled.div`${tw`flex justify-center items-center h-screen pt-20`}
-background-color:#f1f7ff;
-}`
+export const BaseHKGroteskText = styled.label`
+   font-family: 'HKGroteskRegular';
+   font-display: swap;
+`
+// HKGroteskRegular=>
+// font-family: '';
+// src: url('/assets/fonts/hk-grotesk/b115e3dffbd4ad84ad19fc86980903a1/e33516e0eebee20f8857204b3ceb1281/.ttf') format('truetype');
+// font-weight: bold;
+// font-style: normal;
+
+const Container = styled.div`
+   ${tw`flex justify-center items-center h-screen pt-20`}
+   background-color:#f1f7ff
+`
 const SignInContainer = styled.div`
    ${tw`flex flex-col justify-center items-center `}
    width: 500px;
@@ -13,34 +24,27 @@ const SignInContainer = styled.div`
    padding-top: 48px;
 `
 
-const WelcomeMessage = styled.p`
+const WelcomeMessage = styled(BaseHKGroteskText)`
    ${tw`mt-4 mb-4`}
-
-   font-family: Rubik;
-   font-size: 32px;
-   font-weight: normal;
-   font-stretch: normal;
-   font-style: normal;
+   /* font-family: Rubik; */
+  font-size: 32px;
+   /*    font-stretch: normal;
    line-height: 1.25;
-   letter-spacing: normal;
+   letter-spacing: normal; */
    color: #171f46;
 `
 
-const Label = styled.label`
+const Label = styled(BaseHKGroteskText)`
    ${tw`m-2`}
-   font-family: HKGrotesk;
    font-size: 12px;
    font-weight: 600;
-   font-stretch: normal;
-   font-style: normal;
    line-height: 1.33;
    letter-spacing: 0.12px;
-   color: #7e858e;
 `
 
-const NewAccount = styled.div`
+const NewAccount = styled(BaseHKGroteskText)`
    ${tw`mb-10`}
-   font-family: HKGrotesk;
+   /* font-family: HKGrotesk; */
    font-size: 14px;
    font-weight: normal;
    font-stretch: normal;

@@ -1,0 +1,14 @@
+For font loading
+changing thelink file 
+  added
+    <link
+         media="screen"
+         href="https://fontlibrary.org/face/hk-grotesk"
+          as="fetch"
+         type="font/css"
+        added crossorigin
+         rel="stylesheet"
+      />
+Background and foreground colors do not have a sufficient contrast ratio.
+
+text color
