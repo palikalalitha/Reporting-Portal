@@ -19,10 +19,12 @@ class Button extends Component {
          onClickHandler,
          buttonStatus,
          roleType,
-         className
+         className,
+         buttonRef
       } = this.props
       return (
          <ButtonElement
+            ref={buttonRef}
             disabled={roleType === 'user' ? true : false}
             onClick={onClickHandler}
             roleType={roleType}

@@ -9,8 +9,14 @@ const InPutTextBox = styled.input`
    background-color: ${props =>
       props.roleType === 'user' ? 'rgba(215, 223, 233, 0.5)' : 'white'};
    box-shadow: 0 0 0 1px silver;
+   padding: 5px 10px;
    disabled: ${props => props.roleType === 'user'};
 `
-export { InPutTextBox }
+
+const ErrorMessage = styled.span`
+   ${tw` mt-2 text-sm`}
+   color:#ff0b37;
+`
+export { InPutTextBox, ErrorMessage }
 
 // border: ${props=>props.status===""?"1px solid #ff0b37":"1px solid steel"};

@@ -2,35 +2,35 @@ export function ValidateUserName(userInput) {
    if (userInput === '') {
       return {
          shouldShowErrorMessgae: true,
-         errorMessage1: 'Required'
+         errorMessage: 'Required'
       }
    } else if (userInput.length < 7) {
       return {
          shouldShowErrorMessgae: true,
-         errorMessage1: 'Invalid userName'
+         errorMessage: 'Invalid userName'
       }
    } else {
       return {
          shouldShowErrorMessgae: false,
-         errorMessage1: ''
+         errorMessage: ''
       }
    }
 }
-export function ValidatePasword(userInput) {
+export function ValidatePassword(userInput) {
    if (userInput === '') {
       return {
          shouldShowErrorMessgae: true,
-         errorMessage1: 'Required'
+         errorMessage: 'Required'
       }
    } else if (userInput.length < 7) {
       return {
          shouldShowErrorMessgae: true,
-         errorMessage1: 'Invalid Password'
+         errorMessage: 'Invalid Password'
       }
    } else {
       return {
          shouldShowErrorMessgae: false,
-         errorMessage1: ''
+         errorMessage: ''
       }
    }
 }

@@ -13,6 +13,8 @@ import {
 import { gotoUserPage, gotoRPPage } from '../../utils/NavigationUtils'
 
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+import { withTranslation } from 'react-i18next'
+import { ValidateUserName, ValidatePassword } from '../../utils/validationUtil'
 
 @inject('signInStore')
 @observer
@@ -23,10 +25,15 @@ class SignInRoute extends React.Component {
    @observable errorMessageForPassword
    @observable shouldShowUserNameErrorMessgae = false
    @observable errorMessage
+   signinRef = React.createRef()
 
    constructor() {
       super()
       this.init()
+   }
+   componentDidMount() {
+      console.log(this.signinRef)
+      this.signinRef.current.usernameRef.current.focus()
    }
 
    init() {
@@ -37,15 +44,14 @@ class SignInRoute extends React.Component {
       this.errorMessage = EMPTY_STRING
    }
    onChangeUsername = event => {
-      this.username = event.target.value
-
+      this.username = event
       this.errorMessageForUsername = EMPTY_STRING
       this.errorMessage = EMPTY_STRING
       this.errorMessageForPassword = EMPTY_STRING
    }
 
    onChangePassword = event => {
-      this.password = event.target.value
+      this.password = event
       this.errorMessageForPassword = EMPTY_STRING
       this.errorMessageForUsername = EMPTY_STRING
       this.errorMessage = EMPTY_STRING
@@ -65,17 +71,28 @@ class SignInRoute extends React.Component {
       }
    }
    onClickSignIn = () => {
-      if (this.username === EMPTY_STRING) {
-         this.errorMessageForUsername = REQUIRED_FIELD
-      }
-      if (this.password === EMPTY_STRING) {
-         this.errorMessageForPassword = REQUIRED_FIELD
+      if (ValidateUserName(this.username).shouldShowErrorMessgae) {
+         this.signinRef.current.usernameRef.current.focus()
+      } else if (ValidatePassword(this.password).shouldShowErrorMessgae) {
+         this.signinRef.current.passwordRef.current.focus()
       } else if (
-         this.username !== EMPTY_STRING ||
-         this.password !== EMPTY_STRING
+         ValidateUserName(this.username) &&
+         ValidatePassword(this.password)
       ) {
+         this.signinRef.current.loginRef.current.focus()
          this.handleSignIn()
       }
+      // if (this.username === EMPTY_STRING) {
+      //    this.errorMessageForUsername = REQUIRED_FIELD
+      // }
+      // if (this.password === EMPTY_STRING) {
+      //    this.errorMessageForPassword = REQUIRED_FIELD
+      // } else if (
+      //    this.username !== EMPTY_STRING ||
+      //    this.password !== EMPTY_STRING
+      // ) {
+      //    this.handleSignIn()
+      // }
    }
    handleSignIn = async () => {
       const { userSignIn } = this.props.signInStore
@@ -90,6 +107,7 @@ class SignInRoute extends React.Component {
    }
 
    render() {
+      const { t } = this.props
       const {
          getUserSignInAPIStatus,
          getUserSignInAPIError
@@ -106,6 +124,8 @@ class SignInRoute extends React.Component {
       } = this
       return (
          <SignInForm
+            t={t}
+            ref={this.signinRef}
             shouldShowUserNameErrorMessgae={this.shouldShowUserNameErrorMessgae}
             errorMessageForUsername={errorMessageForUsername}
             errorMessageForPassword={errorMessageForPassword}
@@ -121,4 +141,5 @@ class SignInRoute extends React.Component {
       )
    }
 }
-export default withRouter(SignInRoute)
+
+export default withTranslation('translation', { withRef: true })(SignInRoute)

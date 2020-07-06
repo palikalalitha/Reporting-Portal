@@ -12,3 +12,19 @@ changing thelink file
 Background and foreground colors do not have a sufficient contrast ratio.
 
 text color
+
+8 requests
+1.7 MB transferred
+8.8 MB resources
+Finish: 850 ms
+DOMContentLoaded: 675 ms
+Load: 865 ms
+
+LOGO
+size
+7.0 kB
+6.6 kB
+
+Time
+108 ms
+108 ms

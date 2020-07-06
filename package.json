@@ -16,6 +16,8 @@
       "apisauce": "1.1.1",
       "autoprefixer": "^9.7.5",
       "babel-plugin-macros": "^2.8.0",
+      "i18next": "19.5.1",
+      "i18next-xhr-backend": "3.2.2",
       "js-cookie": "2.2.1",
       "mobx": "5.15.0",
       "mobx-react": "6.1.4",

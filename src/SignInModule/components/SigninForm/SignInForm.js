@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import Loader from 'react-loader'
+
 import { InputElement } from '../../../common/components/InputElement'
 import { Button } from '../../../common/components/Button'
 import { Image } from '../../../common/components/Image/'
@@ -16,7 +16,6 @@ import {
    LOGIN,
    LOADING
 } from '../../constants/SigninPageConstants'
-import i18n from '../../i18n/strings.json'
 
 import {
    SignInContainer,
@@ -28,18 +27,14 @@ import {
    Wrapper,
    Container
 } from './styledComponents'
-import SampleInput from '../SampleInput/SampleInput'
+import { ValidateUserName, ValidatePassword } from '../../utils/validationUtil'
+
 @observer
 class SignInForm extends Component {
+   usernameRef = React.createRef()
+   passwordRef = React.createRef()
+   loginRef = React.createRef()
    render() {
-      const {
-         welcomeMessage,
-         userName,
-         password,
-         noAccount,
-         signUp
-      } = i18n.signInPageStrings
-
       const {
          username,
          userpassword,
@@ -49,45 +44,56 @@ class SignInForm extends Component {
          errorMessageForUsername,
          onChangeUsername,
          onChangePassword,
-         shouldShowUserNameErrorMessgae,
          apiStatus,
-         apiError
+         apiError,
+         t
       } = this.props
 
       return (
          <Container>
             <SignInContainer>
                <Image type={LOGO} imageURL={imageURL} />
-               <WelcomeMessage>{welcomeMessage}</WelcomeMessage>
+               <WelcomeMessage>
+                  {t('signin:signInPageStrings.welcomeMessage')}
+               </WelcomeMessage>
 
                <Wrapper>
-                  <Label for={USERNAME}>{userName}</Label>
+                  <Label htmlFor={USERNAME}>
+                     {t('signin:signInPageStrings.userName')}
+                  </Label>
                   <InputElement
+                     forwardRef={this.usernameRef}
                      type={TYPE_TEXT}
                      testid={USERNAME}
                      value={username}
                      status={errorMessageForUsername}
+                     validateInputElements={ValidateUserName}
                      onChangeHandler={onChangeUsername}
                   />
-                  <ErrorMessage status={errorMessageForUsername}>
+                  {/* <ErrorMessage status={errorMessageForUsername}>
                      {errorMessageForUsername}
-                  </ErrorMessage>
+                  </ErrorMessage> */}
                </Wrapper>
                <Wrapper>
-                  <Label for={PASSWORD}>{password}</Label>
+                  <Label htmlFor={PASSWORD}>
+                     {t('signin:signInPageStrings.password')}
+                  </Label>
                   <InputElement
+                     validateInputElements={ValidatePassword}
+                     forwardRef={this.passwordRef}
                      type={TYPE_PASSWORD}
                      testid={PASSWORD}
                      value={userpassword}
                      status={errorMessageForPassword}
                      onChangeHandler={onChangePassword}
                   />
-                  <ErrorMessage status={errorMessageForPassword}>
+                  {/* <ErrorMessage status={errorMessageForPassword}>
                      {errorMessageForPassword}
-                  </ErrorMessage>
+                  </ErrorMessage> */}
                </Wrapper>
 
                <Button
+                  buttonRef={this.loginRef}
                   buttonType={PRIMARY}
                   buttonStatus={apiStatus === LOADING ? true : false}
                   onClickHandler={onClickSignIn}
@@ -95,8 +101,10 @@ class SignInForm extends Component {
                />
                <ErrorMessage>{errorMessage}</ErrorMessage>
                <NewAccount>
-                  {noAccount}
-                  <SignUPLink>{signUp}</SignUPLink>
+                  {t('signin:signInPageStrings.noAccount')}
+                  <SignUPLink>
+                     {t('signin:signInPageStrings.signUp')}
+                  </SignUPLink>
                </NewAccount>
             </SignInContainer>
          </Container>
